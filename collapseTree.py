@@ -18,6 +18,7 @@ version='2021/12/03': fixed a small bug for corner cases. Occasionally .fa.out c
 '''
 
 
+
 description='''
     This script collapses TE annotations from RepeatMasker (i.e. genome.fa.out file).
     The TE annotations from RepeatMasker are frequently overlap each other. If so, when counting
@@ -33,6 +34,8 @@ parser=argparse.ArgumentParser(description=description)
 parser.add_argument('-i', metavar='str', type=str, help='Specify input genome.fa.out file.', required=True)
 parser.add_argument('-o', metavar='str', type=str, help='Specify output basename. [basename].gtf.gz and [basename].bed.gz will be generated.', required=True)
 parser.add_argument('-gap', metavar='int', type=int, help='Optional. Specify gap distance to connect two TEs belonging to the same repeat. Default: 0', default=0)
+parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
+parser.add_argument('-threshold', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
 parser.add_argument('-min', metavar='int', type=int, help='Optional. Minimal length of repeat to output. Default: 1', default=1)
 parser.add_argument('-keep_simple_repeat', help='Optional. Specify if you want to keep "Simple_repeat" and "Low_complexity".', action='store_true')
 parser.add_argument('-quiet', help='Optional. Specify if you do not want to output processing status.', action='store_true')
@@ -44,6 +47,8 @@ args=parser.parse_args()
 ogtf='%s.gtf.gz' % args.o
 obed='%s.bed.gz' % args.o
 gap=args.gap
+level = args.lvl / 100
+threshold = args.threshold
 annots=('gene', 'transcript', 'exon')
 remove_simple_low_complex={'Simple_repeat', 'Low_complexity'}
 if args.keep_simple_repeat is True:
@@ -85,18 +90,84 @@ class IntervalNode:
         self.left=None
         self.right=None
 
+    def replace_root(self,start,end,score,info):
+        # replace root and corresponding branches with new node
+        # while deleting old root from tree
+        root = IntervalNode(start, end, score, info)
+        if self.left:
+            root.left = self.left
+        if self.right:
+            root.right = self.right
+        return root
+
     def insert(self, start, end, score, info):
         root=self
-        if start > self.start:
+
+        if start < self.start:
+            breakpoint()
+
+
+        # Check whether there are overlaps of more than 80 (or other value determined in command line) percent shared sequence
+        # If sequence is shared over the threshold than remove the sequence with lower score 
+        # If not, keep sequence in tree to be resolved
+        if start > self.start and start < self.end and end > self.end:  # start>self.start unnecessary as file is ordered, if unordered file: would require code for start<self.start
+            overlap = self.end - start
+
+            # if root (almost) contained in new element and new element is better--> delete and replace root
+            # root:              ------------     SW = 500       -->  
+            # new element:         ------------      SW = 1000   -->      ------------      SW = 1000   
+            if overlap > level * (self.end - self.start) and self.score < score:
+                return self.replace_root(start,end,score,info)
+            
+            # if new element (almost) contained in root and root is better --> delete and replace root
+            # root:              ------------     SW = 1000     -->       ------------      SW = 1000
+            # new element:         ------------      SW = 500   -->      
+            if overlap > level * (end - start) and self.score > score:
+                return root
+        
+            # if an element is (almost) contained by another and score is the same --> keep longer element
+            # root:              ------------       SW = 1000     -->       
+            # new element:        --------------   SW = 1000     -->   ---------------   SW = 1000
+            if (overlap > level * (end - start) or overlap > level * (self.end - self.start)) and self.score == score:
+                if end - start >= self.end - self.start:
+                    return self.replace_root(start,end,score,info)
+                else:
+                    return root
+
+        # Sane as previous section but for chimers
+        if start > self.start and start < self.end and end < self.end:
+            # If nested is worse or equal --> do not add to tree
+            # nesting:      --------------     SW = 1000       -->   only NESTING remains     --------------      SW = 1000 
+            # nested:        ------------      SW = 500        -->   
+            if score <= self.score:
+                return root
+            
+            # If nested is better and the nesting is for more than 80 (or other) percent contained in nested --> delete nesting
+            # nesting:      --------------     SW = 500        -->
+            # nested:        ------------      SW = 1000       -->   only NESTED remains     ------------      SW = 1000 
+            elif (end - start)/(self.end - self.start) > level:
+                root = IntervalNode(start, end, score, info)
+                if self.left:
+                    root.left = self.left
+                if self.right:
+                    root.right = self.right
+                return root
+            # If none of these, keep chimer in tree, to be resolved later...
+        
+
+        if start >= self.start:
             # insert to right tree
-            if self.right:
+            if self.right: #if there is already a node the right of the root, repeat with that node
                 self.right=self.right.insert(start, end, score, info)
-            else:
+            else: # add node to the right
                 self.right=IntervalNode(start, end, score, info)
             # build heap
+
+            # change root if score is higher
             if self.score < self.right.score:
                 root=self.rotateleft()
-        else:
+        else: # not in ordered dataset
+            outgtf.write('\n Dataset non ordered, please order dataset (or change the code)\n')
             # insert to left tree
             if self.left:
                 self.left=self.left.insert(start, end, score, info)
@@ -105,6 +176,8 @@ class IntervalNode:
             # build heap
             if self.score < self.left.score:
                 root=self.rotateright()
+
+        # for rotating
         if root.right and root.left:
             root.maxend=max(root.end, root.right.maxend, root.left.maxend)
             root.minend=min(root.end, root.right.minend, root.left.minend)
@@ -132,9 +205,16 @@ class IntervalNode:
         return root
 
     def rotateleft(self):
+
+        # remember: score of right is higher than score of root
+        # new node becomes root
         root=self.right
+
+        # node on left becomes node on right
+        # old root becomes node on left
         self.right=self.right.left
         root.left=self
+
         if self.right and self.left:
             self.maxend=max(self.end, self.right.maxend, self.left.maxend)
             self.minend=min(self.end, self.right.minend, self.left.minend)
@@ -147,9 +227,11 @@ class IntervalNode:
         return root
     
     def find_top_score(self, start, end):
+        # if segment is contained in current node
         if start < self.end and end > self.start:
             return [(self.score, self.info)]
         else:
+        # look if segment is contained in node to the left or right (with a lower score)
             res=[]
             if self.left and start < self.left.maxend:
                 res.extend(self.left.find_top_score(start, end))
@@ -180,22 +262,44 @@ def collapse(tmp, chr, gft_id_n):
     else:
         tree=IntervalTree()
         poss=set()
+
+   
         for _rep in tmp:
-            tree.insert(*_rep)
+            tree.insert(*_rep) # insert repeat as node into the tree
             poss |= {*_rep[:2]}
+          
+
+        # get start and end positions of repeats in overlap island
         poss=sorted(list(poss))
         results=[]
         for n in range(len(poss) - 1):
+
+            # get start and end position + score
             se=poss[n:n + 2]
+
+            #find top score
+            #find scores associated to fragment
             result=tree.find_top_score(*se)
-            if len(result) == 0:
+
+            if len(result) == 0: #if fragment does not have a top score
                 continue
-            elif len(result) == 1:
+            elif len(result) == 1: # if fragment in 1 node on 1 side of the tree
                 result=result[0]
             else:
-                result=sorted(result)[-1]  # highest score
+                result=sorted(result)[-1]  # if fragment is cntained in nodes both left and right of the root of the tree
+            
+            #add outcome of fragment to results
             results.append(Rep(*se, *result))
         connected=connect(results)
+               
+        # filter out elements that become too short after fixing overlap
+        # threshold determined in command line
+        connected_temp = connected #dummy
+        for line in connected_temp:
+            # If line change (not present in original list) and short... remove
+            if line not in tmp and line.end - line.start < threshold:
+                connected.remove(line)
+
     gtf_lines=[]
     bed_lines=[]
     for _rep in connected:  # start, end, score, info
@@ -229,21 +333,38 @@ def parse_line(ls):
 
 
 def per_chr(reps, gft_id_n):
+    # prepare
     if args.quiet is False:
         print('processing %s...' % prev_chr)
     prev_end= (gap * -1) - 1
     reps=sorted(reps)
+
+    maxend = 0
+    
+    # loop over 
     for _rep in reps:
-        dist= _rep[0] - prev_end
+
+        dist= _rep[0] - maxend + 1
+
+        # make sure to check overlap with all previous elements, not only the last one (maxend)
+        if _rep[1] > maxend:
+            maxend = _rep[1]
+
+        # add sequence to overlap island if ... overlapping
         if dist <= gap:
             tmp.append(_rep)
         else:
+        # if non overlapping, process previous island
             if prev_end > 0:
+
+                # process island
                 gtf_lines,bed_lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
                 outgtf.write(''.join(gtf_lines))
                 outbed.write(''.join(bed_lines))
             tmp=[_rep]
+             
         prev_end=_rep[1]
+
     gtf_lines,bed_lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
     if len(bed_lines) >= 1:
         outgtf.write(''.join(gtf_lines))
@@ -289,7 +410,10 @@ if args.testrun is False:
             if ls[10] in remove_simple_low_complex:
                 continue
             _rep=parse_line(ls)
-            # per chr processing
+            # per chr
+
+            # add everything of one chromosome to reps
+            # once a new chromosome is reached, process the previous chromosome reps
             if not ls[4] == prev_chr:
                 if not prev_chr == 'dummy':
                     gft_id_n=per_chr(reps, gft_id_n)
