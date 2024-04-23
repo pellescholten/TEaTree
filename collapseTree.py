@@ -319,7 +319,6 @@ def connect_and_reassign(results,tmp,tree):
             connected.append(Rep(fragment.start, fragment.end, *result))
             connected.sort()
             connected = connect_and_reassign(connected,tmp,tree)
-            breakpoint()
             break
     
     return connected
