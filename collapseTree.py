@@ -77,6 +77,9 @@ class IntervalTree:
     
     def find_top_score(self, start, end):
         return self.root.find_top_score(start, end)
+    
+    def reassign_short_fragments(self, fragment, connected):
+        return self.root.reassign_short_fragments(fragment, connected)
 
 
 class IntervalNode:
@@ -86,7 +89,7 @@ class IntervalNode:
         self.score=score
         self.info=info
         self.maxend=self.end
-        self.minend=self.end
+        self.minstart=self.start
         self.left=None
         self.right=None
 
@@ -102,10 +105,6 @@ class IntervalNode:
 
     def insert(self, start, end, score, info):
         root=self
-
-        if start < self.start:
-            breakpoint()
-
 
         # Check whether there are overlaps of more than 80 (or other value determined in command line) percent shared sequence
         # If sequence is shared over the threshold than remove the sequence with lower score 
@@ -167,7 +166,7 @@ class IntervalNode:
             if self.score < self.right.score:
                 root=self.rotateleft()
         else: # not in ordered dataset
-            outgtf.write('\n Dataset non ordered, please order dataset (or change the code)\n')
+            sys.exit('\n Dataset non ordered, please order dataset (or change the code)\n')
             # insert to left tree
             if self.left:
                 self.left=self.left.insert(start, end, score, info)
@@ -177,16 +176,17 @@ class IntervalNode:
             if self.score < self.left.score:
                 root=self.rotateright()
 
-        # for rotating
+        # for finding intervals
+        # max end of all nodes in a branch, to know whether a segment is contained in a branch
         if root.right and root.left:
             root.maxend=max(root.end, root.right.maxend, root.left.maxend)
-            root.minend=min(root.end, root.right.minend, root.left.minend)
+            root.minstart=min(root.end, root.right.minstart, root.left.minstart)
         elif root.right:
             root.maxend=max(root.end, root.right.maxend)
-            root.minend=min(root.end, root.right.minend)
+            root.minstart=min(root.end, root.right.minstart)
         elif root.left:
             root.maxend=max(root.end, root.left.maxend)
-            root.minend=min(root.end, root.left.minend)
+            root.minstart=min(root.end, root.left.minstart)
         return root
     
     def rotateright(self):
@@ -195,13 +195,13 @@ class IntervalNode:
         root.right=self
         if self.right and self.left:
             self.maxend=max(self.end, self.right.maxend, self.left.maxend)
-            self.minend=min(self.end, self.right.minend, self.left.minend)
+            self.minstart=min(self.end, self.right.minstart, self.left.minstart)
         elif self.right:
-            self.maxend=max(self.end, self.right.maxend)
-            self.minend=min(self.end, self.right.minend)
+            self.maxend=min(self.end, self.right.maxend)
+            self.minstart=min(self.end, self.right.minstart)
         elif self.left:
             self.maxend=max(self.end, self.left.maxend)
-            self.minend=min(self.end, self.left.minend)
+            self.minstart=min(self.end, self.left.minstart)
         return root
 
     def rotateleft(self):
@@ -217,13 +217,13 @@ class IntervalNode:
 
         if self.right and self.left:
             self.maxend=max(self.end, self.right.maxend, self.left.maxend)
-            self.minend=min(self.end, self.right.minend, self.left.minend)
+            self.minstart=min(self.end, self.right.minstart, self.left.minstart)
         elif self.right:
             self.maxend=max(self.end, self.right.maxend)
-            self.minend=min(self.end, self.right.minend)
+            self.minstart=min(self.end, self.right.minstart)
         elif self.left:
             self.maxend=max(self.end, self.left.maxend)
-            self.minend=min(self.end, self.left.minend)
+            self.minstart=min(self.end, self.left.minstart)
         return root
     
     def find_top_score(self, start, end):
@@ -232,13 +232,43 @@ class IntervalNode:
             return [(self.score, self.info)]
         else:
         # look if segment is contained in node to the left or right (with a lower score)
+        # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
             res=[]
             if self.left and start < self.left.maxend:
                 res.extend(self.left.find_top_score(start, end))
-            if self.right and end > self.start:
+            if self.right and end > self.right.minstart:
                 res.extend(self.right.find_top_score(start, end))
             return res
+    
+    def reassign_short_fragments(self, fragment, connected):
 
+        # if same element as the one it is currently assigned to
+        if self.info == fragment.info:
+            res=[]
+            if self.left and fragment.start < self.left.maxend:
+                res.extend(self.left.reassign_short_fragments(fragment, connected))
+            if self.right and fragment.end > self.right.minstart:
+                res.extend(self.right.reassign_short_fragments(fragment, connected))
+            return res
+
+        # get list of all elements in the current 'island'
+        elements = []
+        for element in connected:
+            elements.append(element.info)
+
+        # if fragment is contained in current node --> reassign fragment
+        if fragment.start < self.end and fragment.end > self.start and self.info in elements:
+            # only if new element is not short itself!
+                return [(self.score, self.info)]
+        else:
+        # look if segment is contained in node to the left or right (with a lower score)
+        # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
+            res=[]
+            if self.left and fragment.start < self.left.maxend:
+                res.extend(self.left.reassign_short_fragments(fragment, connected))
+            if self.right and fragment.end > self.right.minstart:
+                res.extend(self.right.reassign_short_fragments(fragment, connected))
+            return res
 
 def connect(l):
     connected=[]
@@ -255,7 +285,45 @@ def connect(l):
     connected.append(Rep(prev_s, prev_e, prev_r, prev_i))
     return connected
 
+def connect_and_reassign(results,tmp,tree):
 
+    # connect adjacent fragments with same info
+    connected=connect(results)
+
+    # filter out elements that become too short after fixing overlap
+   
+    connected_dummy = connected.copy()
+    #sort from high score to low to make sure that:
+    # 1000      ----------                       ----------                       ----------                               ----------
+    #  300         ----------            -->               ---            -->                                and not
+    #  600            ----------                              ---                           -------  
+    #  400               ----------------                         ---------                        ---------                         ----------------
+    connected_dummy.sort(key = lambda element: element[2], reverse=True)
+    for fragment in connected_dummy:
+
+        #if fragment has been cut...
+        if fragment not in tmp and fragment.end - fragment.start < threshold:
+            # try to find new element for fragment
+            result = tree.reassign_short_fragments(fragment, connected)
+
+            connected.remove(fragment)
+            
+            if len(result) == 0: #if fragment does not have a matching element --> do not add back
+                continue
+            elif len(result) == 1: # if fragment in 1 node 
+                result=result[0]    
+            else:
+                result=sorted(result)[-1]  # if fragment is contained in multiple nodes
+
+            # if succesfull, add fragment with new info to results & repeat
+            connected.append(Rep(fragment.start, fragment.end, *result))
+            connected.sort()
+            connected = connect_and_reassign(connected,tmp,tree)
+            breakpoint()
+            break
+    
+    return connected
+                
 def collapse(tmp, chr, gft_id_n):
     if len(tmp) == 1:
         connected=tmp
@@ -281,24 +349,17 @@ def collapse(tmp, chr, gft_id_n):
             #find scores associated to fragment
             result=tree.find_top_score(*se)
 
-            if len(result) == 0: #if fragment does not have a top score
+            if len(result) == 0: #if fragment does not have a matching element 
                 continue
-            elif len(result) == 1: # if fragment in 1 node on 1 side of the tree
+            elif len(result) == 1: # if fragment in 1 node 
                 result=result[0]
             else:
-                result=sorted(result)[-1]  # if fragment is cntained in nodes both left and right of the root of the tree
-            
+                result=sorted(result)[-1]  # if fragment is contained in multiple nodes
+ 
             #add outcome of fragment to results
             results.append(Rep(*se, *result))
-        connected=connect(results)
-               
-        # filter out elements that become too short after fixing overlap
-        # threshold determined in command line
-        connected_temp = connected #dummy
-        for line in connected_temp:
-            # If line change (not present in original list) and short... remove
-            if line not in tmp and line.end - line.start < threshold:
-                connected.remove(line)
+
+        connected = connect_and_reassign(results,tmp, tree)
 
     gtf_lines=[]
     bed_lines=[]
