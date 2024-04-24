@@ -241,30 +241,24 @@ class IntervalNode:
             return res
     
     def reassign_short_fragments(self, fragment, connected):
+
         # if same element as the one it is currently assigned to
-        if self.info == fragment.info or self.score > fragment.score:
-            res=[]
+        if self.info == fragment.info:
+            res2=[]
             if self.left and fragment.start < self.left.maxend:
-                res.extend(self.left.reassign_short_fragments(fragment, connected))
+                res2.extend(self.left.reassign_short_fragments(fragment, connected))
             if self.right and fragment.end > self.right.minstart:
-                res.extend(self.right.reassign_short_fragments(fragment, connected))   
-            return res
+                res2.extend(self.right.reassign_short_fragments(fragment, connected))
+            return res2
 
         # get list of all elements in the current 'island'
-        # to make sure 
         elements = []
         for element in connected:
             elements.append(element.info)
 
         # if fragment is contained in current node --> reassign fragment
-        # but only part of fragment that is contained by the current node
-        if fragment.start < self.end and fragment.end > self.start:# and self.info in elements:
-                if fragment.end < self.end and fragment.start > self.start: #chimer
-                    unresolved_fragments = [[(self.start, fragment.start, fragment.score, fragment.info, "unresolved")], [(fragment.end, self.end, fragment.score, fragment.info, "unresolved")]]
-                    return [(fragment.start, fragment.end, self.score, self.info)], unresolved_fragments
-                else:
-                    unresolved_fragment = [(self.end, fragment.end, fragment.score, fragment.info, "unresolved")]
-                return [(fragment.start, self.end, self.score, self.info)], unresolved_fragment
+        if fragment.start >= self.start and fragment.end <= self.end and self.info in elements:
+                return [(self.score, self.info)]
         else:
         # look if segment is contained in node to the left or right (with a lower score)
         # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
@@ -295,41 +289,30 @@ def connect(l):
 
 def connect_and_reassign(results,tmp,tree):
 
+
     # connect adjacent fragments with same info
     connected=connect(results)
     # filter out elements that become too short after fixing overlap
-   
+
     connected_dummy = connected.copy()
     #sort from high score to low to make sure that:
     # 1000      ----------                       ----------                       ----------                               ----------
-    #  600         ----------            -->               ---            -->                                and not
-    #  300            ----------                              ---                           -------  
+    #  300         ----------            -->               ---            -->                                and not
+    #  600            ----------                              ---                           -------  
     #  400               ----------------                         ---------                        ---------                         ----------------
     connected_dummy.sort(key = lambda element: element[2], reverse=True)
-
-
     for fragment in connected_dummy:
+        #f fragment.start == 12249619 and fragment.score == 1430:
+        #    breakpoint()
+
 
         #if fragment has been cut...
         if fragment not in tmp and fragment.end - fragment.start < threshold:
             # try to find new element for fragment
-            outcome= tree.reassign_short_fragments(fragment, connected)
-
-            # sort unresolved and resolved items
-            result =[]
-            unresolved = []
-    
-            for i in outcome:
-                if len(i[0]) ==  1:
-                    for j in i:
-                        unresolved.append(j[0])
-                elif len(i[0]) == 4:
-                    result.append(i[0])
-                else:
-                    unresolved.append(i[0])
+            result = tree.reassign_short_fragments(fragment, connected)
 
             connected.remove(fragment)
-
+            
             if len(result) == 0: #if fragment does not have a matching element --> do not add back
                 continue
             elif len(result) == 1: # if fragment in 1 node 
@@ -337,16 +320,24 @@ def connect_and_reassign(results,tmp,tree):
             else:
                 result=sorted(result)[-1]  # if fragment is contained in multiple nodes
 
-
             # if succesfull, add fragment with new info to results & repeat
-            connected.append(Rep(*result))
-
-            #for item in unresolved:
-            #    connected.append(Rep(*item[0:4]))
-
+            connected.append(Rep(fragment.start, fragment.end, *result))
             connected.sort(key = lambda element: element[0])
+
+            elements = []
+            for element in connected:
+                elements.append(element.info) 
+            
+
+            #if fragment.start == 12249619 and connected[0].score == 2443:
+            #    breakpoint()
+
+
+            #location = elements.index(result[1])
+            #connected.insert(location, Rep(fragment.start, fragment.end, *result))
             connected = connect_and_reassign(connected,tmp,tree)
             break
+
 
 
 

@@ -69,11 +69,11 @@ class IntervalTree:
     def __init__(self):
         self.root=None
         
-    def insert(self, start, end, score, info):
+    def insert(self, start, end, score, info, unresolved):
         if self.root is None:
-            self.root=IntervalNode(start, end, score, info)
+            self.root=IntervalNode(start, end, score, info, unresolved)
         else:
-            self.root=self.root.insert(start, end, score, info)
+            self.root=self.root.insert(start, end, score, info, unresolved)
     
     def find_top_score(self, start, end):
         return self.root.find_top_score(start, end)
@@ -83,27 +83,28 @@ class IntervalTree:
 
 
 class IntervalNode:
-    def __init__(self, start, end, score, info):
+    def __init__(self, start, end, score, info, unresolved):
         self.start=start
         self.end=end
         self.score=score
         self.info=info
         self.maxend=self.end
         self.minstart=self.start
+        self.unresolved = unresolved
         self.left=None
         self.right=None
 
-    def replace_root(self,start,end,score,info):
+    def replace_root(self,start,end,score,info, unresolved):
         # replace root and corresponding branches with new node
         # while deleting old root from tree
-        root = IntervalNode(start, end, score, info)
+        root = IntervalNode(start, end, score, info, unresolved)
         if self.left:
             root.left = self.left
         if self.right:
             root.right = self.right
         return root
 
-    def insert(self, start, end, score, info):
+    def insert(self, start, end, score, info, unresolved):
         root=self
 
         # Check whether there are overlaps of more than 80 (or other value determined in command line) percent shared sequence
@@ -116,7 +117,7 @@ class IntervalNode:
             # root:              ------------     SW = 500       -->  
             # new element:         ------------      SW = 1000   -->      ------------      SW = 1000   
             if overlap > level * (self.end - self.start) and self.score < score:
-                return self.replace_root(start,end,score,info)
+                return self.replace_root(start,end,score,info, unresolved)
             
             # if new element (almost) contained in root and root is better --> delete and replace root
             # root:              ------------     SW = 1000     -->       ------------      SW = 1000
@@ -129,7 +130,7 @@ class IntervalNode:
             # new element:        --------------   SW = 1000     -->   ---------------   SW = 1000
             if (overlap > level * (end - start) or overlap > level * (self.end - self.start)) and self.score == score:
                 if end - start >= self.end - self.start:
-                    return self.replace_root(start,end,score,info)
+                    return self.replace_root(start,end,score,info, unresolved)
                 else:
                     return root
 
@@ -145,7 +146,7 @@ class IntervalNode:
             # nesting:      --------------     SW = 500        -->
             # nested:        ------------      SW = 1000       -->   only NESTED remains     ------------      SW = 1000 
             elif (end - start)/(self.end - self.start) > level:
-                root = IntervalNode(start, end, score, info)
+                root = IntervalNode(start, end, score, info, unresolved)
                 if self.left:
                     root.left = self.left
                 if self.right:
@@ -157,9 +158,9 @@ class IntervalNode:
         if start >= self.start:
             # insert to right tree
             if self.right: #if there is already a node the right of the root, repeat with that node
-                self.right=self.right.insert(start, end, score, info)
+                self.right=self.right.insert(start, end, score, info, unresolved)
             else: # add node to the right
-                self.right=IntervalNode(start, end, score, info)
+                self.right=IntervalNode(start, end, score, info, unresolved)
             # build heap
 
             # change root if score is higher
@@ -171,7 +172,7 @@ class IntervalNode:
             if self.left:
                 self.left=self.left.insert(start, end, score, info)
             else:
-                self.left=IntervalNode(start, end, score, info)
+                self.left=IntervalNode(start, end, score, info, unresolved)
             # build heap
             if self.score < self.left.score:
                 root=self.rotateright()
@@ -288,9 +289,9 @@ def connect(l):
             prev_r = max(prev_r, _rep.score)
         else:
             if not prev_i is None:
-                connected.append(Rep(prev_s, prev_e, prev_r, prev_i))
-            prev_s,prev_e,prev_r,prev_i=_rep
-    connected.append(Rep(prev_s, prev_e, prev_r, prev_i))
+                connected.append(Rep(prev_s, prev_e, prev_r, prev_i, unresolved))
+            prev_s,prev_e,prev_r,prev_i,unresolved=_rep
+    connected.append(Rep(prev_s, prev_e, prev_r, prev_i, unresolved))
     return connected
 
 def connect_and_reassign(results,tmp,tree):
@@ -309,9 +310,10 @@ def connect_and_reassign(results,tmp,tree):
 
 
     for fragment in connected_dummy:
-
+   
         #if fragment has been cut...
-        if fragment not in tmp and fragment.end - fragment.start < threshold:
+        if fragment not in tmp and fragment.end - fragment.start < threshold or fragment.unresolved == True:
+            #print(fragment)
             # try to find new element for fragment
             outcome= tree.reassign_short_fragments(fragment, connected)
 
@@ -337,12 +339,22 @@ def connect_and_reassign(results,tmp,tree):
             else:
                 result=sorted(result)[-1]  # if fragment is contained in multiple nodes
 
-
+            if result[1] - result[0] > threshold:
+                bad = True
+            else:
+                bad = False
             # if succesfull, add fragment with new info to results & repeat
-            connected.append(Rep(*result))
+            connected.append(Rep(*result, bad))
 
-            #for item in unresolved:
-            #    connected.append(Rep(*item[0:4]))
+            print(fragment)
+            print(result)
+            #print(outcome)
+            print(unresolved)
+            #print()
+       
+
+            for item in unresolved:
+                connected.append(Rep(*item[0:4], True))
 
             connected.sort(key = lambda element: element[0])
             connected = connect_and_reassign(connected,tmp,tree)
@@ -387,7 +399,7 @@ def collapse(tmp, chr, gft_id_n):
                 result=sorted(result)[-1]  # if fragment is contained in multiple nodes
  
             #add outcome of fragment to results
-            results.append(Rep(*se, *result))
+            results.append(Rep(*se, *result, False))
         
 
         #if results[0].start == 12248790:
@@ -423,7 +435,7 @@ def parse_line(ls):
         strand='-'
     repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
     info=(strand, repname)
-    return Rep(start, end, score, info)
+    return Rep(start, end, score, info, False)
 
 
 def per_chr(reps, gft_id_n):
@@ -484,7 +496,7 @@ if args.testrun is False:
     prev_chr='dummy'
     prev_id='dummy'
     gft_id_n=0
-    Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info'])
+    Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'unresolved'])
     with open(args.i) as infile:
         for _ in range(3):
             next(infile)
