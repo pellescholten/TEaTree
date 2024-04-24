@@ -263,9 +263,12 @@ class IntervalNode:
                 if fragment.end < self.end and fragment.start > self.start: #chimer
                     unresolved_fragments = [[(self.start, fragment.start, fragment.score, fragment.info, "unresolved")], [(fragment.end, self.end, fragment.score, fragment.info, "unresolved")]]
                     return [(fragment.start, fragment.end, self.score, self.info)], unresolved_fragments
-                else:
+                elif fragment.start > self.start: # non chimer where fragment more right than current node
                     unresolved_fragment = [(self.end, fragment.end, fragment.score, fragment.info, "unresolved")]
-                return [(fragment.start, self.end, self.score, self.info)], unresolved_fragment
+                    return [(fragment.start, self.end, self.score, self.info)], unresolved_fragment
+                else: # non chimer where fragment more left than current node
+                    unresolved_fragment = [(fragment.start, self.start, fragment.score, fragment.info, "unresolved")]
+                    return [(self.start, fragment.end, self.score, self.info)], unresolved_fragment
         else:
         # look if segment is contained in node to the left or right (with a lower score)
         # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
@@ -343,15 +346,9 @@ def connect_and_reassign(results,tmp,tree):
                 bad = True
             else:
                 bad = False
+                
             # if succesfull, add fragment with new info to results & repeat
             connected.append(Rep(*result, bad))
-
-            print(fragment)
-            print(result)
-            #print(outcome)
-            print(unresolved)
-            #print()
-       
 
             for item in unresolved:
                 connected.append(Rep(*item[0:4], True))

@@ -262,9 +262,12 @@ class IntervalNode:
                 if fragment.end < self.end and fragment.start > self.start: #chimer
                     unresolved_fragments = [[(self.start, fragment.start, fragment.score, fragment.info, "unresolved")], [(fragment.end, self.end, fragment.score, fragment.info, "unresolved")]]
                     return [(fragment.start, fragment.end, self.score, self.info)], unresolved_fragments
-                else:
+                elif fragment.start > self.start: # non chimer where fragment more right than current node
                     unresolved_fragment = [(self.end, fragment.end, fragment.score, fragment.info, "unresolved")]
-                return [(fragment.start, self.end, self.score, self.info)], unresolved_fragment
+                    return [(fragment.start, self.end, self.score, self.info)], unresolved_fragment
+                else: # non chimer where fragment more left than current node
+                    unresolved_fragment = [(fragment.start, self.start, fragment.score, fragment.info, "unresolved")]
+                    return [(self.start, fragment.end, self.score, self.info)], unresolved_fragment
         else:
         # look if segment is contained in node to the left or right (with a lower score)
         # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
@@ -293,7 +296,7 @@ def connect(l):
     connected.append(Rep(prev_s, prev_e, prev_r, prev_i))
     return connected
 
-def connect_and_reassign(results,tmp,tree):
+def connect_and_reassign(results,tmp,tree, to_be_resolved):
 
     # connect adjacent fragments with same info
     connected=connect(results)
@@ -307,6 +310,9 @@ def connect_and_reassign(results,tmp,tree):
     #  400               ----------------                         ---------                        ---------                         ----------------
     connected_dummy.sort(key = lambda element: element[2], reverse=True)
 
+    #check what this looks like
+    connected_dummy.append(to_be_resolved)
+    breakpoint()
 
     for fragment in connected_dummy:
 
@@ -337,15 +343,17 @@ def connect_and_reassign(results,tmp,tree):
             else:
                 result=sorted(result)[-1]  # if fragment is contained in multiple nodes
 
-
             # if succesfull, add fragment with new info to results & repeat
             connected.append(Rep(*result))
-
-            #for item in unresolved:
-            #    connected.append(Rep(*item[0:4]))
+            
+            for item in unresolved:
+               to_be_resolved.append(Rep(*item[0:4]))
+            
+            #check whether all are lower than threshold, they should be
+            breakpoint
 
             connected.sort(key = lambda element: element[0])
-            connected = connect_and_reassign(connected,tmp,tree)
+            connected = connect_and_reassign(connected,tmp,tree, to_be_resolved)
             break
 
 
@@ -392,7 +400,7 @@ def collapse(tmp, chr, gft_id_n):
 
         #if results[0].start == 12248790:
         #    breakpoint()
-        connected = connect_and_reassign(results,tmp, tree)
+        connected = connect_and_reassign(results,tmp, tree, to_be_resolved=[])
 
     gtf_lines=[]
     bed_lines=[]
