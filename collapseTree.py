@@ -242,7 +242,7 @@ class IntervalNode:
     
     def reassign_short_fragments(self, fragment, connected):
         # if same element as the one it is currently assigned to
-        if self.info == fragment.info or self.score > fragment.score:
+        if self.info == fragment.info or self.score >= fragment.score:
             res=[]
             if self.left and fragment.start < self.left.maxend:
                 res.extend(self.left.reassign_short_fragments(fragment, connected))
@@ -260,14 +260,19 @@ class IntervalNode:
         # but only part of fragment that is contained by the current node
         if fragment.start < self.end and fragment.end > self.start:# and self.info in elements:
                 if fragment.end < self.end and fragment.start > self.start: #chimer
-                    unresolved_fragments = [[(self.start, fragment.start, fragment.score, fragment.info, "unresolved")], [(fragment.end, self.end, fragment.score, fragment.info, "unresolved")]]
-                    return [(fragment.start, fragment.end, self.score, self.info)], unresolved_fragments
+                    return [(fragment.start, fragment.end, self.score, self.info)]
                 elif fragment.start > self.start: # non chimer where fragment more right than current node
-                    unresolved_fragment = [(self.end, fragment.end, fragment.score, fragment.info, "unresolved")]
-                    return [(fragment.start, self.end, self.score, self.info)], unresolved_fragment
+                    if fragment.end - self.end > 0:
+                        unresolved_fragment =[(self.end, fragment.end, fragment.score, fragment.info, "unresolved")]
+                        return [(fragment.start, self.end, self.score, self.info)], unresolved_fragment
+                    else:
+                        return [(fragment.start, self.end, self.score, self.info)]
                 else: # non chimer where fragment more left than current node
-                    unresolved_fragment = [(fragment.start, self.start, fragment.score, fragment.info, "unresolved")]
-                    return [(self.start, fragment.end, self.score, self.info)], unresolved_fragment
+                    if fragment.start - self.start > 0:
+                        unresolved_fragment = [(fragment.start, self.start, fragment.score, fragment.info, "unresolved")]
+                        return [(self.start, fragment.end, self.score, self.info)], unresolved_fragment
+                    else:
+                        return [(self.start, fragment.end, self.score, self.info)]
         else:
         # look if segment is contained in node to the left or right (with a lower score)
         # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
@@ -296,7 +301,7 @@ def connect(l):
     connected.append(Rep(prev_s, prev_e, prev_r, prev_i))
     return connected
 
-def connect_and_reassign(results,tmp,tree, to_be_resolved):
+def connect_and_reassign(results,tmp,tree):
 
     # connect adjacent fragments with same info
     connected=connect(results)
@@ -310,53 +315,75 @@ def connect_and_reassign(results,tmp,tree, to_be_resolved):
     #  400               ----------------                         ---------                        ---------                         ----------------
     connected_dummy.sort(key = lambda element: element[2], reverse=True)
 
-    #check what this looks like
-    connected_dummy.append(to_be_resolved)
-    breakpoint()
-
     for fragment in connected_dummy:
 
         #if fragment has been cut...
         if fragment not in tmp and fragment.end - fragment.start < threshold:
             # try to find new element for fragment
             outcome= tree.reassign_short_fragments(fragment, connected)
+            # outcome is a list with fragments
+            # there can be multiple hits for a fragment
+            # there can also be unresolved fragments in the list, these always directly follow the fragment that are belonging too
+            # for example
+            # [hit 1, unresolved 1, hit 2, unresolved 2]
+            # [hit 1, hit 2, unresolved 2]
 
             # sort unresolved and resolved items
             result =[]
             unresolved = []
-    
-            for i in outcome:
-                if len(i[0]) ==  1:
-                    for j in i:
-                        unresolved.append(j[0])
-                elif len(i[0]) == 4:
-                    result.append(i[0])
-                else:
-                    unresolved.append(i[0])
+            dummy_outcome = []
+            if len(outcome) == 0:
+                result = outcome
+            else:
+                for i in outcome:
+                    if len(i) == 4:         # when only 1 fragment in outcome list
+                        result.append(i)
+                        dummy_outcome.append(i)
+                    elif len(i) == 5:        # when only 1 fragment in outcome list            
+                        unresolved.append(i)
+                        dummy_outcome.append(i)
+                    elif len(i[0]) == 4:     # when multiple fragments in outcome list
+                        result.append(i[0])
+                        dummy_outcome.append(i[0])
+                    else:
+                        unresolved.append(i[0])
+                        dummy_outcome.append(i[0])
 
             connected.remove(fragment)
 
             if len(result) == 0: #if fragment does not have a matching element --> do not add back
                 continue
-            elif len(result) == 1: # if fragment in 1 node 
+            elif len(result) == 1: # if 1 hit
                 result=result[0]    
-            else:
-                result=sorted(result)[-1]  # if fragment is contained in multiple nodes
+            else:   # if multiple hits
+                # get result with highest score
+                result.sort(key = lambda element: element[2])
+                result = result[-1]
 
+                #find location in outcome list
+                location_result = dummy_outcome.index(result)
+                locaton_potential_unresolved = location_result+1
+
+                # if there are unresolved fragments in the list, and if there is a value after the location of the result
+                # check whether this location is unresolved, if so assign to unresolved
+                if len(unresolved) > 0 and len(dummy_outcome) > locaton_potential_unresolved:
+                    if dummy_outcome[locaton_potential_unresolved] == 4:
+                        unresolved = []
+                    if dummy_outcome[locaton_potential_unresolved] == 5:
+                        unresolved = dummy_outcome[locaton_potential_unresolved]
+                  
             # if succesfull, add fragment with new info to results & repeat
             connected.append(Rep(*result))
-            
-            for item in unresolved:
-               to_be_resolved.append(Rep(*item[0:4]))
-            
-            #check whether all are lower than threshold, they should be
-            breakpoint
+       
+            if len(unresolved) > 0:
+                for item in unresolved:
+                    connected.append(Rep(*item[0:4]))
 
+                 
+    
             connected.sort(key = lambda element: element[0])
-            connected = connect_and_reassign(connected,tmp,tree, to_be_resolved)
+            connected = connect_and_reassign(connected,tmp,tree)
             break
-
-
 
     return connected
                 
@@ -397,10 +424,19 @@ def collapse(tmp, chr, gft_id_n):
             #add outcome of fragment to results
             results.append(Rep(*se, *result))
         
+        connected = connect_and_reassign(results,tmp, tree)
 
-        #if results[0].start == 12248790:
-        #    breakpoint()
-        connected = connect_and_reassign(results,tmp, tree, to_be_resolved=[])
+        #check if overlap is really resolved
+        prev = None
+        for line in connected:
+            if prev == None:
+                prev = line
+            else:
+                if line.start - prev.end < 0:
+                    breakpoint()
+                prev = line
+
+            
 
     gtf_lines=[]
     bed_lines=[]
