@@ -63,6 +63,8 @@ outdir=os.path.dirname(args.o)
 if '/' in outdir:
     os.makedirs(outdir, exist_ok=True)
 
+log_file = open("errors.log","w")
+
 
 
 class IntervalTree:
@@ -166,6 +168,7 @@ class IntervalNode:
             if self.score < self.right.score:
                 root=self.rotateleft()
         else: # not in ordered dataset
+            print("Dataset non ordered at: " + self.start + " " + self.end + " " + self.score + " " + self.info + " please order dataset (or change the code)", outfile = log_file)
             sys.exit('\n Dataset non ordered, please order dataset (or change the code)\n')
             # insert to left tree
             if self.left:
@@ -290,8 +293,9 @@ def connect(l):
     for _rep in l:
         if _rep.end - _rep.start == 0:
             continue
+        # check if elements can and should be merged
         dist= _rep.start - prev_e
-        if _rep.info == prev_i and dist <= gap:
+        if _rep.info == prev_i and dist <= gap and _rep.score == prev_r:
             prev_e=_rep.end
             prev_r = max(prev_r, _rep.score)
         else:
@@ -336,10 +340,10 @@ def connect_and_reassign(results,tmp,tree):
                 result = outcome
             else:
                 for i in outcome:
-                    if len(i) == 4:         # when only 1 fragment in outcome list
+                    if len(i) == 4:         # when only 1 fragment in outcome list, formatting isue
                         result.append(i)
                         dummy_outcome.append(i)
-                    elif len(i) == 5:        # when only 1 fragment in outcome list            
+                    elif len(i) == 5:        # when only 1 fragment in outcome list , formatting isue          
                         unresolved.append(i)
                         dummy_outcome.append(i)
                     elif len(i[0]) == 4:     # when multiple fragments in outcome list
@@ -354,7 +358,9 @@ def connect_and_reassign(results,tmp,tree):
             if len(result) == 0: #if fragment does not have a matching element --> do not add back
                 continue
             elif len(result) == 1: # if 1 hit
-                result=result[0]    
+                result=result[0]
+                if len(unresolved) > 0:
+                    unresolved = unresolved[0]    
             else:   # if multiple hits
                 # get result with highest score
                 result.sort(key = lambda element: element[2])
@@ -362,25 +368,28 @@ def connect_and_reassign(results,tmp,tree):
 
                 #find location in outcome list
                 location_result = dummy_outcome.index(result)
-                locaton_potential_unresolved = location_result+1
+                location_potential_unresolved = location_result+1
 
                 # if there are unresolved fragments in the list, and if there is a value after the location of the result
                 # check whether this location is unresolved, if so assign to unresolved
-                if len(unresolved) > 0 and len(dummy_outcome) > locaton_potential_unresolved:
-                    if dummy_outcome[locaton_potential_unresolved] == 4:
+                if len(unresolved) > 0 and len(dummy_outcome) > location_potential_unresolved:
+                    if len(dummy_outcome[location_potential_unresolved]) == 4:
                         unresolved = []
-                    if dummy_outcome[locaton_potential_unresolved] == 5:
-                        unresolved = dummy_outcome[locaton_potential_unresolved]
+                    if len(dummy_outcome[location_potential_unresolved]) == 5:
+                        unresolved = dummy_outcome[location_potential_unresolved]
+                else:
+                    unresolved = []
                   
             # if succesfull, add fragment with new info to results & repeat
             connected.append(Rep(*result))
-       
-            if len(unresolved) > 0:
-                for item in unresolved:
-                    connected.append(Rep(*item[0:4]))
 
-                 
+            if len(unresolved) > 1 and len(unresolved) != 5:
+                print("Something went wrong, more than one unresolved fragment found at: " + str(fragment) + " " + str(unresolved), file=sys.stderr) 
+                print("Something went wrong, more than one unresolved fragment foundat: " + str(fragment) + " " + str(unresolved), file=log_file)
     
+            if len(unresolved) > 0:
+                connected.append(Rep(*unresolved[0:4])) # append without unresolved label
+
             connected.sort(key = lambda element: element[0])
             connected = connect_and_reassign(connected,tmp,tree)
             break
@@ -394,13 +403,10 @@ def collapse(tmp, chr, gft_id_n):
         tree=IntervalTree()
         poss=set()
 
-
-   
         for _rep in tmp:
             tree.insert(*_rep) # insert repeat as node into the tree
             poss |= {*_rep[:2]}
           
-
         # get start and end positions of repeats in overlap island
         poss=sorted(list(poss))
         results=[]
@@ -433,10 +439,9 @@ def collapse(tmp, chr, gft_id_n):
                 prev = line
             else:
                 if line.start - prev.end < 0:
-                    breakpoint()
+                    print("unresolved overlap", file=sys.stderr) 
+                    print("unresolved overlap in" + str(connected), file=log_file)
                 prev = line
-
-            
 
     gtf_lines=[]
     bed_lines=[]
@@ -515,7 +520,7 @@ def per_chr(reps, gft_id_n):
 if args.testrun is False:
     outgtf=gzip.open(ogtf, 'wt')
     outbed=gzip.open(obed, 'wt')
-    
+    log_file.close()
     outgtf.write('##format: gtf\n')
     outgtf.write('##date: %s\n' % _date)
     outgtf.write('##version: %s %s\n' % (os.path.basename(__file__), version))
@@ -564,7 +569,12 @@ if args.testrun is False:
     
     outgtf.close()
     outbed.close()
-    print('\n%s repeats were retained.\nThank you for using this script!\n' % gft_id_n)
+
+    if os.path.getsize("errors.log") != 0:
+        print('\nerrors occurred: check the errors.log file\n%s repeats were retained.\nThank you for using this script!\n' % gft_id_n)
+    else:
+        os.remove("errors.log")
+        print('\n%s repeats were retained.\nThank you for using this script!\n' % gft_id_n)
 
 else:
     # for debug
