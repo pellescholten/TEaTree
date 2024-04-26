@@ -38,6 +38,8 @@ parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify per
 parser.add_argument('-threshold', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
 parser.add_argument('-min', metavar='int', type=int, help='Optional. Minimal length of repeat to output. Default: 1', default=1)
 parser.add_argument('-keep_simple_repeat', help='Optional. Specify if you want to keep "Simple_repeat" and "Low_complexity".', action='store_true')
+parser.add_argument('-alignment', help='Optional. Call if you want to get annotations for alignments instead of TE content. Uses slightly different rules for resolving overlaps and leaves in chimers.', action='store_true')
+parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
 parser.add_argument('-quiet', help='Optional. Specify if you do not want to output processing status.', action='store_true')
 parser.add_argument('-v', '--version', action='version', version='Version: %s %s' % (os.path.basename(__file__), version))
 parser.add_argument('-testrun', action='store_true', help=argparse.SUPPRESS)
@@ -51,6 +53,8 @@ level = args.lvl / 100
 threshold = args.threshold
 annots=('gene', 'transcript', 'exon')
 remove_simple_low_complex={'Simple_repeat', 'Low_complexity'}
+alignment = args.alignment
+remove = args.remove
 if args.keep_simple_repeat is True:
     remove_simple_low_complex={}
 _date=datetime.datetime.now()
@@ -137,7 +141,6 @@ class IntervalNode:
 
         # Same as previous section but for chimers
         if start >= self.start and start <= self.end and end <= self.end:
-            print(end - start)
             # If nested is worse or equal --> do not add to tree
             # nesting:      --------------     SW = 1000       -->   only NESTING remains     --------------      SW = 1000 
             # nested:        ---------         SW = 500        -->   
@@ -396,6 +399,19 @@ def connect_and_reassign(results,tmp,tree):
             break
 
     return connected
+
+def remerge(connected, tmp):
+    # remerge fragments that have been split up by a chimer (for aligment only)
+    for i in range(len(connected)):
+        for j in range(i+1,len(connected)):
+            if connected[i] not in tmp and connected[j] not in tmp: # do not deal with untouched chimers, they are fixed later
+                if connected[i].info == connected[j].info and connected[i].score == connected[j].score: # check information of elements
+                    connected[i] = Rep(connected[i].start, connected[j].end, connected[j].score, connected[j].info)
+                    connected.remove(connected[j])
+                    connected = remerge(connected,tmp)
+                    break
+    return connected
+
                 
 def collapse(tmp, chr, gft_id_n):
     if len(tmp) == 1:
@@ -433,6 +449,7 @@ def collapse(tmp, chr, gft_id_n):
         
         connected = connect_and_reassign(results,tmp, tree)
 
+        
         #check if overlap is really resolved
         prev = None
         for line in connected:
@@ -443,6 +460,11 @@ def collapse(tmp, chr, gft_id_n):
                     print("unresolved overlap", file=sys.stderr) 
                     print("unresolved overlap in" + str(connected), file=log_file)
                 prev = line
+        
+        # remerge elements that got fragmented by a chimer
+        if alignment == True:
+            connected = remerge(connected, tmp)
+
 
     gtf_lines=[]
     bed_lines=[]
@@ -500,7 +522,6 @@ def per_chr(reps, gft_id_n):
         else:
         # if non overlapping, process previous island
             if prev_end > 0:
-
                 # process island
                 gtf_lines,bed_lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
                 outgtf.write(''.join(gtf_lines))
@@ -521,7 +542,6 @@ def per_chr(reps, gft_id_n):
 if args.testrun is False:
     outgtf=gzip.open(ogtf, 'wt')
     outbed=gzip.open(obed, 'wt')
-    log_file.close()
     outgtf.write('##format: gtf\n')
     outgtf.write('##date: %s\n' % _date)
     outgtf.write('##version: %s %s\n' % (os.path.basename(__file__), version))
@@ -554,6 +574,11 @@ if args.testrun is False:
             if ls[10] in remove_simple_low_complex:
                 continue
             _rep=parse_line(ls)
+
+            # remove small framgents if specfied
+            if remove == True and _rep[1] - _rep[0] < threshold:
+                continue
+
             # per chr
 
             # add everything of one chromosome to reps
@@ -570,6 +595,7 @@ if args.testrun is False:
     
     outgtf.close()
     outbed.close()
+    log_file.close()
 
     if os.path.getsize("errors.log") != 0:
         print('\nerrors occurred: check the errors.log file\n%s repeats were retained.\nThank you for using this script!\n' % gft_id_n)
