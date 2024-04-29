@@ -48,7 +48,7 @@ args=parser.parse_args()
 # set up
 ogtf='%s.gtf.gz' % args.o
 obed='%s.bed.gz' % args.o
-obed2='%s.bed2.gz' % args.o
+ogff='%s.gff.gz' % args.o
 gap=args.gap
 level = args.lvl / 100
 threshold = args.threshold
@@ -473,7 +473,7 @@ def collapse(tmp, chr, gft_id_n):
 
     gtf_lines=[]
     bed_lines=[]
-    bed_lines2=[]
+    gff_lines=[]
     for _rep in connected:  # start, end, score, info
         if _rep.end - _rep.start < args.min:
             continue
@@ -488,11 +488,13 @@ def collapse(tmp, chr, gft_id_n):
             gtf_lines.append('\t'.join(l) +'\n')
         l=[chr, str(_rep.start), str(_rep.end), gft_id, str(_rep.score), strand] 
         bed_lines.append('\t'.join(l) +'\n')
-        l=[chr, str(_rep.start), str(_rep.end), gft_id, str(_rep.score), strand, str(_rep.concensus_info)]
-        bed_lines2.append('\t'.join(l) +'\n')
+        ID = gft_id.split(".")
+        info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+"ID="+ID[1]
+        l=[chr, "RepeatMasker", ID[2], str(_rep.start), str(_rep.end), str(_rep.score), strand, ".",info]
+        gff_lines.append('\t'.join(l) +'\n')
         
         gft_id_n += 1
-    return gtf_lines,bed_lines,bed_lines2,gft_id_n #
+    return gtf_lines,bed_lines,gff_lines,gft_id_n #
 
 
 def parse_line(ls):
@@ -541,10 +543,10 @@ def per_chr(reps, gft_id_n):
         # if non overlapping, process previous island
             if prev_end > 0:
                 # process island
-                gtf_lines,bed_lines,bed_lines2,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
+                gtf_lines,bed_lines,gff_lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
                 outgtf.write(''.join(gtf_lines))
                 outbed.write(''.join(bed_lines))
-                outbed2.write(''.join(bed_lines2))
+                outgff.write(''.join(gff_lines))
             tmp=[_rep]
              
         prev_end=_rep[1]
@@ -553,7 +555,7 @@ def per_chr(reps, gft_id_n):
     if len(bed_lines) >= 1:
         outgtf.write(''.join(gtf_lines))
         outbed.write(''.join(bed_lines))
-        outbed2.write(''.join(bed_lines2))
+        outgff.write(''.join(gff_lines))
     return gft_id_n
 
 
@@ -561,7 +563,7 @@ def per_chr(reps, gft_id_n):
 if args.testrun is False:
     outgtf=gzip.open(ogtf, 'wt')
     outbed=gzip.open(obed, 'wt')
-    outbed2=gzip.open(obed2, 'wt')
+    outgff=gzip.open(ogff, 'wt')
     outgtf.write('##format: gtf\n')
     outgtf.write('##date: %s\n' % _date)
     outgtf.write('##version: %s %s\n' % (os.path.basename(__file__), version))
@@ -615,7 +617,7 @@ if args.testrun is False:
     
     outgtf.close()
     outbed.close()
-    outbed2.close()
+    outgff.close()
     log_file.close()
 
     if os.path.getsize("errors.log") != 0:
