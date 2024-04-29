@@ -48,6 +48,7 @@ args=parser.parse_args()
 # set up
 ogtf='%s.gtf.gz' % args.o
 obed='%s.bed.gz' % args.o
+obed2='%s.bed2.gz' % args.o
 gap=args.gap
 level = args.lvl / 100
 threshold = args.threshold
@@ -75,11 +76,11 @@ class IntervalTree:
     def __init__(self):
         self.root=None
         
-    def insert(self, start, end, score, info):
+    def insert(self, start, end, score, info, concensus_info):
         if self.root is None:
-            self.root=IntervalNode(start, end, score, info)
+            self.root=IntervalNode(start, end, score, info, concensus_info)
         else:
-            self.root=self.root.insert(start, end, score, info)
+            self.root=self.root.insert(start, end, score, info, concensus_info)
     
     def find_top_score(self, start, end):
         return self.root.find_top_score(start, end)
@@ -89,27 +90,28 @@ class IntervalTree:
 
 
 class IntervalNode:
-    def __init__(self, start, end, score, info):
+    def __init__(self, start, end, score, info, concensus_info):
         self.start=start
         self.end=end
         self.score=score
         self.info=info
+        self.concensus_info=concensus_info
         self.maxend=self.end
         self.minstart=self.start
         self.left=None
         self.right=None
 
-    def replace_root(self,start,end,score,info):
+    def replace_root(self,start,end,score,info, concensus_info):
         # replace root and corresponding branches with new node
         # while deleting old root from tree
-        root = IntervalNode(start, end, score, info)
+        root = IntervalNode(start, end, score, info, concensus_info)
         if self.left:
             root.left = self.left
         if self.right:
             root.right = self.right
         return root
 
-    def insert(self, start, end, score, info):
+    def insert(self, start, end, score, info, concensus_info):
         root=self
 
         # Check whether there are overlaps of more than 80 (or other value determined in command line) percent shared sequence
@@ -122,7 +124,7 @@ class IntervalNode:
             # root:              ------------     SW = 500       -->  
             # new element:         ------------      SW = 1000   -->      ------------      SW = 1000   
             if overlap > level * (self.end - self.start) and self.score < score:
-                return self.replace_root(start,end,score,info)
+                return self.replace_root(start,end,score,info,concensus_info)
             
             # if new element (almost) contained in root and root is better --> delete and replace root
             # root:              ------------     SW = 1000     -->       ------------      SW = 1000
@@ -135,7 +137,7 @@ class IntervalNode:
             # new element:        --------------   SW = 1000     -->   ---------------   SW = 1000
             if (overlap > level * (end - start) or overlap > level * (self.end - self.start)) and self.score == score:
                 if end - start >= self.end - self.start:
-                    return self.replace_root(start,end,score,info)
+                    return self.replace_root(start,end,score,info, concensus_info)
                 else:
                     return root
 
@@ -151,7 +153,7 @@ class IntervalNode:
             # nesting:      --------------     SW = 500        -->
             # nested:        ---------         SW = 1000       -->   only NESTED remains         ---------        SW = 1000 
             elif (end - start)/(self.end - self.start) > level:
-                root = IntervalNode(start, end, score, info)
+                root = IntervalNode(start, end, score, info, concensus_info)
                 if self.left:
                     root.left = self.left
                 if self.right:
@@ -163,9 +165,9 @@ class IntervalNode:
         if start >= self.start:
             # insert to right tree
             if self.right: #if there is already a node the right of the root, repeat with that node
-                self.right=self.right.insert(start, end, score, info)
+                self.right=self.right.insert(start, end, score, info, concensus_info)
             else: # add node to the right
-                self.right=IntervalNode(start, end, score, info)
+                self.right=IntervalNode(start, end, score, info, concensus_info)
             # build heap
 
             # change root if score is higher
@@ -236,7 +238,7 @@ class IntervalNode:
     def find_top_score(self, start, end):
         # if segment is contained in current node
         if start < self.end and end > self.start:
-            return [(self.score, self.info)]
+            return [(self.score, self.info, self.concensus_info)]
         else:
         # look if segment is contained in node to the left or right (with a lower score)
         # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
@@ -267,19 +269,19 @@ class IntervalNode:
         # but only part of fragment that is contained by the current node
         if fragment.start < self.end and fragment.end > self.start:# and self.info in elements:
                 if fragment.end < self.end and fragment.start > self.start: #chimer
-                    return [(fragment.start, fragment.end, self.score, self.info)]
+                    return [(fragment.start, fragment.end, self.score, self.info, self.concensus_info)]
                 elif fragment.start > self.start: # non chimer where fragment more right than current node
                     if fragment.end - self.end > 0:
-                        unresolved_fragment =[(self.end, fragment.end, fragment.score, fragment.info, "unresolved")]
-                        return [(fragment.start, self.end, self.score, self.info)], unresolved_fragment
+                        unresolved_fragment =[(self.end, fragment.end, fragment.score, fragment.info, self.concensus_info, "unresolved")]
+                        return [(fragment.start, self.end, self.score, self.info, self.concensus_info)], unresolved_fragment
                     else:
-                        return [(fragment.start, self.end, self.score, self.info)]
+                        return [(fragment.start, self.end, self.score, self.info, self.concensus_info)]
                 else: # non chimer where fragment more left than current node
                     if fragment.start - self.start > 0:
-                        unresolved_fragment = [(fragment.start, self.start, fragment.score, fragment.info, "unresolved")]
-                        return [(self.start, fragment.end, self.score, self.info)], unresolved_fragment
+                        unresolved_fragment = [(fragment.start, self.start, fragment.score, fragment.info, self.concensus_info, "unresolved")]
+                        return [(self.start, fragment.end, self.score, self.info, self.concensus_info)], unresolved_fragment
                     else:
-                        return [(self.start, fragment.end, self.score, self.info)]
+                        return [(self.start, fragment.end, self.score, self.info, self.concensus_info)]
         else:
         # look if segment is contained in node to the left or right (with a lower score)
         # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
@@ -294,6 +296,7 @@ def connect(l):
     connected=[]
     prev_e= (gap * -1) - 1
     prev_i=None
+    prev_c=None
     for _rep in l:
         if _rep.end - _rep.start == 0:
             continue
@@ -304,9 +307,9 @@ def connect(l):
             prev_r = max(prev_r, _rep.score)
         else:
             if not prev_i is None:
-                connected.append(Rep(prev_s, prev_e, prev_r, prev_i))
-            prev_s,prev_e,prev_r,prev_i=_rep
-    connected.append(Rep(prev_s, prev_e, prev_r, prev_i))
+                connected.append(Rep(prev_s, prev_e, prev_r, prev_i,prev_c))
+            prev_s,prev_e,prev_r,prev_i,prev_c=_rep
+    connected.append(Rep(prev_s, prev_e, prev_r, prev_i, prev_c))
     return connected
 
 def connect_and_reassign(results,tmp,tree):
@@ -324,7 +327,6 @@ def connect_and_reassign(results,tmp,tree):
     connected_dummy.sort(key = lambda element: element[2], reverse=True)
 
     for fragment in connected_dummy:
-
         #if fragment has been cut...
         if fragment not in tmp and fragment.end - fragment.start < threshold:
             # try to find new element for fragment
@@ -340,17 +342,18 @@ def connect_and_reassign(results,tmp,tree):
             result =[]
             unresolved = []
             dummy_outcome = []
+
             if len(outcome) == 0:
                 result = outcome
             else:
                 for i in outcome:
-                    if len(i) == 4:         # when only 1 fragment in outcome list, formatting isue
+                    if len(i) == 5:         # when only 1 fragment in outcome list, formatting isue
                         result.append(i)
                         dummy_outcome.append(i)
-                    elif len(i) == 5:        # when only 1 fragment in outcome list , formatting isue          
+                    elif len(i) == 6:        # when only 1 fragment in outcome list , formatting isue          
                         unresolved.append(i)
                         dummy_outcome.append(i)
-                    elif len(i[0]) == 4:     # when multiple fragments in outcome list
+                    elif len(i[0]) == 5:     # when multiple fragments in outcome list
                         result.append(i[0])
                         dummy_outcome.append(i[0])
                     else:
@@ -377,22 +380,24 @@ def connect_and_reassign(results,tmp,tree):
                 # if there are unresolved fragments in the list, and if there is a value after the location of the result
                 # check whether this location is unresolved, if so assign to unresolved
                 if len(unresolved) > 0 and len(dummy_outcome) > location_potential_unresolved:
-                    if len(dummy_outcome[location_potential_unresolved]) == 4:
-                        unresolved = []
                     if len(dummy_outcome[location_potential_unresolved]) == 5:
+                        unresolved = []
+                    if len(dummy_outcome[location_potential_unresolved]) == 6:
                         unresolved = dummy_outcome[location_potential_unresolved]
                 else:
                     unresolved = []
                   
             # if succesfull, add fragment with new info to results & repeat
+
             connected.append(Rep(*result))
 
-            if len(unresolved) > 1 and len(unresolved) != 5:
+            #check
+            if len(unresolved) > 1 and len(unresolved) != 6:
                 print("Something went wrong, more than one unresolved fragment found at: " + str(fragment) + " " + str(unresolved), file=sys.stderr) 
                 print("Something went wrong, more than one unresolved fragment foundat: " + str(fragment) + " " + str(unresolved), file=log_file)
     
             if len(unresolved) > 0:
-                connected.append(Rep(*unresolved[0:4])) # append without unresolved label
+                connected.append(Rep(*unresolved[0:5])) # append without unresolved label
 
             connected.sort(key = lambda element: element[0])
             connected = connect_and_reassign(connected,tmp,tree)
@@ -468,6 +473,7 @@ def collapse(tmp, chr, gft_id_n):
 
     gtf_lines=[]
     bed_lines=[]
+    bed_lines2=[]
     for _rep in connected:  # start, end, score, info
         if _rep.end - _rep.start < args.min:
             continue
@@ -480,10 +486,13 @@ def collapse(tmp, chr, gft_id_n):
         for annot,attr in zip(annots, attrs):
             l=[chr, 'RepeatMasker', annot, str(_rep.start + 1), str(_rep.end), '.', strand, '.', attr]
             gtf_lines.append('\t'.join(l) +'\n')
-        l=[chr, str(_rep.start), str(_rep.end), gft_id, str(_rep.score), strand]
+        l=[chr, str(_rep.start), str(_rep.end), gft_id, str(_rep.score), strand] 
         bed_lines.append('\t'.join(l) +'\n')
+        l=[chr, str(_rep.start), str(_rep.end), gft_id, str(_rep.score), strand, str(_rep.concensus_info)]
+        bed_lines2.append('\t'.join(l) +'\n')
+        
         gft_id_n += 1
-    return gtf_lines, bed_lines, gft_id_n
+    return gtf_lines,bed_lines,bed_lines2,gft_id_n #
 
 
 def parse_line(ls):
@@ -494,8 +503,17 @@ def parse_line(ls):
     if strand == 'C':
         strand='-'
     repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
+    concensus_columns = [ls[11], ls[12], ls[13]]
+    try:
+        concensus_columns[0] = int(concensus_columns[0])
+    except:
+        concensus_columns[2] = int(concensus_columns[2])
+    if type(concensus_columns[0]) == int:
+        concensus_info = [concensus_columns[0], concensus_columns[1]]
+    else:
+         concensus_info = [concensus_columns[2], concensus_columns[1]]
     info=(strand, repname)
-    return Rep(start, end, score, info)
+    return Rep(start, end, score, info, concensus_info)
 
 
 def per_chr(reps, gft_id_n):
@@ -523,25 +541,27 @@ def per_chr(reps, gft_id_n):
         # if non overlapping, process previous island
             if prev_end > 0:
                 # process island
-                gtf_lines,bed_lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
+                gtf_lines,bed_lines,bed_lines2,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
                 outgtf.write(''.join(gtf_lines))
                 outbed.write(''.join(bed_lines))
+                outbed2.write(''.join(bed_lines2))
             tmp=[_rep]
              
         prev_end=_rep[1]
 
-    gtf_lines,bed_lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
+    gtf_lines,bed_lines,bed_lines2,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
     if len(bed_lines) >= 1:
         outgtf.write(''.join(gtf_lines))
         outbed.write(''.join(bed_lines))
+        outbed2.write(''.join(bed_lines2))
     return gft_id_n
-
 
 
 # main
 if args.testrun is False:
     outgtf=gzip.open(ogtf, 'wt')
     outbed=gzip.open(obed, 'wt')
+    outbed2=gzip.open(obed2, 'wt')
     outgtf.write('##format: gtf\n')
     outgtf.write('##date: %s\n' % _date)
     outgtf.write('##version: %s %s\n' % (os.path.basename(__file__), version))
@@ -554,7 +574,7 @@ if args.testrun is False:
     prev_chr='dummy'
     prev_id='dummy'
     gft_id_n=0
-    Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info'])
+    Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'concensus_info'])
     with open(args.i) as infile:
         for _ in range(3):
             next(infile)
@@ -595,6 +615,7 @@ if args.testrun is False:
     
     outgtf.close()
     outbed.close()
+    outbed2.close()
     log_file.close()
 
     if os.path.getsize("errors.log") != 0:
