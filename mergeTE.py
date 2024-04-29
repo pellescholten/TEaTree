@@ -46,7 +46,7 @@ def extratruemergete(gffp,outfile,remove, threshold):
 
 			lastchrom = col[0]
 
-			if remove and col[4] - col[3] < threshold:
+			if remove and int(col[4]) - int(col[3]) < threshold:
 				continue
 
 			# Extract attribute
