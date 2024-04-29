@@ -4,7 +4,7 @@ import sys
 from collections import defaultdict
 nested_dict = lambda: defaultdict(nested_dict)
 
-def truefusete(gffp,gapsize,outfile):
+def truefusete(gffp,gapsize,outfile, mergemode):
 
 	gff = str(gffp)
 
@@ -55,15 +55,28 @@ def truefusete(gffp,gapsize,outfile):
 					for family in d[lastchrom]:
 						print(*d[lastchrom][family]["lastcol"],sep="\t")
 
-			lastchrom = col[0] # Update lastcol
+			lastchrom = col[0] # Update lastchrom
 
+		
 
-			if d[col[0]][cattrD["ID"]]:  # not the first family on this chrom
+			if d[col[0]][cattrD["ID"]]:  # not the first of this family on this chrom
 				#print("not first family") # debug
-				#point()
-				if (int(col[3]) - d[col[0]][cattrD["ID"]]["lastend"]) > gapsize or col[0] != d[col[0]][cattrD["ID"]]["lastcol"][0]:
+
+			
+
+				#if col[0] != d[col[0]][cattrD["ID"]]["lastcol"][0] # new chromosome, maybe unecessary
+	
+				if mergemode == "threshold":
+					match = (int(col[3]) - d[col[0]][cattrD["ID"]]["lastend"]) <= gapsize
+				elif mergemode == "ID":
+					match = d[col[0]][cattrD["ID"]]["lastcol"][9] == col[9]
+				else:
+					threshold = (int(col[3]) - d[col[0]][cattrD["ID"]]["lastend"]) <= gapsize
+					idmatch = d[col[0]][cattrD["ID"]]["lastcol"][9] == col[9]
+					match = threshold or idmatch
+				
+				if match: # or col[0] != d[col[0]][cattrD["ID"]]["lastcol"][0]:
 					#print("larger than 150") # debug
-					#breakpoint()
 					# don't need to group the two records
 					# print the lastest record of the lastest family group without adding new label
 					col2print = d[col[0]][cattrD["ID"]]["lastcol"]

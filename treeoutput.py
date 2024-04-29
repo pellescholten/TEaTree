@@ -39,8 +39,11 @@ parser.add_argument('-o', metavar='str', type=str, help='Specify output basename
 parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
 parser.add_argument('-threshold', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
 #parser.add_argument('-min', metavar='int', type=int, help='Optional. Minimal length of repeat to output. Default: 1', default=1)
-parser.add_argument('-keep_simple_repeat', help='Optional. Specify if you want to keep "Simple_repeat" and "Low_complexity".', action='store_true')
+parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_false')
 parser.add_argument('-alignment', help='Optional. Call if you want to get annotations for alignments instead of TE content. Uses slightly different rules for resolving overlaps and leaves in chimers.', action='store_true')
+parser.add_argument("-mergemode",
+                    help="Merge mode. Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = both",
+                    default="both", type=str)
 parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
 parser.add_argument('-quiet', help='Optional. Specify if you do not want to output processing status.', action='store_true')
@@ -62,7 +65,12 @@ annots=('gene', 'transcript', 'exon')
 remove_simple_low_complex={'Simple_repeat', 'Low_complexity'}
 alignment = args.alignment
 remove = args.remove
-if args.keep_simple_repeat is True:
+mergemode = args.mergemode
+if mergemode != "ID" and mergemode != "threshold" and mergemode != "both":
+    mergemode="both"
+    sys.stderr.write("\rMerge mode for alignment is not recognised, default mode of 'both' ID and threshold is used\n")
+
+if args.remove_simple_repeat is False:
     remove_simple_low_complex={}
 _date=datetime.datetime.now()
 
@@ -482,7 +490,7 @@ def collapse(tmp, chr, gft_id_n):
     gff_lines=[]
     for _rep in connected:  # start, end, score, info
         
-        if remove and _rep.end - _rep.start < threshold:
+        if remove and _rep.end - _rep.start < threshold and not alignment: # remove 
             continue
         strand,rep_name=_rep.info
         gft_id='RM_%s.%s' % (gft_id_n, rep_name)
@@ -503,7 +511,7 @@ def collapse(tmp, chr, gft_id_n):
         else:
             score = _rep.score
         info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+";ID="+ID[1]
-        l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info]
+        l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
         gff_lines.append('\t'.join(l) +'\n')
 
         gft_id_n += 1
@@ -611,8 +619,8 @@ if args.testrun is False:
             _rep=parse_line(ls)
 
             # remove small framgents if specfied
-            if remove == True and _rep[1] - _rep[0] < threshold:
-                continue
+            #if remove == True and _rep[1] - _rep[0] < threshold:
+            #    continue
 
             # per chr
 
@@ -641,8 +649,8 @@ if args.testrun is False:
 
     if alignment == True:
         #adjusted from repeatcraft
-        fuseTE.truefusete(ogff, gapsize, olabel)
-        mergeTE.extratruemergete(gffp=olabel,outfile=omerge)
+        fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
+        mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
 
 else:
     # for debug

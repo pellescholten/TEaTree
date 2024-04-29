@@ -4,7 +4,7 @@ import subprocess
 from collections import defaultdict
 nested_dict = lambda: defaultdict(nested_dict)
 
-def extratruemergete(gffp,outfile):
+def extratruemergete(gffp,outfile,remove, threshold):
 
 
 	gff = gffp
@@ -45,6 +45,9 @@ def extratruemergete(gffp,outfile):
 							print(*col2print,sep="\t")
 
 			lastchrom = col[0]
+
+			if remove and col[4] - col[3] < threshold:
+				continue
 
 			# Extract attribute
 			cattrD = {}
