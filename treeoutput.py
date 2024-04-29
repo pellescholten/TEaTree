@@ -8,6 +8,8 @@ License: see LICENSE file
 '''
 
 import os,sys,gzip,datetime,collections,argparse,errno
+import fuseTE, mergeTE
+import subprocess
 
 version='2021/12/03'
 
@@ -33,23 +35,27 @@ description='''
 parser=argparse.ArgumentParser(description=description)
 parser.add_argument('-i', metavar='str', type=str, help='Specify input genome.fa.out file.', required=True)
 parser.add_argument('-o', metavar='str', type=str, help='Specify output basename. [basename].gtf.gz and [basename].bed.gz will be generated.', required=True)
-parser.add_argument('-gap', metavar='int', type=int, help='Optional. Specify gap distance to connect two TEs belonging to the same repeat. Default: 0', default=0)
+#parser.add_argument('-gap', metavar='int', type=int, help='Optional. Specify gap distance to connect two TEs belonging to the same repeat. Default: 0', default=0)
 parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
 parser.add_argument('-threshold', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
-parser.add_argument('-min', metavar='int', type=int, help='Optional. Minimal length of repeat to output. Default: 1', default=1)
+#parser.add_argument('-min', metavar='int', type=int, help='Optional. Minimal length of repeat to output. Default: 1', default=1)
 parser.add_argument('-keep_simple_repeat', help='Optional. Specify if you want to keep "Simple_repeat" and "Low_complexity".', action='store_true')
 parser.add_argument('-alignment', help='Optional. Call if you want to get annotations for alignments instead of TE content. Uses slightly different rules for resolving overlaps and leaves in chimers.', action='store_true')
 parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
+parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
 parser.add_argument('-quiet', help='Optional. Specify if you do not want to output processing status.', action='store_true')
 parser.add_argument('-v', '--version', action='version', version='Version: %s %s' % (os.path.basename(__file__), version))
 parser.add_argument('-testrun', action='store_true', help=argparse.SUPPRESS)
 args=parser.parse_args()
 
 # set up
-ogtf='%s.gtf.gz' % args.o
-obed='%s.bed.gz' % args.o
-ogff='%s.gff.gz' % args.o
-gap=args.gap
+ogtf='%s.gtf' % args.o
+obed='%s.bed' % args.o
+ogff='%s.gff' % args.o
+olabel='%s.label.gff' % args.o
+omerge='%s.merged.gff' % args.o
+gap=0
+gapsize= args.gapsize
 level = args.lvl / 100
 threshold = args.threshold
 annots=('gene', 'transcript', 'exon')
@@ -411,7 +417,7 @@ def remerge(connected, tmp):
         for j in range(i+1,len(connected)):
             if connected[i] not in tmp and connected[j] not in tmp: # do not deal with untouched chimers, they are fixed later
                 if connected[i].info == connected[j].info and connected[i].score == connected[j].score: # check information of elements
-                    connected[i] = Rep(connected[i].start, connected[j].end, connected[j].score, connected[j].info)
+                    connected[i] = Rep(connected[i].start, connected[j].end, connected[j].score, connected[j].info, connected[j].concensus_info)
                     connected.remove(connected[j])
                     connected = remerge(connected,tmp)
                     break
@@ -475,7 +481,8 @@ def collapse(tmp, chr, gft_id_n):
     bed_lines=[]
     gff_lines=[]
     for _rep in connected:  # start, end, score, info
-        if _rep.end - _rep.start < args.min:
+        
+        if remove and _rep.end - _rep.start < threshold:
             continue
         strand,rep_name=_rep.info
         gft_id='RM_%s.%s' % (gft_id_n, rep_name)
@@ -488,11 +495,17 @@ def collapse(tmp, chr, gft_id_n):
             gtf_lines.append('\t'.join(l) +'\n')
         l=[chr, str(_rep.start), str(_rep.end), gft_id, str(_rep.score), strand] 
         bed_lines.append('\t'.join(l) +'\n')
+
+        #output for repeatcraft
         ID = gft_id.split(".")
-        info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+"ID="+ID[1]
-        l=[chr, "RepeatMasker", ID[2], str(_rep.start), str(_rep.end), str(_rep.score), strand, ".",info]
+        if len(connected) > 1:
+            score = "x"
+        else:
+            score = _rep.score
+        info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+";ID="+ID[1]
+        l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info]
         gff_lines.append('\t'.join(l) +'\n')
-        
+
         gft_id_n += 1
     return gtf_lines,bed_lines,gff_lines,gft_id_n #
 
@@ -521,7 +534,7 @@ def parse_line(ls):
 def per_chr(reps, gft_id_n):
     # prepare
     if args.quiet is False:
-        print('processing %s...' % prev_chr)
+        print('resolving overlaps on %s...' % prev_chr)
     prev_end= (gap * -1) - 1
     reps=sorted(reps)
 
@@ -537,7 +550,7 @@ def per_chr(reps, gft_id_n):
             maxend = _rep[1]
 
         # add sequence to overlap island if ... overlapping
-        if dist <= gap:
+        if dist < gap:
             tmp.append(_rep)
         else:
         # if non overlapping, process previous island
@@ -551,7 +564,7 @@ def per_chr(reps, gft_id_n):
              
         prev_end=_rep[1]
 
-    gtf_lines,bed_lines,bed_lines2,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
+    gtf_lines,bed_lines,gff_lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
     if len(bed_lines) >= 1:
         outgtf.write(''.join(gtf_lines))
         outbed.write(''.join(bed_lines))
@@ -561,9 +574,9 @@ def per_chr(reps, gft_id_n):
 
 # main
 if args.testrun is False:
-    outgtf=gzip.open(ogtf, 'wt')
-    outbed=gzip.open(obed, 'wt')
-    outgff=gzip.open(ogff, 'wt')
+    outgtf=open(ogtf, 'wt')
+    outbed=open(obed, 'wt')
+    outgff=open(ogff, 'wt')
     outgtf.write('##format: gtf\n')
     outgtf.write('##date: %s\n' % _date)
     outgtf.write('##version: %s %s\n' % (os.path.basename(__file__), version))
@@ -625,6 +638,11 @@ if args.testrun is False:
     else:
         os.remove("errors.log")
         print('\n%s repeats were retained.\nThank you for using this script!\n' % gft_id_n)
+
+    if alignment == True:
+        #adjusted from repeatcraft
+        fuseTE.truefusete(ogff, gapsize, olabel)
+        mergeTE.extratruemergete(gffp=olabel,outfile=omerge)
 
 else:
     # for debug
