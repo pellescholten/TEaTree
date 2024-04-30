@@ -9,7 +9,7 @@ The script `collapseTree.py` collapses TE annotations from RepeatMasker (i.e. ge
   
 ### How to use
 If you do not have `genome.fa.out`, you need to generate it by RepeatMasker.
-The command below will output `./RM_out/GRCm38.p6.genome.fa.out` file, which contains repeat annotations.
+The command below will output `example/example_input.out` file, which contains repeat annotations.
 ```
 # this is the example of GRCm38
 RepeatMasker \
@@ -28,9 +28,9 @@ The two flags below are required. Please specify an input `.fa.out` file with th
 - `-o [output basename]`
   
 ```
-python collapse_RM_annotation.py \
--i ./RM_out/GRCm38.p6.genome.fa.out \
--o GRCm38.p6.genome.fa.out.collapsed
+python collapseTree.py \
+-i example/example_input.out \
+-o example/example_output
 ```
   
 ### Output files
@@ -55,45 +55,45 @@ The `.gff` but defragmented.
 By default, the script will keep "Simple_repeat" and "Low_complexity" in output files.
 If you want to remove such annotations, please add the `-remove_simple_repeat` option.  
 ```
-python collapse_RM_annotation.py \
--i ./RM_out/GRCm38.p6.genome.fa.out \
--o GRCm38.p6.genome.fa.out.collapsed \
+python collapseTree.py \
+-i example/example_input.out \
+-o example/example_output \
 -remove_simple_repeat
 ```
   
 - `-lvl [int]` (default = 80)  
  When looking at overlaps, the programs removes annotations that are very similar. Meaning that, if an element/annotation is contained for more lvl% in a higher scoring annotation, it will be removed. This similarity level can be set.
 ```
-python collapse_RM_annotation.py \
--i ./RM_out/GRCm38.p6.genome.fa.out \
--o GRCm38.p6.genome.fa.out.collapsed \
+python collapseTree.py \
+-i example/example_input.out \
+-o example/example_output \
 -lvl 90
 ```
 
 - `-alignment` (default = False)  
 When this option is specified, two extra files .gff will be created. The annotations in these files can be used for alignment of annotations to their concensus. The annotations in these files are defragmented by merging TEs together that are of the same family, close together, and correctly positioned on their concensus sequence.
 ```
-python collapse_RM_annotation.py \
--i ./RM_out/GRCm38.p6.genome.fa.out \
--o GRCm38.p6.genome.fa.out.collapsed \
+python collapseTree.py \
+-i example/example_input.out \
+-o example/example_output \
 -alignment
 ```
 
 - `-mergemode` (default = both)  
 This option is only relevant if the alignment option is specified. Annotations are defragmented. How this is done can be determined with this option. If 'ID' is specified, the program will only consider for merging those elements that have the same RepeatMasker id. If 'threshold is specified, the program will consider annotations that have a distance between them lower than a certain threshold. This threshold can be determined with the option -gapsize. If 'both' is specified, the program will use both options to consider potential merges. 
 ```
-python collapse_RM_annotation.py \
--i ./RM_out/GRCm38.p6.genome.fa.out \
--o GRCm38.p6.genome.fa.out.collapsed \
+python collapseTree.py \
+-i example/example_input.out \
+-o example/example_output \
 -mergemode ID
 ```
 
 - `-gapsize` (default = 150)  
 Specify the threshold used for considering annotations for merging when alignment files are being made and -mergemode is 'threshold' or 'both'.
 ```
-python collapse_RM_annotation.py \
--i ./RM_out/GRCm38.p6.genome.fa.out \
--o GRCm38.p6.genome.fa.out.collapsed \
+python collapseTree.py \
+-i example/example_input.out \
+-o example/example_output \
 -threshold 300
 ```
 - `-remove` (default = False)  
@@ -107,18 +107,18 @@ Removal before (for TE content)
 100 ——————                              —>  ——————
 ```
 ```
-python collapse_RM_annotation.py \
--i ./RM_out/GRCm38.p6.genome.fa.out \
--o GRCm38.p6.genome.fa.out.collapsed \
+python collapseTree.py \
+-i example/example_input.out \
+-o example/example_output \
 -remove
 ```
 
 - `-min` (default = 50)  
 Specify the minimum size that fragments must have after being cut to resolve potential overlap, to prevent very short fragments from being formed. This is also the minimum framgent length of elements if the -remove option is specified.
 ```
-python collapse_RM_annotation.py \
--i ./RM_out/GRCm38.p6.genome.fa.out \
--o GRCm38.p6.genome.fa.out.collapsed \
+python collapseTree.py \
+-i example/example_input.out \
+-o example/example_output \
 -min 80
 ```
   
@@ -129,7 +129,7 @@ python collapse_RM_annotation.py \
   
 Please see further information by the `-h` option.  
 ```
-python collapse_RM_annotation.py -h
+python collapseTree.py -h
 ```
 
 

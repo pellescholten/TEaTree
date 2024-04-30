@@ -1,17 +1,15 @@
 ##gff-version 3
 ##repeatcraft
-scaffold_1	RepeatMasker	DNA	180	495	1265	-	.	Tstart=1;Tend=459;ID=rnd-5_family-4040	2
-scaffold_1	RepeatMasker	DNA	527	583	378	-	.	Tstart=9;Tend=70;ID=rnd-1_family-1118	3
-scaffold_1	RepeatMasker	DNA	632	690	366	-	.	Tstart=27;Tend=84;ID=rnd-1_family-903	4
-scaffold_1	RepeatMasker	DNA	691	809	670	-	.	Tstart=1;Tend=114;ID=rnd-1_family-1118	5
-scaffold_1	RepeatMasker	LTR/Gypsy	2065	2241	374	-	.	Tstart=536;Tend=711;ID=rnd-6_family-1511	6
-scaffold_1	RepeatMasker	Unknown	2276	2494	1540	-	.	Tstart=6;Tend=225;ID=rnd-5_family-4275	8
-scaffold_1	RepeatMasker	LTR/Gypsy	3299	3362	266	+	.	Tstart=1604;Tend=1667;ID=rnd-5_family-2493	9
-scaffold_1	RepeatMasker	RC/Helitron	3576	3685	614	-	.	Tstart=168;Tend=277;ID=rnd-6_family-1365	11
+scaffold_1	RepeatMasker	DNA	51	150	1265	-	.	Tstart=1;Tend=459;ID=rnd-5_family-4040	2
+scaffold_1	RepeatMasker	DNA	301	500	1100	-	.	Tstart=1;Tend=114;ID=rnd-1_family-1118	4
+scaffold_1	RepeatMasker	DNA	501	560	X	-	.	Tstart=27;Tend=84;ID=rnd-1_family-903	5
+scaffold_1	RepeatMasker	Unknown	561	800	1000	-	.	Tstart=6;Tend=225;ID=rnd-5_family-4275	8
+scaffold_1	RepeatMasker	LTR/Gypsy	1001	1100	266	+	.	Tstart=1604;Tend=1667;ID=rnd-5_family-2493	9
+scaffold_1	RepeatMasker	LTR/Gypsy	3576	6000	614	+	.	Tstart=168;Tend=1800;ID=rnd-5_family-2493;TEgroup=scaffold_1|rnd-5_family-2493|1	9
 scaffold_1	RepeatMasker	LTR/Ngaro	3950	4111	274	-	.	Tstart=393;Tend=474;ID=rnd-5_family-113	12
 scaffold_1	RepeatMasker	LTR/Ngaro	4114	4774	4263	-	.	Tstart=59;Tend=1881;ID=rnd-6_family-3815;TEgroup=scaffold_1|rnd-6_family-3815|1	13
-scaffold_1	RepeatMasker	Unknown	8931	9169	385	-	.	Tstart=3;Tend=288;ID=rnd-5_family-662	14
-scaffold_1	RepeatMasker	LINE/RTE-X	9194	9429	401	-	.	Tstart=31;Tend=203;ID=rnd-1_family-631	15
+scaffold_1	RepeatMasker	LINE/RTE-X	6020	7000	401	-	.	Tstart=31;Tend=203;ID=rnd-1_family-631	15
+scaffold_1	RepeatMasker	Unknown	7001	8000	400	-	.	Tstart=3;Tend=288;ID=rnd-5_family-662	14
 scaffold_1	RepeatMasker	LINE/RTE-X	9810	10249	453	-	.	Tstart=1;Tend=506;ID=rnd-1_family-735	16
 scaffold_1	RepeatMasker	DNA	10362	10498	629	+	.	Tstart=1;Tend=152;ID=rnd-1_family-102	18
 scaffold_1	RepeatMasker	DNA	10605	10747	461	+	.	Tstart=13;Tend=153;ID=rnd-6_family-504	19

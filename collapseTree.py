@@ -35,10 +35,8 @@ description='''
 parser=argparse.ArgumentParser(description=description)
 parser.add_argument('-i', metavar='str', type=str, help='Specify input genome.fa.out file.', required=True)
 parser.add_argument('-o', metavar='str', type=str, help='Specify output basename. [basename].gtf.gz and [basename].bed.gz will be generated.', required=True)
-#parser.add_argument('-gap', metavar='int', type=int, help='Optional. Specify gap distance to connect two TEs belonging to the same repeat. Default: 0', default=0)
 parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
 parser.add_argument('-min', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
-#parser.add_argument('-min', metavar='int', type=int, help='Optional. Minimal length of repeat to output. Default: 1', default=1)
 parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_false')
 parser.add_argument('-mode', help='Optional. Specify if you want to generate out files for TE content extraction (TEcontent) or for concensus alignment (alignment). Default = TEcontent', type=str, default = 'TEcontent')
 parser.add_argument("-mergemode",
@@ -89,7 +87,6 @@ if '/' in outdir:
     os.makedirs(outdir, exist_ok=True)
 
 log_file = open("errors.log","w")
-
 
 
 class IntervalTree:
