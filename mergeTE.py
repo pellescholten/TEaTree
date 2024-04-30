@@ -101,5 +101,9 @@ def extratruemergete(gffp,outfile,remove, threshold):
 
 	c = "sort -k1,1 -k4,4n -k5,5n " + sort + " >" + outfile + "&& rm " + sort
 	subprocess.run(c, shell=True)
-	sys.stderr.write("\rRepeats merged\n")
+
+	sys.stderr.write("A total of ... \n")
+	count = "grep -c '|' " + outfile
+	subprocess.run(count, shell=True)
+	sys.stderr.write("repeats was merged\n")
 	sys.stdout = stdout

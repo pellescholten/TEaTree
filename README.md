@@ -1,4 +1,4 @@
-# Welcome to collapse RepeatMasker annotation page
+# Welcome to collapse Tree
 
 ### About
 The script `collapseTree.py` collapses TE annotations from RepeatMasker (i.e. genome.fa.out file). The TE annotations from RepeatMasker are frequently overlap each other. If so, when counting NGS reads mapping to TEs, reads mapping to two or more TE annotations may not be counted. In such case, it is preferable to use non-overlapping TE annotations. 
@@ -98,8 +98,8 @@ python collapse_RM_annotation.py \
 ```
 - `-remove` (default = False)  
 Specify this option if you want to remove short fragments. Note that this will work differently for normal mode and alignment mode. In the normal mode for TE content, short fragments are removed at the very start so are also not considered in overlap. In the alignment mode, short fragments are removed at the very end so they can still be used for defragmentation. This may lead to slightly different overlap resolving. e.g.:
-Removal after (for alignment)
 ```
+Removal after (for alignment)
 200  ———        fix overlap     —>      ———     remove bottom fragment      —>      ——— remove short fragments  —> 0
 100  ——————                     —>      ---———  that has become too short   —>      0                           —> 0
 Removal before (for TE content)

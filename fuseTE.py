@@ -132,23 +132,24 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 						#	o = d[col[0]][cattrD["ID"]]["Tend"] - cattrD["Tstart"]
 						#o = min(d[col[0]][cattrD["ID"]]["Tend"], cattrD["Tstart"]) - max(d[col[0]][cattrD["ID"]]["Tstart"], cattrD["Tend"]) #old
 
-						strandedness_equal = d[col[0]][cattrD["ID"]]["lastcol"][6] == col[6]
+						strandedness_not_equal = d[col[0]][cattrD["ID"]]["lastcol"][6] != col[6]
 						if col[6] == "+":
 							if int(cattrD["Tstart"]) > int(d[col[0]][cattrD["ID"]]["Tend"]):
-								non_overlapping_concensus = True
+								overlapping_concensus = False
 							else:
-								non_overlapping_concensus = False
+								overlapping_concensus = True
 						elif col[6] == "-":
-							if int(d[col[0]][cattrD["ID"]]["Tend"]) > int(cattrD["Tstart"]):
-								non_overlapping_concensus = True
+							if int(cattrD["Tend"]) < int(d[col[0]][cattrD["ID"]]["Tstart"]):
+								overlapping_concensus = False
 							else:
-								non_overlapping_concensus = False	
+								overlapping_concensus = True	
 						else:
 							sys.stderr.write("\r error,unknown strandedness")
 							sys.stderr.write("\r"+col[6])
 							sys.exit(1)
 
-						if non_overlapping_concensus and strandedness_equal:  # Consensus position overlap, don't need to group them just print
+
+						if overlapping_concensus or strandedness_not_equal:  # Consensus position overlap, don't need to group them just print
 							#print("consensus overlap") # debug
 							print(*d[col[0]][cattrD["ID"]]["lastcol"], sep="\t")
 							d[col[0]][cattrD["ID"]]["lastcol"] = col
