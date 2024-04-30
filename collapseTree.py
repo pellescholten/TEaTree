@@ -474,18 +474,6 @@ def collapse(tmp, chr, gft_id_n):
         
         connected = connect_and_reassign(results,tmp, tree)
 
-        #check if overlap is really resolved
-        prev = None
-        for line in connected:
-            if prev == None:
-                prev = line
-            else:
-                if line.start - prev.end < 0:
-                    print("unresolved overlap", file=sys.stderr) 
-                    print("unresolved overlap in" + str(connected), file=log_file)
-                    sys.exit(1)
-                prev = line
-        
         # remerge elements that got fragmented by a chimer
         if alignment == True:
             connected = remerge(connected, tmp)
@@ -505,10 +493,13 @@ def collapse(tmp, chr, gft_id_n):
             gft_id='RM_%s.%s' % (gft_id_n, rep_name)
             #output for repeatcraft
             ID = gft_id.split(".")
-            if len(connected) > 1:
-                score = "x"
-            else:
+            if _rep in tmp:
+                # unchanged sequence, so SW has not changed
                 score = _rep.score
+            else:
+                # sequence has been shortened etc. SW score is no longer correct
+                score = "X"
+
             info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+";ID="+ID[1]
             l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
             lines.append('\t'.join(l) +'\n')
@@ -558,7 +549,7 @@ def per_chr(reps, gft_id_n):
             maxend = _rep[1]
 
         # add sequence to overlap island if ... overlapping
-        if dist < gap:
+        if dist <= gap:
             tmp.append(_rep)
         else:
         # if non overlapping, process previous island
