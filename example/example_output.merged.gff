@@ -20,6 +20,7 @@ scaffold_1	RepeatMasker	DNA	11893	11944	300	+	.	Tstart=492;Tend=541;ID=rnd-5_fam
 scaffold_1	RepeatMasker	DNA	11950	12072	742	+	.	Tstart=502;Tend=628;ID=rnd-5_family-476	24
 scaffold_1	RepeatMasker	DNA	18265	18483	1053	-	.	Tstart=1;Tend=263;ID=rnd-6_family-2240	25
 scaffold_1	RepeatMasker	DNA	19543	19642	422	-	.	Tstart=1;Tend=96;ID=rnd-5_family-2038	26
+scaffold_1	RepeatMasker	Simple_repeat	22180	22268	26	+	.	Tstart=1;Tend=89;ID=(TCATCT)n	27
 scaffold_1	RepeatMasker	LTR/Gypsy	23579	23998	2914	-	.	Tstart=1;Tend=427;ID=rnd-6_family-882	29
 scaffold_1	RepeatMasker	DNA	26232	26370	942	+	.	Tstart=3;Tend=142;ID=rnd-1_family-68	30
 scaffold_1	RepeatMasker	Unknown	30435	30509	369	-	.	Tstart=3;Tend=78;ID=rnd-5_family-463	32
@@ -30,6 +31,7 @@ scaffold_1	RepeatMasker	DNA/Academ	31585	31649	380	+	.	Tstart=1;Tend=76;ID=rnd-5
 scaffold_1	RepeatMasker	DNA/Academ	33393	33760	3184	-	.	Tstart=4874;Tend=5242;ID=rnd-5_family-1942	37
 scaffold_1	RepeatMasker	DNA/Academ	34669	38032	28218	-	.	Tstart=214;Tend=3547;ID=rnd-5_family-1942	38
 scaffold_1	RepeatMasker	RC/Helitron	38071	38466	1994	-	.	Tstart=4;Tend=397;ID=rnd-1_family-1089	39
+scaffold_1	RepeatMasker	Simple_repeat	41946	44404	1293	+	.	Tstart=1;Tend=2433;ID=rnd-1_family-345	42
 scaffold_1	RepeatMasker	LTR/DIRS	44996	45092	473	-	.	Tstart=1428;Tend=1526;ID=rnd-4_family-1648	43
 scaffold_1	RepeatMasker	DNA	45116	45173	251	+	.	Tstart=571;Tend=641;ID=rnd-5_family-4795	45
 scaffold_1	RepeatMasker	DNA	45189	45495	2404	+	.	Tstart=17;Tend=327;ID=rnd-1_family-246	46
@@ -59,6 +61,7 @@ scaffold_1	RepeatMasker	DNA/hAT	59838	60049	649	+	.	Tstart=1;Tend=131;ID=rnd-1_f
 scaffold_1	RepeatMasker	DNA	60352	60527	X	+	.	Tstart=1;Tend=179;ID=rnd-1_family-238	75
 scaffold_1	RepeatMasker	DNA	60528	61222	5164	+	.	Tstart=2;Tend=715;ID=rnd-1_family-408	76
 scaffold_1	RepeatMasker	DNA	61229	61410	1340	+	.	Tstart=1;Tend=188;ID=rnd-1_family-436	77
+scaffold_1	RepeatMasker	Simple_repeat	62953	63015	22	+	.	Tstart=1;Tend=64;ID=(TGT)n	78
 scaffold_1	RepeatMasker	DNA	68358	68627	1558	+	.	Tstart=1;Tend=265;ID=rnd-6_family-1404	81
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	68635	68791	603	-	.	Tstart=26;Tend=176;ID=rnd-5_family-3	82
 scaffold_1	RepeatMasker	DNA	69144	69360	1251	-	.	Tstart=37;Tend=255;ID=rnd-4_family-1444	84
@@ -107,6 +110,7 @@ scaffold_1	RepeatMasker	Unknown	107837	108133	990	-	.	Tstart=18;Tend=320;ID=rnd-
 scaffold_1	RepeatMasker	Unknown	108135	108285	956	+	.	Tstart=19;Tend=169;ID=rnd-5_family-402	138
 scaffold_1	RepeatMasker	Unknown	108297	108495	X	-	.	Tstart=1;Tend=288;ID=rnd-1_family-594	139
 scaffold_1	RepeatMasker	RC/Helitron	108496	108940	1650	-	.	Tstart=11;Tend=409;ID=rnd-1_family-986	140
+scaffold_1	RepeatMasker	Low_complexity	109137	109191	11	+	.	Tstart=1;Tend=54;ID=A-rich	141
 scaffold_1	RepeatMasker	LTR/Gypsy	110564	110791	373	+	.	Tstart=278;Tend=506;ID=rnd-5_family-1627	142
 scaffold_1	RepeatMasker	LTR/Gypsy	111621	111745	999	+	.	Tstart=1;Tend=125;ID=rnd-6_family-4209	143
 scaffold_1	RepeatMasker	RC/Helitron	111748	112262	876	-	.	Tstart=162;Tend=1351;ID=rnd-5_family-4098;TEgroup=scaffold_1|rnd-5_family-4098|1	144
@@ -177,6 +181,7 @@ scaffold_1	RepeatMasker	DNA/TcMar-Tc2	171834	171897	308	-	.	Tstart=194;Tend=252;
 scaffold_1	RepeatMasker	Unknown	171898	171963	X	-	.	Tstart=1;Tend=95;ID=rnd-5_family-6597	225
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	173527	173670	990	+	.	Tstart=69;Tend=212;ID=rnd-1_family-41	226
 scaffold_1	RepeatMasker	SINE/tRNA-L2	174596	174656	271	+	.	Tstart=182;Tend=236;ID=rnd-1_family-165	229
+scaffold_1	RepeatMasker	Simple_repeat	174658	174708	16	+	.	Tstart=1;Tend=53;ID=(AT)n	230
 scaffold_1	RepeatMasker	Unknown	174952	175297	867	-	.	Tstart=8;Tend=389;ID=rnd-6_family-1192	231
 scaffold_1	RepeatMasker	LINE/L2	177810	178061	437	-	.	Tstart=640;Tend=890;ID=rnd-1_family-674	232
 scaffold_1	RepeatMasker	DNA	179443	179513	262	+	.	Tstart=1;Tend=71;ID=rnd-1_family-327	233
@@ -217,9 +222,12 @@ scaffold_1	RepeatMasker	DNA	201382	201635	721	-	.	Tstart=10;Tend=258;ID=rnd-6_fa
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	202565	202774	716	+	.	Tstart=1;Tend=230;ID=rnd-2_family-13	281
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	202813	202968	561	+	.	Tstart=9;Tend=159;ID=rnd-5_family-1442	282
 scaffold_1	RepeatMasker	RC/Helitron	203901	204077	999	-	.	Tstart=2;Tend=170;ID=rnd-6_family-629	284
+scaffold_1	RepeatMasker	Low_complexity	205182	205722	226	+	.	Tstart=1;Tend=546;ID=A-rich	287
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	212759	212906	1093	-	.	Tstart=1;Tend=159;ID=rnd-1_family-107	289
+scaffold_1	RepeatMasker	Simple_repeat	213087	213147	58	+	.	Tstart=1;Tend=61;ID=(TGA)n	290
 scaffold_1	RepeatMasker	DNA	213505	213604	377	-	.	Tstart=95;Tend=197;ID=rnd-1_family-331	291
 scaffold_1	RepeatMasker	RC/Helitron	213763	213908	740	+	.	Tstart=5;Tend=157;ID=rnd-6_family-629	292
+scaffold_1	RepeatMasker	Simple_repeat	214163	214221	66	+	.	Tstart=1;Tend=59;ID=(GGGGAGAG)n	293
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	216393	216643	395	+	.	Tstart=1;Tend=235;ID=rnd-4_family-2080	294
 scaffold_1	RepeatMasker	LINE/Penelope	216969	217078	288	+	.	Tstart=28;Tend=141;ID=rnd-6_family-2594	295
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	217522	217710	568	-	.	Tstart=1;Tend=222;ID=rnd-5_family-4314	296
@@ -235,6 +243,7 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	225959	226074	305	-	.	Tstart=3;Tend=10
 scaffold_1	RepeatMasker	DNA	227608	227661	290	+	.	Tstart=1;Tend=56;ID=rnd-4_family-709	309
 scaffold_1	RepeatMasker	DNA/Sola-3	227780	227859	247	-	.	Tstart=519;Tend=593;ID=rnd-1_family-1072	310
 scaffold_1	RepeatMasker	DNA	227916	227967	386	-	.	Tstart=573;Tend=624;ID=rnd-5_family-4795	311
+scaffold_1	RepeatMasker	Simple_repeat	228159	228285	134	+	.	Tstart=1;Tend=127;ID=(AG)n	312
 scaffold_1	RepeatMasker	Satellite	228302	228501	890	+	.	Tstart=63;Tend=270;ID=rnd-1_family-10	313
 scaffold_1	RepeatMasker	RC/Helitron	233157	233239	435	-	.	Tstart=429;Tend=504;ID=rnd-1_family-36	316
 scaffold_1	RepeatMasker	DNA	235859	235957	781	+	.	Tstart=2;Tend=101;ID=rnd-1_family-486	318
@@ -250,6 +259,8 @@ scaffold_1	RepeatMasker	DNA/hAT-hAT5	248039	248192	868	+	.	Tstart=1;Tend=144;ID=
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	248194	248340	523	-	.	Tstart=164;Tend=330;ID=rnd-1_family-195	339
 scaffold_1	RepeatMasker	DNA	248674	248823	777	-	.	Tstart=1082;Tend=1227;ID=rnd-4_family-716	340
 scaffold_1	RepeatMasker	DNA	251717	251967	1330	+	.	Tstart=3;Tend=220;ID=rnd-1_family-121	343
+scaffold_1	RepeatMasker	Simple_repeat	253301	253460	170	+	.	Tstart=1;Tend=160;ID=(TCTG)n	344
+scaffold_1	RepeatMasker	Simple_repeat	254421	254472	24	+	.	Tstart=1;Tend=53;ID=(ACA)n	345
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	255863	255990	729	-	.	Tstart=1;Tend=133;ID=rnd-4_family-356	347
 scaffold_1	RepeatMasker	DNA	256714	257088	2763	-	.	Tstart=1;Tend=380;ID=rnd-1_family-239	349
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	257127	257270	796	-	.	Tstart=1;Tend=146;ID=rnd-1_family-45	350
@@ -274,6 +285,8 @@ scaffold_1	RepeatMasker	Unknown	280102	280350	776	-	.	Tstart=2;Tend=277;ID=rnd-4
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	280712	280832	314	-	.	Tstart=93;Tend=233;ID=rnd-1_family-27	379
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	282808	282953	1088	+	.	Tstart=1;Tend=147;ID=rnd-1_family-45	380
 scaffold_1	RepeatMasker	DNA	284032	284178	1179	-	.	Tstart=1;Tend=147;ID=rnd-1_family-230	382
+scaffold_1	RepeatMasker	Simple_repeat	284376	284483	114	+	.	Tstart=1;Tend=108;ID=(ATA)n	383
+scaffold_1	RepeatMasker	Simple_repeat	285056	285120	18	+	.	Tstart=1;Tend=63;ID=(TCA)n	385
 scaffold_1	RepeatMasker	DNA/Academ-1	286386	286785	2357	-	.	Tstart=29;Tend=470;ID=rnd-5_family-1158	386
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	287523	287643	787	+	.	Tstart=104;Tend=225;ID=rnd-4_family-689	388
 scaffold_1	RepeatMasker	DNA	287710	287775	282	+	.	Tstart=9;Tend=76;ID=rnd-5_family-185	390
@@ -284,6 +297,7 @@ scaffold_1	RepeatMasker	RC/Helitron	289761	289822	290	+	.	Tstart=71;Tend=132;ID=
 scaffold_1	RepeatMasker	LINE/Penelope	291839	291903	341	+	.	Tstart=80;Tend=146;ID=rnd-5_family-2147	395
 scaffold_1	RepeatMasker	LINE/Penelope	292450	292567	960	+	.	Tstart=415;Tend=531;ID=rnd-1_family-60	397
 scaffold_1	RepeatMasker	DNA	293312	293393	484	-	.	Tstart=28;Tend=110;ID=rnd-1_family-313	398
+scaffold_1	RepeatMasker	Simple_repeat	293575	293634	30	+	.	Tstart=1;Tend=60;ID=(GTGGTCAC)n	399
 scaffold_1	RepeatMasker	DNA/hAT-hAT1	293929	296129	2040	-	.	Tstart=1;Tend=577;ID=rnd-6_family-324;TEgroup=scaffold_1|rnd-6_family-324|1	400
 scaffold_1	RepeatMasker	LINE/Penelope	296430	296494	341	+	.	Tstart=80;Tend=146;ID=rnd-5_family-2147	401
 scaffold_1	RepeatMasker	LINE/Penelope	297050	297712	5643	+	.	Tstart=415;Tend=1076;ID=rnd-1_family-60	404
@@ -313,12 +327,14 @@ scaffold_1	RepeatMasker	DNA	317602	317681	386	+	.	Tstart=44;Tend=142;ID=rnd-4_fa
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	318302	318398	560	-	.	Tstart=33;Tend=137;ID=rnd-1_family-67	436
 scaffold_1	RepeatMasker	DNA/PiggyBac	318726	318820	771	+	.	Tstart=914;Tend=1008;ID=rnd-1_family-70	438
 scaffold_1	RepeatMasker	DNA	319656	319765	293	+	.	Tstart=33;Tend=134;ID=rnd-6_family-790;TEgroup=scaffold_1|rnd-6_family-790|1	439
+scaffold_1	RepeatMasker	Simple_repeat	319766	319945	210	+	.	Tstart=1;Tend=180;ID=(TAT)n	440
 scaffold_1	RepeatMasker	DNA	319990	320082	X	+	.	Tstart=98;Tend=193;ID=rnd-4_family-718	441
 scaffold_1	RepeatMasker	DNA	320117	320237	611	+	.	Tstart=1;Tend=113;ID=rnd-1_family-647	442
 scaffold_1	RepeatMasker	DNA	320253	320363	595	+	.	Tstart=13;Tend=142;ID=rnd-4_family-595	443
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	320959	321055	560	-	.	Tstart=33;Tend=137;ID=rnd-1_family-67	444
 scaffold_1	RepeatMasker	DNA	322411	322561	568	+	.	Tstart=1;Tend=146;ID=rnd-1_family-224	446
 scaffold_1	RepeatMasker	DNA	322634	322772	764	-	.	Tstart=140;Tend=281;ID=rnd-1_family-28	447
+scaffold_1	RepeatMasker	Low_complexity	324880	324941	17	+	.	Tstart=1;Tend=63;ID=A-rich	449
 scaffold_1	RepeatMasker	RC/Helitron	325119	326165	3614	+	.	Tstart=1;Tend=581;ID=rnd-1_family-138	450
 scaffold_1	RepeatMasker	RC/Helitron	326171	326297	891	+	.	Tstart=1;Tend=125;ID=rnd-5_family-4554	451
 scaffold_1	RepeatMasker	RC/Helitron	326299	328342	2630	+	.	Tstart=2;Tend=2930;ID=rnd-1_family-94	450
@@ -335,6 +351,7 @@ scaffold_1	RepeatMasker	LINE/Penelope	335741	335840	663	+	.	Tstart=69;Tend=168;I
 scaffold_1	RepeatMasker	DNA	335841	335979	788	+	.	Tstart=1;Tend=149;ID=rnd-5_family-53	467
 scaffold_1	RepeatMasker	DNA	335986	336295	2211	-	.	Tstart=1;Tend=327;ID=rnd-1_family-246	468
 scaffold_1	RepeatMasker	DNA	336296	336381	269	+	.	Tstart=143;Tend=203;ID=rnd-5_family-53	469
+scaffold_1	RepeatMasker	Low_complexity	336412	336514	35	+	.	Tstart=1;Tend=103;ID=GA-rich	470
 scaffold_1	RepeatMasker	DNA	336515	336584	303	+	.	Tstart=171;Tend=228;ID=rnd-5_family-53	471
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	338720	340678	15537	-	.	Tstart=1;Tend=1926;ID=rnd-5_family-4038	472
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	340999	341816	7038	-	.	Tstart=1;Tend=818;ID=rnd-5_family-4039	473
@@ -355,6 +372,7 @@ scaffold_1	RepeatMasker	DNA	360604	360994	2803	+	.	Tstart=2;Tend=396;ID=rnd-1_fa
 scaffold_1	RepeatMasker	DNA	360998	361237	1506	-	.	Tstart=1;Tend=248;ID=rnd-1_family-219	495
 scaffold_1	RepeatMasker	DNA	361261	361386	707	-	.	Tstart=1;Tend=119;ID=rnd-1_family-365	497
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	362220	362314	645	-	.	Tstart=1;Tend=95;ID=rnd-1_family-167	498
+scaffold_1	RepeatMasker	Simple_repeat	362610	362664	17	+	.	Tstart=1;Tend=54;ID=(AATA)n	499
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	362803	362978	910	+	.	Tstart=9;Tend=176;ID=rnd-5_family-1442	500
 scaffold_1	RepeatMasker	Unknown	363311	363431	348	-	.	Tstart=115;Tend=241;ID=rnd-5_family-917	501
 scaffold_1	RepeatMasker	DNA	363620	363789	1136	+	.	Tstart=2;Tend=173;ID=rnd-1_family-774	502
@@ -363,6 +381,7 @@ scaffold_1	RepeatMasker	LINE/L2	367833	368498	1975	+	.	Tstart=5;Tend=800;ID=rnd-
 scaffold_1	RepeatMasker	LINE/L2	368499	368776	931	+	.	Tstart=1;Tend=278;ID=rnd-5_family-3644	505
 scaffold_1	RepeatMasker	LINE/L2	368781	368975	781	+	.	Tstart=2;Tend=197;ID=rnd-1_family-967	506
 scaffold_1	RepeatMasker	LINE/L2	368976	369364	1436	+	.	Tstart=102;Tend=502;ID=rnd-1_family-1010	507
+scaffold_1	RepeatMasker	Simple_repeat	370855	370945	66	+	.	Tstart=1;Tend=95;ID=(CTCC)n	508
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	371412	371619	1519	-	.	Tstart=5;Tend=211;ID=rnd-1_family-346	510
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	371620	371707	X	-	.	Tstart=5;Tend=111;ID=rnd-5_family-305	511
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	372690	372907	1044	+	.	Tstart=1;Tend=230;ID=rnd-2_family-13	513
@@ -442,6 +461,7 @@ scaffold_1	RepeatMasker	DNA	449016	449102	467	+	.	Tstart=117;Tend=217;ID=rnd-1_f
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	450287	450507	926	-	.	Tstart=3;Tend=226;ID=rnd-1_family-27	611
 scaffold_1	RepeatMasker	DNA	451436	451563	449	-	.	Tstart=2;Tend=132;ID=rnd-3_family-204	612
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	453401	453535	499	+	.	Tstart=6;Tend=155;ID=rnd-1_family-359	613
+scaffold_1	RepeatMasker	Simple_repeat	456548	456643	19	+	.	Tstart=1;Tend=99;ID=(CAT)n	614
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	457041	457255	1745	+	.	Tstart=1;Tend=217;ID=rnd-1_family-15	615
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	457957	458046	352	-	.	Tstart=9;Tend=95;ID=rnd-1_family-192	616
 scaffold_1	RepeatMasker	Unknown	458138	458199	551	+	.	Tstart=38;Tend=99;ID=rnd-1_family-940	618
@@ -468,15 +488,19 @@ scaffold_1	RepeatMasker	Unknown	477186	478027	5716	+	.	Tstart=1;Tend=848;ID=rnd-
 scaffold_1	RepeatMasker	Unknown	478028	478545	X	-	.	Tstart=1;Tend=322;ID=rnd-1_family-1141	646
 scaffold_1	RepeatMasker	Unknown	478590	478670	650	-	.	Tstart=147;Tend=228;ID=rnd-1_family-1192	648
 scaffold_1	RepeatMasker	Unknown	478709	479427	5197	+	.	Tstart=1;Tend=726;ID=rnd-1_family-361	649
+scaffold_1	RepeatMasker	Simple_repeat	479964	480120	128	+	.	Tstart=1;Tend=157;ID=(TCTG)n	650
 scaffold_1	RepeatMasker	DNA/CMC-EnSpm	480523	480587	263	+	.	Tstart=208;Tend=272;ID=rnd-4_family-795	651
 scaffold_1	RepeatMasker	LTR/Gypsy	480588	480715	225	+	.	Tstart=41;Tend=218;ID=rnd-6_family-953	652
 scaffold_1	RepeatMasker	DNA	486154	486237	411	-	.	Tstart=248;Tend=333;ID=rnd-1_family-190	674
+scaffold_1	RepeatMasker	Simple_repeat	486621	486695	34	+	.	Tstart=1;Tend=76;ID=(ATAA)n	675
 scaffold_1	RepeatMasker	DNA	486983	487044	X	-	.	Tstart=80;Tend=138;ID=rnd-1_family-340	676
 scaffold_1	RepeatMasker	Unknown	487045	487253	1122	+	.	Tstart=419;Tend=647;ID=rnd-6_family-398	677
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	487340	487504	564	-	.	Tstart=13;Tend=181;ID=rnd-5_family-15	678
+scaffold_1	RepeatMasker	Simple_repeat	488336	488497	92	+	.	Tstart=1;Tend=156;ID=(TCTG)n	680
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	489312	489372	259	+	.	Tstart=52;Tend=119;ID=rnd-3_family-44	681
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	489592	489957	2647	-	.	Tstart=1;Tend=339;ID=rnd-1_family-195	682
 scaffold_1	RepeatMasker	LTR/Gypsy	493396	493567	621	-	.	Tstart=1;Tend=172;ID=rnd-1_family-11	683
+scaffold_1	RepeatMasker	Simple_repeat	493568	493638	48	+	.	Tstart=1;Tend=71;ID=(GATTAT)n	684
 scaffold_1	RepeatMasker	Unknown	494564	494713	359	+	.	Tstart=31;Tend=177;ID=rnd-5_family-5347	685
 scaffold_1	RepeatMasker	Unknown	494881	495062	242	+	.	Tstart=6;Tend=185;ID=rnd-5_family-5347	686
 scaffold_1	RepeatMasker	Unknown	495896	496002	262	+	.	Tstart=31;Tend=137;ID=rnd-5_family-5347	687
@@ -501,10 +525,12 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	514535	514608	704	-	.	Tstart=97;Tend=1
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	514656	514725	371	-	.	Tstart=1;Tend=71;ID=rnd-5_family-3327	712
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	514749	514986	910	-	.	Tstart=1;Tend=227;ID=rnd-4_family-1799	713
 scaffold_1	RepeatMasker	SINE/tRNA-V	516117	516248	487	+	.	Tstart=166;Tend=314;ID=rnd-1_family-115	716
+scaffold_1	RepeatMasker	Simple_repeat	516815	516868	12	+	.	Tstart=1;Tend=57;ID=(ATATT)n	718
 scaffold_1	RepeatMasker	DNA/Crypton-H	517969	518268	259	+	.	Tstart=1;Tend=288;ID=rnd-2_family-7	721
 scaffold_1	RepeatMasker	DNA/Crypton-H	518651	518906	242	+	.	Tstart=1;Tend=259;ID=rnd-2_family-7	722
 scaffold_1	RepeatMasker	DNA	531688	531773	243	-	.	Tstart=234;Tend=325;ID=rnd-6_family-13	724
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	532922	533078	889	-	.	Tstart=1;Tend=228;ID=rnd-1_family-66	725
+scaffold_1	RepeatMasker	Simple_repeat	533625	533700	61	+	.	Tstart=1;Tend=75;ID=(TTATT)n	726
 scaffold_1	RepeatMasker	Unknown	534021	534924	667	+	.	Tstart=1;Tend=128;ID=rnd-6_family-3734	727
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	534925	535243	1954	+	.	Tstart=1;Tend=327;ID=rnd-6_family-1215	728
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	535408	535584	1318	-	.	Tstart=1;Tend=187;ID=rnd-1_family-161	729
@@ -529,6 +555,8 @@ scaffold_1	RepeatMasker	Unknown	549375	549468	568	-	.	Tstart=31;Tend=124;ID=rnd-
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	549964	550054	354	+	.	Tstart=39;Tend=137;ID=rnd-1_family-67	753
 scaffold_1	RepeatMasker	DNA	550262	550385	804	+	.	Tstart=1;Tend=123;ID=rnd-1_family-139	754
 scaffold_1	RepeatMasker	DNA	551010	551195	896	-	.	Tstart=255;Tend=391;ID=rnd-1_family-395	755
+scaffold_1	RepeatMasker	Simple_repeat	551227	551337	81	+	.	Tstart=1;Tend=112;ID=(TTA)n	757
+scaffold_1	RepeatMasker	Simple_repeat	551339	551399	38	+	.	Tstart=1;Tend=61;ID=(T)n	758
 scaffold_1	RepeatMasker	LINE/CR1	551401	551485	675	+	.	Tstart=488;Tend=572;ID=rnd-5_family-255	756
 scaffold_1	RepeatMasker	DNA	551491	551837	2522	+	.	Tstart=108;Tend=471;ID=rnd-1_family-222	759
 scaffold_1	RepeatMasker	DNA	552133	552393	1538	+	.	Tstart=103;Tend=366;ID=rnd-6_family-525	762
@@ -558,6 +586,8 @@ scaffold_1	RepeatMasker	DNA	573653	573971	1894	-	.	Tstart=43;Tend=382;ID=rnd-5_f
 scaffold_1	RepeatMasker	DNA/Kolobok-Hydra	574799	575298	4485	+	.	Tstart=116;Tend=615;ID=rnd-6_family-5205	791
 scaffold_1	RepeatMasker	LINE/Penelope	575757	575878	804	-	.	Tstart=4;Tend=121;ID=rnd-1_family-55	792
 scaffold_1	RepeatMasker	SINE/tRNA-L2	575951	576142	913	-	.	Tstart=44;Tend=239;ID=rnd-1_family-165	794
+scaffold_1	RepeatMasker	Low_complexity	576496	576551	18	+	.	Tstart=1;Tend=58;ID=A-rich	795
+scaffold_1	RepeatMasker	Simple_repeat	576718	576868	48	+	.	Tstart=1;Tend=149;ID=(TTG)n	796
 scaffold_1	RepeatMasker	LINE/I-Jockey	576870	577068	260	-	.	Tstart=78;Tend=289;ID=rnd-5_family-903	797
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	577404	577540	847	-	.	Tstart=2;Tend=145;ID=rnd-1_family-167	798
 scaffold_1	RepeatMasker	DNA/Kolobok	579419	580183	6010	-	.	Tstart=1;Tend=753;ID=rnd-1_family-564	799
@@ -599,6 +629,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	613009	613119	828	+	.	Tstart=462;Tend=572
 scaffold_1	RepeatMasker	DNA	617288	617504	862	-	.	Tstart=214;Tend=467;ID=rnd-1_family-277	848
 scaffold_1	RepeatMasker	DNA	617559	617835	861	-	.	Tstart=1;Tend=313;ID=rnd-4_family-603	849
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	621126	621337	1624	-	.	Tstart=1;Tend=212;ID=rnd-1_family-346	851
+scaffold_1	RepeatMasker	Simple_repeat	622116	622173	25	+	.	Tstart=1;Tend=58;ID=(AAT)n	852
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	625211	625326	575	-	.	Tstart=28;Tend=137;ID=rnd-1_family-67	854
 scaffold_1	RepeatMasker	DNA	625606	625657	239	-	.	Tstart=1578;Tend=1630;ID=rnd-5_family-7489	855
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	628558	628624	325	+	.	Tstart=1;Tend=69;ID=rnd-1_family-406	857
@@ -681,6 +712,7 @@ scaffold_1	RepeatMasker	LINE/L2	676760	677588	926	-	.	Tstart=5;Tend=610;ID=rnd-1
 scaffold_1	RepeatMasker	DNA	677589	677740	X	-	.	Tstart=267;Tend=387;ID=rnd-1_family-395	957
 scaffold_1	RepeatMasker	DNA	678010	678218	1076	+	.	Tstart=1;Tend=387;ID=rnd-1_family-395	958
 scaffold_1	RepeatMasker	Unknown	678484	678612	319	-	.	Tstart=17;Tend=221;ID=rnd-1_family-235	959
+scaffold_1	RepeatMasker	Simple_repeat	679413	679464	58	+	.	Tstart=1;Tend=52;ID=(TGT)n	962
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	679514	679598	390	-	.	Tstart=1;Tend=86;ID=rnd-5_family-4314	963
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	679740	679799	452	+	.	Tstart=1;Tend=60;ID=rnd-5_family-406	964
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	679852	680044	1203	+	.	Tstart=68;Tend=262;ID=rnd-1_family-69	965
@@ -691,6 +723,7 @@ scaffold_1	RepeatMasker	Unknown	683753	683809	393	-	.	Tstart=1;Tend=57;ID=rnd-1_
 scaffold_1	RepeatMasker	RC/Helitron	686565	686663	308	+	.	Tstart=36;Tend=153;ID=rnd-6_family-629	974
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	687625	687707	369	-	.	Tstart=43;Tend=130;ID=rnd-1_family-27	975
 scaffold_1	RepeatMasker	DNA	687997	688052	364	+	.	Tstart=84;Tend=137;ID=rnd-4_family-1428	977
+scaffold_1	RepeatMasker	Simple_repeat	688373	688442	30	+	.	Tstart=1;Tend=70;ID=(TTTGCGATAC)n	978
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	689296	689402	704	+	.	Tstart=110;Tend=225;ID=rnd-4_family-689	979
 scaffold_1	RepeatMasker	DNA	691204	691512	2405	-	.	Tstart=1;Tend=307;ID=rnd-1_family-151	982
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	691879	692054	1141	+	.	Tstart=5;Tend=212;ID=rnd-1_family-346	984
@@ -703,6 +736,7 @@ scaffold_1	RepeatMasker	RC/Helitron	694129	694192	243	-	.	Tstart=2;Tend=65;ID=rn
 scaffold_1	RepeatMasker	DNA	694778	694952	818	+	.	Tstart=44;Tend=222;ID=rnd-4_family-1444	992
 scaffold_1	RepeatMasker	DNA	694954	695164	1252	-	.	Tstart=11;Tend=249;ID=rnd-1_family-205	993
 scaffold_1	RepeatMasker	DNA	697639	697726	365	+	.	Tstart=1284;Tend=1364;ID=rnd-6_family-934	995
+scaffold_1	RepeatMasker	Simple_repeat	698511	698679	180	+	.	Tstart=1;Tend=169;ID=(TTATG)n	996
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	698695	698901	856	-	.	Tstart=1;Tend=217;ID=rnd-2_family-13	997
 scaffold_1	RepeatMasker	DNA/PiggyBac	699109	699180	317	+	.	Tstart=147;Tend=220;ID=rnd-1_family-75	999
 scaffold_1	RepeatMasker	DNA	705040	706985	316	-	.	Tstart=4;Tend=398;ID=rnd-6_family-504;TEgroup=scaffold_1|rnd-6_family-504|1	1000
@@ -717,6 +751,8 @@ scaffold_1	RepeatMasker	Unknown	706745	706849	370	+	.	Tstart=824;Tend=928;ID=rnd
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	707217	707565	2245	-	.	Tstart=3;Tend=338;ID=rnd-6_family-1017	1014
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	707667	707717	422	+	.	Tstart=1;Tend=51;ID=rnd-1_family-232	1015
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	707726	708430	4106	+	.	Tstart=12;Tend=710;ID=rnd-1_family-232	1016
+scaffold_1	RepeatMasker	Simple_repeat	710199	710339	163	+	.	Tstart=1;Tend=141;ID=(TAAC)n	1021
+scaffold_1	RepeatMasker	Simple_repeat	710355	710412	44	+	.	Tstart=1;Tend=58;ID=(TTAT)n	1023
 scaffold_1	RepeatMasker	DNA	710593	710677	299	+	.	Tstart=104;Tend=203;ID=rnd-1_family-113	1026
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	711514	711710	1546	+	.	Tstart=4;Tend=200;ID=rnd-1_family-15	1029
 scaffold_1	RepeatMasker	SINE/tRNA-Deu-L2	712293	712417	X	-	.	Tstart=70;Tend=222;ID=rnd-5_family-646	1030
@@ -733,19 +769,23 @@ scaffold_1	RepeatMasker	LINE/Penelope	717556	717705	1024	+	.	Tstart=1;Tend=138;I
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	719139	719412	1692	+	.	Tstart=3;Tend=277;ID=rnd-5_family-541	1046
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	720470	720646	388	+	.	Tstart=9;Tend=151;ID=rnd-6_family-1303	1049
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	721372	721485	380	+	.	Tstart=1;Tend=132;ID=rnd-5_family-2565	1050
+scaffold_1	RepeatMasker	Simple_repeat	722844	722917	22	+	.	Tstart=1;Tend=75;ID=(TAATA)n	1051
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	723121	723304	1245	-	.	Tstart=1;Tend=187;ID=rnd-1_family-161	1052
 scaffold_1	RepeatMasker	DNA	726264	726626	2727	+	.	Tstart=1;Tend=372;ID=rnd-1_family-139	1053
 scaffold_1	RepeatMasker	DNA/Crypton-H	729852	730079	404	-	.	Tstart=33;Tend=259;ID=rnd-2_family-7	1055
 scaffold_1	RepeatMasker	DNA	731755	732117	2727	+	.	Tstart=1;Tend=372;ID=rnd-1_family-139	1056
 scaffold_1	RepeatMasker	DNA/CMC-EnSpm	733894	734022	720	+	.	Tstart=158;Tend=283;ID=rnd-5_family-2951	1057
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	734227	734848	3004	-	.	Tstart=1;Tend=508;ID=rnd-1_family-328	1059
+scaffold_1	RepeatMasker	Simple_repeat	734855	734912	43	+	.	Tstart=1;Tend=58;ID=(AATGC)n	1060
 scaffold_1	RepeatMasker	DNA	736730	737160	2196	-	.	Tstart=1;Tend=471;ID=rnd-4_family-603	1061
 scaffold_1	RepeatMasker	DNA	742340	742641	1958	+	.	Tstart=1;Tend=299;ID=rnd-5_family-1576	1063
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	743162	743454	1004	+	.	Tstart=2;Tend=333;ID=rnd-6_family-1017	1064
+scaffold_1	RepeatMasker	Simple_repeat	743782	744156	61	+	.	Tstart=1;Tend=370;ID=(TGT)n	1065
 scaffold_1	RepeatMasker	LINE/Rex-Babar	744165	744599	3164	+	.	Tstart=366;Tend=811;ID=rnd-1_family-462	1066
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	747405	747507	404	-	.	Tstart=2;Tend=84;ID=rnd-1_family-66	1067
 scaffold_1	RepeatMasker	DNA	750380	750537	613	-	.	Tstart=9;Tend=171;ID=rnd-5_family-1576	1068
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	750630	750820	578	-	.	Tstart=214;Tend=402;ID=rnd-1_family-226	1069
+scaffold_1	RepeatMasker	Simple_repeat	751470	751534	16	+	.	Tstart=1;Tend=68;ID=(CAATTTT)n	1070
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	753350	753440	561	+	.	Tstart=1;Tend=112;ID=rnd-1_family-87	1072
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	753448	753529	353	+	.	Tstart=173;Tend=248;ID=rnd-4_family-781	1073
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	754395	754673	1256	+	.	Tstart=1;Tend=304;ID=rnd-2_family-88	1074
@@ -871,6 +911,7 @@ scaffold_1	RepeatMasker	RC/Helitron	842315	842367	X	+	.	Tstart=1;Tend=158;ID=rnd
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	843038	843258	617	-	.	Tstart=4;Tend=244;ID=rnd-5_family-15	1217
 scaffold_1	RepeatMasker	DNA	844428	844581	235	-	.	Tstart=29;Tend=165;ID=rnd-1_family-537	1218
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	846654	846782	563	+	.	Tstart=5;Tend=142;ID=rnd-3_family-354	1220
+scaffold_1	RepeatMasker	Low_complexity	846796	846861	23	+	.	Tstart=1;Tend=65;ID=A-rich	1221
 scaffold_1	RepeatMasker	RC/Helitron	847035	847185	951	-	.	Tstart=1;Tend=158;ID=rnd-6_family-629	1224
 scaffold_1	RepeatMasker	LTR/Ngaro	847239	847339	453	-	.	Tstart=1;Tend=103;ID=rnd-1_family-1126	1226
 scaffold_1	RepeatMasker	LTR/DIRS	847345	847570	1034	-	.	Tstart=29;Tend=261;ID=rnd-5_family-2275	1227
@@ -889,6 +930,7 @@ scaffold_1	RepeatMasker	DNA	858978	860065	7727	-	.	Tstart=1;Tend=1049;ID=rnd-1_f
 scaffold_1	RepeatMasker	Unknown	860738	860895	377	+	.	Tstart=1355;Tend=1525;ID=rnd-6_family-723	1245
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	860949	861181	1777	-	.	Tstart=2;Tend=251;ID=rnd-5_family-1024	1248
 scaffold_1	RepeatMasker	DNA	861249	861919	5115	-	.	Tstart=2;Tend=674;ID=rnd-1_family-140	1249
+scaffold_1	RepeatMasker	Simple_repeat	862215	862270	13	+	.	Tstart=1;Tend=53;ID=(CCACCC)n	1250
 scaffold_1	RepeatMasker	Unknown	862629	862804	282	+	.	Tstart=1377;Tend=1525;ID=rnd-6_family-723	1253
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	862855	863090	1827	-	.	Tstart=1;Tend=254;ID=rnd-1_family-15	1255
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	863870	863924	254	+	.	Tstart=222;Tend=283;ID=rnd-6_family-661	1256
@@ -896,12 +938,14 @@ scaffold_1	RepeatMasker	DNA	864226	864445	667	+	.	Tstart=7;Tend=258;ID=rnd-5_fam
 scaffold_1	RepeatMasker	Unknown	864463	864610	911	+	.	Tstart=12;Tend=164;ID=rnd-1_family-993	1259
 scaffold_1	RepeatMasker	Unknown	864611	864722	X	-	.	Tstart=1;Tend=160;ID=rnd-1_family-993	1260
 scaffold_1	RepeatMasker	DNA	868222	868805	4155	-	.	Tstart=1;Tend=606;ID=rnd-1_family-125	1265
+scaffold_1	RepeatMasker	Simple_repeat	869311	869362	28	+	.	Tstart=1;Tend=58;ID=(CATCCACT)n	1266
 scaffold_1	RepeatMasker	RC/Helitron	870692	870814	667	+	.	Tstart=2;Tend=133;ID=rnd-6_family-629	1267
 scaffold_1	RepeatMasker	Unknown	871168	871632	X	+	.	Tstart=1;Tend=418;ID=rnd-5_family-1344;TEgroup=scaffold_1|rnd-5_family-1344|1	1268
 scaffold_1	RepeatMasker	Unknown	871377	871433	483	-	.	Tstart=8;Tend=64;ID=rnd-1_family-656	1269
 scaffold_1	RepeatMasker	SINE/tRNA-L2	877020	877172	508	+	.	Tstart=39;Tend=185;ID=rnd-1_family-165	1272
 scaffold_1	RepeatMasker	LINE/L1-Tx1	878489	878556	285	+	.	Tstart=1;Tend=93;ID=rnd-6_family-730	1275
 scaffold_1	RepeatMasker	LINE/L1-Tx1	878559	878970	1723	+	.	Tstart=1;Tend=528;ID=rnd-1_family-1074	1276
+scaffold_1	RepeatMasker	Simple_repeat	879564	879661	115	+	.	Tstart=1;Tend=98;ID=(AT)n	1277
 scaffold_1	RepeatMasker	LINE/L2	879769	879987	477	+	.	Tstart=11;Tend=447;ID=rnd-5_family-1559;TEgroup=scaffold_1|rnd-5_family-1559|1	1278
 scaffold_1	RepeatMasker	LINE/L2	880113	880201	624	-	.	Tstart=21;Tend=109;ID=rnd-5_family-1559	1279
 scaffold_1	RepeatMasker	DNA	880318	880373	296	+	.	Tstart=21;Tend=76;ID=rnd-1_family-1239	1280
@@ -941,6 +985,7 @@ scaffold_1	RepeatMasker	Unknown	905023	905183	946	-	.	Tstart=1;Tend=127;ID=rnd-1
 scaffold_1	RepeatMasker	Unknown	905184	905320	X	-	.	Tstart=211;Tend=346;ID=rnd-1_family-450	1331
 scaffold_1	RepeatMasker	DNA	905711	905780	291	-	.	Tstart=65;Tend=133;ID=rnd-3_family-204	1332
 scaffold_1	RepeatMasker	DNA	905829	905922	349	+	.	Tstart=17;Tend=107;ID=rnd-4_family-148	1333
+scaffold_1	RepeatMasker	Simple_repeat	905954	906011	20	+	.	Tstart=1;Tend=60;ID=(ATT)n	1334
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	906668	906734	358	-	.	Tstart=245;Tend=311;ID=rnd-5_family-406	1335
 scaffold_1	RepeatMasker	DNA	907544	907641	528	-	.	Tstart=3;Tend=100;ID=rnd-4_family-57	1336
 scaffold_1	RepeatMasker	DNA	907644	907731	387	-	.	Tstart=1;Tend=96;ID=rnd-1_family-608	1337
@@ -973,6 +1018,7 @@ scaffold_1	RepeatMasker	Unknown	922628	922703	258	-	.	Tstart=257;Tend=337;ID=rnd
 scaffold_1	RepeatMasker	DNA/Academ-1	923823	923923	696	-	.	Tstart=271;Tend=371;ID=rnd-1_family-448	1368
 scaffold_1	RepeatMasker	LINE/CR1	924250	924639	687	-	.	Tstart=1033;Tend=1414;ID=rnd-5_family-827;TEgroup=scaffold_1|rnd-5_family-827|1	1369
 scaffold_1	RepeatMasker	DNA	924876	924946	372	-	.	Tstart=1;Tend=71;ID=rnd-1_family-743	1370
+scaffold_1	RepeatMasker	Simple_repeat	924968	925020	22	+	.	Tstart=1;Tend=56;ID=(TTAGAGT)n	1371
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	925256	925603	2038	-	.	Tstart=1;Tend=337;ID=rnd-1_family-69	1372
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	926208	926335	417	+	.	Tstart=146;Tend=250;ID=rnd-3_family-1253	1373
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	928804	928934	311	+	.	Tstart=91;Tend=224;ID=rnd-1_family-27	1376
@@ -1004,6 +1050,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	946735	946872	789	-	.	Tstart=25;Tend=159;
 scaffold_1	RepeatMasker	DNA	947009	947190	479	-	.	Tstart=10;Tend=273;ID=rnd-4_family-619	1413
 scaffold_1	RepeatMasker	DNA	947591	947857	1647	-	.	Tstart=2;Tend=272;ID=rnd-1_family-197	1414
 scaffold_1	RepeatMasker	DNA	948243	948441	974	-	.	Tstart=1;Tend=387;ID=rnd-1_family-395	1415
+scaffold_1	RepeatMasker	Simple_repeat	949005	949082	46	+	.	Tstart=1;Tend=78;ID=(GTT)n	1416
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	949135	949216	343	-	.	Tstart=1;Tend=83;ID=rnd-5_family-4314	1417
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	949356	949415	412	+	.	Tstart=1;Tend=60;ID=rnd-5_family-406	1418
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	949468	949656	1058	+	.	Tstart=68;Tend=258;ID=rnd-1_family-69	1419
@@ -1015,6 +1062,7 @@ scaffold_1	RepeatMasker	Unknown	950889	951023	1116	+	.	Tstart=217;Tend=351;ID=rn
 scaffold_1	RepeatMasker	LINE/L2	951208	951643	758	-	.	Tstart=175;Tend=610;ID=rnd-1_family-1022	1427
 scaffold_1	RepeatMasker	LINE/L2	951767	952022	X	-	.	Tstart=44;Tend=369;ID=rnd-1_family-620	1428
 scaffold_1	RepeatMasker	DNA	952023	952221	932	-	.	Tstart=1;Tend=387;ID=rnd-1_family-395	1429
+scaffold_1	RepeatMasker	Simple_repeat	952794	952865	45	+	.	Tstart=1;Tend=72;ID=(GTT)n	1430
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	952918	952999	343	-	.	Tstart=1;Tend=83;ID=rnd-5_family-4314	1431
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	953139	953198	412	+	.	Tstart=1;Tend=60;ID=rnd-5_family-406	1432
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	953251	953439	1058	+	.	Tstart=68;Tend=258;ID=rnd-1_family-69	1433
@@ -1091,6 +1139,7 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1012008	1012249	262	-	.	Tstart=1;Tend=
 scaffold_1	RepeatMasker	LTR	1012307	1012467	934	-	.	Tstart=92;Tend=253;ID=rnd-1_family-1073	1523
 scaffold_1	RepeatMasker	Unknown	1012999	1013097	361	-	.	Tstart=53;Tend=148;ID=rnd-6_family-2767	1525
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1013098	1013175	400	-	.	Tstart=13;Tend=87;ID=rnd-5_family-165	1526
+scaffold_1	RepeatMasker	Low_complexity	1013701	1013773	25	+	.	Tstart=1;Tend=73;ID=A-rich	1528
 scaffold_1	RepeatMasker	RC/Helitron	1014047	1014625	717	-	.	Tstart=158;Tend=869;ID=rnd-4_family-1056;TEgroup=scaffold_1|rnd-4_family-1056|1	1529
 scaffold_1	RepeatMasker	RC/Helitron	1014626	1014692	X	+	.	Tstart=1;Tend=83;ID=rnd-1_family-671	1530
 scaffold_1	RepeatMasker	RC/Helitron	1014693	1014879	1101	+	.	Tstart=416;Tend=603;ID=rnd-5_family-1370	1531
@@ -1131,6 +1180,8 @@ scaffold_1	RepeatMasker	Unknown	1030582	1030707	426	+	.	Tstart=54;Tend=178;ID=rn
 scaffold_1	RepeatMasker	Unknown	1030760	1030878	302	+	.	Tstart=306;Tend=407;ID=rnd-5_family-3861	1568
 scaffold_1	RepeatMasker	DNA	1031753	1031902	912	-	.	Tstart=122;Tend=272;ID=rnd-1_family-197	1570
 scaffold_1	RepeatMasker	Unknown	1031960	1032046	308	+	.	Tstart=2;Tend=85;ID=rnd-5_family-1794	1571
+scaffold_1	RepeatMasker	Simple_repeat	1033187	1033271	23	+	.	Tstart=1;Tend=79;ID=(TGTC)n	1573
+scaffold_1	RepeatMasker	Simple_repeat	1033285	1033362	83	+	.	Tstart=1;Tend=78;ID=(TCTG)n	1574
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	1037346	1037401	316	-	.	Tstart=35;Tend=90;ID=rnd-5_family-1029	1575
 scaffold_1	RepeatMasker	Unknown	1037446	1037497	334	+	.	Tstart=105;Tend=156;ID=rnd-1_family-1228	1576
 scaffold_1	RepeatMasker	DNA	1038477	1038702	1255	+	.	Tstart=1;Tend=167;ID=rnd-1_family-370	1577
@@ -1167,7 +1218,9 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	1058732	1058960	1293	-	.	Tstart=1;Tend=22
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1059009	1059166	1257	-	.	Tstart=1;Tend=159;ID=rnd-1_family-107	1614
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1061474	1061692	987	-	.	Tstart=1;Tend=223;ID=rnd-2_family-13	1615
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1062088	1062213	262	+	.	Tstart=2;Tend=150;ID=rnd-1_family-180	1616
+scaffold_1	RepeatMasker	Simple_repeat	1065449	1065502	33	+	.	Tstart=1;Tend=56;ID=(TGATT)n	1617
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	1065507	1065566	526	-	.	Tstart=287;Tend=346;ID=rnd-1_family-144	1618
+scaffold_1	RepeatMasker	Low_complexity	1066905	1066955	24	+	.	Tstart=1;Tend=51;ID=A-rich	1619
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	1076653	1076981	2066	-	.	Tstart=2;Tend=337;ID=rnd-1_family-69	1620
 scaffold_1	RepeatMasker	RC/Helitron	1077555	1077670	383	-	.	Tstart=2;Tend=156;ID=rnd-4_family-2139	1621
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1078979	1079188	445	-	.	Tstart=4;Tend=211;ID=rnd-5_family-4314	1624
@@ -1183,6 +1236,8 @@ scaffold_1	RepeatMasker	DNA	1086669	1086760	307	+	.	Tstart=36;Tend=149;ID=rnd-5_
 scaffold_1	RepeatMasker	DNA	1089869	1090021	235	+	.	Tstart=47;Tend=203;ID=rnd-1_family-200	1635
 scaffold_1	RepeatMasker	DNA	1093778	1093868	742	+	.	Tstart=16;Tend=106;ID=rnd-1_family-377	1636
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	1094722	1094800	525	-	.	Tstart=42;Tend=120;ID=rnd-1_family-338	1637
+scaffold_1	RepeatMasker	Low_complexity	1095247	1095311	13	+	.	Tstart=1;Tend=69;ID=A-rich	1638
+scaffold_1	RepeatMasker	Simple_repeat	1097038	1097122	23	+	.	Tstart=1;Tend=85;ID=(ATC)n	1639
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1099867	1100091	231	+	.	Tstart=30;Tend=231;ID=rnd-5_family-882;TEgroup=scaffold_1|rnd-5_family-882|1	1640
 scaffold_1	RepeatMasker	Unknown	1099954	1100008	403	+	.	Tstart=1;Tend=55;ID=rnd-1_family-1028	1642
 scaffold_1	RepeatMasker	DNA	1100992	1101172	756	-	.	Tstart=1;Tend=165;ID=rnd-1_family-370	1645
@@ -1199,6 +1254,7 @@ scaffold_1	RepeatMasker	DNA	1108341	1108634	2386	-	.	Tstart=1;Tend=303;ID=rnd-1_
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1109943	1110088	832	-	.	Tstart=732;Tend=868;ID=rnd-5_family-7058	1659
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1112235	1112287	357	-	.	Tstart=171;Tend=222;ID=rnd-6_family-2526	1660
 scaffold_1	RepeatMasker	LINE/I-Jockey	1112826	1113278	477	-	.	Tstart=2;Tend=292;ID=rnd-5_family-903	1662
+scaffold_1	RepeatMasker	Simple_repeat	1113828	1113961	153	+	.	Tstart=1;Tend=134;ID=(AT)n	1664
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1114162	1114456	1902	+	.	Tstart=1;Tend=299;ID=rnd-6_family-1215	1666
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1115234	1115294	438	-	.	Tstart=1;Tend=61;ID=rnd-6_family-3305	1667
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1115321	1115750	3675	-	.	Tstart=1;Tend=428;ID=rnd-1_family-1112	1668
@@ -1313,6 +1369,7 @@ scaffold_1	RepeatMasker	DNA/Crypton-H	1197838	1198131	X	-	.	Tstart=1;Tend=283;ID
 scaffold_1	RepeatMasker	DNA	1198132	1198337	1556	+	.	Tstart=3;Tend=207;ID=rnd-1_family-197	1821
 scaffold_1	RepeatMasker	DNA	1198339	1198609	1724	+	.	Tstart=2;Tend=283;ID=rnd-1_family-302	1822
 scaffold_1	RepeatMasker	DNA	1198610	1198674	487	+	.	Tstart=208;Tend=272;ID=rnd-1_family-197	1823
+scaffold_1	RepeatMasker	Simple_repeat	1198688	1198976	205	+	.	Tstart=1;Tend=289;ID=(ATCACC)n	1824
 scaffold_1	RepeatMasker	DNA	1198979	1199911	7710	-	.	Tstart=1;Tend=933;ID=rnd-1_family-713	1825
 scaffold_1	RepeatMasker	LTR/Gypsy	1199914	1200060	353	-	.	Tstart=65;Tend=204;ID=rnd-6_family-953	1826
 scaffold_1	RepeatMasker	DNA	1200635	1200772	400	-	.	Tstart=1;Tend=136;ID=rnd-1_family-905	1829
@@ -1337,7 +1394,11 @@ scaffold_1	RepeatMasker	RC/Helitron	1221568	1221816	266	-	.	Tstart=112;Tend=377;
 scaffold_1	RepeatMasker	Unknown	1222821	1222923	619	+	.	Tstart=1;Tend=90;ID=rnd-1_family-382	1853
 scaffold_1	RepeatMasker	DNA	1227738	1227876	787	-	.	Tstart=3;Tend=142;ID=rnd-1_family-68	1854
 scaffold_1	RepeatMasker	DNA	1229174	1229313	791	-	.	Tstart=3;Tend=142;ID=rnd-1_family-68	1855
+scaffold_1	RepeatMasker	Simple_repeat	1230640	1230854	161	+	.	Tstart=1;Tend=214;ID=(TAA)n	1857
 scaffold_1	RepeatMasker	LTR/Gypsy	1230855	1230956	517	+	.	Tstart=148;Tend=290;ID=rnd-6_family-953	1856
+scaffold_1	RepeatMasker	Simple_repeat	1231556	1231691	75	+	.	Tstart=1;Tend=136;ID=(ATTT)n	1858
+scaffold_1	RepeatMasker	Simple_repeat	1231692	1231842	175	+	.	Tstart=1;Tend=151;ID=(TTTG)n	1859
+scaffold_1	RepeatMasker	Simple_repeat	1231843	1231903	75	+	.	Tstart=1;Tend=62;ID=(ATTT)n	1860
 scaffold_1	RepeatMasker	DNA/Academ-2	1232070	1232123	326	-	.	Tstart=20;Tend=73;ID=rnd-1_family-411	1861
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1232167	1232370	1141	-	.	Tstart=33;Tend=245;ID=rnd-3_family-1253	1862
 scaffold_1	RepeatMasker	DNA	1232373	1232455	568	+	.	Tstart=1;Tend=83;ID=rnd-1_family-228	1863
@@ -1356,6 +1417,7 @@ scaffold_1	RepeatMasker	DNA/hAT-Tip100	1240996	1241052	X	-	.	Tstart=12;Tend=70;I
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1241130	1241245	456	-	.	Tstart=18;Tend=136;ID=rnd-4_family-25	1880
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1242445	1242633	1203	+	.	Tstart=4;Tend=212;ID=rnd-1_family-346	1881
 scaffold_1	RepeatMasker	DNA	1242727	1242951	1406	-	.	Tstart=1;Tend=252;ID=rnd-1_family-205	1882
+scaffold_1	RepeatMasker	Simple_repeat	1242990	1243353	416	+	.	Tstart=1;Tend=362;ID=(TATT)n	1883
 scaffold_1	RepeatMasker	Unknown	1245930	1245984	241	+	.	Tstart=941;Tend=995;ID=rnd-5_family-21	1884
 scaffold_1	RepeatMasker	Unknown	1246005	1246167	1320	+	.	Tstart=1;Tend=163;ID=rnd-6_family-6247	1885
 scaffold_1	RepeatMasker	DNA	1246744	1246814	351	+	.	Tstart=9;Tend=94;ID=rnd-1_family-228	1886
@@ -1418,11 +1480,13 @@ scaffold_1	RepeatMasker	DNA	1286668	1286853	1428	+	.	Tstart=1;Tend=186;ID=rnd-1_
 scaffold_1	RepeatMasker	Unknown	1287740	1287967	1469	-	.	Tstart=1;Tend=245;ID=rnd-5_family-2088	1963
 scaffold_1	RepeatMasker	Unknown	1287975	1288658	2009	-	.	Tstart=1;Tend=544;ID=rnd-1_family-319	1964
 scaffold_1	RepeatMasker	Unknown	1288659	1288784	X	+	.	Tstart=4;Tend=198;ID=rnd-1_family-715	1965
+scaffold_1	RepeatMasker	Simple_repeat	1292491	1292543	17	+	.	Tstart=1;Tend=52;ID=(ATATAA)n	1966
 scaffold_1	RepeatMasker	Unknown	1292923	1293126	758	+	.	Tstart=42;Tend=549;ID=rnd-5_family-149;TEgroup=scaffold_1|rnd-5_family-149|1	1967
 scaffold_1	RepeatMasker	Unknown	1293178	1293244	284	-	.	Tstart=43;Tend=106;ID=rnd-5_family-149	1968
 scaffold_1	RepeatMasker	DNA	1298355	1298462	452	-	.	Tstart=471;Tend=589;ID=rnd-5_family-216	1969
 scaffold_1	RepeatMasker	Unknown	1298584	1298634	288	-	.	Tstart=34;Tend=83;ID=rnd-6_family-414	1970
 scaffold_1	RepeatMasker	Unknown	1298828	1298943	265	-	.	Tstart=126;Tend=250;ID=rnd-6_family-5239	1971
+scaffold_1	RepeatMasker	Low_complexity	1299047	1299123	18	+	.	Tstart=1;Tend=78;ID=GA-rich	1972
 scaffold_1	RepeatMasker	DNA	1301002	1301235	514	+	.	Tstart=7;Tend=165;ID=rnd-1_family-996	1974
 scaffold_1	RepeatMasker	LTR/Copia	1301322	1301656	1205	-	.	Tstart=24;Tend=380;ID=rnd-1_family-1071	1975
 scaffold_1	RepeatMasker	DNA	1301861	1301958	X	+	.	Tstart=119;Tend=206;ID=rnd-4_family-218	1976
@@ -1432,7 +1496,7 @@ scaffold_1	RepeatMasker	RC/Helitron	1302641	1302703	312	+	.	Tstart=166;Tend=230;
 scaffold_1	RepeatMasker	Unknown	1302773	1303128	1046	-	.	Tstart=47;Tend=365;ID=rnd-6_family-3221;TEgroup=scaffold_1|rnd-6_family-3221|1	1980
 scaffold_1	RepeatMasker	Unknown	1302947	1303010	421	+	.	Tstart=1;Tend=64;ID=rnd-1_family-432	1981
 scaffold_1	RepeatMasker	Unknown	1303011	1303077	X	-	.	Tstart=9;Tend=133;ID=rnd-1_family-432	1982
-scaffold_1	RepeatMasker	Unknown	1303162	1303327	476	-	.	Tstart=3;Tend=147;ID=rnd-1_family-424	1983
+scaffold_1	RepeatMasker	Simple_repeat	1303184	1303470	1601	+	.	Tstart=1;Tend=428;ID=rnd-1_family-270	1984
 scaffold_1	RepeatMasker	Unknown	1303471	1303629	704	-	.	Tstart=22;Tend=156;ID=rnd-1_family-424	1985
 scaffold_1	RepeatMasker	Unknown	1303704	1303815	294	+	.	Tstart=2298;Tend=2407;ID=rnd-5_family-2934	1986
 scaffold_1	RepeatMasker	DNA	1304111	1304429	1291	+	.	Tstart=1;Tend=398;ID=rnd-6_family-504	1987
@@ -1462,8 +1526,9 @@ scaffold_1	RepeatMasker	Unknown	1320890	1321096	469	-	.	Tstart=1022;Tend=1181;ID
 scaffold_1	RepeatMasker	Unknown	1321099	1321424	1967	+	.	Tstart=347;Tend=660;ID=rnd-6_family-475	2015
 scaffold_1	RepeatMasker	Unknown	1327418	1327529	294	-	.	Tstart=2298;Tend=2407;ID=rnd-5_family-2934	2016
 scaffold_1	RepeatMasker	Unknown	1327604	1327762	704	+	.	Tstart=22;Tend=156;ID=rnd-1_family-424	2017
-scaffold_1	RepeatMasker	Unknown	1327906	1328071	476	+	.	Tstart=3;Tend=147;ID=rnd-1_family-424	2019
+scaffold_1	RepeatMasker	Simple_repeat	1327763	1328049	1601	+	.	Tstart=1;Tend=435;ID=rnd-1_family-270	2018
 scaffold_1	RepeatMasker	Unknown	1328099	1328153	251	-	.	Tstart=192;Tend=247;ID=rnd-5_family-379	2020
+scaffold_1	RepeatMasker	Simple_repeat	1328299	1328487	369	+	.	Tstart=1;Tend=245;ID=rnd-1_family-270	2021
 scaffold_1	RepeatMasker	DNA/Ginger	1328528	1328783	2109	-	.	Tstart=1;Tend=256;ID=rnd-1_family-693	2022
 scaffold_1	RepeatMasker	DNA	1330528	1330591	X	-	.	Tstart=46;Tend=111;ID=rnd-1_family-510	2024
 scaffold_1	RepeatMasker	Unknown	1330592	1332042	11421	+	.	Tstart=749;Tend=2207;ID=rnd-5_family-1677	2025
@@ -1472,11 +1537,12 @@ scaffold_1	RepeatMasker	Unknown	1332364	1332570	469	-	.	Tstart=1022;Tend=1181;ID
 scaffold_1	RepeatMasker	Unknown	1332573	1332726	1220	+	.	Tstart=347;Tend=500;ID=rnd-6_family-475	2028
 scaffold_1	RepeatMasker	LINE/RTE-BovB	1336690	1336964	250	-	.	Tstart=2389;Tend=2663;ID=rnd-5_family-58	2029
 scaffold_1	RepeatMasker	DNA	1338048	1338373	1684	-	.	Tstart=77;Tend=474;ID=rnd-6_family-504	2030
+scaffold_1	RepeatMasker	Simple_repeat	1339060	1339261	199	+	.	Tstart=1;Tend=202;ID=(TTA)n	2031
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1339411	1339490	238	+	.	Tstart=34;Tend=131;ID=rnd-4_family-356	2033
 scaffold_1	RepeatMasker	RC/Helitron	1339504	1339615	335	-	.	Tstart=10;Tend=122;ID=rnd-1_family-603	2034
 scaffold_1	RepeatMasker	Unknown	1340268	1340379	294	-	.	Tstart=2298;Tend=2407;ID=rnd-5_family-2934	2036
 scaffold_1	RepeatMasker	Unknown	1340454	1340612	704	+	.	Tstart=22;Tend=156;ID=rnd-1_family-424	2037
-scaffold_1	RepeatMasker	Unknown	1340756	1340921	476	+	.	Tstart=3;Tend=147;ID=rnd-1_family-424	2039
+scaffold_1	RepeatMasker	Simple_repeat	1340613	1340899	1601	+	.	Tstart=1;Tend=435;ID=rnd-1_family-270	2038
 scaffold_1	RepeatMasker	Unknown	1340949	1341003	251	-	.	Tstart=192;Tend=247;ID=rnd-5_family-379	2040
 scaffold_1	RepeatMasker	Unknown	1341212	1345276	13209	+	.	Tstart=1;Tend=3338;ID=rnd-5_family-379	2041
 scaffold_1	RepeatMasker	Unknown	1345277	1345656	X	+	.	Tstart=3229;Tend=3631;ID=rnd-5_family-379	2042
@@ -1504,8 +1570,10 @@ scaffold_1	RepeatMasker	Satellite	1370772	1370947	940	+	.	Tstart=2;Tend=121;ID=r
 scaffold_1	RepeatMasker	Satellite	1370958	1371115	819	+	.	Tstart=2;Tend=102;ID=rnd-1_family-189	2067
 scaffold_1	RepeatMasker	LINE/L2	1371116	1371194	X	-	.	Tstart=1;Tend=80;ID=rnd-1_family-1175	2068
 scaffold_1	RepeatMasker	Unknown	1371196	1371888	6295	+	.	Tstart=1;Tend=692;ID=rnd-5_family-544	2069
+scaffold_1	RepeatMasker	Simple_repeat	1372558	1372610	13	+	.	Tstart=1;Tend=52;ID=(ATAAT)n	2070
 scaffold_1	RepeatMasker	Unknown	1372986	1373190	756	+	.	Tstart=41;Tend=549;ID=rnd-5_family-149;TEgroup=scaffold_1|rnd-5_family-149|4	2071
 scaffold_1	RepeatMasker	Unknown	1373241	1373307	351	-	.	Tstart=43;Tend=106;ID=rnd-5_family-149	2072
+scaffold_1	RepeatMasker	Simple_repeat	1374288	1374348	13	+	.	Tstart=1;Tend=60;ID=(ATAAT)n	2073
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1375427	1375480	249	+	.	Tstart=34;Tend=93;ID=rnd-1_family-67	2078
 scaffold_1	RepeatMasker	Unknown	1380179	1380383	773	+	.	Tstart=41;Tend=184;ID=rnd-5_family-149	2079
 scaffold_1	RepeatMasker	Unknown	1380435	1380501	318	-	.	Tstart=43;Tend=106;ID=rnd-5_family-149	2080
@@ -1595,6 +1663,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	1434295	1434405	309	-	.	Tstart=108;Tend=2
 scaffold_1	RepeatMasker	DNA	1435213	1435455	518	-	.	Tstart=3;Tend=248;ID=rnd-4_family-1448	2186
 scaffold_1	RepeatMasker	LINE/I-Jockey	1435680	1435855	296	+	.	Tstart=6;Tend=290;ID=rnd-5_family-903	2187
 scaffold_1	RepeatMasker	DNA	1436590	1436681	605	+	.	Tstart=475;Tend=566;ID=rnd-5_family-5582	2189
+scaffold_1	RepeatMasker	Simple_repeat	1438515	1438588	17	+	.	Tstart=1;Tend=75;ID=(AT)n	2192
 scaffold_1	RepeatMasker	LINE/Penelope	1438645	1438739	363	-	.	Tstart=13;Tend=119;ID=rnd-4_family-205	2193
 scaffold_1	RepeatMasker	Unknown	1444494	1444720	1281	+	.	Tstart=1;Tend=239;ID=rnd-1_family-1240	2194
 scaffold_1	RepeatMasker	Unknown	1444722	1444975	1430	-	.	Tstart=13;Tend=328;ID=rnd-5_family-189	2195
@@ -1632,10 +1701,12 @@ scaffold_1	RepeatMasker	DNA/MULE-F	1467642	1467699	312	-	.	Tstart=152;Tend=212;I
 scaffold_1	RepeatMasker	RC/Helitron	1467724	1467880	721	+	.	Tstart=1;Tend=158;ID=rnd-6_family-629	2238
 scaffold_1	RepeatMasker	Unknown	1468500	1468609	396	-	.	Tstart=105;Tend=214;ID=rnd-6_family-845	2239
 scaffold_1	RepeatMasker	Unknown	1468656	1468746	274	+	.	Tstart=3;Tend=83;ID=rnd-6_family-10662	2240
+scaffold_1	RepeatMasker	Simple_repeat	1471954	1472558	117	+	.	Tstart=1;Tend=598;ID=(TTC)n	2241
 scaffold_1	RepeatMasker	DNA	1473910	1474056	659	-	.	Tstart=285;Tend=437;ID=rnd-4_family-603	2242
 scaffold_1	RepeatMasker	DNA	1474167	1474388	759	+	.	Tstart=1;Tend=222;ID=rnd-1_family-121	2243
 scaffold_1	RepeatMasker	Unknown	1475041	1475209	1033	-	.	Tstart=5;Tend=166;ID=rnd-1_family-497	2244
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1475309	1475547	1644	-	.	Tstart=1;Tend=251;ID=rnd-5_family-1024	2245
+scaffold_1	RepeatMasker	Simple_repeat	1477783	1477846	16	+	.	Tstart=1;Tend=64;ID=(TCAGTC)n	2247
 scaffold_1	RepeatMasker	DNA/MULE-NOF	1479719	1481867	2468	+	.	Tstart=183;Tend=520;ID=rnd-1_family-98	2251
 scaffold_1	RepeatMasker	DNA/Maverick	1481868	1482101	X	-	.	Tstart=959;Tend=1237;ID=rnd-1_family-196	2252
 scaffold_1	RepeatMasker	DNA/Maverick	1482102	1484501	17740	-	.	Tstart=1675;Tend=4119;ID=rnd-3_family-25	2253
@@ -1685,9 +1756,11 @@ scaffold_1	RepeatMasker	LTR/Gypsy	1509192	1514801	46206	+	.	Tstart=1;Tend=5646;I
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	1515432	1515521	712	+	.	Tstart=3;Tend=92;ID=rnd-6_family-1017	2307
 scaffold_1	RepeatMasker	LINE/Rex-Babar	1515979	1516558	4264	-	.	Tstart=2;Tend=647;ID=rnd-1_family-437	2310
 scaffold_1	RepeatMasker	LTR/Gypsy	1516951	1518530	7141	+	.	Tstart=1;Tend=1836;ID=rnd-5_family-3215;TEgroup=scaffold_1|rnd-5_family-3215|1	2313
+scaffold_1	RepeatMasker	Simple_repeat	1518581	1518764	217	+	.	Tstart=1;Tend=184;ID=(AT)n	2314
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	1518903	1518991	728	+	.	Tstart=4;Tend=92;ID=rnd-6_family-1017	2315
 scaffold_1	RepeatMasker	RC/Helitron	1519449	1519853	2855	+	.	Tstart=558;Tend=979;ID=rnd-1_family-138	2318
 scaffold_1	RepeatMasker	RC/Helitron	1520088	1520674	2513	+	.	Tstart=476;Tend=949;ID=rnd-1_family-94;TEgroup=scaffold_1|rnd-1_family-94|1	2319
+scaffold_1	RepeatMasker	Simple_repeat	1520368	1520478	131	+	.	Tstart=1;Tend=111;ID=(TC)n	2320
 scaffold_1	RepeatMasker	LINE/Rex-Babar	1520797	1521238	1502	-	.	Tstart=356;Tend=797;ID=rnd-1_family-507	2321
 scaffold_1	RepeatMasker	LTR	1521637	1522125	530	-	.	Tstart=343;Tend=685;ID=rnd-1_family-1073;TEgroup=scaffold_1|rnd-1_family-1073|2	2322
 scaffold_1	RepeatMasker	DNA	1521858	1521995	658	+	.	Tstart=2;Tend=150;ID=rnd-1_family-504	2323
@@ -1747,11 +1820,14 @@ scaffold_1	RepeatMasker	DNA	1571036	1571472	1896	-	.	Tstart=1;Tend=433;ID=rnd-5_
 scaffold_1	RepeatMasker	Unknown	1571731	1572073	1925	-	.	Tstart=1;Tend=353;ID=rnd-1_family-621	2389
 scaffold_1	RepeatMasker	Unknown	1572134	1572301	719	-	.	Tstart=3;Tend=148;ID=rnd-5_family-3395	2390
 scaffold_1	RepeatMasker	Unknown	1572317	1572389	381	+	.	Tstart=308;Tend=378;ID=rnd-1_family-621	2391
+scaffold_1	RepeatMasker	Simple_repeat	1572549	1572601	62	+	.	Tstart=1;Tend=53;ID=(AT)n	2392
+scaffold_1	RepeatMasker	Low_complexity	1573528	1573684	36	+	.	Tstart=1;Tend=156;ID=A-rich	2394
 scaffold_1	RepeatMasker	DNA	1574014	1574384	626	+	.	Tstart=43;Tend=416;ID=rnd-5_family-1476	2395
 scaffold_1	RepeatMasker	LINE/Penelope	1574610	1574671	271	+	.	Tstart=130;Tend=188;ID=rnd-4_family-205	2397
 scaffold_1	RepeatMasker	Unknown	1575064	1575606	2847	+	.	Tstart=1;Tend=476;ID=rnd-5_family-10405	2398
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1576105	1576242	992	-	.	Tstart=1;Tend=154;ID=rnd-1_family-221	2399
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1576289	1576501	1460	-	.	Tstart=1;Tend=211;ID=rnd-1_family-346	2401
+scaffold_1	RepeatMasker	Simple_repeat	1576624	1576691	17	+	.	Tstart=1;Tend=64;ID=(TATTT)n	2402
 scaffold_1	RepeatMasker	DNA	1577190	1577402	649	-	.	Tstart=2;Tend=225;ID=rnd-1_family-23	2403
 scaffold_1	RepeatMasker	Unknown	1578076	1578237	733	+	.	Tstart=55;Tend=209;ID=rnd-5_family-183	2404
 scaffold_1	RepeatMasker	Unknown	1578582	1578655	252	+	.	Tstart=714;Tend=777;ID=rnd-5_family-2572	2405
@@ -1760,6 +1836,7 @@ scaffold_1	RepeatMasker	DNA	1581017	1581225	1322	+	.	Tstart=1;Tend=223;ID=rnd-1_
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1581330	1581402	462	+	.	Tstart=146;Tend=218;ID=rnd-1_family-27	2410
 scaffold_1	RepeatMasker	Unknown	1581806	1581940	778	-	.	Tstart=38;Tend=174;ID=rnd-4_family-2701	2413
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1581946	1582110	637	+	.	Tstart=9;Tend=174;ID=rnd-5_family-1442	2414
+scaffold_1	RepeatMasker	Simple_repeat	1582287	1582346	13	+	.	Tstart=1;Tend=65;ID=(TCATTA)n	2415
 scaffold_1	RepeatMasker	LINE/RTE-BovB	1583938	1584156	921	-	.	Tstart=2;Tend=217;ID=rnd-5_family-58	2417
 scaffold_1	RepeatMasker	DNA	1584283	1584350	382	+	.	Tstart=4;Tend=71;ID=rnd-6_family-1098	2418
 scaffold_1	RepeatMasker	LINE/RTE-BovB	1585385	1585603	950	-	.	Tstart=2;Tend=217;ID=rnd-5_family-58	2420
@@ -1785,10 +1862,12 @@ scaffold_1	RepeatMasker	DNA/Academ-2	1595870	1595957	486	+	.	Tstart=459;Tend=553
 scaffold_1	RepeatMasker	Unknown	1596284	1596577	1976	+	.	Tstart=1;Tend=321;ID=rnd-5_family-3836	2443
 scaffold_1	RepeatMasker	DNA	1598309	1598406	356	-	.	Tstart=1;Tend=112;ID=rnd-1_family-104	2444
 scaffold_1	RepeatMasker	Unknown	1598512	1598576	245	-	.	Tstart=132;Tend=196;ID=rnd-6_family-4393	2445
+scaffold_1	RepeatMasker	Low_complexity	1599409	1599519	31	+	.	Tstart=1;Tend=113;ID=GA-rich	2446
 scaffold_1	RepeatMasker	DNA/Crypton-H	1599741	1599815	381	+	.	Tstart=7;Tend=172;ID=rnd-2_family-7;TEgroup=scaffold_1|rnd-2_family-7|1	2447
 scaffold_1	RepeatMasker	DNA/CMC-EnSpm	1599816	1600026	484	+	.	Tstart=139;Tend=366;ID=rnd-4_family-795	2448
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1600980	1601225	1232	-	.	Tstart=1;Tend=230;ID=rnd-2_family-13	2449
 scaffold_1	RepeatMasker	DNA	1601341	1601410	257	+	.	Tstart=60;Tend=122;ID=rnd-3_family-204	2450
+scaffold_1	RepeatMasker	Low_complexity	1601413	1601463	15	+	.	Tstart=1;Tend=48;ID=A-rich	2451
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1601972	1602225	1840	+	.	Tstart=1;Tend=254;ID=rnd-1_family-15	2452
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	1603440	1603762	803	-	.	Tstart=26;Tend=344;ID=rnd-6_family-1017	2454
 scaffold_1	RepeatMasker	DNA/PiggyBac	1603846	1604048	1153	-	.	Tstart=1;Tend=206;ID=rnd-1_family-791	2456
@@ -1818,6 +1897,7 @@ scaffold_1	RepeatMasker	DNA/CMC-EnSpm	1614904	1615035	X	+	.	Tstart=98;Tend=362;I
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1615792	1615914	602	+	.	Tstart=8;Tend=141;ID=rnd-1_family-41	2488
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1615915	1616144	1495	+	.	Tstart=1;Tend=232;ID=rnd-1_family-41	2489
 scaffold_1	RepeatMasker	DNA	1617127	1617223	412	-	.	Tstart=2;Tend=102;ID=rnd-1_family-228	2491
+scaffold_1	RepeatMasker	Simple_repeat	1618212	1618270	15	+	.	Tstart=1;Tend=53;ID=(AATAAT)n	2492
 scaffold_1	RepeatMasker	DNA	1619615	1619666	374	-	.	Tstart=10;Tend=61;ID=rnd-1_family-743	2493
 scaffold_1	RepeatMasker	DNA	1619743	1619854	536	+	.	Tstart=38;Tend=170;ID=rnd-5_family-1476	2494
 scaffold_1	RepeatMasker	LINE/Penelope	1620145	1620273	335	+	.	Tstart=84;Tend=210;ID=rnd-4_family-205	2496
@@ -1827,6 +1907,10 @@ scaffold_1	RepeatMasker	Satellite	1621932	1622196	1499	+	.	Tstart=3356;Tend=3645
 scaffold_1	RepeatMasker	DNA	1622666	1622996	1991	-	.	Tstart=1;Tend=316;ID=rnd-1_family-388	2500
 scaffold_1	RepeatMasker	Unknown	1624865	1624973	669	+	.	Tstart=1;Tend=115;ID=rnd-1_family-548	2505
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1626503	1626728	1386	-	.	Tstart=1;Tend=216;ID=rnd-6_family-1215	2508
+scaffold_1	RepeatMasker	Low_complexity	1628993	1629064	23	+	.	Tstart=1;Tend=71;ID=G-rich	2509
+scaffold_1	RepeatMasker	Simple_repeat	1629065	1629125	X	+	.	Tstart=1;Tend=77;ID=(TGTTG)n	2510
+scaffold_1	RepeatMasker	Low_complexity	1632071	1632142	23	+	.	Tstart=1;Tend=71;ID=G-rich	2512
+scaffold_1	RepeatMasker	Simple_repeat	1632143	1632203	X	+	.	Tstart=1;Tend=77;ID=(TGTTG)n	2513
 scaffold_1	RepeatMasker	DNA	1633361	1633631	1899	-	.	Tstart=1;Tend=272;ID=rnd-1_family-197	2514
 scaffold_1	RepeatMasker	Unknown	1634991	1635245	1078	-	.	Tstart=115;Tend=349;ID=rnd-5_family-452	2516
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1635630	1635722	529	+	.	Tstart=73;Tend=172;ID=rnd-1_family-41	2517
@@ -1871,6 +1955,7 @@ scaffold_1	RepeatMasker	DNA/hAT-Tip100	1647690	1647809	826	+	.	Tstart=39;Tend=15
 scaffold_1	RepeatMasker	LINE/L2	1648110	1648230	281	+	.	Tstart=401;Tend=518;ID=rnd-1_family-674	2588
 scaffold_1	RepeatMasker	LINE/L2	1648592	1648644	293	+	.	Tstart=308;Tend=360;ID=rnd-5_family-1357	2589
 scaffold_1	RepeatMasker	DNA	1649422	1649692	1742	-	.	Tstart=1;Tend=272;ID=rnd-1_family-197	2591
+scaffold_1	RepeatMasker	Simple_repeat	1650618	1650672	18	+	.	Tstart=1;Tend=54;ID=(TCACCA)n	2592
 scaffold_1	RepeatMasker	DNA	1650822	1651056	895	+	.	Tstart=5;Tend=248;ID=rnd-5_family-4	2593
 scaffold_1	RepeatMasker	DNA	1651223	1651283	478	-	.	Tstart=46;Tend=106;ID=rnd-1_family-377	2594
 scaffold_1	RepeatMasker	DNA	1651389	1651644	1715	-	.	Tstart=3;Tend=264;ID=rnd-6_family-2240	2595
@@ -1914,6 +1999,7 @@ scaffold_1	RepeatMasker	DNA	1663557	1663635	395	-	.	Tstart=413;Tend=493;ID=rnd-5
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1663753	1663873	843	+	.	Tstart=38;Tend=159;ID=rnd-1_family-107	2661
 scaffold_1	RepeatMasker	LINE/L2	1664174	1664294	318	+	.	Tstart=401;Tend=518;ID=rnd-1_family-674	2662
 scaffold_1	RepeatMasker	DNA	1665474	1665744	1726	-	.	Tstart=1;Tend=272;ID=rnd-1_family-197	2664
+scaffold_1	RepeatMasker	Simple_repeat	1666680	1666734	18	+	.	Tstart=1;Tend=54;ID=(TCACCA)n	2665
 scaffold_1	RepeatMasker	DNA	1666874	1666972	340	+	.	Tstart=1;Tend=101;ID=rnd-1_family-129	2666
 scaffold_1	RepeatMasker	DNA	1667323	1667578	1715	-	.	Tstart=3;Tend=264;ID=rnd-6_family-2240	2667
 scaffold_1	RepeatMasker	DNA	1667823	1668039	907	+	.	Tstart=1;Tend=248;ID=rnd-5_family-4	2668
@@ -1928,6 +2014,8 @@ scaffold_1	RepeatMasker	Unknown	1673589	1673651	246	-	.	Tstart=1;Tend=63;ID=rnd-
 scaffold_1	RepeatMasker	DNA	1674690	1674944	1624	+	.	Tstart=26;Tend=304;ID=rnd-1_family-151	2681
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1675269	1675548	1649	-	.	Tstart=4;Tend=267;ID=rnd-5_family-541	2682
 scaffold_1	RepeatMasker	DNA	1676162	1676406	881	-	.	Tstart=1;Tend=240;ID=rnd-5_family-4	2683
+scaffold_1	RepeatMasker	Simple_repeat	1676964	1677131	148	+	.	Tstart=1;Tend=167;ID=(TGA)n	2685
+scaffold_1	RepeatMasker	Simple_repeat	1677275	1677331	18	+	.	Tstart=1;Tend=57;ID=(GAT)n	2686
 scaffold_1	RepeatMasker	LINE/Penelope	1677578	1677653	505	-	.	Tstart=10;Tend=89;ID=rnd-1_family-53	2687
 scaffold_1	RepeatMasker	DNA	1677906	1678957	525	-	.	Tstart=13;Tend=256;ID=rnd-5_family-336	2688
 scaffold_1	RepeatMasker	LINE/Penelope	1678965	1679026	361	+	.	Tstart=98;Tend=160;ID=rnd-1_family-53	2689
@@ -1936,6 +2024,7 @@ scaffold_1	RepeatMasker	DNA/hAT-hAT5	1680192	1680363	711	-	.	Tstart=1;Tend=126;I
 scaffold_1	RepeatMasker	LINE/RTE-X	1680579	1681049	3846	-	.	Tstart=26;Tend=496;ID=rnd-1_family-612	2692
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	1681115	1681178	283	+	.	Tstart=47;Tend=110;ID=rnd-5_family-1029	2693
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	1681286	1681576	2450	-	.	Tstart=404;Tend=693;ID=rnd-5_family-5258	2694
+scaffold_1	RepeatMasker	Simple_repeat	1681891	1681947	21	+	.	Tstart=1;Tend=57;ID=(GATGAC)n	2695
 scaffold_1	RepeatMasker	LINE/Penelope	1682194	1682267	475	-	.	Tstart=10;Tend=89;ID=rnd-1_family-53	2696
 scaffold_1	RepeatMasker	DNA	1682520	1682689	501	-	.	Tstart=23;Tend=153;ID=rnd-5_family-336	2697
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	1682759	1682905	600	-	.	Tstart=1;Tend=126;ID=rnd-6_family-648	2698
@@ -1945,6 +2034,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	1684887	1685102	1283	-	.	Tstart=14;Tend=2
 scaffold_1	RepeatMasker	DNA	1686308	1686530	819	-	.	Tstart=61;Tend=265;ID=rnd-6_family-1404	2703
 scaffold_1	RepeatMasker	DNA	1686970	1687177	1375	+	.	Tstart=1;Tend=219;ID=rnd-1_family-121	2705
 scaffold_1	RepeatMasker	DNA	1687740	1687894	1021	+	.	Tstart=1;Tend=155;ID=rnd-1_family-340	2707
+scaffold_1	RepeatMasker	Simple_repeat	1687912	1688049	26	+	.	Tstart=1;Tend=136;ID=(TAA)n	2708
 scaffold_1	RepeatMasker	DNA/Academ-1	1688980	1689121	266	-	.	Tstart=90;Tend=231;ID=rnd-1_family-853	2709
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	1689470	1689567	X	-	.	Tstart=2;Tend=100;ID=rnd-6_family-648	2711
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1689568	1689690	669	+	.	Tstart=1;Tend=142;ID=rnd-1_family-636	2712
@@ -1965,18 +2055,22 @@ scaffold_1	RepeatMasker	DNA	1697907	1698041	258	-	.	Tstart=25;Tend=161;ID=rnd-4_
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1698722	1698875	1043	+	.	Tstart=80;Tend=237;ID=rnd-5_family-253	2736
 scaffold_1	RepeatMasker	Satellite	1699368	1699659	1888	-	.	Tstart=3355;Tend=3646;ID=rnd-4_family-453	2737
 scaffold_1	RepeatMasker	DNA/CMC-EnSpm	1699982	1700229	436	+	.	Tstart=162;Tend=348;ID=rnd-4_family-795;TEgroup=scaffold_1|rnd-4_family-795|2	2738
+scaffold_1	RepeatMasker	Simple_repeat	1700257	1700319	66	+	.	Tstart=1;Tend=62;ID=(GAT)n	2740
 scaffold_1	RepeatMasker	DNA	1700721	1700792	259	+	.	Tstart=2;Tend=79;ID=rnd-4_family-707	2742
 scaffold_1	RepeatMasker	DNA	1700841	1700914	390	-	.	Tstart=18;Tend=112;ID=rnd-1_family-540	2743
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	1700930	1701029	641	+	.	Tstart=1;Tend=95;ID=rnd-1_family-292	2744
 scaffold_1	RepeatMasker	DNA	1702034	1702329	1479	-	.	Tstart=3;Tend=306;ID=rnd-1_family-151	2746
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1702469	1702768	1258	+	.	Tstart=4;Tend=231;ID=rnd-1_family-513;TEgroup=scaffold_1|rnd-1_family-513|1	2747
+scaffold_1	RepeatMasker	Simple_repeat	1702580	1702630	51	+	.	Tstart=1;Tend=51;ID=(AAAAT)n	2748
 scaffold_1	RepeatMasker	DNA	1703069	1703329	1798	+	.	Tstart=1;Tend=263;ID=rnd-6_family-2240	2750
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1703631	1703737	280	+	.	Tstart=1;Tend=120;ID=rnd-1_family-167	2751
 scaffold_1	RepeatMasker	DNA	1704221	1704296	248	+	.	Tstart=1;Tend=88;ID=rnd-6_family-790	2752
 scaffold_1	RepeatMasker	DNA	1704397	1704503	273	+	.	Tstart=102;Tend=290;ID=rnd-4_family-718	2753
 scaffold_1	RepeatMasker	Unknown	1704528	1704645	381	+	.	Tstart=10;Tend=118;ID=rnd-5_family-5242	2754
+scaffold_1	RepeatMasker	Simple_repeat	1705121	1705177	X	+	.	Tstart=1;Tend=97;ID=(GATTAT)n	2756
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	1705248	1705419	693	+	.	Tstart=1;Tend=228;ID=rnd-1_family-54	2758
 scaffold_1	RepeatMasker	LTR/Gypsy	1705420	1705700	310	+	.	Tstart=41;Tend=268;ID=rnd-6_family-953;TEgroup=scaffold_1|rnd-6_family-953|1	2759
+scaffold_1	RepeatMasker	Simple_repeat	1705568	1705622	46	+	.	Tstart=1;Tend=55;ID=(GAT)n	2760
 scaffold_1	RepeatMasker	Unknown	1708051	1708506	1992	-	.	Tstart=22;Tend=498;ID=rnd-6_family-454	2763
 scaffold_1	RepeatMasker	Unknown	1709640	1709743	342	-	.	Tstart=45;Tend=141;ID=rnd-5_family-1038	2764
 scaffold_1	RepeatMasker	Unknown	1711943	1712045	719	+	.	Tstart=3;Tend=105;ID=rnd-5_family-4275	2766
@@ -1984,8 +2078,11 @@ scaffold_1	RepeatMasker	RC/Helitron	1712179	1713333	9092	+	.	Tstart=1;Tend=1161;
 scaffold_1	RepeatMasker	DNA	1713336	1713609	2120	-	.	Tstart=1;Tend=273;ID=rnd-5_family-1351	2770
 scaffold_1	RepeatMasker	DNA	1713732	1713815	406	+	.	Tstart=49;Tend=141;ID=rnd-4_family-595	2771
 scaffold_1	RepeatMasker	Unknown	1713823	1714303	2914	+	.	Tstart=101;Tend=655;ID=rnd-5_family-4275	2766
+scaffold_1	RepeatMasker	Simple_repeat	1715494	1715569	13	+	.	Tstart=1;Tend=73;ID=(TTTTG)n	2772
 scaffold_1	RepeatMasker	RC/Helitron	1717456	1717550	400	+	.	Tstart=50;Tend=156;ID=rnd-4_family-2139	2776
 scaffold_1	RepeatMasker	RC/Helitron	1717993	1718300	1003	+	.	Tstart=433;Tend=866;ID=rnd-4_family-1056;TEgroup=scaffold_1|rnd-4_family-1056|2	2777
+scaffold_1	RepeatMasker	Simple_repeat	1721212	1721270	18	+	.	Tstart=1;Tend=62;ID=(ATCATT)n	2779
+scaffold_1	RepeatMasker	Simple_repeat	1721597	1721698	91	+	.	Tstart=1;Tend=102;ID=(CGGTGG)n	2780
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	1723778	1724470	5952	-	.	Tstart=1;Tend=693;ID=rnd-5_family-5258	2782
 scaffold_1	RepeatMasker	DNA	1725230	1725339	556	-	.	Tstart=2;Tend=114;ID=rnd-1_family-197	2783
 scaffold_1	RepeatMasker	DNA	1725567	1725741	1253	+	.	Tstart=278;Tend=449;ID=rnd-6_family-3200	2784
@@ -1993,6 +2090,7 @@ scaffold_1	RepeatMasker	DNA	1725761	1725938	1315	+	.	Tstart=3;Tend=181;ID=rnd-1_
 scaffold_1	RepeatMasker	Unknown	1726167	1726283	1000	-	.	Tstart=234;Tend=350;ID=rnd-5_family-870	2786
 scaffold_1	RepeatMasker	DNA	1726284	1726342	X	+	.	Tstart=22;Tend=81;ID=rnd-4_family-1012	2787
 scaffold_1	RepeatMasker	LINE/Penelope	1728735	1728871	565	-	.	Tstart=2;Tend=146;ID=rnd-5_family-2147	2788
+scaffold_1	RepeatMasker	Simple_repeat	1731069	1731128	13	+	.	Tstart=1;Tend=60;ID=(CATTATC)n	2789
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1733078	1733332	2004	-	.	Tstart=1;Tend=254;ID=rnd-1_family-15	2790
 scaffold_1	RepeatMasker	DNA	1735424	1735502	660	-	.	Tstart=251;Tend=329;ID=rnd-1_family-246	2791
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1736761	1736850	350	-	.	Tstart=71;Tend=165;ID=rnd-6_family-4163	2792
@@ -2048,6 +2146,7 @@ scaffold_1	RepeatMasker	Unknown	1777213	1777382	X	+	.	Tstart=8;Tend=179;ID=rnd-5
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1777383	1777449	X	+	.	Tstart=24;Tend=140;ID=rnd-4_family-781	2853
 scaffold_1	RepeatMasker	RC/Helitron	1777450	1777525	435	+	.	Tstart=425;Tend=505;ID=rnd-1_family-1149	2854
 scaffold_1	RepeatMasker	Unknown	1777526	1777655	508	-	.	Tstart=69;Tend=179;ID=rnd-5_family-805	2855
+scaffold_1	RepeatMasker	Simple_repeat	1778190	1778272	20	+	.	Tstart=1;Tend=83;ID=(TTG)n	2857
 scaffold_1	RepeatMasker	DNA	1780139	1780226	408	-	.	Tstart=104;Tend=203;ID=rnd-1_family-205	2858
 scaffold_1	RepeatMasker	DNA	1780231	1780374	915	-	.	Tstart=103;Tend=249;ID=rnd-1_family-205	2859
 scaffold_1	RepeatMasker	DNA	1780376	1780527	992	-	.	Tstart=104;Tend=251;ID=rnd-1_family-205	2859
@@ -2055,6 +2154,7 @@ scaffold_1	RepeatMasker	DNA	1780528	1780724	704	-	.	Tstart=2;Tend=263;ID=rnd-6_f
 scaffold_1	RepeatMasker	DNA	1780725	1780823	679	-	.	Tstart=3;Tend=98;ID=rnd-1_family-205	2858
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1781226	1781349	904	-	.	Tstart=19;Tend=141;ID=rnd-1_family-161	2861
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1781759	1781988	480	-	.	Tstart=2;Tend=244;ID=rnd-5_family-15	2862
+scaffold_1	RepeatMasker	Low_complexity	1782526	1782584	16	+	.	Tstart=1;Tend=59;ID=A-rich	2863
 scaffold_1	RepeatMasker	DNA	1783955	1784189	1162	-	.	Tstart=5;Tend=239;ID=rnd-5_family-4	2864
 scaffold_1	RepeatMasker	DNA	1784720	1785092	1767	+	.	Tstart=1;Tend=372;ID=rnd-1_family-139	2866
 scaffold_1	RepeatMasker	DNA	1785233	1785601	2776	-	.	Tstart=1;Tend=372;ID=rnd-1_family-139	2867
@@ -2076,6 +2176,7 @@ scaffold_1	RepeatMasker	Unknown	1797832	1798125	2202	+	.	Tstart=1;Tend=296;ID=rn
 scaffold_1	RepeatMasker	DNA/hAT-Blackjack	1798373	1798724	1786	+	.	Tstart=1;Tend=368;ID=rnd-1_family-120	2882
 scaffold_1	RepeatMasker	Unknown	1803768	1803835	277	+	.	Tstart=852;Tend=922;ID=rnd-5_family-1278	2883
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1804497	1804578	327	+	.	Tstart=38;Tend=117;ID=rnd-1_family-1157	2884
+scaffold_1	RepeatMasker	Simple_repeat	1804825	1804898	16	+	.	Tstart=1;Tend=70;ID=(ATA)n	2885
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1805467	1805661	861	-	.	Tstart=48;Tend=233;ID=rnd-1_family-41	2886
 scaffold_1	RepeatMasker	Unknown	1806419	1806713	2194	+	.	Tstart=1;Tend=296;ID=rnd-5_family-1344	2887
 scaffold_1	RepeatMasker	DNA/hAT-Blackjack	1806961	1807311	1759	+	.	Tstart=1;Tend=368;ID=rnd-1_family-120	2888
@@ -2115,6 +2216,7 @@ scaffold_1	RepeatMasker	DNA/hAT-Tip100	1844054	1844245	693	+	.	Tstart=1;Tend=172
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1844326	1844400	261	-	.	Tstart=43;Tend=105;ID=rnd-5_family-4314	2938
 scaffold_1	RepeatMasker	DNA	1844401	1844665	1974	-	.	Tstart=1;Tend=271;ID=rnd-1_family-197	2939
 scaffold_1	RepeatMasker	RC/Helitron	1844769	1844893	256	+	.	Tstart=2;Tend=133;ID=rnd-5_family-309	2940
+scaffold_1	RepeatMasker	Simple_repeat	1844903	1845037	82	+	.	Tstart=1;Tend=136;ID=(GTGGGG)n	2941
 scaffold_1	RepeatMasker	DNA/Sola	1845778	1845976	1250	-	.	Tstart=207;Tend=411;ID=rnd-1_family-17	2944
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1846678	1846892	990	+	.	Tstart=2;Tend=232;ID=rnd-1_family-513	2945
 scaffold_1	RepeatMasker	LINE/Penelope	1847026	1847228	1090	+	.	Tstart=13;Tend=212;ID=rnd-4_family-205	2946
@@ -2127,12 +2229,14 @@ scaffold_1	RepeatMasker	DNA	1850476	1850678	1272	+	.	Tstart=3;Tend=222;ID=rnd-1_
 scaffold_1	RepeatMasker	DNA	1850814	1850906	518	-	.	Tstart=1;Tend=86;ID=rnd-1_family-350	2956
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	1851245	1851351	487	-	.	Tstart=6;Tend=104;ID=rnd-1_family-71	2958
 scaffold_1	RepeatMasker	DNA/TcMar-Pogo	1851356	1851423	319	+	.	Tstart=41;Tend=109;ID=rnd-4_family-579	2959
+scaffold_1	RepeatMasker	Simple_repeat	1852469	1852563	13	+	.	Tstart=1;Tend=96;ID=(TTCCTCC)n	2960
 scaffold_1	RepeatMasker	Unknown	1853313	1853403	556	+	.	Tstart=3;Tend=100;ID=rnd-5_family-5177	2962
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1854058	1854288	901	-	.	Tstart=2;Tend=230;ID=rnd-2_family-13	2963
 scaffold_1	RepeatMasker	RC/Helitron	1854289	1854460	732	+	.	Tstart=7;Tend=198;ID=rnd-1_family-21	2964
 scaffold_1	RepeatMasker	DNA	1854842	1854918	575	-	.	Tstart=57;Tend=142;ID=rnd-6_family-301	2965
 scaffold_1	RepeatMasker	RC/Helitron	1854960	1855128	283	-	.	Tstart=176;Tend=375;ID=rnd-1_family-20	2966
 scaffold_1	RepeatMasker	DNA	1855129	1855421	1218	-	.	Tstart=126;Tend=415;ID=rnd-1_family-14	2967
+scaffold_1	RepeatMasker	Simple_repeat	1855494	1855555	41	+	.	Tstart=1;Tend=62;ID=(CCCCTC)n	2968
 scaffold_1	RepeatMasker	DNA	1855724	1855849	X	+	.	Tstart=1;Tend=132;ID=rnd-1_family-508	2969
 scaffold_1	RepeatMasker	DNA	1855850	1855977	X	+	.	Tstart=1;Tend=233;ID=rnd-1_family-403	2971
 scaffold_1	RepeatMasker	DNA	1855978	1856229	1168	-	.	Tstart=6;Tend=246;ID=rnd-5_family-71	2972
@@ -2162,6 +2266,7 @@ scaffold_1	RepeatMasker	DNA	1867732	1867854	535	+	.	Tstart=14;Tend=142;ID=rnd-4_
 scaffold_1	RepeatMasker	Unknown	1867876	1868022	449	+	.	Tstart=40;Tend=167;ID=rnd-5_family-123	3004
 scaffold_1	RepeatMasker	DNA/Crypton-H	1868782	1869166	329	-	.	Tstart=5;Tend=218;ID=rnd-2_family-7;TEgroup=scaffold_1|rnd-2_family-7|2	3005
 scaffold_1	RepeatMasker	DNA/CMC-EnSpm	1868834	1869247	239	-	.	Tstart=149;Tend=387;ID=rnd-4_family-795;TEgroup=scaffold_1|rnd-4_family-795|3	3006
+scaffold_1	RepeatMasker	Simple_repeat	1868916	1869084	197	+	.	Tstart=1;Tend=169;ID=(CCATCG)n	3007
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1869734	1869915	1142	+	.	Tstart=1;Tend=192;ID=rnd-1_family-41	3008
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1869916	1870149	1601	+	.	Tstart=1;Tend=254;ID=rnd-1_family-15	3009
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1870388	1870488	287	+	.	Tstart=1;Tend=102;ID=rnd-2_family-13	3010
@@ -2181,10 +2286,14 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	1876739	1876837	494	-	.	Tstart=36;Tend=13
 scaffold_1	RepeatMasker	DNA	1877593	1877758	1078	+	.	Tstart=1;Tend=179;ID=rnd-1_family-238	3026
 scaffold_1	RepeatMasker	RC/Helitron	1877767	1877845	323	+	.	Tstart=1078;Tend=1157;ID=rnd-5_family-276	3027
 scaffold_1	RepeatMasker	Satellite	1878151	1878421	1408	-	.	Tstart=3351;Tend=3645;ID=rnd-4_family-453	3028
+scaffold_1	RepeatMasker	Simple_repeat	1878461	1878590	135	+	.	Tstart=1;Tend=129;ID=(ATA)n	3029
 scaffold_1	RepeatMasker	Unknown	1878709	1878927	480	+	.	Tstart=1;Tend=268;ID=rnd-5_family-2970	3030
+scaffold_1	RepeatMasker	Simple_repeat	1883529	1883676	41	+	.	Tstart=1;Tend=154;ID=(TGCT)n	3031
 scaffold_1	RepeatMasker	Unknown	1884029	1884164	294	+	.	Tstart=146;Tend=307;ID=rnd-5_family-128	3032
 scaffold_1	RepeatMasker	LINE/CR1	1884191	1884317	647	-	.	Tstart=663;Tend=794;ID=rnd-5_family-6481	3033
 scaffold_1	RepeatMasker	Unknown	1884391	1884578	503	-	.	Tstart=135;Tend=318;ID=rnd-1_family-691	3034
+scaffold_1	RepeatMasker	Simple_repeat	1884944	1884994	18	+	.	Tstart=1;Tend=53;ID=(TGTC)n	3035
+scaffold_1	RepeatMasker	Simple_repeat	1885007	1885201	227	+	.	Tstart=1;Tend=195;ID=(CTGC)n	3036
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1885524	1885650	587	-	.	Tstart=46;Tend=159;ID=rnd-5_family-1830	3037
 scaffold_1	RepeatMasker	DNA	1885804	1885914	257	-	.	Tstart=73;Tend=184;ID=rnd-1_family-151	3039
 scaffold_1	RepeatMasker	DNA	1886012	1886075	254	-	.	Tstart=226;Tend=291;ID=rnd-5_family-1576	3040
@@ -2226,6 +2335,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	1908607	1908841	961	+	.	Tstart=2341;Tend=
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1908882	1909022	1138	-	.	Tstart=3;Tend=145;ID=rnd-1_family-45	3087
 scaffold_1	RepeatMasker	DNA/CMC-EnSpm	1910721	1910826	463	-	.	Tstart=226;Tend=335;ID=rnd-4_family-795	3092
 scaffold_1	RepeatMasker	DNA	1911147	1911286	1229	+	.	Tstart=2;Tend=141;ID=rnd-5_family-2001	3093
+scaffold_1	RepeatMasker	Simple_repeat	1911569	1911715	155	+	.	Tstart=1;Tend=147;ID=(TTA)n	3094
 scaffold_1	RepeatMasker	DNA	1911759	1912342	3510	+	.	Tstart=1;Tend=484;ID=rnd-1_family-798	3096
 scaffold_1	RepeatMasker	SINE/tRNA-Deu-L2	1912356	1912693	1857	-	.	Tstart=3;Tend=320;ID=rnd-5_family-646	3097
 scaffold_1	RepeatMasker	DNA	1913174	1913340	539	+	.	Tstart=22;Tend=198;ID=rnd-1_family-141	3099
@@ -2269,6 +2379,7 @@ scaffold_1	RepeatMasker	LINE/CR1	1954419	1954616	1788	-	.	Tstart=227;Tend=424;ID
 scaffold_1	RepeatMasker	DNA	1956200	1956299	X	+	.	Tstart=1;Tend=144;ID=rnd-5_family-1576	3147
 scaffold_1	RepeatMasker	DNA	1956300	1956360	346	+	.	Tstart=150;Tend=201;ID=rnd-1_family-90	3148
 scaffold_1	RepeatMasker	LTR/Pao	1962057	1962204	1132	-	.	Tstart=584;Tend=728;ID=rnd-6_family-1024	3150
+scaffold_1	RepeatMasker	Simple_repeat	1963571	1963640	16	+	.	Tstart=1;Tend=70;ID=(GTTTT)n	3151
 scaffold_1	RepeatMasker	Unknown	1964437	1964498	296	+	.	Tstart=663;Tend=726;ID=rnd-5_family-4275	3152
 scaffold_1	RepeatMasker	DNA	1967099	1967457	2568	-	.	Tstart=1;Tend=370;ID=rnd-5_family-4040	3153
 scaffold_1	RepeatMasker	DNA	1967468	1967529	392	-	.	Tstart=9;Tend=71;ID=rnd-1_family-1118	3154
@@ -2279,6 +2390,8 @@ scaffold_1	RepeatMasker	DNA	1967819	1968056	1298	-	.	Tstart=1;Tend=216;ID=rnd-6_
 scaffold_1	RepeatMasker	Unknown	1968135	1968902	6003	+	.	Tstart=137;Tend=900;ID=rnd-1_family-964	3160
 scaffold_1	RepeatMasker	Unknown	1969922	1969984	397	+	.	Tstart=353;Tend=415;ID=rnd-1_family-720	3161
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	1971323	1971640	2635	-	.	Tstart=1;Tend=318;ID=rnd-1_family-127;TEgroup=scaffold_1|rnd-1_family-127|1	3162
+scaffold_1	RepeatMasker	Simple_repeat	1972007	1972084	92	+	.	Tstart=1;Tend=78;ID=(AT)n	3163
+scaffold_1	RepeatMasker	Low_complexity	1972946	1972997	15	+	.	Tstart=1;Tend=52;ID=A-rich	3165
 scaffold_1	RepeatMasker	Unknown	1973110	1973226	1101	-	.	Tstart=1;Tend=117;ID=rnd-6_family-541	3166
 scaffold_1	RepeatMasker	LTR/Gypsy	1974818	1976056	9303	-	.	Tstart=1;Tend=1239;ID=rnd-1_family-549	3167
 scaffold_1	RepeatMasker	DNA	1977538	1978341	7351	-	.	Tstart=1;Tend=804;ID=rnd-6_family-1098	3168
@@ -2289,6 +2402,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	1978772	1978939	1356	-	.	Tstart=1;Tend=17
 scaffold_1	RepeatMasker	DNA/hAT-Blackjack	1978949	1979655	5619	+	.	Tstart=212;Tend=924;ID=rnd-5_family-4279	3173
 scaffold_1	RepeatMasker	Unknown	1979658	1979742	642	+	.	Tstart=175;Tend=278;ID=rnd-1_family-641	3170
 scaffold_1	RepeatMasker	DNA	1980213	1980341	1057	-	.	Tstart=20;Tend=148;ID=rnd-1_family-230	3174
+scaffold_1	RepeatMasker	Simple_repeat	1981940	1982005	18	+	.	Tstart=1;Tend=64;ID=(AATTAT)n	3176
 scaffold_1	RepeatMasker	LTR	1984269	1984650	3215	-	.	Tstart=1;Tend=386;ID=rnd-1_family-1050	3177
 scaffold_1	RepeatMasker	DNA	1984748	1984889	802	+	.	Tstart=80;Tend=248;ID=rnd-5_family-4	3178
 scaffold_1	RepeatMasker	DNA	1985339	1985417	X	+	.	Tstart=1;Tend=81;ID=rnd-1_family-1044	3180
@@ -2308,6 +2422,7 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1994596	1994689	385	-	.	Tstart=49;Tend
 scaffold_1	RepeatMasker	Unknown	1994837	1994893	374	-	.	Tstart=56;Tend=122;ID=rnd-1_family-601	3198
 scaffold_1	RepeatMasker	Unknown	1994970	1995052	459	-	.	Tstart=126;Tend=205;ID=rnd-1_family-496	3199
 scaffold_1	RepeatMasker	DNA	1995053	1995131	X	+	.	Tstart=215;Tend=302;ID=rnd-1_family-25	3200
+scaffold_1	RepeatMasker	Simple_repeat	1995312	1995387	13	+	.	Tstart=1;Tend=76;ID=(CCTCAG)n	3201
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	1995501	1995752	1539	+	.	Tstart=1;Tend=234;ID=rnd-1_family-41	3202
 scaffold_1	RepeatMasker	DNA	1996126	1996199	353	-	.	Tstart=18;Tend=94;ID=rnd-3_family-204	3203
 scaffold_1	RepeatMasker	DNA	1996222	1996316	321	+	.	Tstart=19;Tend=114;ID=rnd-4_family-148	3204
@@ -2315,6 +2430,7 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	1996355	1996442	462	+	.	Tstart=55;Tend
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	1996635	1996774	796	-	.	Tstart=79;Tend=214;ID=rnd-1_family-583	3206
 scaffold_1	RepeatMasker	DNA	1997087	1997184	315	+	.	Tstart=23;Tend=123;ID=rnd-1_family-141	3207
 scaffold_1	RepeatMasker	Unknown	1997188	1997305	567	-	.	Tstart=24;Tend=162;ID=rnd-5_family-123	3208
+scaffold_1	RepeatMasker	Simple_repeat	1997825	1997882	16	+	.	Tstart=1;Tend=56;ID=(ATTATC)n	3210
 scaffold_1	RepeatMasker	SINE/tRNA-V	1998056	1998176	261	+	.	Tstart=80;Tend=204;ID=rnd-1_family-115	3211
 scaffold_1	RepeatMasker	Unknown	1998249	1998396	447	-	.	Tstart=558;Tend=703;ID=rnd-1_family-267	3212
 scaffold_1	RepeatMasker	DNA	1998440	1998666	1379	+	.	Tstart=31;Tend=263;ID=rnd-1_family-23	3213
@@ -2347,6 +2463,7 @@ scaffold_1	RepeatMasker	Unknown	2004582	2004667	263	+	.	Tstart=243;Tend=329;ID=r
 scaffold_1	RepeatMasker	Unknown	2004668	2004724	X	+	.	Tstart=251;Tend=320;ID=rnd-5_family-379	3247
 scaffold_1	RepeatMasker	Unknown	2004785	2004900	257	+	.	Tstart=246;Tend=329;ID=rnd-5_family-379	3248
 scaffold_1	RepeatMasker	Unknown	2004918	2005033	254	+	.	Tstart=246;Tend=329;ID=rnd-5_family-379	3248
+scaffold_1	RepeatMasker	Simple_repeat	2005413	2005505	103	+	.	Tstart=1;Tend=94;ID=(ATA)n	3249
 scaffold_1	RepeatMasker	LINE/L2	2005506	2005714	1252	-	.	Tstart=376;Tend=595;ID=rnd-5_family-2570	3250
 scaffold_1	RepeatMasker	DNA	2006834	2007062	936	-	.	Tstart=3;Tend=254;ID=rnd-1_family-23	3253
 scaffold_1	RepeatMasker	DNA/hAT-Blackjack	2007242	2007571	493	-	.	Tstart=1;Tend=368;ID=rnd-1_family-120;TEgroup=scaffold_1|rnd-1_family-120|2	3254
@@ -2365,6 +2482,8 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	2014840	2014890	226	+	.	Tstart=78;Tend=13
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2015721	2015923	1110	-	.	Tstart=3;Tend=210;ID=rnd-3_family-1253	3270
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2016004	2016058	348	-	.	Tstart=8;Tend=62;ID=rnd-6_family-1976	3271
 scaffold_1	RepeatMasker	Satellite	2016180	2016263	417	+	.	Tstart=827;Tend=910;ID=rnd-1_family-3	3272
+scaffold_1	RepeatMasker	Simple_repeat	2016266	2016369	52	+	.	Tstart=1;Tend=105;ID=(TTTG)n	3273
+scaffold_1	RepeatMasker	Simple_repeat	2016370	2016539	150	+	.	Tstart=1;Tend=170;ID=(TTCG)n	3274
 scaffold_1	RepeatMasker	Unknown	2016637	2016737	473	+	.	Tstart=130;Tend=232;ID=rnd-5_family-123	3278
 scaffold_1	RepeatMasker	SINE/tRNA-Deu-L2	2016742	2016978	1125	+	.	Tstart=41;Tend=323;ID=rnd-5_family-646	3276
 scaffold_1	RepeatMasker	DNA	2017233	2017460	1668	+	.	Tstart=1;Tend=227;ID=rnd-1_family-387	3279
@@ -2464,6 +2583,7 @@ scaffold_1	RepeatMasker	DNA	2087255	2087385	681	+	.	Tstart=1;Tend=136;ID=rnd-1_f
 scaffold_1	RepeatMasker	DNA	2087386	2087476	X	+	.	Tstart=172;Tend=262;ID=rnd-6_family-2240	3398
 scaffold_1	RepeatMasker	Unknown	2088204	2088286	578	-	.	Tstart=1;Tend=86;ID=rnd-1_family-611	3399
 scaffold_1	RepeatMasker	Unknown	2088356	2088443	468	+	.	Tstart=1;Tend=89;ID=rnd-1_family-611	3401
+scaffold_1	RepeatMasker	Simple_repeat	2088930	2088986	12	+	.	Tstart=1;Tend=56;ID=(TTTAT)n	3404
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2090853	2090957	620	-	.	Tstart=144;Tend=238;ID=rnd-1_family-439	3405
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2090966	2091373	3046	+	.	Tstart=10;Tend=414;ID=rnd-1_family-524	3406
 scaffold_1	RepeatMasker	DNA	2091434	2091717	2125	-	.	Tstart=1;Tend=283;ID=rnd-1_family-302	3407
@@ -2476,9 +2596,11 @@ scaffold_1	RepeatMasker	DNA	2097318	2097494	1195	+	.	Tstart=1;Tend=198;ID=rnd-1_
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2099855	2100193	2036	+	.	Tstart=1;Tend=346;ID=rnd-6_family-1017	3418
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	2100196	2100276	X	-	.	Tstart=232;Tend=327;ID=rnd-1_family-195	3419
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	2100277	2100465	1146	-	.	Tstart=3;Tend=188;ID=rnd-4_family-163	3420
+scaffold_1	RepeatMasker	Simple_repeat	2100684	2100737	17	+	.	Tstart=1;Tend=55;ID=(GTTTAT)n	3421
 scaffold_1	RepeatMasker	LINE	2101286	2101646	1026	-	.	Tstart=12;Tend=358;ID=rnd-6_family-1897	3422
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2103699	2103938	1355	-	.	Tstart=1;Tend=234;ID=rnd-1_family-41	3423
 scaffold_1	RepeatMasker	DNA	2103970	2104197	681	+	.	Tstart=30;Tend=283;ID=rnd-1_family-302	3424
+scaffold_1	RepeatMasker	Simple_repeat	2108763	2108817	46	+	.	Tstart=1;Tend=55;ID=(TCA)n	3425
 scaffold_1	RepeatMasker	LTR/Gypsy	2108837	2108992	268	-	.	Tstart=31;Tend=178;ID=rnd-6_family-953	3426
 scaffold_1	RepeatMasker	DNA	2110368	2110605	1212	+	.	Tstart=3;Tend=248;ID=rnd-5_family-4	3427
 scaffold_1	RepeatMasker	LINE/Penelope	2110897	2111081	668	-	.	Tstart=15;Tend=212;ID=rnd-4_family-205	3428
@@ -2542,8 +2664,10 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	2157872	2157949	X	-	.	Tstart=2;Tend=160;I
 scaffold_1	RepeatMasker	RC/Helitron	2157950	2158119	1222	-	.	Tstart=1;Tend=170;ID=rnd-1_family-83	3499
 scaffold_1	RepeatMasker	RC/Helitron	2158121	2159977	13464	-	.	Tstart=1;Tend=1874;ID=rnd-5_family-4098	3500
 scaffold_1	RepeatMasker	RC/Helitron	2159989	2160362	755	-	.	Tstart=1;Tend=287;ID=rnd-1_family-468	3501
+scaffold_1	RepeatMasker	Simple_repeat	2160655	2161162	597	+	.	Tstart=1;Tend=508;ID=(CAGAA)n	3502
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2161193	2161278	528	-	.	Tstart=3;Tend=97;ID=rnd-1_family-156	3503
 scaffold_1	RepeatMasker	DNA	2161295	2161717	1152	+	.	Tstart=1;Tend=398;ID=rnd-1_family-277	3504
+scaffold_1	RepeatMasker	Simple_repeat	2161748	2161798	18	+	.	Tstart=1;Tend=52;ID=(TTTAT)n	3505
 scaffold_1	RepeatMasker	Unknown	2161868	2161918	X	+	.	Tstart=13;Tend=110;ID=rnd-1_family-1021	3507
 scaffold_1	RepeatMasker	RC/Helitron	2161919	2162109	1252	-	.	Tstart=1;Tend=208;ID=rnd-1_family-805	3508
 scaffold_1	RepeatMasker	Unknown	2162135	2162281	898	+	.	Tstart=1;Tend=165;ID=rnd-1_family-1076	3509
@@ -2559,6 +2683,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	2167421	2167701	1692	+	.	Tstart=1;Tend=29
 scaffold_1	RepeatMasker	DNA	2167926	2168080	1118	+	.	Tstart=1;Tend=148;ID=rnd-1_family-230	3522
 scaffold_1	RepeatMasker	Unknown	2168134	2168193	430	-	.	Tstart=1;Tend=60;ID=rnd-1_family-432	3523
 scaffold_1	RepeatMasker	DNA	2171676	2171923	968	-	.	Tstart=9;Tend=261;ID=rnd-1_family-132	3525
+scaffold_1	RepeatMasker	Low_complexity	2172523	2172577	12	+	.	Tstart=1;Tend=55;ID=A-rich	3526
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2172828	2172930	522	-	.	Tstart=9;Tend=100;ID=rnd-1_family-72	3527
 scaffold_1	RepeatMasker	Unknown	2172931	2172996	307	+	.	Tstart=1;Tend=78;ID=rnd-4_family-1297	3528
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2173930	2174094	575	+	.	Tstart=1;Tend=141;ID=rnd-1_family-346	3529
@@ -2566,6 +2691,7 @@ scaffold_1	RepeatMasker	DNA	2174217	2174394	1430	+	.	Tstart=1;Tend=178;ID=rnd-1_
 scaffold_1	RepeatMasker	Unknown	2174395	2174478	X	+	.	Tstart=104;Tend=196;ID=rnd-1_family-923	3531
 scaffold_1	RepeatMasker	DNA	2174828	2175057	1330	-	.	Tstart=120;Tend=348;ID=rnd-5_family-1476	3532
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2175112	2175199	735	-	.	Tstart=52;Tend=139;ID=rnd-1_family-87	3533
+scaffold_1	RepeatMasker	Simple_repeat	2175224	2175282	16	+	.	Tstart=1;Tend=62;ID=(ATCATT)n	3534
 scaffold_1	RepeatMasker	DNA	2176104	2176158	274	+	.	Tstart=1;Tend=63;ID=rnd-6_family-936	3535
 scaffold_1	RepeatMasker	LTR/Ngaro	2176188	2176550	296	+	.	Tstart=2402;Tend=2783;ID=rnd-5_family-5222	3536
 scaffold_1	RepeatMasker	LINE/Penelope	2177642	2177706	449	-	.	Tstart=1;Tend=121;ID=rnd-1_family-55	3538
@@ -2611,6 +2737,7 @@ scaffold_1	RepeatMasker	DNA	2198426	2198619	886	+	.	Tstart=1;Tend=167;ID=rnd-1_f
 scaffold_1	RepeatMasker	DNA	2199143	2199210	363	+	.	Tstart=304;Tend=372;ID=rnd-6_family-381	3591
 scaffold_1	RepeatMasker	DNA/PiggyBac	2201306	2201466	372	+	.	Tstart=61;Tend=193;ID=rnd-6_family-10411	3592
 scaffold_1	RepeatMasker	Unknown	2201653	2201874	765	-	.	Tstart=1;Tend=228;ID=rnd-1_family-1036	3593
+scaffold_1	RepeatMasker	Simple_repeat	2201968	2202050	92	+	.	Tstart=1;Tend=83;ID=(GA)n	3595
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2204406	2204659	1222	+	.	Tstart=3;Tend=220;ID=rnd-1_family-69	3596
 scaffold_1	RepeatMasker	DNA	2204661	2204789	766	-	.	Tstart=119;Tend=243;ID=rnd-1_family-197	3597
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2204947	2205042	399	+	.	Tstart=100;Tend=184;ID=rnd-1_family-100	3598
@@ -2622,11 +2749,13 @@ scaffold_1	RepeatMasker	DNA	2208481	2208558	286	-	.	Tstart=38;Tend=115;ID=rnd-3_
 scaffold_1	RepeatMasker	DNA	2208597	2208724	819	+	.	Tstart=1;Tend=130;ID=rnd-1_family-51	3604
 scaffold_1	RepeatMasker	Unknown	2208878	2209030	597	+	.	Tstart=21;Tend=229;ID=rnd-1_family-1131	3606
 scaffold_1	RepeatMasker	Unknown	2209429	2209584	510	+	.	Tstart=7;Tend=156;ID=rnd-1_family-424	3607
+scaffold_1	RepeatMasker	Simple_repeat	2209585	2209674	370	+	.	Tstart=1;Tend=297;ID=rnd-1_family-270	3608
 scaffold_1	RepeatMasker	DNA	2209737	2209816	305	+	.	Tstart=7;Tend=69;ID=rnd-1_family-157	3610
 scaffold_1	RepeatMasker	LTR	2210270	2210686	3593	+	.	Tstart=269;Tend=685;ID=rnd-1_family-1073	3611
 scaffold_1	RepeatMasker	DNA	2210699	2210898	934	+	.	Tstart=10;Tend=226;ID=rnd-6_family-1404	3612
 scaffold_1	RepeatMasker	Unknown	2211216	2211444	1112	+	.	Tstart=1;Tend=217;ID=rnd-6_family-1252	3613
 scaffold_1	RepeatMasker	Unknown	2212190	2212290	319	+	.	Tstart=1;Tend=88;ID=rnd-4_family-328	3614
+scaffold_1	RepeatMasker	Simple_repeat	2212376	2212431	25	+	.	Tstart=1;Tend=55;ID=(TCT)n	3615
 scaffold_1	RepeatMasker	DNA	2212484	2212640	662	-	.	Tstart=1;Tend=153;ID=rnd-1_family-1150	3616
 scaffold_1	RepeatMasker	DNA	2212865	2213167	1909	-	.	Tstart=1;Tend=299;ID=rnd-5_family-1576	3618
 scaffold_1	RepeatMasker	DNA	2215202	2215276	227	+	.	Tstart=206;Tend=280;ID=rnd-6_family-381	3620
@@ -2655,6 +2784,7 @@ scaffold_1	RepeatMasker	DNA	2224088	2224156	461	-	.	Tstart=1;Tend=69;ID=rnd-1_fa
 scaffold_1	RepeatMasker	DNA	2224164	2224261	567	-	.	Tstart=972;Tend=1069;ID=rnd-5_family-5373	3650
 scaffold_1	RepeatMasker	DNA	2224262	2224328	519	-	.	Tstart=33;Tend=99;ID=rnd-1_family-1117	3651
 scaffold_1	RepeatMasker	LINE/Penelope	2224635	2224848	1114	+	.	Tstart=81;Tend=307;ID=rnd-5_family-330	3652
+scaffold_1	RepeatMasker	Low_complexity	2225201	2225253	20	+	.	Tstart=1;Tend=53;ID=A-rich	3654
 scaffold_1	RepeatMasker	DNA/PiggyBac	2228245	2228657	3405	-	.	Tstart=578;Tend=1008;ID=rnd-1_family-70	3656
 scaffold_1	RepeatMasker	DNA/PiggyBac	2228660	2229069	3509	-	.	Tstart=1;Tend=411;ID=rnd-4_family-16	3657
 scaffold_1	RepeatMasker	DNA	2229947	2230006	292	-	.	Tstart=78;Tend=142;ID=rnd-4_family-1448	3658
@@ -2692,16 +2822,20 @@ scaffold_1	RepeatMasker	Unknown	2249060	2249183	845	-	.	Tstart=2;Tend=124;ID=rnd
 scaffold_1	RepeatMasker	Unknown	2249191	2249393	698	+	.	Tstart=8;Tend=227;ID=rnd-1_family-294	3697
 scaffold_1	RepeatMasker	DNA	2249394	2249667	1923	+	.	Tstart=1;Tend=272;ID=rnd-1_family-197	3698
 scaffold_1	RepeatMasker	Unknown	2249684	2249764	493	+	.	Tstart=1;Tend=69;ID=rnd-6_family-1331	3697
+scaffold_1	RepeatMasker	Simple_repeat	2250629	2250681	14	+	.	Tstart=1;Tend=54;ID=(ATTTTTG)n	3700
 scaffold_1	RepeatMasker	DNA	2251078	2251144	233	-	.	Tstart=144;Tend=215;ID=rnd-5_family-53	3701
 scaffold_1	RepeatMasker	DNA	2252119	2252222	853	-	.	Tstart=33;Tend=136;ID=rnd-1_family-88	3702
+scaffold_1	RepeatMasker	Simple_repeat	2252229	2252390	44	+	.	Tstart=1;Tend=162;ID=(TTTTA)n	3703
 scaffold_1	RepeatMasker	Unknown	2253527	2255739	19601	+	.	Tstart=1;Tend=2206;ID=rnd-6_family-5098	3704
 scaffold_1	RepeatMasker	LTR/Gypsy	2257673	2257761	284	+	.	Tstart=143;Tend=231;ID=rnd-6_family-953	3705
 scaffold_1	RepeatMasker	DNA/Sola-3	2258586	2258691	578	-	.	Tstart=16;Tend=128;ID=rnd-1_family-57	3707
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2258888	2259018	747	+	.	Tstart=30;Tend=153;ID=rnd-6_family-2432	3708
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2259046	2259109	298	-	.	Tstart=116;Tend=182;ID=rnd-1_family-27	3709
 scaffold_1	RepeatMasker	DNA	2259820	2260010	1301	-	.	Tstart=1;Tend=190;ID=rnd-1_family-139	3710
+scaffold_1	RepeatMasker	Simple_repeat	2260817	2260935	136	+	.	Tstart=1;Tend=120;ID=(AT)n	3711
 scaffold_1	RepeatMasker	DNA	2261052	2261337	1268	+	.	Tstart=1;Tend=265;ID=rnd-1_family-51	3712
 scaffold_1	RepeatMasker	DNA	2261571	2261761	1301	-	.	Tstart=1;Tend=190;ID=rnd-1_family-139	3713
+scaffold_1	RepeatMasker	Simple_repeat	2262568	2262624	63	+	.	Tstart=1;Tend=58;ID=(AT)n	3714
 scaffold_1	RepeatMasker	DNA	2264142	2264251	517	-	.	Tstart=13;Tend=125;ID=rnd-1_family-49	3716
 scaffold_1	RepeatMasker	DNA	2265596	2265801	634	-	.	Tstart=17;Tend=256;ID=rnd-6_family-783	3719
 scaffold_1	RepeatMasker	DNA	2265884	2265963	321	-	.	Tstart=13;Tend=85;ID=rnd-5_family-185	3721
@@ -2722,10 +2856,14 @@ scaffold_1	RepeatMasker	DNA	2275443	2275724	1966	+	.	Tstart=1;Tend=283;ID=rnd-1_
 scaffold_1	RepeatMasker	Unknown	2276526	2276589	316	-	.	Tstart=208;Tend=270;ID=rnd-6_family-5239	3743
 scaffold_1	RepeatMasker	DNA	2276602	2276691	543	-	.	Tstart=1;Tend=85;ID=rnd-1_family-197	3744
 scaffold_1	RepeatMasker	DNA	2276692	2276930	1308	-	.	Tstart=33;Tend=262;ID=rnd-1_family-132	3745
-scaffold_1	RepeatMasker	SINE/tRNA-Deu	2277262	2277353	353	+	.	Tstart=197;Tend=298;ID=rnd-6_family-661	3748
+scaffold_1	RepeatMasker	Simple_repeat	2277019	2277270	2046	+	.	Tstart=6;Tend=257;ID=rnd-1_family-223	3747
+scaffold_1	RepeatMasker	SINE/tRNA-Deu	2277271	2277353	X	+	.	Tstart=197;Tend=298;ID=rnd-6_family-661	3748
+scaffold_1	RepeatMasker	Simple_repeat	2277380	2278405	2953	+	.	Tstart=1;Tend=1026;ID=rnd-1_family-185	3749
 scaffold_1	RepeatMasker	DNA	2278471	2278627	336	-	.	Tstart=33;Tend=189;ID=rnd-1_family-132	3751
+scaffold_1	RepeatMasker	Simple_repeat	2278863	2278914	37	+	.	Tstart=1;Tend=52;ID=(ATGACG)n	3754
 scaffold_1	RepeatMasker	Unknown	2278915	2278965	300	-	.	Tstart=144;Tend=194;ID=rnd-6_family-4365	3755
 scaffold_1	RepeatMasker	RC/Helitron	2279012	2279118	589	+	.	Tstart=53;Tend=157;ID=rnd-1_family-133	3756
+scaffold_1	RepeatMasker	Simple_repeat	2279354	2280932	2989	+	.	Tstart=1;Tend=1612;ID=rnd-1_family-185	3757
 scaffold_1	RepeatMasker	SINE/tRNA-Deu-L2	2281937	2282020	286	-	.	Tstart=192;Tend=272;ID=rnd-6_family-869	3758
 scaffold_1	RepeatMasker	DNA	2282151	2282477	2594	+	.	Tstart=2;Tend=329;ID=rnd-1_family-246	3759
 scaffold_1	RepeatMasker	Unknown	2282639	2282703	339	+	.	Tstart=2;Tend=69;ID=rnd-5_family-3402	3760
@@ -2756,6 +2894,7 @@ scaffold_1	RepeatMasker	SINE/tRNA-Deu	2297038	2297394	2879	-	.	Tstart=13;Tend=36
 scaffold_1	RepeatMasker	DNA	2298208	2298342	626	+	.	Tstart=1;Tend=136;ID=rnd-1_family-219	3792
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2299738	2299970	1063	-	.	Tstart=1;Tend=271;ID=rnd-1_family-69	3794
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2300110	2300191	321	-	.	Tstart=234;Tend=312;ID=rnd-5_family-406	3796
+scaffold_1	RepeatMasker	Simple_repeat	2300250	2300303	39	+	.	Tstart=1;Tend=54;ID=(CAA)n	3797
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2303023	2303317	1408	-	.	Tstart=3;Tend=302;ID=rnd-6_family-1017	3799
 scaffold_1	RepeatMasker	Unknown	2303890	2303955	X	-	.	Tstart=1;Tend=59;ID=rnd-1_family-653	3801
 scaffold_1	RepeatMasker	Unknown	2303956	2304152	1152	-	.	Tstart=1;Tend=194;ID=rnd-1_family-417	3802
@@ -2794,6 +2933,7 @@ scaffold_1	RepeatMasker	DNA	2322673	2322954	2089	+	.	Tstart=1;Tend=283;ID=rnd-1_
 scaffold_1	RepeatMasker	Unknown	2323031	2323242	473	+	.	Tstart=24;Tend=227;ID=rnd-5_family-3433	3845
 scaffold_1	RepeatMasker	Unknown	2323722	2324140	2168	+	.	Tstart=7;Tend=425;ID=rnd-5_family-1787	3846
 scaffold_1	RepeatMasker	DNA	2324160	2324420	1365	+	.	Tstart=1;Tend=284;ID=rnd-1_family-246	3847
+scaffold_1	RepeatMasker	Simple_repeat	2324513	2324585	47	+	.	Tstart=1;Tend=74;ID=(ATTC)n	3849
 scaffold_1	RepeatMasker	DNA	2324807	2325150	1497	+	.	Tstart=1;Tend=352;ID=rnd-6_family-415	3851
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2328807	2328920	722	-	.	Tstart=118;Tend=228;ID=rnd-5_family-816	3859
 scaffold_1	RepeatMasker	DNA	2328922	2329112	960	+	.	Tstart=314;Tend=482;ID=rnd-1_family-560	3860
@@ -2809,6 +2949,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	2331963	2332147	740	+	.	Tstart=1;Tend=192
 scaffold_1	RepeatMasker	DNA/CMC-EnSpm	2332791	2332876	286	-	.	Tstart=255;Tend=337;ID=rnd-4_family-795	3872
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2332877	2333132	1110	+	.	Tstart=1;Tend=238;ID=rnd-5_family-253	3873
 scaffold_1	RepeatMasker	DNA/Academ-2	2334141	2334228	279	+	.	Tstart=1;Tend=80;ID=rnd-4_family-1680	3875
+scaffold_1	RepeatMasker	Simple_repeat	2334483	2334540	17	+	.	Tstart=1;Tend=52;ID=(TTCCGG)n	3877
 scaffold_1	RepeatMasker	SINE/tRNA-Deu-L2	2335368	2335428	276	+	.	Tstart=21;Tend=74;ID=rnd-6_family-37	3880
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2335535	2335751	830	+	.	Tstart=15;Tend=252;ID=rnd-3_family-1253	3882
 scaffold_1	RepeatMasker	Unknown	2336200	2336308	563	+	.	Tstart=34;Tend=138;ID=rnd-1_family-569	3883
@@ -2835,6 +2976,7 @@ scaffold_1	RepeatMasker	DNA/TcMar-ISRm11	2344550	2345761	7641	+	.	Tstart=1;Tend=
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2345820	2346098	1574	+	.	Tstart=40;Tend=290;ID=rnd-1_family-268	3909
 scaffold_1	RepeatMasker	Unknown	2346217	2346644	1808	-	.	Tstart=1;Tend=290;ID=rnd-6_family-6004	3910
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2346645	2346713	317	-	.	Tstart=233;Tend=299;ID=rnd-4_family-904	3911
+scaffold_1	RepeatMasker	Simple_repeat	2347210	2347321	132	+	.	Tstart=1;Tend=112;ID=(AG)n	3912
 scaffold_1	RepeatMasker	RC/Helitron	2347327	2347722	878	-	.	Tstart=366;Tend=796;ID=rnd-1_family-349	3913
 scaffold_1	RepeatMasker	RC/Helitron	2347903	2348201	664	-	.	Tstart=38;Tend=288;ID=rnd-1_family-709	3914
 scaffold_1	RepeatMasker	DNA	2348254	2348484	1227	-	.	Tstart=1;Tend=261;ID=rnd-1_family-495	3916
@@ -2867,6 +3009,7 @@ scaffold_1	RepeatMasker	DNA	2368938	2369092	961	+	.	Tstart=79;Tend=250;ID=rnd-1_
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2369358	2369491	823	-	.	Tstart=51;Tend=212;ID=rnd-5_family-541	3951
 scaffold_1	RepeatMasker	DNA	2369810	2370395	3193	-	.	Tstart=1;Tend=461;ID=rnd-1_family-137	3952
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2370924	2370984	338	-	.	Tstart=1;Tend=62;ID=rnd-1_family-167	3954
+scaffold_1	RepeatMasker	Simple_repeat	2372660	2372712	18	+	.	Tstart=1;Tend=54;ID=(ATA)n	3957
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2373326	2373399	435	+	.	Tstart=37;Tend=108;ID=rnd-1_family-292	3958
 scaffold_1	RepeatMasker	DNA	2373432	2373499	X	-	.	Tstart=1;Tend=193;ID=rnd-1_family-880	3959
 scaffold_1	RepeatMasker	DNA	2373500	2373696	1487	+	.	Tstart=1;Tend=197;ID=rnd-1_family-817	3960
@@ -2919,7 +3062,9 @@ scaffold_1	RepeatMasker	SINE/tRNA-V	2387468	2387518	272	+	.	Tstart=40;Tend=90;ID
 scaffold_1	RepeatMasker	DNA	2387584	2387749	935	-	.	Tstart=2;Tend=167;ID=rnd-5_family-2071	4028
 scaffold_1	RepeatMasker	DNA	2387814	2387882	313	-	.	Tstart=119;Tend=188;ID=rnd-1_family-190	4029
 scaffold_1	RepeatMasker	Unknown	2388147	2388915	686	-	.	Tstart=3;Tend=743;ID=rnd-4_family-227;TEgroup=scaffold_1|rnd-4_family-227|1	4030
+scaffold_1	RepeatMasker	Simple_repeat	2388303	2388394	100	+	.	Tstart=1;Tend=91;ID=(TTA)n	4031
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2389407	2389514	563	-	.	Tstart=2;Tend=112;ID=rnd-1_family-180	4032
+scaffold_1	RepeatMasker	Simple_repeat	2389682	2390240	503	+	.	Tstart=1;Tend=563;ID=(TCAC)n	4033
 scaffold_1	RepeatMasker	Unknown	2390776	2390876	772	-	.	Tstart=135;Tend=235;ID=rnd-5_family-1000	4035
 scaffold_1	RepeatMasker	Unknown	2390878	2391052	1008	-	.	Tstart=2;Tend=242;ID=rnd-1_family-497	4036
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2391055	2391195	723	+	.	Tstart=1;Tend=147;ID=rnd-5_family-406	4037
@@ -2961,7 +3106,9 @@ scaffold_1	RepeatMasker	Unknown	2413610	2413752	1005	+	.	Tstart=329;Tend=479;ID=
 scaffold_1	RepeatMasker	Unknown	2413811	2413891	X	+	.	Tstart=88;Tend=185;ID=rnd-5_family-2033	4083
 scaffold_1	RepeatMasker	Unknown	2413892	2414030	759	-	.	Tstart=3;Tend=160;ID=rnd-6_family-290	4084
 scaffold_1	RepeatMasker	DNA	2415281	2415498	901	+	.	Tstart=1;Tend=230;ID=rnd-4_family-1444	4085
+scaffold_1	RepeatMasker	Low_complexity	2415547	2415599	25	+	.	Tstart=1;Tend=54;ID=GA-rich	4086
 scaffold_1	RepeatMasker	Unknown	2415825	2415960	571	+	.	Tstart=1;Tend=177;ID=rnd-1_family-235	4087
+scaffold_1	RepeatMasker	Simple_repeat	2416316	2416620	191	+	.	Tstart=1;Tend=306;ID=(ATC)n	4088
 scaffold_1	RepeatMasker	DNA	2417534	2417648	312	+	.	Tstart=1;Tend=111;ID=rnd-1_family-146	4090
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2418012	2418252	1087	-	.	Tstart=3;Tend=237;ID=rnd-5_family-253	4092
 scaffold_1	RepeatMasker	DNA	2418428	2418505	X	-	.	Tstart=27;Tend=108;ID=rnd-4_family-148	4093
@@ -2990,6 +3137,7 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2433206	2433588	1718	+	.	Tstart=1;Tend
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2437643	2437879	1563	+	.	Tstart=1;Tend=277;ID=rnd-5_family-541	4124
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2439009	2439183	774	-	.	Tstart=9;Tend=174;ID=rnd-5_family-1442	4126
 scaffold_1	RepeatMasker	LINE/Penelope	2439215	2439267	283	+	.	Tstart=102;Tend=150;ID=rnd-4_family-205	4127
+scaffold_1	RepeatMasker	Simple_repeat	2439840	2439935	113	+	.	Tstart=1;Tend=96;ID=(AT)n	4130
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2439936	2440042	898	-	.	Tstart=2;Tend=112;ID=rnd-5_family-1830;TEgroup=scaffold_1|rnd-5_family-1830|1	4129
 scaffold_1	RepeatMasker	RC/Helitron	2440160	2440312	1083	-	.	Tstart=1;Tend=153;ID=rnd-3_family-79	4132
 scaffold_1	RepeatMasker	DNA	2442150	2442327	1466	+	.	Tstart=1;Tend=179;ID=rnd-1_family-238	4133
@@ -3011,6 +3159,7 @@ scaffold_1	RepeatMasker	DNA	2454989	2455136	1315	+	.	Tstart=1;Tend=148;ID=rnd-1_
 scaffold_1	RepeatMasker	DNA	2456097	2456253	555	-	.	Tstart=1;Tend=150;ID=rnd-5_family-2165	4152
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2456333	2456418	541	-	.	Tstart=1;Tend=86;ID=rnd-4_family-2425	4153
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2456419	2456529	604	+	.	Tstart=39;Tend=148;ID=rnd-4_family-1220	4154
+scaffold_1	RepeatMasker	Simple_repeat	2456560	2456610	60	+	.	Tstart=1;Tend=51;ID=(AT)n	4155
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2457423	2457636	1404	+	.	Tstart=3;Tend=220;ID=rnd-6_family-1017	4156
 scaffold_1	RepeatMasker	LINE/Penelope	2457731	2457810	393	-	.	Tstart=926;Tend=1004;ID=rnd-1_family-263	4157
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2457811	2457960	946	-	.	Tstart=169;Tend=337;ID=rnd-1_family-69	4158
@@ -3026,6 +3175,7 @@ scaffold_1	RepeatMasker	RC/Helitron	2459554	2459661	481	-	.	Tstart=1;Tend=127;ID
 scaffold_1	RepeatMasker	RC/Helitron	2459733	2460015	1409	-	.	Tstart=32;Tend=365;ID=rnd-1_family-965	4168
 scaffold_1	RepeatMasker	RC/Helitron	2460093	2460231	679	-	.	Tstart=9;Tend=163;ID=rnd-1_family-1067	4169
 scaffold_1	RepeatMasker	DNA	2460518	2460568	278	+	.	Tstart=250;Tend=300;ID=rnd-1_family-151	4170
+scaffold_1	RepeatMasker	Simple_repeat	2460593	2460649	15	+	.	Tstart=1;Tend=59;ID=(AT)n	4171
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2460723	2461025	1369	+	.	Tstart=1;Tend=312;ID=rnd-5_family-406	4173
 scaffold_1	RepeatMasker	DNA	2461051	2461163	698	-	.	Tstart=1;Tend=122;ID=rnd-1_family-254	4174
 scaffold_1	RepeatMasker	Unknown	2461195	2461291	404	+	.	Tstart=1803;Tend=1887;ID=rnd-5_family-1293	4175
@@ -3033,6 +3183,7 @@ scaffold_1	RepeatMasker	DNA	2461373	2461486	661	+	.	Tstart=159;Tend=272;ID=rnd-1
 scaffold_1	RepeatMasker	DNA	2461629	2461709	526	+	.	Tstart=3;Tend=85;ID=rnd-1_family-824	4178
 scaffold_1	RepeatMasker	DNA	2461731	2461803	353	+	.	Tstart=1;Tend=71;ID=rnd-6_family-1554	4179
 scaffold_1	RepeatMasker	DNA	2463260	2463325	382	-	.	Tstart=372;Tend=437;ID=rnd-6_family-504	4180
+scaffold_1	RepeatMasker	Simple_repeat	2463588	2463644	48	+	.	Tstart=1;Tend=57;ID=(CAT)n	4181
 scaffold_1	RepeatMasker	DNA/Crypton-H	2463652	2463763	277	-	.	Tstart=30;Tend=119;ID=rnd-2_family-7	4182
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2464478	2464570	262	+	.	Tstart=3;Tend=98;ID=rnd-1_family-27	4183
 scaffold_1	RepeatMasker	Unknown	2464752	2464804	276	+	.	Tstart=29;Tend=88;ID=rnd-1_family-1133	4186
@@ -3052,6 +3203,7 @@ scaffold_1	RepeatMasker	DNA	2477618	2477680	237	+	.	Tstart=363;Tend=425;ID=rnd-1
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2478726	2479129	1516	-	.	Tstart=30;Tend=427;ID=rnd-4_family-953	4209
 scaffold_1	RepeatMasker	Unknown	2479293	2479478	1069	-	.	Tstart=18;Tend=232;ID=rnd-1_family-841	4210
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2479869	2480039	401	+	.	Tstart=1;Tend=185;ID=rnd-4_family-719	4211
+scaffold_1	RepeatMasker	Simple_repeat	2480066	2480131	16	+	.	Tstart=1;Tend=69;ID=(ATA)n	4212
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2480132	2480194	309	+	.	Tstart=183;Tend=244;ID=rnd-5_family-15	4213
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	2483548	2483600	259	-	.	Tstart=7;Tend=60;ID=rnd-3_family-44	4216
 scaffold_1	RepeatMasker	RC/Helitron	2485197	2486625	11006	-	.	Tstart=185;Tend=1594;ID=rnd-1_family-18	4218
@@ -3089,8 +3241,10 @@ scaffold_1	RepeatMasker	DNA	2521789	2522031	1516	-	.	Tstart=1;Tend=265;ID=rnd-6_
 scaffold_1	RepeatMasker	LINE/RTE-X	2522361	2522533	1431	+	.	Tstart=320;Tend=492;ID=rnd-1_family-631	4255
 scaffold_1	RepeatMasker	Unknown	2523680	2523776	419	+	.	Tstart=10;Tend=116;ID=rnd-4_family-242	4257
 scaffold_1	RepeatMasker	RC/Helitron	2526046	2526106	258	-	.	Tstart=1565;Tend=1620;ID=rnd-4_family-101	4258
+scaffold_1	RepeatMasker	Simple_repeat	2526904	2527034	152	+	.	Tstart=1;Tend=131;ID=(TGA)n	4260
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2527577	2527785	1025	-	.	Tstart=198;Tend=404;ID=rnd-1_family-226	4261
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2528409	2528481	527	-	.	Tstart=60;Tend=132;ID=rnd-1_family-156	4262
+scaffold_1	RepeatMasker	Simple_repeat	2532137	2532209	29	+	.	Tstart=1;Tend=73;ID=(ACA)n	4263
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2532575	2532718	551	-	.	Tstart=70;Tend=210;ID=rnd-5_family-4314	4264
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2533566	2534136	648	-	.	Tstart=34;Tend=426;ID=rnd-5_family-1511;TEgroup=scaffold_1|rnd-5_family-1511|2	4266
 scaffold_1	RepeatMasker	RC/Helitron	2533835	2534007	817	-	.	Tstart=2;Tend=158;ID=rnd-6_family-629	4267
@@ -3155,8 +3309,10 @@ scaffold_1	RepeatMasker	DNA/TcMar-Tigger	2570740	2570844	509	-	.	Tstart=388;Tend
 scaffold_1	RepeatMasker	Unknown	2570897	2571309	2439	+	.	Tstart=411;Tend=823;ID=rnd-5_family-2630	4334
 scaffold_1	RepeatMasker	Unknown	2571406	2571504	819	+	.	Tstart=724;Tend=823;ID=rnd-5_family-2630	4335
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2572108	2572286	905	-	.	Tstart=1;Tend=234;ID=rnd-1_family-41	4336
+scaffold_1	RepeatMasker	Simple_repeat	2574622	2574679	15	+	.	Tstart=1;Tend=53;ID=(TTAGG)n	4338
 scaffold_1	RepeatMasker	DNA/PiggyBac	2574695	2575092	X	+	.	Tstart=1;Tend=409;ID=rnd-1_family-75	4339
 scaffold_1	RepeatMasker	Satellite	2575093	2575440	2383	-	.	Tstart=711;Tend=1093;ID=rnd-1_family-13	4341
+scaffold_1	RepeatMasker	Low_complexity	2575488	2575593	21	+	.	Tstart=1;Tend=111;ID=G-rich	4342
 scaffold_1	RepeatMasker	RC/Helitron	2576110	2576188	486	-	.	Tstart=1;Tend=65;ID=rnd-1_family-603	4343
 scaffold_1	RepeatMasker	Unknown	2576674	2577660	4052	-	.	Tstart=41;Tend=1057;ID=rnd-5_family-3811	4344
 scaffold_1	RepeatMasker	Unknown	2577670	2577735	481	-	.	Tstart=13;Tend=78;ID=rnd-1_family-417	4345
@@ -3197,6 +3353,8 @@ scaffold_1	RepeatMasker	Unknown	2599581	2600177	3179	-	.	Tstart=1;Tend=544;ID=rn
 scaffold_1	RepeatMasker	DNA	2600178	2600371	X	-	.	Tstart=691;Tend=887;ID=rnd-1_family-140	4387
 scaffold_1	RepeatMasker	Unknown	2607919	2608002	531	-	.	Tstart=1;Tend=85;ID=rnd-1_family-611	4388
 scaffold_1	RepeatMasker	DNA/Academ-2	2608869	2608928	324	+	.	Tstart=8;Tend=68;ID=rnd-1_family-405	4391
+scaffold_1	RepeatMasker	Simple_repeat	2609349	2609450	22	+	.	Tstart=1;Tend=98;ID=(AAC)n	4392
+scaffold_1	RepeatMasker	Simple_repeat	2609581	2609797	80	+	.	Tstart=1;Tend=212;ID=(AAC)n	4393
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2610327	2610428	448	+	.	Tstart=2;Tend=105;ID=rnd-2_family-13	4394
 scaffold_1	RepeatMasker	Unknown	2610769	2610919	1024	+	.	Tstart=503;Tend=639;ID=rnd-6_family-398	4395
 scaffold_1	RepeatMasker	DNA	2611140	2611370	876	+	.	Tstart=1;Tend=289;ID=rnd-1_family-23	4396
@@ -3301,6 +3459,7 @@ scaffold_1	RepeatMasker	RC/Helitron	2712035	2712476	1646	+	.	Tstart=4;Tend=387;I
 scaffold_1	RepeatMasker	DNA	2712699	2712832	482	-	.	Tstart=7;Tend=154;ID=rnd-5_family-1018	4541
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2713413	2713651	1758	-	.	Tstart=1;Tend=254;ID=rnd-1_family-15	4542
 scaffold_1	RepeatMasker	DNA	2713677	2713767	X	-	.	Tstart=143;Tend=247;ID=rnd-4_family-760	4543
+scaffold_1	RepeatMasker	Simple_repeat	2713956	2714328	279	+	.	Tstart=1;Tend=373;ID=(ATAA)n	4545
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2714951	2715206	1749	+	.	Tstart=1;Tend=254;ID=rnd-1_family-15	4546
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2715931	2716017	271	-	.	Tstart=17;Tend=111;ID=rnd-5_family-4314	4547
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2716181	2716240	334	+	.	Tstart=50;Tend=114;ID=rnd-1_family-729	4548
@@ -3309,6 +3468,7 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2716530	2716674	523	+	.	Tstart=1;Tend=
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2716778	2716912	700	+	.	Tstart=1;Tend=115;ID=rnd-1_family-501	4552
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2717256	2717482	1831	-	.	Tstart=28;Tend=254;ID=rnd-1_family-15	4554
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2717551	2717728	1152	-	.	Tstart=48;Tend=229;ID=rnd-1_family-27	4555
+scaffold_1	RepeatMasker	Simple_repeat	2718530	2718665	23	+	.	Tstart=1;Tend=159;ID=(CACGAT)n	4557
 scaffold_1	RepeatMasker	DNA	2722137	2722198	456	-	.	Tstart=11;Tend=73;ID=rnd-1_family-776	4559
 scaffold_1	RepeatMasker	DNA	2722199	2722316	833	+	.	Tstart=1;Tend=118;ID=rnd-1_family-838	4560
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2722351	2722665	1816	-	.	Tstart=1;Tend=290;ID=rnd-1_family-268	4561
@@ -3322,6 +3482,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	2729011	2729157	718	-	.	Tstart=4;Tend=176
 scaffold_1	RepeatMasker	Unknown	2730683	2730762	455	-	.	Tstart=2;Tend=81;ID=rnd-4_family-313	4573
 scaffold_1	RepeatMasker	DNA	2731606	2731693	624	-	.	Tstart=114;Tend=201;ID=rnd-1_family-81	4575
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2731725	2731815	648	+	.	Tstart=235;Tend=327;ID=rnd-4_family-781	4576
+scaffold_1	RepeatMasker	Simple_repeat	2731915	2731994	21	+	.	Tstart=1;Tend=79;ID=(TTATTA)n	4577
 scaffold_1	RepeatMasker	Unknown	2733731	2733794	244	-	.	Tstart=30;Tend=85;ID=rnd-4_family-17	4578
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2735160	2735281	602	-	.	Tstart=68;Tend=194;ID=rnd-1_family-148	4579
 scaffold_1	RepeatMasker	Unknown	2735437	2735562	463	-	.	Tstart=132;Tend=266;ID=rnd-6_family-5239	4580
@@ -3338,8 +3499,10 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2750892	2750976	347	-	.	Tstart=35;Tend
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2750977	2751058	345	+	.	Tstart=63;Tend=140;ID=rnd-6_family-2526	4592
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2755573	2755741	1037	+	.	Tstart=1;Tend=172;ID=rnd-1_family-41	4595
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2756400	2756481	439	+	.	Tstart=4;Tend=85;ID=rnd-2_family-13	4596
+scaffold_1	RepeatMasker	Simple_repeat	2756583	2756687	30	+	.	Tstart=1;Tend=105;ID=(CCA)n	4597
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2757351	2757558	1217	-	.	Tstart=32;Tend=251;ID=rnd-3_family-1253	4598
 scaffold_1	RepeatMasker	DNA/TcMar-Tc2	2757606	2757832	1461	+	.	Tstart=1;Tend=229;ID=rnd-5_family-1333	4600
+scaffold_1	RepeatMasker	Simple_repeat	2757923	2758006	22	+	.	Tstart=1;Tend=84;ID=(CAC)n	4601
 scaffold_1	RepeatMasker	DNA/CMC-Chapaev	2758120	2758310	699	+	.	Tstart=3;Tend=192;ID=rnd-6_family-3190	4602
 scaffold_1	RepeatMasker	DNA	2760832	2760995	1153	-	.	Tstart=30;Tend=193;ID=rnd-1_family-880	4603
 scaffold_1	RepeatMasker	DNA	2761077	2761367	1759	-	.	Tstart=1;Tend=290;ID=rnd-5_family-5801	4605
@@ -3356,6 +3519,7 @@ scaffold_1	RepeatMasker	DNA	2771342	2771545	793	+	.	Tstart=1;Tend=164;ID=rnd-1_f
 scaffold_1	RepeatMasker	Unknown	2771731	2771832	273	+	.	Tstart=560;Tend=649;ID=rnd-6_family-398	4622
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2771906	2772031	626	-	.	Tstart=1;Tend=159;ID=rnd-1_family-107	4623
 scaffold_1	RepeatMasker	DNA/hAT-hAT6	2772140	2772218	302	+	.	Tstart=126;Tend=214;ID=rnd-6_family-4311	4624
+scaffold_1	RepeatMasker	Simple_repeat	2773509	2773606	34	+	.	Tstart=1;Tend=98;ID=(CCCCTC)n	4625
 scaffold_1	RepeatMasker	DNA	2776061	2776115	381	-	.	Tstart=1;Tend=55;ID=rnd-1_family-238	4626
 scaffold_1	RepeatMasker	Unknown	2776116	2776316	764	-	.	Tstart=2;Tend=171;ID=rnd-5_family-9047	4627
 scaffold_1	RepeatMasker	DNA/PiggyBac	2780660	2781560	6729	+	.	Tstart=86;Tend=1005;ID=rnd-3_family-2	4629
@@ -3371,11 +3535,13 @@ scaffold_1	RepeatMasker	DNA/hAT-hAT5	2785193	2785331	225	-	.	Tstart=3;Tend=137;I
 scaffold_1	RepeatMasker	DNA	2788436	2788560	522	+	.	Tstart=1;Tend=792;ID=rnd-1_family-59;TEgroup=scaffold_1|rnd-1_family-59|1	4649
 scaffold_1	RepeatMasker	DNA	2788836	2789032	1082	+	.	Tstart=3;Tend=216;ID=rnd-1_family-219	4651
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	2792902	2793007	327	+	.	Tstart=28;Tend=123;ID=rnd-1_family-66	4652
+scaffold_1	RepeatMasker	Simple_repeat	2793236	2793288	13	+	.	Tstart=1;Tend=54;ID=(TAATTAC)n	4653
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2795260	2795426	699	+	.	Tstart=1;Tend=149;ID=rnd-1_family-170	4654
 scaffold_1	RepeatMasker	DNA	2796990	2797045	283	+	.	Tstart=1;Tend=60;ID=rnd-1_family-1105	4657
 scaffold_1	RepeatMasker	DNA/Kolobok	2797102	2797908	2744	+	.	Tstart=1;Tend=389;ID=rnd-1_family-1261	4658
 scaffold_1	RepeatMasker	DNA/Kolobok	2797910	2798001	709	-	.	Tstart=202;Tend=295;ID=rnd-6_family-3349	4659
 scaffold_1	RepeatMasker	DNA/MULE-MuDR	2798009	2798072	244	+	.	Tstart=42;Tend=107;ID=rnd-4_family-838	4660
+scaffold_1	RepeatMasker	Simple_repeat	2798296	2798372	16	+	.	Tstart=1;Tend=82;ID=(TAT)n	4663
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2798596	2798675	258	+	.	Tstart=573;Tend=661;ID=rnd-5_family-304	4664
 scaffold_1	RepeatMasker	DNA	2798811	2798958	1244	+	.	Tstart=1;Tend=148;ID=rnd-1_family-230	4666
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2799108	2799172	332	+	.	Tstart=789;Tend=855;ID=rnd-5_family-304	4667
@@ -3400,6 +3566,7 @@ scaffold_1	RepeatMasker	DNA	2811174	2811253	498	-	.	Tstart=1;Tend=80;ID=rnd-1_fa
 scaffold_1	RepeatMasker	DNA	2811260	2811500	686	-	.	Tstart=841;Tend=1119;ID=rnd-5_family-5373	4691
 scaffold_1	RepeatMasker	Unknown	2811538	2811614	1305	+	.	Tstart=1;Tend=83;ID=rnd-1_family-834	4692
 scaffold_1	RepeatMasker	LTR/Copia	2811615	2811762	952	-	.	Tstart=1;Tend=169;ID=rnd-1_family-881	4693
+scaffold_1	RepeatMasker	Simple_repeat	2811773	2811857	29	+	.	Tstart=1;Tend=83;ID=(AGT)n	4694
 scaffold_1	RepeatMasker	LINE/L2	2811941	2812079	814	-	.	Tstart=212;Tend=350;ID=rnd-5_family-2010	4695
 scaffold_1	RepeatMasker	Unknown	2812249	2812317	371	+	.	Tstart=8;Tend=77;ID=rnd-1_family-517	4696
 scaffold_1	RepeatMasker	DNA	2813877	2813959	256	+	.	Tstart=24;Tend=106;ID=rnd-5_family-79	4698
@@ -3485,10 +3652,12 @@ scaffold_1	RepeatMasker	Unknown	2892871	2893787	4474	-	.	Tstart=63;Tend=908;ID=r
 scaffold_1	RepeatMasker	DNA	2893857	2893928	242	+	.	Tstart=175;Tend=239;ID=rnd-6_family-783	4791
 scaffold_1	RepeatMasker	RC/Helitron	2894473	2894659	378	-	.	Tstart=64;Tend=321;ID=rnd-4_family-52	4792
 scaffold_1	RepeatMasker	RC/Helitron	2894686	2894898	378	-	.	Tstart=7;Tend=244;ID=rnd-4_family-52	4794
+scaffold_1	RepeatMasker	Simple_repeat	2894899	2894958	X	+	.	Tstart=1;Tend=102;ID=rnd-6_family-3092	4795
 scaffold_1	RepeatMasker	Satellite	2898109	2898312	1196	-	.	Tstart=719;Tend=926;ID=rnd-1_family-13	4797
 scaffold_1	RepeatMasker	RC/Helitron	2898704	2898841	707	+	.	Tstart=1;Tend=133;ID=rnd-1_family-182	4799
 scaffold_1	RepeatMasker	Unknown	2898959	2899597	3373	-	.	Tstart=4;Tend=661;ID=rnd-5_family-6710	4800
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2899655	2899859	639	+	.	Tstart=1;Tend=277;ID=rnd-5_family-541;TEgroup=scaffold_1|rnd-5_family-541|1	4801
+scaffold_1	RepeatMasker	Simple_repeat	2899947	2899999	20	+	.	Tstart=1;Tend=51;ID=(ATTTTT)n	4803
 scaffold_1	RepeatMasker	DNA	2900351	2900554	880	+	.	Tstart=19;Tend=224;ID=rnd-1_family-23	4804
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2900557	2900726	785	-	.	Tstart=9;Tend=174;ID=rnd-5_family-1442	4805
 scaffold_1	RepeatMasker	DNA	2900962	2901064	360	-	.	Tstart=254;Tend=361;ID=rnd-6_family-786	4806
@@ -3537,9 +3706,12 @@ scaffold_1	RepeatMasker	DNA/Kolobok	2927582	2928262	5113	+	.	Tstart=1;Tend=705;I
 scaffold_1	RepeatMasker	DNA/Kolobok	2928263	2928855	4756	-	.	Tstart=1;Tend=608;ID=rnd-1_family-564	4860
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2930634	2930848	318	-	.	Tstart=1;Tend=223;ID=rnd-3_family-71	4862
 scaffold_1	RepeatMasker	SINE/tRNA-Deu	2932153	2932494	2664	-	.	Tstart=1;Tend=344;ID=rnd-1_family-123	4863
+scaffold_1	RepeatMasker	Low_complexity	2933197	2933253	14	+	.	Tstart=1;Tend=57;ID=G-rich	4864
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	2933255	2933407	494	-	.	Tstart=1;Tend=171;ID=rnd-5_family-4314	4865
 scaffold_1	RepeatMasker	DNA	2934619	2934955	987	-	.	Tstart=1;Tend=342;ID=rnd-1_family-141	4867
+scaffold_1	RepeatMasker	Simple_repeat	2935124	2935237	34	+	.	Tstart=1;Tend=114;ID=(TAA)n	4868
 scaffold_1	RepeatMasker	DNA	2939128	2939232	794	-	.	Tstart=241;Tend=345;ID=rnd-1_family-91	4869
+scaffold_1	RepeatMasker	Simple_repeat	2939570	2940193	380	+	.	Tstart=1;Tend=627;ID=(AGGTG)n	4870
 scaffold_1	RepeatMasker	DNA	2941180	2941239	377	+	.	Tstart=1;Tend=63;ID=rnd-1_family-350	4872
 scaffold_1	RepeatMasker	DNA	2942298	2942510	1581	-	.	Tstart=1;Tend=218;ID=rnd-1_family-348	4873
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	2943673	2943769	715	+	.	Tstart=3;Tend=101;ID=rnd-1_family-156	4874
@@ -3594,6 +3766,7 @@ scaffold_1	RepeatMasker	DNA	2976057	2976163	326	+	.	Tstart=1;Tend=116;ID=rnd-1_f
 scaffold_1	RepeatMasker	DNA	2976164	2976223	446	+	.	Tstart=1;Tend=60;ID=rnd-1_family-555	4935
 scaffold_1	RepeatMasker	DNA	2976272	2976394	256	-	.	Tstart=122;Tend=242;ID=rnd-1_family-172	4937
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	2976406	2976537	718	-	.	Tstart=1;Tend=119;ID=rnd-5_family-1890	4938
+scaffold_1	RepeatMasker	Simple_repeat	2976817	2976867	20	+	.	Tstart=1;Tend=54;ID=(TTTA)n	4941
 scaffold_1	RepeatMasker	RC/Helitron	2979020	2979280	1560	-	.	Tstart=224;Tend=472;ID=rnd-1_family-412	4942
 scaffold_1	RepeatMasker	RC/Helitron	2979322	2979457	551	-	.	Tstart=352;Tend=497;ID=rnd-1_family-349	4943
 scaffold_1	RepeatMasker	Unknown	2979655	2979894	1197	+	.	Tstart=1;Tend=242;ID=rnd-5_family-5962	4945
@@ -3622,6 +3795,7 @@ scaffold_1	RepeatMasker	DNA	2994873	2994947	594	-	.	Tstart=32;Tend=106;ID=rnd-1_
 scaffold_1	RepeatMasker	RC/Helitron	2996386	2996521	721	-	.	Tstart=1;Tend=132;ID=rnd-4_family-2139	4976
 scaffold_1	RepeatMasker	DNA	2996817	2997140	2512	+	.	Tstart=1;Tend=328;ID=rnd-1_family-246	4977
 scaffold_1	RepeatMasker	Unknown	3000881	3000958	585	-	.	Tstart=12;Tend=88;ID=rnd-1_family-611	4978
+scaffold_1	RepeatMasker	Simple_repeat	3004235	3004387	120	+	.	Tstart=1;Tend=153;ID=(ATC)n	4979
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	3004890	3005019	809	+	.	Tstart=1;Tend=129;ID=rnd-1_family-156	4980
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3006664	3006738	X	-	.	Tstart=61;Tend=135;ID=rnd-1_family-67	4982
 scaffold_1	RepeatMasker	Unknown	3006739	3006812	543	-	.	Tstart=1;Tend=74;ID=rnd-1_family-763	4983
@@ -3629,6 +3803,7 @@ scaffold_1	RepeatMasker	Unknown	3006821	3006883	X	-	.	Tstart=1;Tend=74;ID=rnd-1_
 scaffold_1	RepeatMasker	Unknown	3006884	3006981	760	-	.	Tstart=1;Tend=98;ID=rnd-1_family-680	4985
 scaffold_1	RepeatMasker	Unknown	3006982	3007035	X	-	.	Tstart=8;Tend=93;ID=rnd-1_family-649	4986
 scaffold_1	RepeatMasker	DNA/TcMar-Tigger	3007524	3007949	2874	-	.	Tstart=1;Tend=461;ID=rnd-1_family-374	4987
+scaffold_1	RepeatMasker	Simple_repeat	3008031	3008098	14	+	.	Tstart=1;Tend=67;ID=(CAGA)n	4989
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	3009820	3009970	495	-	.	Tstart=1;Tend=119;ID=rnd-6_family-648	4991
 scaffold_1	RepeatMasker	Unknown	3013822	3014088	1757	+	.	Tstart=1;Tend=266;ID=rnd-1_family-497	4992
 scaffold_1	RepeatMasker	Unknown	3014089	3014151	X	+	.	Tstart=139;Tend=209;ID=rnd-5_family-1000	4993
@@ -3663,6 +3838,7 @@ scaffold_1	RepeatMasker	Unknown	3033114	3033168	368	-	.	Tstart=2;Tend=56;ID=rnd-
 scaffold_1	RepeatMasker	DNA/hAT-hAT6	3033212	3033397	1235	+	.	Tstart=1;Tend=156;ID=rnd-1_family-582	5030
 scaffold_1	RepeatMasker	DNA	3036272	3036437	990	-	.	Tstart=100;Tend=263;ID=rnd-6_family-2240	5031
 scaffold_1	RepeatMasker	DNA	3037102	3037461	2354	-	.	Tstart=2;Tend=377;ID=rnd-1_family-218	5032
+scaffold_1	RepeatMasker	Simple_repeat	3038004	3038072	15	+	.	Tstart=1;Tend=69;ID=(ACA)n	5033
 scaffold_1	RepeatMasker	DNA/Crypton-H	3043882	3044042	231	-	.	Tstart=5;Tend=164;ID=rnd-2_family-7	5034
 scaffold_1	RepeatMasker	DNA	3047525	3047902	2862	-	.	Tstart=1;Tend=377;ID=rnd-1_family-218	5036
 scaffold_1	RepeatMasker	Unknown	3047963	3048106	590	+	.	Tstart=35;Tend=182;ID=rnd-1_family-1014	5037
@@ -3698,9 +3874,11 @@ scaffold_1	RepeatMasker	DNA/PIF-Harbinger	3063567	3064295	5921	-	.	Tstart=1;Tend
 scaffold_1	RepeatMasker	DNA	3064296	3064407	614	+	.	Tstart=54;Tend=166;ID=rnd-6_family-1404	5073
 scaffold_1	RepeatMasker	LINE/Rex-Babar	3064481	3065623	1167	+	.	Tstart=1;Tend=1082;ID=rnd-1_family-507	5074
 scaffold_1	RepeatMasker	LINE/Rex-Babar	3065663	3065856	805	+	.	Tstart=14;Tend=219;ID=rnd-5_family-86	5075
+scaffold_1	RepeatMasker	Simple_repeat	3065897	3066027	152	+	.	Tstart=1;Tend=131;ID=(TAT)n	5076
 scaffold_1	RepeatMasker	Unknown	3066986	3067047	X	+	.	Tstart=46;Tend=243;ID=rnd-5_family-3099	5078
 scaffold_1	RepeatMasker	Unknown	3067048	3067216	1087	-	.	Tstart=163;Tend=347;ID=rnd-5_family-3099	5079
 scaffold_1	RepeatMasker	Unknown	3069271	3069353	279	-	.	Tstart=219;Tend=301;ID=rnd-5_family-870	5080
+scaffold_1	RepeatMasker	Simple_repeat	3072111	3072163	12	+	.	Tstart=1;Tend=50;ID=(TTA)n	5081
 scaffold_1	RepeatMasker	Unknown	3072208	3072522	517	-	.	Tstart=158;Tend=429;ID=rnd-5_family-628;TEgroup=scaffold_1|rnd-5_family-628|1	5082
 scaffold_1	RepeatMasker	DNA	3073969	3074054	468	+	.	Tstart=254;Tend=339;ID=rnd-6_family-525	5083
 scaffold_1	RepeatMasker	DNA/hAT-Blackjack	3076113	3076433	2008	+	.	Tstart=1;Tend=368;ID=rnd-1_family-120	5086
@@ -3708,6 +3886,7 @@ scaffold_1	RepeatMasker	DNA/hAT-hAT5	3076810	3076986	300	+	.	Tstart=60;Tend=258;
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	3077175	3077232	292	+	.	Tstart=253;Tend=311;ID=rnd-5_family-3704	5088
 scaffold_1	RepeatMasker	DNA	3077491	3077597	602	-	.	Tstart=65;Tend=171;ID=rnd-1_family-774	5089
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	3081376	3081460	571	+	.	Tstart=2;Tend=89;ID=rnd-1_family-445	5090
+scaffold_1	RepeatMasker	Low_complexity	3081774	3081843	14	+	.	Tstart=1;Tend=72;ID=A-rich	5091
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	3083308	3083407	311	-	.	Tstart=2;Tend=102;ID=rnd-6_family-2857	5092
 scaffold_1	RepeatMasker	DNA/TcMar-Tigger	3084114	3084225	361	-	.	Tstart=5;Tend=116;ID=rnd-4_family-1279	5093
 scaffold_1	RepeatMasker	Unknown	3085025	3085082	364	+	.	Tstart=17;Tend=75;ID=rnd-1_family-1109	5097
@@ -3774,6 +3953,7 @@ scaffold_1	RepeatMasker	Satellite	3112560	3112627	399	-	.	Tstart=1;Tend=68;ID=rn
 scaffold_1	RepeatMasker	Satellite	3112823	3112889	521	-	.	Tstart=1;Tend=67;ID=rnd-1_family-1041	5169
 scaffold_1	RepeatMasker	Unknown	3113788	3115016	10746	-	.	Tstart=3836;Tend=5065;ID=rnd-1_family-6	5170
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3116874	3116953	395	+	.	Tstart=1;Tend=76;ID=rnd-1_family-41	5171
+scaffold_1	RepeatMasker	Simple_repeat	3116954	3117469	357	+	.	Tstart=1;Tend=516;ID=(GATA)n	5172
 scaffold_1	RepeatMasker	Unknown	3117884	3118067	677	-	.	Tstart=1;Tend=177;ID=rnd-5_family-123	5173
 scaffold_1	RepeatMasker	DNA/hAT-hAT5	3120109	3120178	325	+	.	Tstart=81;Tend=145;ID=rnd-4_family-689	5175
 scaffold_1	RepeatMasker	DNA	3120179	3120430	627	-	.	Tstart=1;Tend=303;ID=rnd-1_family-172	5176
@@ -3784,6 +3964,7 @@ scaffold_1	RepeatMasker	DNA/hAT-Tip100	3128147	3128292	759	+	.	Tstart=9;Tend=161
 scaffold_1	RepeatMasker	Satellite	3128832	3128958	272	+	.	Tstart=808;Tend=938;ID=rnd-4_family-453	5183
 scaffold_1	RepeatMasker	DNA/TcMar-Pogo	3131392	3131456	324	-	.	Tstart=2;Tend=68;ID=rnd-1_family-1161	5185
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	3131604	3131665	437	+	.	Tstart=92;Tend=153;ID=rnd-3_family-255	5186
+scaffold_1	RepeatMasker	Simple_repeat	3131930	3131982	12	+	.	Tstart=1;Tend=51;ID=(AATATAA)n	5187
 scaffold_1	RepeatMasker	DNA/hAT-Tip100	3136970	3137139	894	+	.	Tstart=9;Tend=172;ID=rnd-5_family-1442	5188
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3138987	3139180	632	+	.	Tstart=1;Tend=181;ID=rnd-5_family-4314	5191
 scaffold_1	RepeatMasker	DNA	3139725	3139837	464	+	.	Tstart=1;Tend=112;ID=rnd-5_family-79	5192
@@ -3796,11 +3977,13 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	3144034	3144086	241	-	.	Tstart=161;Tend=2
 scaffold_1	RepeatMasker	LTR/Copia	3144433	3144618	905	+	.	Tstart=96;Tend=314;ID=rnd-1_family-490	5201
 scaffold_1	RepeatMasker	DNA	3144628	3144832	686	-	.	Tstart=3;Tend=211;ID=rnd-5_family-1576	5202
 scaffold_1	RepeatMasker	RC/Helitron	3145458	3145549	279	-	.	Tstart=117;Tend=206;ID=rnd-4_family-52	5203
+scaffold_1	RepeatMasker	Simple_repeat	3148231	3148512	141	+	.	Tstart=1;Tend=283;ID=(ATC)n	5205
 scaffold_1	RepeatMasker	SINE/tRNA-V	3148995	3149165	506	+	.	Tstart=141;Tend=335;ID=rnd-1_family-115	5206
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3149909	3150026	548	+	.	Tstart=4;Tend=190;ID=rnd-5_family-3456	5207
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3150392	3150630	1399	+	.	Tstart=1;Tend=251;ID=rnd-3_family-1253	5208
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3152131	3152314	434	-	.	Tstart=39;Tend=217;ID=rnd-5_family-3	5210
 scaffold_1	RepeatMasker	DNA/MULE-MuDR	3152896	3153650	439	-	.	Tstart=13;Tend=561;ID=rnd-6_family-1165	5213
+scaffold_1	RepeatMasker	Simple_repeat	3154652	3154704	28	+	.	Tstart=1;Tend=51;ID=(ATC)n	5214
 scaffold_1	RepeatMasker	LTR/Gypsy	3154709	3154794	251	-	.	Tstart=163;Tend=245;ID=rnd-6_family-953	5215
 scaffold_1	RepeatMasker	DNA	3154873	3155054	1454	-	.	Tstart=1;Tend=182;ID=rnd-1_family-502	5216
 scaffold_1	RepeatMasker	DNA	3155080	3155176	609	-	.	Tstart=2;Tend=84;ID=rnd-1_family-486	5217
@@ -3814,6 +3997,10 @@ scaffold_1	RepeatMasker	LINE/Penelope	3159594	3159779	1263	+	.	Tstart=30;Tend=21
 scaffold_1	RepeatMasker	LINE/Penelope	3159780	3159835	X	-	.	Tstart=84;Tend=212;ID=rnd-4_family-205	5229
 scaffold_1	RepeatMasker	DNA/PIF-Harbinger	3161463	3161612	525	+	.	Tstart=22;Tend=183;ID=rnd-5_family-1154	5230
 scaffold_1	RepeatMasker	DNA	3161653	3162048	2436	+	.	Tstart=540;Tend=962;ID=rnd-6_family-369	5231
+scaffold_1	RepeatMasker	Simple_repeat	3166551	3166612	19	+	.	Tstart=1;Tend=58;ID=(CGTTGT)n	5234
+scaffold_1	RepeatMasker	Low_complexity	3171840	3171905	15	+	.	Tstart=1;Tend=65;ID=A-rich	5236
+scaffold_1	RepeatMasker	Low_complexity	3173557	3173622	15	+	.	Tstart=1;Tend=65;ID=A-rich	5237
+scaffold_1	RepeatMasker	Simple_repeat	3174705	3174758	14	+	.	Tstart=1;Tend=55;ID=(TATAA)n	5238
 scaffold_1	RepeatMasker	Unknown	3176076	3176165	729	-	.	Tstart=1;Tend=90;ID=rnd-1_family-763	5241
 scaffold_1	RepeatMasker	Unknown	3176177	3176235	X	-	.	Tstart=1;Tend=71;ID=rnd-1_family-854	5242
 scaffold_1	RepeatMasker	Unknown	3176236	3176324	515	-	.	Tstart=17;Tend=98;ID=rnd-1_family-680	5243
@@ -3844,6 +4031,7 @@ scaffold_1	RepeatMasker	DNA/Kolobok-T2	3220467	3220597	675	-	.	Tstart=13;Tend=13
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3220631	3220991	1390	+	.	Tstart=1;Tend=684;ID=rnd-5_family-4508;TEgroup=scaffold_1|rnd-5_family-4508|1	5286
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3221029	3221489	3074	-	.	Tstart=26;Tend=477;ID=rnd-5_family-4508	5288
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3221538	3221653	695	+	.	Tstart=1;Tend=135;ID=rnd-1_family-1229	5289
+scaffold_1	RepeatMasker	Simple_repeat	3222536	3222589	22	+	.	Tstart=1;Tend=53;ID=(AAC)n	5290
 scaffold_1	RepeatMasker	Unknown	3227295	3227544	622	-	.	Tstart=53;Tend=289;ID=rnd-4_family-478	5291
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3227776	3227857	306	+	.	Tstart=17;Tend=106;ID=rnd-2_family-13	5292
 scaffold_1	RepeatMasker	DNA/CMC-EnSpm	3228326	3228460	263	-	.	Tstart=76;Tend=200;ID=rnd-4_family-31	5293
@@ -3852,6 +4040,7 @@ scaffold_1	RepeatMasker	Unknown	3232931	3233101	993	-	.	Tstart=33;Tend=194;ID=rn
 scaffold_1	RepeatMasker	DNA	3233109	3233287	1391	-	.	Tstart=1;Tend=179;ID=rnd-1_family-238	5297
 scaffold_1	RepeatMasker	Unknown	3233288	3233345	425	-	.	Tstart=1;Tend=68;ID=rnd-1_family-517	5298
 scaffold_1	RepeatMasker	DNA/Kolobok-T2	3233476	3233632	372	+	.	Tstart=76;Tend=221;ID=rnd-5_family-882	5300
+scaffold_1	RepeatMasker	Simple_repeat	3233662	3233714	62	+	.	Tstart=1;Tend=53;ID=(TA)n	5301
 scaffold_1	RepeatMasker	DNA/MULE-MuDR	3254301	3254680	2814	+	.	Tstart=123;Tend=491;ID=rnd-5_family-225	5302
 scaffold_1	RepeatMasker	DNA	3254686	3254769	382	+	.	Tstart=159;Tend=241;ID=rnd-1_family-91	5303
 scaffold_1	RepeatMasker	DNA	3254777	3254992	1393	+	.	Tstart=140;Tend=350;ID=rnd-1_family-91	5304

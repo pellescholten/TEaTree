@@ -1,10 +1,188 @@
 import sys
 import re
 
-def rcstat(rclabelp,rmergep,outfile,ltrgroup=True):
+def freqalign(infile, labelfile, mergefile, outfileclass, outfilefamily):
 
-	rlabel =  rclabelp
-	rmerge = rmergep
+	# print track
+	stdout = sys.stdout
+
+
+	# Read rlabel
+	# Stat variables
+
+	famsin = {}
+	classificationin = {}
+
+	with open(infile,"r") as fi:
+		for i in range(3):
+			next(fi)
+		for line in fi:
+			col = line.rstrip().split()
+			if famsin.get(col[9]):
+				famsin[col[9]] += 1
+			else:
+				famsin[col[9]] = 1
+
+			if classificationin.get(col[10]):
+				classificationin[col[10]] += 1
+			else:
+				classificationin[col[10]] = 1
+
+
+	famslabel = {}
+	classificationlabel = {}
+
+	with open(labelfile,"r") as fm:
+		for line in fm:
+			if line.startswith("#"):
+				continue
+			col = line.rstrip().split("\t")
+
+			fam = col[8].split(";")[2].split("=")[1]
+			if famslabel.get(fam):
+				famslabel[fam] += 1
+			else:
+				famslabel[fam] = 1
+
+			if classificationlabel.get(col[2]):
+				classificationlabel[col[2]] += 1
+			else:
+				classificationlabel[col[2]] = 1
+
+	famsmerge = {}
+	classificationmerge = {}
+
+	with open(mergefile,"r") as fm:
+		for line in fm:
+			if line.startswith("#"):
+				continue
+			col = line.rstrip().split("\t")
+
+			fam = col[8].split(";")[2].split("=")[1]
+			if famsmerge.get(fam):
+				famsmerge[fam] += 1
+			else:
+				famsmerge[fam] = 1
+
+			if classificationmerge.get(col[2]):
+				classificationmerge[col[2]] += 1
+			else:
+				classificationmerge[col[2]] = 1
+
+	for k in list(classificationin.keys()):
+		if not classificationlabel.get(k):
+			classificationlabel[k] = 0
+		if not classificationmerge.get(k):
+			classificationmerge[k] = 0
+
+	for k in list(famsin.keys()):
+		if not famslabel.get(k):
+			famslabel[k] = 0
+		if not famsmerge.get(k):
+			famsmerge[k] = 0
+
+	classificationin["total"] = sum(classificationin.values())
+	classificationlabel["total"] = sum(classificationlabel.values())
+	classificationmerge["total"] = sum(classificationmerge.values())
+
+	sys.stdout = open(outfileclass, 'w')
+	print("#Number of repeats by class before overlap resolving, before merge and after merge")
+	print("#=============================================================")
+	print(*["#repeat class","no. before overlap resolving","no. before merge","no. after merge"], sep="\t")
+	for c in list(classificationin.keys()):
+		print(*[c,classificationin[c],classificationlabel[c],classificationmerge[c]],sep="\t")
+
+	sys.stdout.close()
+
+	sys.stdout = open(outfilefamily, 'w')
+	print("#Number of repeats by family before and after merge")
+	print("#=============================================================")
+	print(*["#repeat family","no. before overlap resolving","no. before merge","no. after merge"], sep="\t")
+	for c in list(famsin.keys()):
+		print(*[c,famsin[c],famslabel[c],famsmerge[c]],sep="\t")
+
+	sys.stdout.close()
+	sys.stdout = stdout
+
+def freqcontent(infile, bedfile, outfileclass, outfilefamily):
+
+	# print track
+	stdout = sys.stdout
+
+	# Read rlabel
+	# Stat variables
+
+	famsin = {}
+	classificationin = {}
+
+	with open(infile,"r") as fi:
+		for i in range(3):
+			next(fi)
+		for line in fi:
+			col = line.rstrip().split()
+			if famsin.get(col[9]):
+				famsin[col[9]] += 1
+			else:
+				famsin[col[9]] = 1
+
+			if classificationin.get(col[10]):
+				classificationin[col[10]] += 1
+			else:
+				classificationin[col[10]] = 1
+
+	famsbed = {}
+	classificationbed = {}
+
+	with open(bedfile,"r") as fm:
+		for line in fm:
+			if line.startswith("#"):
+				continue
+			col = line.rstrip().split("\t")
+
+			info = col[3]
+			info_fam = info.split(".")[1]
+			info_class = info.split(".")[2]
+			if famsbed.get(info_fam):
+				famsbed[info_fam] += 1
+			else:
+				famsbed[info_fam] = 1
+
+			if classificationbed.get(info_class):
+				classificationbed[info_class] += 1
+			else:
+				classificationbed[info_class] = 1
+
+
+	for k in list(classificationin.keys()):
+		if not classificationbed.get(k):
+			classificationbed[k] = 0
+
+	for k in list(famsin.keys()):
+		if not famsbed.get(k):
+			famsbed[k] = 0
+
+	classificationin["total"] = sum(classificationin.values())
+	classificationbed["total"] = sum(classificationbed.values())
+
+	sys.stdout = open(outfileclass, 'w')
+	print("#Number of repeats by class before overlap resolving, before merge and after merge")
+	print("#=============================================================")
+	print(*["#repeat class","no. before overlap resolving","no. after overlap resolving"], sep="\t")
+	for c in list(classificationin.keys()):
+		print(*[c,classificationin[c],classificationbed[c]],sep="\t")
+	
+	sys.stdout.close()
+	sys.stdout = open(outfilefamily, 'w')
+	print("#Number of repeats by family before and after overlap resolving")
+	print("#=============================================================")
+	print(*["#repeat class","no. before overlap resolving","no. after overlap resolving"], sep="\t")
+	for c in list(famsin.keys()):
+		print(*[c,famsin[c],famsbed[c]],sep="\t")
+
+	sys.stdout.close()
+	sys.stdout = stdout
+
+def bpcontent(infile, bedfile, outfile):
 
 	# print track
 	stdout = sys.stdout
@@ -12,112 +190,59 @@ def rcstat(rclabelp,rmergep,outfile,ltrgroup=True):
 
 	# Read rlabel
 	# Stat variables
-	telabel = 0
-	ltrlabel = 0
-	teltrlabel = 0
-	teD = {}
-	ltrD ={}
-	teltrD = {}
 
-	rowRaw = {}
-	rowMerge = {}
+	#famsin = {}
+	classificationin = {}
 
-	# flag
-	teflag = False
-	ltrflag = False
+	with open(infile,"r") as fi:
+		for i in range(3):
+			next(fi)
+		for line in fi:
+			col = line.rstrip().split()
 
-	with open(rlabel,"r") as f:
-		for line in f:
+			if classificationin.get(col[10]):
+				classificationin[col[10]] += int(col[6]) - int(col[5]) + 1
+			else:
+				classificationin[col[10]] = int(col[6]) - int(col[5]) + 1
+
+	#famsbed = {}
+	classificationbed = {}
+
+	with open(bedfile,"r") as fm:
+		for line in fm:
 			if line.startswith("#"):
 				continue
 			col = line.rstrip().split("\t")
 
-			'''
-			# Extract attribute
-			cattrD = {}
-			cattr = col[8].split(";")
-			for i in cattr:
-				k, v = i.split("=")
-				cattrD[k] = v
-			'''
+			info = col[3]
+			#info_fam = info.split(".")[1]
+			info_class = info.split(".")[2]
+			#if famsbed.get(info_fam):
+		#		famsbed[info_fam] += 1
+			#else:
+			#	famsbed[info_fam] = 1
 
-			if rowRaw.get(col[2]):
-				rowRaw[col[2]] += 1
+			if classificationbed.get(info_class):
+				classificationbed[info_class] += int(col[2]) - int(col[1])
 			else:
-				rowRaw[col[2]] = 1
+				classificationbed[info_class] = int(col[2]) - int(col[1])
 
-			if re.search("TEgroup=",col[8]):
-				teflag = True
-				telabel += 1
 
-				if teD.get(col[2]):
-					teD[col[2]] += 1
-				else:
-					teD[col[2]] = 1
+	for k in list(classificationin.keys()):
+		if not classificationbed.get(k):
+			classificationbed[k] = 0
 
-			if re.search("LTRgroup=",col[8]):
-				ltrflag = True
-				ltrlabel += 1
+	classificationin["total"] = sum(classificationin.values())
+	classificationbed["total"] = sum(classificationbed.values())
 
-				if ltrD.get(col[2]):
-					ltrD[col[2]] += 1
-				else:
-					ltrD[col[2]] = 1
 
-			if teflag and ltrflag:
-				teltrlabel += 1
-				if teltrD.get(col[2]):
-					teltrD[col[2]] += 1
-				else:
-					teltrD[col[2]] = 1
+	#for k in list(famsin.keys()):
+	#	if not famsbed.get(k):
+	#		famsbed[k] = 0
 
-			teflag = False
-			ltrflag = False
-
-	# Read rmerge
-	# Check number of row of header
-	cnt = 0
-	with open(rmerge, "r") as f:
-		for line in f:
-			cnt += 1
-			if not line.startswith("#"):
-				cnt -= 1
-				break
-
-	with open(rmerge,"r") as f:
-		for i in range(cnt):
-			next(f)
-		for line in f:
-			col = line.rstrip().split("\t")
-
-			if rowMerge.get(col[2]):
-				rowMerge[col[2]] += 1
-			else:
-				rowMerge[col[2]] = 1
-
-	print("#1. Number of repeats (by class) before and after merge")
-	print("=============================================================")
-	print(*["repeat class","no. before merge","no. after merge"], sep="\t")
-	for c in list(rowRaw.keys()):
-		print(*[c,rowRaw[c],rowMerge[c]],sep="\t")
-	print("\n")
-	print("#2. Number of repeats (by class) merged by TEgroup and LTRgroup")
-	print("=============================================================")
-	for c in list(teD.keys()):
-		if ltrgroup:
-			if re.search("LTR",c):
-				try:
-					print(*[c,teD[c],ltrD[c]],sep="\t")
-				except:
-					print(*[c,teD[c],""],sep="\t")
-			else:
-				print(*[c,teD[c],""],sep="\t")
-		else:
-			print(*[c, teD[c], ""], sep="\t")
+	for c in list(classificationbed.keys()):
+		print(*[c,classificationin[c],classificationbed[c]],sep="\t")
 
 	sys.stdout.close()
 	sys.stdout = stdout
-
-
-
 

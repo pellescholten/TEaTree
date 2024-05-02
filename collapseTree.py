@@ -8,7 +8,7 @@ License: see LICENSE file
 '''
 
 import os,sys,gzip,datetime,collections,argparse,errno
-import fuseTE, mergeTE
+import fuseTE, mergeTE, rcStatm
 import subprocess
 
 version='2021/12/03'
@@ -37,7 +37,7 @@ parser.add_argument('-i', metavar='str', type=str, help='Specify input genome.fa
 parser.add_argument('-o', metavar='str', type=str, help='Specify output basename. [basename].gtf.gz and [basename].bed.gz will be generated.', required=True)
 parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
 parser.add_argument('-min', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
-parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_false')
+parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_true')
 parser.add_argument('-mode', help='Optional. Specify if you want to generate out files for TE content extraction (TEcontent) or for concensus alignment (alignment). Default = TEcontent', type=str, default = 'TEcontent')
 parser.add_argument("-mergemode",
                     help="Merge mode. Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = both",
@@ -54,12 +54,16 @@ obed='%s.bed' % args.o
 ogff='%s.gff' % args.o
 olabel='%s.label.gff' % args.o
 omerge='%s.merged.gff' % args.o
+frequencyfilealignclass ='%s.freqs.alignment.class.tsv' % args.o
+frequencyfilealignfamily ='%s.freqs.alignment.family.tsv' % args.o
+frequencyfilecontentclass ='%s.freqs.TEcontent.class.tsv' % args.o
+frequencyfilecontentfamily ='%s.freqs.TEcontent.family.tsv' % args.o
+contentfile='%s.content.tsv' % args.o
 gap=0
 gapsize= args.gapsize
 level = args.lvl / 100
 threshold = args.min
 annots=('gene', 'transcript', 'exon')
-remove_simple_low_complex={'Simple_repeat', 'Low_complexity'}
 remove = args.remove
 mode = args.mode
 if mode == "alignment": 
@@ -74,8 +78,11 @@ if mergemode != "ID" and mergemode != "threshold" and mergemode != "both":
     sys.stderr.write("\rMerge mode for alignment is not recognised, default mode of 'both' ID and threshold is used\n")
 
 
-if args.remove_simple_repeat is False:
+if args.remove_simple_repeat is True:
+    remove_simple_low_complex={'Simple_repeat', 'Low_complexity'}
+else:
     remove_simple_low_complex={}
+
 _date=datetime.datetime.now()
 
 # check input and output
@@ -641,6 +648,12 @@ if args.testrun is False:
         #adjusted from repeatcraft
         fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
         mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
+
+    if alignment:
+        rcStatm.freqalign(args.i, olabel, omerge, frequencyfilealignclass, frequencyfilealignfamily)
+    else:
+        rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily)
+        rcStatm.bpcontent(args.i, obed, contentfile)
 
 else:
     # for debug
