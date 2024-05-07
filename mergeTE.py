@@ -46,8 +46,6 @@ def extratruemergete(gffp,outfile,remove, threshold):
 
 			lastchrom = col[0]
 
-			if remove and int(col[4]) - int(col[3]) < threshold:
-				continue
 
 			# Extract attribute
 			cattrD = {}
@@ -86,6 +84,8 @@ def extratruemergete(gffp,outfile,remove, threshold):
 					d[tchrom][tfamily][tnumber]["strand"] = col[6]
 
 			else:
+				if remove and int(col[4]) - int(col[3]) < threshold:
+					continue
 				print(*col,sep="\t") # if no tag just print it
 
 		# print group in last chrom
