@@ -19,7 +19,7 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily):
 		for line in fi:
 			col = line.rstrip().split()
 
-			if col[9] == "Simple_repeat" or col[9] == "Low_complexity":
+			if col[10] == "Simple_repeat" or col[10] == "Low_complexity":
 				continue
 			if famsin.get(col[9]):
 				famsin[col[9]] += 1
