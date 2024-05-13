@@ -40,8 +40,8 @@ parser.add_argument('-min', metavar='int', type=int, help='Optional. Specify min
 parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_true')
 parser.add_argument('-mode', help='Optional. Specify if you want to generate out files for TE content extraction (TEcontent) or for concensus alignment (alignment). Default = TEcontent', type=str, default = 'TEcontent')
 parser.add_argument("-mergemode",
-                    help="Merge mode. Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = both",
-                    default="both", type=str)
+                    help="Merge mode. Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
+                    default="none", type=str)
 parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
 parser.add_argument('-famlength', help='Optional. Specify family length file for relative removal', default="none", type=str)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
@@ -59,6 +59,9 @@ ofilter='%s.filter.gff' % args.o
 
 if args.famlength != "none":
     lengthfile = args.famlength
+    checklength = True
+else:
+    checklength = False
 
 frequencyfilealignclass ='%s.freqs.alignment.class.tsv' % args.o
 frequencyfilealignfamily ='%s.freqs.alignment.family.tsv' % args.o
@@ -79,9 +82,10 @@ else:
     if mode != "TEcontent":
         sys.stderr.write("\Mode is not recognised, default mode of for TE content is used.\nIf you want to have out files for concensus alignment, please specify \'-mode alignment\'\n")
 mergemode = args.mergemode
-if mergemode != "ID" and mergemode != "threshold" and mergemode != "both":
-    mergemode="both"
-    sys.stderr.write("\rMerge mode for alignment is not recognised, default mode of 'both' ID and threshold is used\n")
+if mergemode == "none": # and mergemode != "threshold" and mergemode != "both":
+    tomerge=False
+else:
+    tomerge=True
 
 
 if args.remove_simple_repeat is True:
@@ -653,11 +657,14 @@ if args.testrun is False:
     if alignment == True:
         #adjusted from repeatcraft
         fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
-        filter.filterlength(olabel,ofilter,lengthfile)
-        #mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
+        if checklength == True:
+            filter.filterlength(olabel,ofilter,lengthfile)
+        
+        if tomerge == True:
+            mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
 
     if alignment:
-        rcStatm.freqalign(args.i, ofilter, frequencyfilealignclass, frequencyfilealignfamily)
+        rcStatm.freqalign(args.i, olabel, frequencyfilealignclass, frequencyfilealignfamily)
     else:
         rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily)
         rcStatm.bpcontent(args.i, obed, contentfile)

@@ -4,7 +4,7 @@ import subprocess
 from collections import defaultdict
 nested_dict = lambda: defaultdict(nested_dict)
 
-def filterlength(gffp,outfile,lengthfile,remove,threshold):
+def filterlength(gffp,outfile,lengthfile):
 
 
 	gff = gffp
