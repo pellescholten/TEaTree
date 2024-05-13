@@ -664,7 +664,7 @@ if args.testrun is False:
         #    mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
 
     if alignment:
-        rcStatm.freqalign(args.i, olabel, frequencyfilealignclass, frequencyfilealignfamily)
+        rcStatm.freqalign(args.i, ofilter, frequencyfilealignclass, frequencyfilealignfamily)
     else:
         rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily)
         rcStatm.bpcontent(args.i, obed, contentfile)
