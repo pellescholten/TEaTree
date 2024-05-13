@@ -36,8 +36,8 @@ def filterlength(gffp,outfile,lengthfile):
 		for line in f:
 			if line.startswith("#"):
 				continue
-			col = line.rstrip().split("\t")
 
+			col = line.rstrip().split("\t")
 			classification = col[2]
 			fam = col[8].split(";")[-1].split("=")[1]
 			LTR = classification.split('/')[0] == "LTR"
@@ -45,11 +45,11 @@ def filterlength(gffp,outfile,lengthfile):
 
 			if fam[-2:0] == ")n":
 				continue
-		
+
 			minlength = lengths[fam]
 
 			if size > minlength and not LTR:
-				print(line)
+				print(line, sep="\t",end="")
 				
 	sys.stdout.close()
 	sys.stdout = stdout
