@@ -24,7 +24,7 @@ def filterlength(gffp,outfile,lengthfile):
 			if len(parts) == 2:
 				fam_info, fam_length = parts
 				fam_name = fam_info.split('#')[0]
-				fam_threshold = int(fam_length * 0.3)
+				fam_threshold = int(int(fam_length) * 0.3)
 				lengths[fam_name] = fam_threshold
 
 	
