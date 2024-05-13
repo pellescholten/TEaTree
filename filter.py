@@ -13,7 +13,7 @@ def filterlength(gffp,outfile,lengthfile):
 
 	# print track
 	stdout = sys.stdout
-	#sys.stdout = open(out, 'w')
+	sys.stdout = open(out, 'w')
 
 	sys.stderr.write("\rMerging fragmented elements (for alignment)...\n")
 

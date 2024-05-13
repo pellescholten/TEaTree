@@ -60,6 +60,7 @@ ofilter='%s.filter.gff' % args.o
 if args.famlength != "none":
     lengthfile = args.famlength
     checklength = True
+    print("checklength = true")
 else:
     checklength = False
 
@@ -658,10 +659,10 @@ if args.testrun is False:
         #adjusted from repeatcraft
         #fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
         if checklength == True:
-            filter.filterlength(ogff,ofilter,lengthfile)
+            filter.filterlength(olabel,ofilter,lengthfile)
         
-        if tomerge == True:
-            mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
+        #if tomerge == True:
+        #    mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
 
     if alignment:
         rcStatm.freqalign(args.i, olabel, frequencyfilealignclass, frequencyfilealignfamily)
