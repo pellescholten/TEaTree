@@ -43,7 +43,9 @@ def filterlength(gffp,outfile,lengthfile):
 			LTR = classification.split('/')[0] == "LTR"
 			size = int(col[4]) - int(col[3])
 
-			print(fam)
+			if fam[-2:0] == ")n":
+				continue
+		
 			minlength = lengths[fam]
 
 			if size > minlength and not LTR:
