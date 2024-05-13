@@ -23,7 +23,7 @@ def filterlength(gffp,outfile,lengthfile):
 			parts = line.strip().split('\t')
 			if len(parts) == 2:
 				fam_info, fam_length = parts
-				fam_name = fam_info.split('#')[0].split("=")[1]
+				fam_name = fam_info.split('#')[0]
 				fam_threshold = int(int(fam_length) * 0.3)
 				lengths[fam_name] = fam_threshold
 
@@ -38,13 +38,14 @@ def filterlength(gffp,outfile,lengthfile):
 				continue
 			col = line.rstrip().split("\t")
 
-			order = col[2]
-			fam = col[8].split(";")[-1]
-			LTR = fam.split('/')[0] == "LTR"
+			classification = col[2]
+			fam = col[8].split(";")[-1].split("=")[1]
+			LTR = classification.split('/')[0] == "LTR"
 			size = int(col[4]) - int(col[3])
 
+			print(fam)
 			minlength = lengths[fam]
-			breakpoint()
+
 			if size > minlength and not LTR:
 				print(line)
 				
