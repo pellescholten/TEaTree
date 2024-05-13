@@ -8,7 +8,7 @@ License: see LICENSE file
 '''
 
 import os,sys,gzip,datetime,collections,argparse,errno
-import fuseTE, mergeTE, rcStatm
+import fuseTE, mergeTE, rcStatm, filter
 import subprocess
 
 version='2021/12/03'
@@ -43,6 +43,7 @@ parser.add_argument("-mergemode",
                     help="Merge mode. Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = both",
                     default="both", type=str)
 parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
+parser.add_argument('-famlength', help='Optional. Specify family length file for relative removal', default="none", type=str)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
 parser.add_argument('-quiet', help='Optional. Specify if you do not want to output processing status.', action='store_true')
 parser.add_argument('-v', '--version', action='version', version='Version: %s %s' % (os.path.basename(__file__), version))
@@ -54,6 +55,11 @@ obed='%s.bed' % args.o
 ogff='%s.gff' % args.o
 olabel='%s.label.gff' % args.o
 omerge='%s.merged.gff' % args.o
+ofilter='%s.filter.gff' % args.o
+
+if args.famlength != "none":
+    lengthfile = args.famlength
+
 frequencyfilealignclass ='%s.freqs.alignment.class.tsv' % args.o
 frequencyfilealignfamily ='%s.freqs.alignment.family.tsv' % args.o
 frequencyfilecontentclass ='%s.freqs.TEcontent.class.tsv' % args.o
@@ -614,7 +620,7 @@ if args.testrun is False:
 
             # remove small framgents if specfied, only if alignment is not true
             # removal happens at the end of remove == True AND alignemnt == True
-            if remove == True and alignment == False and _rep[1] - _rep[0] < threshold:
+            if remove == True and _rep[1] - _rep[0] < threshold: #and alignment == False
                 continue
 
             # per chr
@@ -647,10 +653,11 @@ if args.testrun is False:
     if alignment == True:
         #adjusted from repeatcraft
         fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
-        mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
+        filter.filterlength(olabel,ofilter,lengthfile)
+        #mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
 
     if alignment:
-        rcStatm.freqalign(args.i, olabel, omerge, frequencyfilealignclass, frequencyfilealignfamily)
+        rcStatm.freqalign(args.i, ofilter, frequencyfilealignclass, frequencyfilealignfamily)
     else:
         rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily)
         rcStatm.bpcontent(args.i, obed, contentfile)

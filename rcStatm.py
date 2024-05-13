@@ -1,7 +1,7 @@
 import sys
 import re
 
-def freqalign(infile, labelfile, mergefile, outfileclass, outfilefamily):
+def freqalign(infile, labelfile, outfileclass, outfilefamily):
 
 	# print track
 	stdout = sys.stdout
@@ -49,57 +49,35 @@ def freqalign(infile, labelfile, mergefile, outfileclass, outfilefamily):
 			else:
 				classificationlabel[col[2]] = 1
 
-	famsmerge = {}
-	classificationmerge = {}
 
-	with open(mergefile,"r") as fm:
-		for line in fm:
-			if line.startswith("#"):
-				continue
-			col = line.rstrip().split("\t")
-
-			fam = col[8].split(";")[2].split("=")[1]
-			if famsmerge.get(fam):
-				famsmerge[fam] += 1
-			else:
-				famsmerge[fam] = 1
-
-			if classificationmerge.get(col[2]):
-				classificationmerge[col[2]] += 1
-			else:
-				classificationmerge[col[2]] = 1
 
 	for k in list(classificationin.keys()):
 		if not classificationlabel.get(k):
 			classificationlabel[k] = 0
-		if not classificationmerge.get(k):
-			classificationmerge[k] = 0
 
 	for k in list(famsin.keys()):
 		if not famslabel.get(k):
 			famslabel[k] = 0
-		if not famsmerge.get(k):
-			famsmerge[k] = 0
+
 
 	classificationin["total"] = sum(classificationin.values())
 	classificationlabel["total"] = sum(classificationlabel.values())
-	classificationmerge["total"] = sum(classificationmerge.values())
 
 	sys.stdout = open(outfileclass, 'w')
-	print("#Number of repeats by class before overlap resolving, before merge and after merge")
+	print("#Number of repeats by class before and after overlap resolving and filtering")
 	print("#=============================================================")
-	print(*["#repeat class","no. before overlap resolving","no. before merge","no. after merge"], sep="\t")
+	print(*["#repeat class","no. before overlap resolving","no. after"], sep="\t")
 	for c in list(classificationin.keys()):
-		print(*[c,classificationin[c],classificationlabel[c],classificationmerge[c]],sep="\t")
+		print(*[c,classificationin[c],classificationlabel[c]],sep="\t")
 
 	sys.stdout.close()
 
 	sys.stdout = open(outfilefamily, 'w')
-	print("#Number of repeats by family before and after merge")
+	print("#Number of repeats by family before and after overlap resolving and filtering")
 	print("#=============================================================")
-	print(*["#repeat family","no. before overlap resolving","no. before merge","no. after merge"], sep="\t")
+	print(*["#repeat family","no. before overlap resolving","no. before merge"], sep="\t")
 	for c in list(famsin.keys()):
-		print(*[c,famsin[c],famslabel[c],famsmerge[c]],sep="\t")
+		print(*[c,famsin[c],famslabel[c]],sep="\t")
 
 	sys.stdout.close()
 	sys.stdout = stdout
@@ -165,7 +143,7 @@ def freqcontent(infile, bedfile, outfileclass, outfilefamily):
 	classificationbed["total"] = sum(classificationbed.values())
 
 	sys.stdout = open(outfileclass, 'w')
-	print("#Number of repeats by class before overlap resolving, before merge and after merge")
+	print("#Number of repeats by class before overlap and after resolving")
 	print("#=============================================================")
 	print(*["#repeat class","no. before overlap resolving","no. after overlap resolving"], sep="\t")
 	for c in list(classificationin.keys()):
@@ -230,6 +208,7 @@ def bpcontent(infile, bedfile, outfile):
 
 	for k in list(classificationin.keys()):
 		if not classificationbed.get(k):
+			breakpoint()
 			classificationbed[k] = 0
 
 	classificationin["total"] = sum(classificationin.values())
