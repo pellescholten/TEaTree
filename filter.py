@@ -39,7 +39,12 @@ def filterlength(gffp,outfile,lengthfile):
 
 			col = line.rstrip().split("\t")
 			classification = col[2]
-			fam = col[8].split(";")[-1].split("=")[1].split("|")[1]
+			tempfam = col[8].split(";")[-1].split("=")[1].split("|")
+			
+			if len(tempfam) > 1:
+				fam = tempfam[1]
+			else:
+				fam = tempfam[0]
 			LTR = classification.split('/')[0] == "LTR"
 			size = int(col[4]) - int(col[3])
 
