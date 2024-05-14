@@ -212,7 +212,6 @@ def bpcontent(infile, bedfile, outfile):
 
 	for k in list(classificationin.keys()):
 		if not classificationbed.get(k):
-			breakpoint()
 			classificationbed[k] = 0
 
 	classificationin["total"] = sum(classificationin.values())
