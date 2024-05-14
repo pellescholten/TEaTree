@@ -68,7 +68,7 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily):
 	classificationlabel["total"] = sum(classificationlabel.values())
 
 	sys.stdout = open(outfileclass, 'w')
-	print("#Number of repeats by class before and after overlap resolving and filtering")
+	print("#Number of repeats by class before and after curation")
 	print("#=============================================================")
 	print(*["#repeat class","no. before overlap resolving","no. after"], sep="\t")
 	for c in list(classificationin.keys()):
@@ -77,7 +77,7 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily):
 	sys.stdout.close()
 
 	sys.stdout = open(outfilefamily, 'w')
-	print("#Number of repeats by family before and after overlap resolving and filtering")
+	print("#Number of repeats by family before and after curation")
 	print("#=============================================================")
 	print(*["#repeat family","no. before overlap resolving","no. before merge"], sep="\t")
 	for c in list(famsin.keys()):
@@ -149,15 +149,15 @@ def freqcontent(infile, bedfile, outfileclass, outfilefamily):
 	sys.stdout = open(outfileclass, 'w')
 	print("#Number of repeats by class before overlap and after resolving")
 	print("#=============================================================")
-	print(*["#repeat class","no. before overlap resolving","no. after overlap resolving"], sep="\t")
+	print(*["#repeat class","no. before curation","no. after curation"], sep="\t")
 	for c in list(classificationin.keys()):
 		print(*[c,classificationin[c],classificationbed[c]],sep="\t")
 	
 	sys.stdout.close()
 	sys.stdout = open(outfilefamily, 'w')
-	print("#Number of repeats by family before and after overlap resolving")
+	print("#Number of repeats by family before and after curation")
 	print("#=============================================================")
-	print(*["#repeat class","no. before overlap resolving","no. after overlap resolving"], sep="\t")
+	print(*["#repeat class","no. before curation","no. after curation"], sep="\t")
 	for c in list(famsin.keys()):
 		print(*[c,famsin[c],famsbed[c]],sep="\t")
 

@@ -657,16 +657,22 @@ if args.testrun is False:
     if alignment == True:
         #adjusted from repeatcraft
         
-
-        if checklength == True:
-            filter.filterlength(ogff,ofilter,lengthfile)
         
         if tomerge == True:
             fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
             mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
 
-    if alignment:
-        rcStatm.freqalign(args.i, ofilter, frequencyfilealignclass, frequencyfilealignfamily)
+            if checklength == True:
+                filter.filterlength(omerge,ofilter,lengthfile)
+
+        elif checklength == True:
+            filter.filterlength(ogff,ofilter,lengthfile)
+
+        if checklength:
+            rcStatm.freqalign(args.i, ofilter, frequencyfilealignclass, frequencyfilealignfamily)
+        else:
+            rcStatm.freqalign(args.i, omerge, frequencyfilealignclass, frequencyfilealignfamily)
+
     else:
         rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily)
         rcStatm.bpcontent(args.i, obed, contentfile)
