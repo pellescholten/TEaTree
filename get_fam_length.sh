@@ -1,11 +1,6 @@
 #!/bin/bash
 
 # Check for the input file
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <fasta_file>"
-    exit 1
-fi
-
 fasta_file=$1
 output_file=$2".tsv"
 
