@@ -48,7 +48,7 @@ def filterlength(gffp,outfile,lengthfile):
 
 			minlength = lengths[fam]
 
-			if size > minlength and not LTR:
+			if size > minlength or LTR:
 				print(line, sep="\t",end="")
 				
 	sys.stdout.close()
