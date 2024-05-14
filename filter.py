@@ -15,7 +15,7 @@ def filterlength(gffp,outfile,lengthfile):
 	stdout = sys.stdout
 	sys.stdout = open(out, 'w')
 
-	sys.stderr.write("\rMerging fragmented elements (for alignment)...\n")
+	sys.stderr.write("\rfiltering alignments based on concensus length (for alignment)...\n")
 
 	lengths = {}
 	with open(lengthfile, 'r') as file:
@@ -48,7 +48,7 @@ def filterlength(gffp,outfile,lengthfile):
 			LTR = classification.split('/')[0] == "LTR"
 			size = int(col[4]) - int(col[3])
 
-			if fam[-2:0] == ")n":
+			if fam[0] == "(":
 				continue
 
 			minlength = lengths[fam]
