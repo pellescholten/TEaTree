@@ -656,11 +656,13 @@ if args.testrun is False:
 
     if alignment == True:
         #adjusted from repeatcraft
-        fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
+        
+
         if checklength == True:
             filter.filterlength(ogff,ofilter,lengthfile)
         
         if tomerge == True:
+            fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
             mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
 
     if alignment:
