@@ -12,6 +12,7 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily):
 
 	famsin = {}
 	classificationin = {}
+	famtoclass = {}
 
 	with open(infile,"r") as fi:
 		for i in range(3):
@@ -31,9 +32,13 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily):
 			else:
 				classificationin[col[10]] = 1
 
+			if not famtoclass.get(col[9]):
+				famtoclass[col[9]] = col[10]
+
 
 	famslabel = {}
 	classificationlabel = {}
+	
 
 	with open(labelfile,"r") as fm:
 		for line in fm:
@@ -52,6 +57,7 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily):
 				classificationlabel[col[2]] += 1
 			else:
 				classificationlabel[col[2]] = 1
+
 
 
 
@@ -79,9 +85,9 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily):
 	sys.stdout = open(outfilefamily, 'w')
 	print("#Number of repeats by family before and after curation")
 	print("#=============================================================")
-	print(*["#repeat family","no. before overlap resolving","no. before merge"], sep="\t")
+	print(*["#repeat family","class","no. before overlap resolving","no. after"], sep="\t")
 	for c in list(famsin.keys()):
-		print(*[c,famsin[c],famslabel[c]],sep="\t")
+		print(*[c,famtoclass[c],famsin[c],famslabel[c]],sep="\t")
 
 	sys.stdout.close()
 	sys.stdout = stdout
@@ -96,6 +102,7 @@ def freqcontent(infile, bedfile, outfileclass, outfilefamily):
 
 	famsin = {}
 	classificationin = {}
+	famtoclass = {}
 
 	with open(infile,"r") as fi:
 		for i in range(3):
@@ -111,6 +118,10 @@ def freqcontent(infile, bedfile, outfileclass, outfilefamily):
 				classificationin[col[10]] += 1
 			else:
 				classificationin[col[10]] = 1
+
+			if not famtoclass.get(col[9]):
+				famtoclass[col[9]] = col[10]
+
 
 	famsbed = {}
 	classificationbed = {}
@@ -157,9 +168,9 @@ def freqcontent(infile, bedfile, outfileclass, outfilefamily):
 	sys.stdout = open(outfilefamily, 'w')
 	print("#Number of repeats by family before and after curation")
 	print("#=============================================================")
-	print(*["#repeat class","no. before curation","no. after curation"], sep="\t")
+	print(*["#repeat fam","class","no. before curation","no. after curation"], sep="\t")
 	for c in list(famsin.keys()):
-		print(*[c,famsin[c],famsbed[c]],sep="\t")
+		print(*[c,famtoclass[c],famsin[c],famsbed[c]],sep="\t")
 
 	sys.stdout.close()
 	sys.stdout = stdout
