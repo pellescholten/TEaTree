@@ -43,6 +43,7 @@ parser.add_argument("-mergemode",
                     help="Merge mode. Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
                     default="none", type=str)
 parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
+parser.add_argument('-aligninput', help='Optional. Call if .align file input is used', action='store_true')
 parser.add_argument('-famlength', help='Optional. Specify family length file for relative removal', default="none", type=str)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
 parser.add_argument('-quiet', help='Optional. Specify if you do not want to output processing status.', action='store_true')
@@ -75,6 +76,7 @@ threshold = args.min
 annots=('gene', 'transcript', 'exon')
 remove = args.remove
 mode = args.mode
+aligninput=args.aligninput
 if mode == "alignment": 
     alignment = True
 else:
@@ -526,7 +528,11 @@ def parse_line(ls):
     strand=ls[8]
     if strand == 'C':
         strand='-'
-    repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
+    if aligninput:
+        repname='%s.%s.%s' % (ls[9], ls[10], ls[15])
+    else:
+        repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
+        
     concensus_columns = [ls[11], ls[12], ls[13]]
     try:
         concensus_columns[0] = int(concensus_columns[0])
