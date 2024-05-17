@@ -50,6 +50,7 @@ def filterlength(gffp,outfile,lengthfile):
 
 			longLTR = LTR and size > 250
 
+			# get rid of simple repeats etc.
 			if fam[0] == "(":
 				continue
 

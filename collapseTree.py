@@ -507,12 +507,8 @@ def collapse(tmp, chr, gft_id_n):
             gft_id='RM_%s.%s' % (gft_id_n, rep_name)
             #output for repeatcraft
             ID = gft_id.split(".")
-            if _rep in tmp:
-                # unchanged sequence, so SW has not changed
-                score = _rep.score
-            else:
-                # sequence has been shortened etc. SW score is no longer correct
-                score = "X"
+    
+            score = _rep.score
 
             info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+";ID="+ID[1]
             l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
