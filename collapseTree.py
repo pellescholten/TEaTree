@@ -529,7 +529,7 @@ def parse_line(ls):
     if strand == 'C':
         strand='-'
     if aligninput:
-        repname='%s.%s.%s' % (ls[9], ls[10], ls[15], ls[14])
+        repname='%s.%s.%s.%s' % (ls[9], ls[10], ls[15], ls[14])
     else:
         repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
         
