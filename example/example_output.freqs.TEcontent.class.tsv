@@ -1,0 +1,8 @@
+#Number of repeats by class before overlap and after resolving
+#=============================================================
+#repeat class	no. before curation	no. after curation
+DNA	4	1
+DNA/MITE	4	2
+LTR	1	0
+LINE	1	1
+total	10	4

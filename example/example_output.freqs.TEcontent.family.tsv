@@ -1,0 +1,13 @@
+#Number of repeats by family before and after curation
+#=============================================================
+#repeat fam	class	no. before curation	no. after curation
+EDTA_TE_00000373_inc	DNA	1	0
+EDTA_TE_00001656_inc	DNA/MITE	1	1
+EDTA_TE_00000050_inc	DNA/MITE	1	0
+EDTA_TE_00000296_inc	DNA/MITE	1	0
+EDTA_TE_00000964_inc	DNA	1	0
+EDTA_TE_00000582_inc	DNA/MITE	1	1
+RM2_rnd-1_family-17_unconfirmed	DNA	1	0
+RM2_rnd-5_family-5653_unconfirmed	DNA	1	1
+RM2_rnd-5_family-1504_s_2	LTR	1	0
+RM2_rnd-1_family-10	LINE	1	1

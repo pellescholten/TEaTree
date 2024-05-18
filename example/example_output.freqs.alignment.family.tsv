@@ -122,7 +122,7 @@ rnd-5_family-687	DNA	6	2
 rnd-1_family-505	DNA	4	3
 rnd-5_family-2245	DNA	2	0
 rnd-6_family-154	DNA	7	5
-rnd-4_family-435	Unknown	9	5
+rnd-4_family-435	Unknown	9	7
 rnd-5_family-864	DNA/hAT-Tip100	9	4
 rnd-5_family-508	Unknown	5	4
 rnd-5_family-1389	DNA	5	2
@@ -288,7 +288,7 @@ rnd-1_family-364	DNA	6	6
 rnd-1_family-717	DNA/Ginger	1	1
 rnd-5_family-948	DNA/Ginger	1	1
 rnd-1_family-1111	Satellite	1	1
-rnd-1_family-1027	SINE/tRNA-Deu	1	0
+rnd-1_family-1027	SINE/tRNA-Deu	1	1
 rnd-1_family-648	DNA/Ginger	1	1
 rnd-1_family-504	DNA	4	4
 rnd-6_family-3397	DNA/PIF-Harbinger	5	4
@@ -758,7 +758,7 @@ rnd-1_family-485	DNA/Crypton-A	1	1
 rnd-1_family-1234	DNA/hAT-hAT1	2	2
 rnd-1_family-819	DNA/hAT-hAT1	2	2
 rnd-5_family-2088	Unknown	2	2
-rnd-1_family-319	Unknown	4	3
+rnd-1_family-319	Unknown	4	4
 rnd-1_family-715	Unknown	2	2
 rnd-6_family-5239	Unknown	5	3
 rnd-5_family-3811	Unknown	11	4
@@ -816,7 +816,7 @@ rnd-4_family-1448	DNA	2	1
 rnd-5_family-5582	DNA	2	1
 rnd-1_family-1240	Unknown	2	2
 rnd-5_family-189	Unknown	1	1
-rnd-1_family-421	Unknown	1	0
+rnd-1_family-421	Unknown	1	1
 rnd-1_family-573	Unknown	3	3
 rnd-1_family-262	DNA/PiggyBac	1	1
 rnd-5_family-2880	Unknown	1	1

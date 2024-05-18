@@ -4,7 +4,7 @@
 DNA/Academ	4	2
 DNA	1449	921
 LTR/Gypsy	56	39
-Unknown	1104	514
+Unknown	1104	518
 LTR/Ngaro	9	8
 LINE/RTE-X	12	9
 RC/Helitron	313	190
@@ -29,7 +29,7 @@ SINE/tRNA-Deu-L2	30	14
 SINE?	2	0
 LINE/Rex-Babar	12	9
 Satellite	63	23
-SINE/tRNA-Deu	45	23
+SINE/tRNA-Deu	45	24
 snRNA	1	1
 DNA/TcMar-Pogo	25	12
 DNA/Academ-1	31	22
@@ -61,4 +61,4 @@ DNA/MULE-NOF	3	1
 DNA/Crypton	2	0
 SINE/tRNA-Rex	1	0
 DNA/CMC-Chapaev	1	1
-total	4947	3076
+total	4947	3081

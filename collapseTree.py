@@ -82,7 +82,7 @@ if mode == "alignment":
 else:
     alignment = False
     if mode != "TEcontent":
-        sys.stderr.write("\Mode is not recognised, default mode of for TE content is used.\nIf you want to have out files for concensus alignment, please specify \'-mode alignment\'\n")
+        sys.stderr.write("Mode is not recognised, default mode of for TE content is used.\nIf you want to have out files for concensus alignment, please specify \'-mode alignment\'\n")
 mergemode = args.mergemode
 if mergemode == "none": # and mergemode != "threshold" and mergemode != "both":
     tomerge=False
@@ -149,6 +149,7 @@ class IntervalNode:
 
     def insert(self, start, end, score, info, concensus_info):
         root=self
+
 
         # Check whether there are overlaps of more than 80 (or other value determined in command line) percent shared sequence
         # If sequence is shared over the threshold than remove the sequence with lower score 
@@ -225,13 +226,13 @@ class IntervalNode:
         # max end of all nodes in a branch, to know whether a segment is contained in a branch
         if root.right and root.left:
             root.maxend=max(root.end, root.right.maxend, root.left.maxend)
-            root.minstart=min(root.end, root.right.minstart, root.left.minstart)
+            root.minstart=min(root.start, root.right.minstart, root.left.minstart)
         elif root.right:
             root.maxend=max(root.end, root.right.maxend)
-            root.minstart=min(root.end, root.right.minstart)
+            root.minstart=min(root.start, root.right.minstart)
         elif root.left:
             root.maxend=max(root.end, root.left.maxend)
-            root.minstart=min(root.end, root.left.minstart)
+            root.minstart=min(root.start, root.left.minstart)
         return root
     
     def rotateright(self):
@@ -240,13 +241,13 @@ class IntervalNode:
         root.right=self
         if self.right and self.left:
             self.maxend=max(self.end, self.right.maxend, self.left.maxend)
-            self.minstart=min(self.end, self.right.minstart, self.left.minstart)
+            self.minstart=min(self.start, self.right.minstart, self.left.minstart)
         elif self.right:
             self.maxend=min(self.end, self.right.maxend)
-            self.minstart=min(self.end, self.right.minstart)
+            self.minstart=min(self.start, self.right.minstart)
         elif self.left:
             self.maxend=max(self.end, self.left.maxend)
-            self.minstart=min(self.end, self.left.minstart)
+            self.minstart=min(self.start, self.left.minstart)
         return root
 
     def rotateleft(self):
@@ -262,13 +263,13 @@ class IntervalNode:
 
         if self.right and self.left:
             self.maxend=max(self.end, self.right.maxend, self.left.maxend)
-            self.minstart=min(self.end, self.right.minstart, self.left.minstart)
+            self.minstart=min(self.start, self.right.minstart, self.left.minstart)
         elif self.right:
             self.maxend=max(self.end, self.right.maxend)
-            self.minstart=min(self.end, self.right.minstart)
+            self.minstart=min(self.start, self.right.minstart)
         elif self.left:
             self.maxend=max(self.end, self.left.maxend)
-            self.minstart=min(self.end, self.left.minstart)
+            self.minstart=min(self.start, self.left.minstart)
         return root
     
     def find_top_score(self, start, end):
@@ -484,13 +485,15 @@ def collapse(tmp, chr, gft_id_n):
                 result=result[0]
             else:
                 result=sorted(result)[-1]  # if fragment is contained in multiple nodes
- 
+
+  
             #add outcome of fragment to results
             results.append(Rep(*se, *result))
         
         connected = connect_and_reassign(results,tmp, tree)
 
         # remerge elements that got fragmented by a chimer
+
         if alignment == True:
             connected = remerge(connected, tmp)
 
@@ -513,7 +516,11 @@ def collapse(tmp, chr, gft_id_n):
             score = _rep.score
 
             info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+";ID="+ID[1]
-            l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3]), str(ID[4])]
+
+            if aligninput:
+                l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3]), str(ID[4])]
+            else: 
+                l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
             lines.append('\t'.join(l) +'\n')
 
     gft_id_n += 1
