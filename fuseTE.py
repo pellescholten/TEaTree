@@ -59,7 +59,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 
 		
 
-			if d[col[0]][cattrD["ID"]]:  # not the first of this family on this chrom
+			if d[col[0]][cattrD["ID"]] or d[col[0]][cattrD["ID"]]["lastcol"][9] == col[9]:  # not the first of this family on this chrom
 				#print("not first family") # debug
 
 				#if col[0] != d[col[0]][cattrD["ID"]]["lastcol"][0] # new chromosome, maybe unecessary
