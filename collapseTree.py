@@ -513,7 +513,7 @@ def collapse(tmp, chr, gft_id_n):
             score = _rep.score
 
             info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+";ID="+ID[1]
-            l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
+            l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3]), str(ID[4])]
             lines.append('\t'.join(l) +'\n')
 
     gft_id_n += 1
@@ -529,7 +529,7 @@ def parse_line(ls):
     if strand == 'C':
         strand='-'
     if aligninput:
-        repname='%s.%s.%s' % (ls[9], ls[10], ls[15])
+        repname='%s.%s.%s' % (ls[9], ls[10], ls[15], ls[14])
     else:
         repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
         
