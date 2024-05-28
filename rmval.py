@@ -22,8 +22,8 @@ def removefrags(gffp,threshold,outfile):
 				continue
 			col = line.rstrip().split("\t")
 
-		if int(col[4]) - int(col[3]) >= threshold:
-			print(*col,sep="\t")
+			if int(col[4]) - int(col[3]) >= threshold:
+				print(*col,sep="\t")
 
 	sys.stdout.close()
 	sys.stderr.write("\n")
