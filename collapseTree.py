@@ -424,7 +424,7 @@ def connect_and_reassign(results,tmp,tree):
                 else:
                     unresolved = []
                   
-            # if succesfull, add fragment with new info to results & repeat
+            # if succesful, add fragment with new info to results & repeat
 
             connected.append(Rep(*result))
 
@@ -492,7 +492,7 @@ def collapse(tmp, chr, gft_id_n):
         
         connected = connect_and_reassign(results,tmp, tree)
 
-        # remerge elements that got fragmented by a chimer
+        # remerge elements that got fragmented
 
         if alignment == True:
             connected = remerge(connected, tmp)

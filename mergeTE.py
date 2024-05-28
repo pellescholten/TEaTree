@@ -84,6 +84,7 @@ def extratruemergete(gffp,outfile,remove, threshold):
 					d[tchrom][tfamily][tnumber]["strand"] = col[6]
 
 			else:
+				# remove if tooooo short and removal is on
 				if remove and int(col[4]) - int(col[3]) < threshold:
 					continue
 				print(*col,sep="\t") # if no tag just print it

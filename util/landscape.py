@@ -42,7 +42,7 @@ with open(output_file, 'w', newline='') as csvfile:
     writer.writeheader()
     for key, subdict in sorted_data.items():
         for subkey, value in subdict.items():
-            divided_value = value / gsize
+            divided_value = value / gsize * 100
             writer.writerow({'Kimura': key, 'SuperFamily': subkey, 'BasePairs': value, 'Percentage of Genome': divided_value})
 
 

@@ -48,7 +48,7 @@ Same information as the bed file but in different format and where overlapping c
 - `.label.gff`  
 The `.gff` but with labels for groups that will be merged.
 - `.merged.gff`  
-The `.gff` but defragmented.
+The `.gff` but defragmented/merged.
   
 ### Options that affect output results
 - `-remove_simple_repeat`  
