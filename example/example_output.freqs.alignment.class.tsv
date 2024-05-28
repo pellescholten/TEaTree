@@ -2,22 +2,22 @@
 #=============================================================
 #repeat class	no. before overlap resolving	no. after
 DNA/Academ	4	2
-DNA	1449	921
+DNA	1449	923
 LTR/Gypsy	56	39
-Unknown	1104	518
+Unknown	1104	513
 LTR/Ngaro	9	8
 LINE/RTE-X	12	9
-RC/Helitron	313	190
+RC/Helitron	313	196
 LTR/DIRS	3	3
-DNA/hAT-Tip100	201	142
-DNA/PIF-Harbinger	306	208
+DNA/hAT-Tip100	201	143
+DNA/PIF-Harbinger	306	207
 DNA/Kolobok-T2	386	287
 DNA/hAT-Ac	1	1
 DNA/TcMar-Tc2	141	108
 LINE/L2	35	25
 DNA/PiggyBac	63	46
 DNA/hAT	20	13
-LINE/Penelope	108	69
+LINE/Penelope	108	67
 LINE/I-Jockey	6	5
 DNA/MULE-MuDR	30	16
 DNA/Sola-3	17	4
@@ -37,9 +37,9 @@ DNA/hAT-Blackjack	31	24
 DNA/hAT-hAT1	8	6
 DNA/Ginger	4	4
 LINE/CRE	1	1
-DNA/Crypton-H	23	11
+DNA/Crypton-H	23	12
 DNA/MULE-F	7	3
-DNA/CMC-EnSpm	32	22
+DNA/CMC-EnSpm	32	23
 LTR/Copia	12	10
 SINE/tRNA-V	16	9
 LINE/CR1	25	20
@@ -61,4 +61,4 @@ DNA/MULE-NOF	3	1
 DNA/Crypton	2	0
 SINE/tRNA-Rex	1	0
 DNA/CMC-Chapaev	1	1
-total	4947	3081
+total	4947	3085
