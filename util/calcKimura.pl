@@ -175,7 +175,7 @@ my $class = $nameinfo[1];
 my $outname = "summary.$naem.tsv";
 
 open(my $outfile, '>', $outname) or die "Could not open file '$outname' $!";    
-print $outfile "sequence\torder\tk80adjust\ttrans\ttransv\tdefBases\tnumCpGs\tinsert\tdelet\talignLength\n";
+print $outfile "sequence\torder\tk80adjust\ttrans\ttransv\tdefBases\tnumCpGs\tinsert\tdelet\talignLength\tfam\tidentifier(s)\n";
 
 my @files = glob("*.aln");
 if (@files == 0) {
@@ -190,14 +190,17 @@ foreach my $file (@files) {
 
     my ($concencussequence, $querysequence) = ("", "");
     my $current_sequence = 1;
-
+    my $identifiers = '';
     # Read the input file
     while (my $line = <$fh>) {
         chomp $line;
         if ($line =~ /^>/) {
             # If the line starts with ">", it's a header line
             # If it's not the first header line, switch to the second sequence
-            if ($current_sequence == 1 && $concencussequence) {
+            if ($line =~ /\)\s*(.*)/) {
+                $identifiers = $1; # Capture the identifiers
+            }
+	    if ($current_sequence == 1 && $concencussequence) {
                 $current_sequence = 2;
                 next;
             }
@@ -212,7 +215,7 @@ foreach my $file (@files) {
     }
 
     my ( $div, $transi, $transv, $wellCharBases, $numCpGs , $insertions, $deletions, $alignmentlength) = calcKimuraDivergence($concencussequence, $querysequence);
-    print $outfile "$file\t$class\t$div\t$transi\t$transv\t$wellCharBases\t$numCpGs\t$insertions\t$deletions\t$alignmentlength\n";
+    print $outfile "$file\t$class\t$div\t$transi\t$transv\t$wellCharBases\t$numCpGs\t$insertions\t$deletions\t$alignmentlength\t$naem\t$identifiers\n";
     close($fh);
 
 }

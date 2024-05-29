@@ -108,7 +108,6 @@ if '/' in outdir:
 
 log_file = open("errors.log","w")
 
-
 class IntervalTree:
     def __init__(self):
         self.root=None
