@@ -14,7 +14,9 @@ The script `collapseTree.py` will remove overlapping repeat annotations based on
 
 https://raw.githubusercontent.com/pellescholten/collapseTree/main/tree.mp4
 
-[![Watch the video](https://raw.githubusercontent.com/pellescholten/collapseTree/main/tree.jpg)](https://raw.githubusercontent.com/pellescholten/collapseTree/main/tree.mp4)
+
+https://github.com/pellescholten/collapseTree/assets/126644559/95a6deda-2d1e-4e01-9b27-e1ca52053804
+
   
 The two flags below are required. Please specify an input `.fa.out` file with the `-i` flag, and an output file basename with the `-o` flag.
   
