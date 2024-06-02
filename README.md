@@ -1,7 +1,7 @@
 # Welcome to collapse Tree
 
 ### About
-The script `collapseTree.py` collapses TE annotations from RepeatMasker (i.e. genome.fa.out file). The TE annotations from RepeatMasker are frequently overlap each other. If so, when counting NGS reads mapping to TEs, reads mapping to two or more TE annotations may not be counted. In such case, it is preferable to use non-overlapping TE annotations. 
+The script `collapseTree.py` collapses TE annotations from RepeatMasker (i.e. genome.fa.out or genome.fa.align file). The TE annotations from RepeatMasker are frequently overlap each other. If so, when counting NGS reads mapping to TEs, reads mapping to two or more TE annotations may not be counted. In such case, it is preferable to use non-overlapping TE annotations. 
   
 ### Requirement
 - Python 3.6 or later.
@@ -20,7 +20,9 @@ GRCm38.p6.genome.fa \
 -pa 8
 ```
   
-The script `collapseTree.py` will remove overlapping repeat annotations based on bit score.
+The script `collapseTree.py` will remove overlapping repeat annotations based on the smith watermann score.
+
+[![Watch the video](https://raw.githubusercontent.com/pellescholten/collapseTree/tree.jpg)](https://raw.githubusercontent.com/pellescholten/collapseTree/tree.mp4)
   
 The two flags below are required. Please specify an input `.fa.out` file with the `-i` flag, and an output file basename with the `-o` flag.
   
