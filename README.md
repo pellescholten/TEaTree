@@ -12,6 +12,8 @@ If you do not have `genome.fa.out`, you need to generate it by RepeatMasker.
 
 The script `collapseTree.py` will remove overlapping repeat annotations based on the smith watermann score.
 
+https://raw.githubusercontent.com/pellescholten/collapseTree/main/tree.mp4
+
 [![Watch the video](https://raw.githubusercontent.com/pellescholten/collapseTree/main/tree.jpg)](https://raw.githubusercontent.com/pellescholten/collapseTree/main/tree.mp4)
   
 The two flags below are required. Please specify an input `.fa.out` file with the `-i` flag, and an output file basename with the `-o` flag.
