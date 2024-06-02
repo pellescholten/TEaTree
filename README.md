@@ -90,15 +90,8 @@ python collapseTree.py \
 -threshold 300
 ```
 - `-remove` (default = False)  
-Specify this option if you want to remove short fragments. Note that this will work differently for normal mode and alignment mode. In the normal mode for TE content, short fragments are removed at the very start so are also not considered in overlap. In the alignment mode, short fragments are removed at the very end so they can still be used for defragmentation. This may lead to slightly different overlap resolving. e.g.:
-```
-Removal after (for alignment)
-200  ———        fix overlap     —>      ———     remove bottom fragment      —>      ——— remove short fragments  —> 0
-100  ——————                     —>      ---———  that has become too short   —>      0                           —> 0
-Removal before (for TE content)
-200 ———         remove short fragments  —>  0        
-100 ——————                              —>  ——————
-```
+Specify this option if you want to remove short fragments. 
+
 ```
 python collapseTree.py \
 -i example/example_input.out \
