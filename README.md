@@ -10,10 +10,7 @@ The script `collapseTree.py` collapses TE annotations from RepeatMasker (i.e. ge
 ### How to use
 If you do not have `genome.fa.out`, you need to generate it by RepeatMasker.
 
-The script `collapseTree.py` will remove overlapping repeat annotations based on the smith watermann score.
-
-https://raw.githubusercontent.com/pellescholten/collapseTree/main/tree.mp4
-
+The script `collapseTree.py` will remove overlapping repeat annotations based on the smith watermann score (see video).
 
 https://github.com/pellescholten/collapseTree/assets/126644559/95a6deda-2d1e-4e01-9b27-e1ca52053804
 
