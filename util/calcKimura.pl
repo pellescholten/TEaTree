@@ -215,6 +215,7 @@ foreach my $file (@files) {
     }
 
     my ( $div, $transi, $transv, $wellCharBases, $numCpGs , $insertions, $deletions, $alignmentlength) = calcKimuraDivergence($concencussequence, $querysequence);
+    
     print $outfile "$file\t$class\t$div\t$transi\t$transv\t$wellCharBases\t$numCpGs\t$insertions\t$deletions\t$alignmentlength\t$naem\t$identifiers\n";
     close($fh);
 

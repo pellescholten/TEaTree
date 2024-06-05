@@ -633,7 +633,7 @@ if args.testrun is False:
 
             # remove small framgents if specfied, only if alignment is not true
             # removal happens at the end of remove == True AND alignemnt == True
-            if remove == True and _rep[1] - _rep[0] < threshold and alignment == False:
+            if remove == True and _rep[1] - _rep[0] < threshold:# and alignment == False:
                 continue
 
             # per chr
@@ -674,8 +674,8 @@ if args.testrun is False:
             if checklength == True:
                 filter.filterlength(omerge,ofilter,lengthfile)
 
-            if remove == True:
-                rmval.removefrags(olabel, threshold, oremoved)
+            #if remove == True:
+            #    rmval.removefrags(olabel, threshold, oremoved)
 
 
         elif checklength == True:
