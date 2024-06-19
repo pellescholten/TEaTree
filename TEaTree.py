@@ -40,7 +40,7 @@ parser.add_argument('-min', metavar='int', type=int, help='Optional. Specify min
 parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_true')
 parser.add_argument('-mode', help='Optional. Specify if you want to generate out files for TE content extraction (TEcontent) or for concensus alignment (alignment). Default = TEcontent', type=str, default = 'TEcontent')
 parser.add_argument("-mergemode",
-                    help="Merge mode. Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
+                    help="Merge mode for defragmentation (if alignment mode is used). Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
                     default="none", type=str)
 parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
 parser.add_argument('-aligninput', help='Optional. Call if .align file input is used', action='store_true')
