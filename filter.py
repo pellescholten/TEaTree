@@ -48,7 +48,7 @@ def filterlength(gffp,outfile,lengthfile):
 			LTR = classification.split('/')[0] == "LTR"
 			size = int(col[4]) - int(col[3])
 
-			longLTR = LTR and size > 250
+			longLTR = LTR and size > 150
 
 			# get rid of simple repeats etc.
 			if fam[0] == "(":
