@@ -1,4 +1,5 @@
 #!/bin/bash
+# Run on fasta input file of families to get their length
 
 # Check for the input file
 fasta_file=$1

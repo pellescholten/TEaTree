@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 '''
-Author: Shohei Kojima @ RIKEN
+Author: Pelle Scholten
 Usage: python %prog -i in.fa.out -o out
 Requirement: Python 3.6 or later
 License: see LICENSE file
@@ -15,19 +15,16 @@ version='2021/12/03'
 
 '''
 Version log:
-version='2021/09/20': first release
-version='2021/12/03': fixed a small bug for corner cases. Occasionally .fa.out contains strange lines without ID.
+version='2024/06/28': first release
 '''
 
 
-
 description='''
-    This script collapses TE annotations from RepeatMasker (i.e. genome.fa.out file).
-    The TE annotations from RepeatMasker are frequently overlap each other. If so, when counting
-    NGS reads mapping to TEs, reads mapping to two or more TE annotations may not be counted.
-    In such case, it is preferable to use non-overlapping TE annotations. This script makes
-    non-overlapping TE annotations by removing TEs with lower bit score. Processing of one file
-    (e.g. hg38, mm10) requires ~3 min and ~100 MB RAM. This script only uses single thread.
+    This script collapses TE annotations from RepeatMasker (i.e. genome.fa.out / genome.fa.align file).
+    The TE annotations from RepeatMasker frequently overlap each other. This scripts finds the most likely
+    TE annotation for every overlapping base and adjusts the annotations accordingly. This is done recursively 
+    and efficiently using a sorting tree algorithm. Optionally the annotations are further processed (merging, filtering).
+    This script only uses single thread.
     Requirement: Python 3.6 or later
 '''
 
@@ -616,7 +613,7 @@ if args.testrun is False:
             next(infile)
         for line in infile:
             ls=line.split()
-            # some fa.out contains strange lines without ID
+            # some fa.out contains strange lines without ID --> take previous ID
             if len(ls) == 15 and ls[-1] == '*':
                 ls=ls[:13]
                 ls.append(prev_id)
@@ -627,16 +624,16 @@ if args.testrun is False:
                 print("strange line found. Please check the format again:")
                 print(line, end='')
                 exit(1)
-            if ls[10] in remove_simple_low_complex:
+            if ls[10] in remove_simple_low_complex: # do not parse simple repeat or low complexity of specified
                 continue
             _rep=parse_line(ls)
 
-            # remove small framgents if specfied, only if alignment is not true
-            # removal happens at the end of remove == True AND alignemnt == True
-            if remove == True and _rep[1] - _rep[0] < threshold: #and alignment == False
-                continue
 
-            # per chr
+
+            # remove small fragments if specfied, only if alignment is not true
+            # removal happens at the end if remove == True AND alignment == True
+            if remove == True and _rep[1] - _rep[0] < threshold and alignment == False:
+                continue
 
             # add everything of one chromosome to reps
             # once a new chromosome is reached, process the previous chromosome reps
@@ -648,7 +645,7 @@ if args.testrun is False:
             else:
                 reps.append(_rep)
             prev_id=ls[-1]
-    gft_id_n=per_chr(reps, gft_id_n)
+    gft_id_n=per_chr(reps, gft_id_n) # process last chromosome 
     
 
     if alignment:
@@ -657,58 +654,59 @@ if args.testrun is False:
         outbed.close()
     log_file.close()
 
+
+    # Check if errors created in error file
     if os.path.getsize("errors.log") != 0:
         print('\nerrors occurred: check the errors.log file\n')
     else:
         os.remove("errors.log")
         print('\nDone resolving overlaps!\n')
 
-    if alignment == True:
-        #adjusted from repeatcraft
-        
-        
-        if tomerge == True:
+
+    # Process output
+    if alignment:
+
+        if tomerge: # MERGE!
             fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
-            mergeTE.extratruemergete(gffp=olabel,outfile=omerge,remove=remove, threshold=threshold)
-
-            if checklength == True:
-                filter.filterlength(omerge,ofilter,lengthfile)
-
-        elif checklength == True:
-            filter.filterlength(ogff,ofilter,lengthfile)
-
-        if checklength:
-            rcStatm.freqalign(args.i, ofilter, frequencyfilealignclass, frequencyfilealignfamily)
+            mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=threshold)
+            target_file = omerge
         else:
-            rcStatm.freqalign(args.i, omerge, frequencyfilealignclass, frequencyfilealignfamily)
+            target_file = ogff
 
-    else:
+        if checklength: # filter annotations based on concensus length covered
+            filter.filterlength(target_file, ofilter, lengthfile)
+
+        # summary stats
+        rcStatm.freqalign(args.i, ofilter if checklength else target_file, frequencyfilealignclass, frequencyfilealignfamily)
+
+    else: # summary stats only + bp content
         rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily)
         rcStatm.bpcontent(args.i, obed, contentfile)
 
-else:
+
+else: # REDUNDANT FOR ME
     # for debug
-    Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info'])
-    tree=IntervalTree()
-    tree.insert(100, 200, 150, ('+', 'LTR'))
-    tree.insert(110, 300, 20, ('-', 'SINE'))
-    tree.insert(120, 290, 100, ('-', 'LINE'))
-    tree.insert(280, 310, 60, ('+', 'DNA'))
-    poss=[100, 110, 120, 200, 280, 290, 300, 310]
-    results=[]
-    for n in range(len(poss) - 1):
-        se=poss[n:n + 2]
-        result=tree.find_top_score(*se)
-        if len(result) == 0:
-            continue
-        elif len(result) == 1:
-            result=result[0]
-        else:
-            result=sorted(result)[-1]
-        results.append(Rep(*se, *result))
-    for rep in results:
-        print(rep)
-    print()
-    final=connect(results)
-    for rep in final:
-        print(rep)
+        Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info'])
+        tree=IntervalTree()
+        tree.insert(100, 200, 150, ('+', 'LTR'))
+        tree.insert(110, 300, 20, ('-', 'SINE'))
+        tree.insert(120, 290, 100, ('-', 'LINE'))
+        tree.insert(280, 310, 60, ('+', 'DNA'))
+        poss=[100, 110, 120, 200, 280, 290, 300, 310]
+        results=[]
+        for n in range(len(poss) - 1):
+            se=poss[n:n + 2]
+            result=tree.find_top_score(*se)
+            if len(result) == 0:
+                continue
+            elif len(result) == 1:
+                result=result[0]
+            else:
+                result=sorted(result)[-1]
+            results.append(Rep(*se, *result))
+        for rep in results:
+            print(rep)
+        print()
+        final=connect(results)
+        for rep in final:
+            print(rep)
