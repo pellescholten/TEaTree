@@ -15,7 +15,7 @@ def filterlength(gffp,outfile,lengthfile):
 	stdout = sys.stdout
 	sys.stdout = open(out, 'w')
 
-	sys.stderr.write("\rfiltering alignments based on concensus length (for alignment)...\n")
+	sys.stderr.write("\rfiltering alignments based on consensus length (for alignment)...\n")
 
 	lengths = {}
 	with open(lengthfile, 'r') as file:

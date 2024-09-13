@@ -35,7 +35,7 @@ parser.add_argument('-o', metavar='str', type=str, help='Specify output basename
 parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
 parser.add_argument('-min', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
 parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_true')
-parser.add_argument('-mode', help='Optional. Specify if you want to generate out files for TE content extraction (TEcontent) or for concensus alignment (alignment). Default = TEcontent', type=str, default = 'TEcontent')
+parser.add_argument('-mode', help='Optional. Specify if you want to generate out files for TE content extraction (TEcontent) or for consensus alignment (alignment). Default = TEcontent', type=str, default = 'TEcontent')
 parser.add_argument("-mergemode",
                     help="Merge mode for defragmentation (if alignment mode is used). Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
                     default="none", type=str)
@@ -79,7 +79,7 @@ if mode == "alignment":
 else:
     alignment = False
     if mode != "TEcontent":
-        sys.stderr.write("Mode is not recognised, default mode of for TE content is used.\nIf you want to have out files for concensus alignment, please specify \'-mode alignment\'\n")
+        sys.stderr.write("Mode is not recognised, default mode of for TE content is used.\nIf you want to have out files for consensus alignment, please specify \'-mode alignment\'\n")
 mergemode = args.mergemode
 if mergemode == "none": # and mergemode != "threshold" and mergemode != "both":
     tomerge=False
@@ -109,11 +109,11 @@ class IntervalTree:
     def __init__(self):
         self.root=None
         
-    def insert(self, start, end, score, info, concensus_info):
+    def insert(self, start, end, score, info, consensus_info):
         if self.root is None:
-            self.root=IntervalNode(start, end, score, info, concensus_info)
+            self.root=IntervalNode(start, end, score, info, consensus_info)
         else:
-            self.root=self.root.insert(start, end, score, info, concensus_info)
+            self.root=self.root.insert(start, end, score, info, consensus_info)
     
     def find_top_score(self, start, end):
         return self.root.find_top_score(start, end)
@@ -123,28 +123,28 @@ class IntervalTree:
 
 
 class IntervalNode:
-    def __init__(self, start, end, score, info, concensus_info):
+    def __init__(self, start, end, score, info, consensus_info):
         self.start=start
         self.end=end
         self.score=score
         self.info=info
-        self.concensus_info=concensus_info
+        self.consensus_info=consensus_info
         self.maxend=self.end
         self.minstart=self.start
         self.left=None
         self.right=None
 
-    def replace_root(self,start,end,score,info, concensus_info):
+    def replace_root(self,start,end,score,info, consensus_info):
         # replace root and corresponding branches with new node
         # while deleting old root from tree
-        root = IntervalNode(start, end, score, info, concensus_info)
+        root = IntervalNode(start, end, score, info, consensus_info)
         if self.left:
             root.left = self.left
         if self.right:
             root.right = self.right
         return root
 
-    def insert(self, start, end, score, info, concensus_info):
+    def insert(self, start, end, score, info, consensus_info):
         root=self
 
 
@@ -158,7 +158,7 @@ class IntervalNode:
             # root:              ------------     SW = 500       -->  
             # new element:         ------------      SW = 1000   -->      ------------      SW = 1000   
             if overlap > level * (self.end - self.start) and self.score < score:
-                return self.replace_root(start,end,score,info,concensus_info)
+                return self.replace_root(start,end,score,info,consensus_info)
             
             # if new element (almost) contained in root and root is better --> delete and replace root
             # root:              ------------     SW = 1000     -->       ------------      SW = 1000
@@ -171,7 +171,7 @@ class IntervalNode:
             # new element:        --------------   SW = 1000     -->   ---------------   SW = 1000
             if (overlap > level * (end - start) or overlap > level * (self.end - self.start)) and self.score == score:
                 if end - start >= self.end - self.start:
-                    return self.replace_root(start,end,score,info, concensus_info)
+                    return self.replace_root(start,end,score,info, consensus_info)
                 else:
                     return root
 
@@ -187,7 +187,7 @@ class IntervalNode:
             # nesting:      --------------     SW = 500        -->
             # nested:        ---------         SW = 1000       -->   only NESTED remains         ---------        SW = 1000 
             elif (end - start)/(self.end - self.start) > level:
-                root = IntervalNode(start, end, score, info, concensus_info)
+                root = IntervalNode(start, end, score, info, consensus_info)
                 if self.left:
                     root.left = self.left
                 if self.right:
@@ -199,9 +199,9 @@ class IntervalNode:
         if start >= self.start:
             # insert to right tree
             if self.right: #if there is already a node the right of the root, repeat with that node
-                self.right=self.right.insert(start, end, score, info, concensus_info)
+                self.right=self.right.insert(start, end, score, info, consensus_info)
             else: # add node to the right
-                self.right=IntervalNode(start, end, score, info, concensus_info)
+                self.right=IntervalNode(start, end, score, info, consensus_info)
             # build heap
 
             # change root if score is higher
@@ -272,7 +272,7 @@ class IntervalNode:
     def find_top_score(self, start, end):
         # if segment is contained in current node
         if start < self.end and end > self.start:
-            return [(self.score, self.info, self.concensus_info)]
+            return [(self.score, self.info, self.consensus_info)]
         else:
         # look if segment is contained in node to the left or right (with a lower score)
         # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
@@ -303,19 +303,19 @@ class IntervalNode:
         # but only part of fragment that is contained by the current node
         if fragment.start < self.end and fragment.end > self.start:# and self.info in elements:
                 if fragment.end < self.end and fragment.start > self.start: #chimer
-                    return [(fragment.start, fragment.end, self.score, self.info, self.concensus_info)]
+                    return [(fragment.start, fragment.end, self.score, self.info, self.consensus_info)]
                 elif fragment.start > self.start: # non chimer where fragment more right than current node
                     if fragment.end - self.end > 0:
-                        unresolved_fragment =[(self.end, fragment.end, fragment.score, fragment.info, self.concensus_info, "unresolved")]
-                        return [(fragment.start, self.end, self.score, self.info, self.concensus_info)], unresolved_fragment
+                        unresolved_fragment =[(self.end, fragment.end, fragment.score, fragment.info, self.consensus_info, "unresolved")]
+                        return [(fragment.start, self.end, self.score, self.info, self.consensus_info)], unresolved_fragment
                     else:
-                        return [(fragment.start, self.end, self.score, self.info, self.concensus_info)]
+                        return [(fragment.start, self.end, self.score, self.info, self.consensus_info)]
                 else: # non chimer where fragment more left than current node
                     if fragment.start - self.start > 0:
-                        unresolved_fragment = [(fragment.start, self.start, fragment.score, fragment.info, self.concensus_info, "unresolved")]
-                        return [(self.start, fragment.end, self.score, self.info, self.concensus_info)], unresolved_fragment
+                        unresolved_fragment = [(fragment.start, self.start, fragment.score, fragment.info, self.consensus_info, "unresolved")]
+                        return [(self.start, fragment.end, self.score, self.info, self.consensus_info)], unresolved_fragment
                     else:
-                        return [(self.start, fragment.end, self.score, self.info, self.concensus_info)]
+                        return [(self.start, fragment.end, self.score, self.info, self.consensus_info)]
         else:
         # look if segment is contained in node to the left or right (with a lower score)
         # by looking at highest end value (maxend) and lowest start value (minstart) of the branches left and right respectively.
@@ -445,7 +445,7 @@ def remerge(connected, tmp):
         for j in range(i+1,len(connected)):
             if connected[i] not in tmp and connected[j] not in tmp: # do not deal with untouched chimers, they are fixed later
                 if connected[i].info == connected[j].info and connected[i].score == connected[j].score: # check information of elements
-                    connected[i] = Rep(connected[i].start, connected[j].end, connected[j].score, connected[j].info, connected[j].concensus_info)
+                    connected[i] = Rep(connected[i].start, connected[j].end, connected[j].score, connected[j].info, connected[j].consensus_info)
                     connected.remove(connected[j])
                     connected = remerge(connected,tmp)
                     break
@@ -487,7 +487,7 @@ def collapse(tmp, chr, gft_id_n):
             #add outcome of fragment to results
             results.append(Rep(*se, *result))
         
-        connected = connect_and_reassign(results,tmp, tree)
+        connected = connect_and_reassign(results,tmp,tree)
 
         # remerge elements that got fragmented
 
@@ -512,7 +512,7 @@ def collapse(tmp, chr, gft_id_n):
     
             score = _rep.score
 
-            info = "Tstart="+str(_rep.concensus_info[0])+";Tend="+str(_rep.concensus_info[1])+";ID="+ID[1]
+            info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]
 
             if aligninput:
                 l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3]), str(ID[4])]
@@ -537,24 +537,24 @@ def parse_line(ls):
     else:
         repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
         
-    concensus_columns = [ls[11], ls[12], ls[13]]
+    consensus_columns = [ls[11], ls[12], ls[13]]
     try:
-        concensus_columns[0] = int(concensus_columns[0])
+        consensus_columns[0] = int(consensus_columns[0])
     except:
-        concensus_columns[2] = int(concensus_columns[2])
-    if type(concensus_columns[0]) == int:
-        concensus_info = [concensus_columns[0], concensus_columns[1]]
+        consensus_columns[2] = int(consensus_columns[2])
+    if type(consensus_columns[0]) == int:
+        consensus_info = [consensus_columns[0], consensus_columns[1]]
     else:
-         concensus_info = [concensus_columns[2], concensus_columns[1]]
+         consensus_info = [consensus_columns[2], consensus_columns[1]]
     info=(strand, repname)
-    return Rep(start, end, score, info, concensus_info)
+    return Rep(start, end, score, info, consensus_info)
 
 
 def per_chr(reps, gft_id_n):
     # prepare
     if args.quiet is False:
         print('resolving overlaps on %s...' % prev_chr)
-    prev_end= (gap * -1) - 1
+    prev_end= (gap * -1) - 1 #?????????????
     reps=sorted(reps)
 
     maxend = 0
@@ -564,27 +564,29 @@ def per_chr(reps, gft_id_n):
 
         dist= _rep[0] - maxend + 1
 
-        # make sure to check overlap with all previous elements, not only the last one (maxend)
+        # check overlap with all previous elements, not only the last one
         if _rep[1] > maxend:
             maxend = _rep[1]
 
-        # add sequence to overlap island if ... overlapping
+        # add sequence to overlap island if overlapping
         if dist <= gap:
             tmp.append(_rep)
         else:
-        # if non overlapping, process previous island
-            if prev_end > 0:
+        # if non overlapping, process previous island (can be single annotation)
+            if prev_end > 0:#?????????????
                 # process island
                 lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
                 if alignment:
                     outgff.write(''.join(lines))
                 else:
-                    outbed.write(''.join(lines))            
-            tmp=[_rep]
-             
-        prev_end=_rep[1]
+                    outbed.write(''.join(lines))     
 
-    lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
+            tmp=[_rep] # form new island
+             
+        prev_end=_rep[1] #?????????????
+
+    lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n) # collapse last island
+
     if alignment:
         outgff.write(''.join(lines))
     else:
@@ -607,7 +609,7 @@ if args.testrun is False:
     prev_chr='dummy'
     prev_id='dummy'
     gft_id_n=0
-    Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'concensus_info'])
+    Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'consensus_info'])
     with open(args.i) as infile:
         for _ in range(3):
             next(infile)
@@ -627,7 +629,6 @@ if args.testrun is False:
             if ls[10] in remove_simple_low_complex: # do not parse simple repeat or low complexity of specified
                 continue
             _rep=parse_line(ls)
-
 
 
             # remove small fragments if specfied, only if alignment is not true
@@ -660,32 +661,35 @@ if args.testrun is False:
         print('\nerrors occurred: check the errors.log file\n')
     else:
         os.remove("errors.log")
-        print('\nDone resolving overlaps!\n')
+        print('\nDone resolving overlaps!')
 
 
     # Process output
     if alignment:
 
         if tomerge: # MERGE!
+            print('\nMerging annotations...\n')
             fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
             mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=threshold)
             target_file = omerge
         else:
             target_file = ogff
 
-        if checklength: # filter annotations based on concensus length covered
+        if checklength: # filter annotations based on consensus length covered
+            print('\nFiltering annotations based on consensus length...\n')
             filter.filterlength(target_file, ofilter, lengthfile)
 
         # summary stats
+        print('\nWriting summary files...\n')
         rcStatm.freqalign(args.i, ofilter if checklength else target_file, frequencyfilealignclass, frequencyfilealignfamily)
 
     else: # summary stats only + bp content
+        print('\nWriting summary files...\n')
         rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily)
         rcStatm.bpcontent(args.i, obed, contentfile)
 
 
-else: # REDUNDANT FOR ME
-    # for debug
+else: # for debug
         Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info'])
         tree=IntervalTree()
         tree.insert(100, 200, 150, ('+', 'LTR'))
