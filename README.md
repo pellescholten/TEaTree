@@ -1,6 +1,6 @@
 # Welcome to TEaTree
 
-TeaTree: essential oil for your TE annotation machine
+TEaTree: essential oil for your TE annotation machine
 
 ### About
 The script `TEaTree.py` collapses TE annotations from RepeatMasker (i.e. genome.fa.out or genome.fa.align file). The TE annotations from RepeatMasker are frequently overlap each other. If so, when counting NGS reads mapping to TEs, reads mapping to two or more TE annotations may not be counted. In such case, it is preferable to use non-overlapping TE annotations. 
