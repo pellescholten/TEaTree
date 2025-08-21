@@ -513,7 +513,6 @@ def collapse(tmp, chr, gft_id_n):
             score = _rep.score
 
             info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]
-
             if aligninput:
                 l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3]), str(ID[4])]
             else: 
@@ -533,7 +532,7 @@ def parse_line(ls):
     if strand == 'C':
         strand='-'
     if aligninput:
-        repname='%s.%s.%s.%s' % (ls[9], ls[10], ls[15], ls[14])
+        repname='%s.%s.%s.%s' % (ls[8], ls[12], ls[13], ls[14])
     else:
         repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
         
@@ -616,6 +615,7 @@ if args.testrun is False:
         for line in infile:
             ls=line.split()
             # some fa.out contains strange lines without ID --> take previous ID
+
             if len(ls) == 15 and ls[-1] == '*':
                 ls=ls[:13]
                 ls.append(prev_id)
