@@ -533,8 +533,10 @@ def parse_line(ls):
     if aligninput:
         if ls[8] == 'C':
             repname='%s.%s.%s.%s' % (ls[9], ls[13], ls[14], ls[15])
+            strand = 'C'
         else:
             repname='%s.%s.%s.%s' % (ls[8], ls[12], ls[13], ls[14])
+            strand = '+'
     else:
         repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
     
