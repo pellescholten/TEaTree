@@ -621,8 +621,9 @@ if args.testrun is False:
     gft_id_n=0
     Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'consensus_info'])
     with open(args.i) as infile:
-        for _ in range(3):
-            next(infile)
+        if not aligninput:
+            for _ in range(3):
+                next(infile)
         for line in infile:
             ls=line.split()
             # some fa.out contains strange lines without ID --> take previous ID
