@@ -1,6 +1,9 @@
 #Number of repeats by class before and after curation
 #=============================================================
 #repeat class	no. before overlap resolving	no. after
+463	1	0
+(399)	1	0
+(510)	1	0
 (2382)	1	0
 (74)	1	0
 (119)	1	0
@@ -33,4 +36,4 @@
 928	1	0
 (0)	1	0
 162	1	0
-total	34	25
+total	37	27

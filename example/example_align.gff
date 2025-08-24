@@ -1,3 +1,5 @@
+chr1	RepeatMasker	c_b1s251i0	10001	10468	463	+	.	Tstart=1;Tend=463;ID=(TAACCC)n#Simple_repeat	1
+chr1	RepeatMasker	m_b1s502i0	10469	11447	4005	C	.	Tstart=483;Tend=1712;ID=TAR1#Satellite/telomeric	2
 chr1	RepeatMasker	m_b1s551i1	11505	11675	535	C	.	Tstart=199;Tend=395;ID=L1MC5a_3end#LINE/L1	3
 chr1	RepeatMasker	m_b1s502i1	11678	11780	263	C	.	Tstart=1;Tend=104;ID=MER5B#DNA/hAT-Charlie	4
 chr1	RepeatMasker	m_b1s601i1	15266	15345	309	C	.	Tstart=61;Tend=143;ID=MIR3#SINE/MIR	5

@@ -10,6 +10,7 @@ License: see LICENSE file
 import os,sys,gzip,datetime,collections,argparse,errno
 import fuseTE, mergeTE, rcStatm, filter
 import subprocess
+import re
 
 version='2021/12/03'
 
@@ -620,7 +621,26 @@ if args.testrun is False:
     prev_id='dummy'
     gft_id_n=0
     Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'consensus_info'])
-    with open(args.i) as infile:
+
+
+    
+
+    if aligninput:
+        clean_infile = "clean_" + args.i
+
+        #clean align input file so that you only take the informative lines
+        with open(args.i, "r") as infile, open(clean_infile, "w") as outfile:
+            for line in infile:
+                # check if line starts with a number (0-9)
+                if re.match(r'^\d', line):
+                    outfile.write(line)
+
+        inputfile = clean_infile
+
+    else:
+        inputfile = args.i
+    
+    with open(inputfile) as infile:
         if not aligninput:
             for _ in range(3):
                 next(infile)
@@ -693,7 +713,8 @@ if args.testrun is False:
 
         # summary stats
         print('\nWriting summary files...\n')
-        rcStatm.freqalign(args.i, ofilter if checklength else target_file, frequencyfilealignclass, frequencyfilealignfamily)
+
+        rcStatm.freqalign(inputfile, ofilter if checklength else target_file, frequencyfilealignclass, frequencyfilealignfamily, aligninput)
 
     else: # summary stats only + bp content
         print('\nWriting summary files...\n')

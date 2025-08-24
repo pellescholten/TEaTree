@@ -1,7 +1,7 @@
 import sys
 import re
 
-def freqalign(infile, labelfile, outfileclass, outfilefamily):
+def freqalign(infile, labelfile, outfileclass, outfilefamily, isAlignInput):
 
 	# print track
 	stdout = sys.stdout
@@ -15,8 +15,9 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily):
 	famtoclass = {}
 
 	with open(infile,"r") as fi:
-		for i in range(3):
-			next(fi)
+		if not isAlignInput:
+			for i in range(3):
+				next(fi)
 		for line in fi:
 			col = line.rstrip().split()
 
