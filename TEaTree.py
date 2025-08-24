@@ -513,10 +513,9 @@ def collapse(tmp, chr, gft_id_n):
             score = _rep.score
 
             info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]
-            if aligninput:
-                l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3]), str(ID[4])]
-            else: 
-                l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
+            
+            l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
+            
             lines.append('\t'.join(l) +'\n')
 
     gft_id_n += 1
@@ -531,17 +530,24 @@ def parse_line(ls):
     strand=ls[8]
         
     if aligninput:
-        if ls[8] == 'C':
-            repname='%s.%s.%s.%s' % (ls[9], ls[13], ls[14], ls[15])
+        if ls[8] == 'C' and len(ls) == 15:
+
+            repname='%s.%s.%s' % (ls[9], ls[13], ls[14])
             strand = 'C'
+
+            consensus_columns = [ls[10], ls[11], ls[12]]
+
         else:
-            repname='%s.%s.%s.%s' % (ls[8], ls[12], ls[13], ls[14])
+            repname='%s.%s.%s' % (ls[8], ls[12], ls[13])
             strand = '+'
+
+            consensus_columns = [ls[9], ls[10], ls[11]]
+        
     else:
         repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
+        consensus_columns = [ls[11], ls[12], ls[13]]
     
     
-    consensus_columns = [ls[11], ls[12], ls[13]]
     try:
         consensus_columns[0] = int(consensus_columns[0])
     except:
