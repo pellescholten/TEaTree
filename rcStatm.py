@@ -93,7 +93,7 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily, isAlignInput):
 	sys.stdout.close()
 	sys.stdout = stdout
 
-def freqcontent(infile, bedfile, outfileclass, outfilefamily):
+def freqcontent(infile, bedfile, outfileclass, outfilefamily, isAlignInput):
 
 	# print track
 	stdout = sys.stdout
@@ -106,8 +106,9 @@ def freqcontent(infile, bedfile, outfileclass, outfilefamily):
 	famtoclass = {}
 
 	with open(infile,"r") as fi:
-		for i in range(3):
-			next(fi)
+		if not isAlignInput:
+			for i in range(3):
+				next(fi)
 		for line in fi:
 			col = line.rstrip().split()
 			if famsin.get(col[9]):
@@ -176,7 +177,7 @@ def freqcontent(infile, bedfile, outfileclass, outfilefamily):
 	sys.stdout.close()
 	sys.stdout = stdout
 
-def bpcontent(infile, bedfile, outfile):
+def bpcontent(infile, bedfile, outfile, isAlignInput):
 
 	# print track
 	stdout = sys.stdout
@@ -189,8 +190,9 @@ def bpcontent(infile, bedfile, outfile):
 	classificationin = {}
 
 	with open(infile,"r") as fi:
-		for i in range(3):
-			next(fi)
+		if not isAlignInput:
+			for i in range(3):
+				next(fi)
 		for line in fi:
 			col = line.rstrip().split()
 

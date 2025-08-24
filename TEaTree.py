@@ -718,8 +718,8 @@ if args.testrun is False:
 
     else: # summary stats only + bp content
         print('\nWriting summary files...\n')
-        rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily)
-        rcStatm.bpcontent(args.i, obed, contentfile)
+        rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily, aligninput)
+        rcStatm.bpcontent(args.i, obed, contentfile, aligninput)
 
 
 else: # for debug
