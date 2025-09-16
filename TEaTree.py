@@ -623,11 +623,10 @@ if args.testrun is False:
     Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'consensus_info'])
 
 
-    
-
     if aligninput:
-        clean_infile = "clean_" + args.i
+        clean_infile = "clean_" + os.path.basename(args.i)
 
+        
         #clean align input file so that you only take the informative lines
         with open(args.i, "r") as infile, open(clean_infile, "w") as outfile:
             for line in infile:
