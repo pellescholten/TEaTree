@@ -506,6 +506,7 @@ def collapse(tmp, chr, gft_id_n):
     else: 
         #make gff for alignment
         for _rep in connected: 
+            
             strand,rep_name=_rep.info
             gft_id='RM_%s.%s' % (gft_id_n, rep_name)
             #output for repeatcraft
@@ -513,7 +514,12 @@ def collapse(tmp, chr, gft_id_n):
     
             score = _rep.score
 
-            info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]
+            if _rep in tmp:
+                changed = False
+            else:
+                changed = True
+                
+            info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]+";annot_changed="+str(changed)
             
             l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
             
@@ -625,7 +631,6 @@ if args.testrun is False:
 
     if aligninput:
         clean_infile = "clean_" + os.path.basename(args.i)
-
         
         #clean align input file so that you only take the informative lines
         with open(args.i, "r") as infile, open(clean_infile, "w") as outfile:
@@ -700,7 +705,7 @@ if args.testrun is False:
 
         if tomerge: # MERGE!
             print('\nMerging annotations...\n')
-            fuseTE.truefusete(ogff, gapsize, olabel, mergemode)
+            fuseTE.truefusete(gffp=ogff, gapsize=gapsize, outfile=olabel, mergemode=mergemode)
             mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=threshold)
             target_file = omerge
         else:

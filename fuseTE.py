@@ -29,13 +29,17 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 
 	print("##gff-version 3")
 	print("##repeatcraft")
+
 	with open(gff, "r") as f:
 		for line in f:
 			if line.startswith("#"):
 				continue
 			# Progress
 			dcnt += 1
-			sys.stderr.write("\rProgress:" + str(dcnt) + "/"+ totalline+ "...")
+
+			
+			#if dcnt % 1000 == 0:
+			#	sys.stderr.write("\rProgress:" + str(dcnt) + "/"+ totalline+ "...\n")
 
 			col = line.rstrip().split("\t")
 
@@ -56,7 +60,6 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 						print(*d[lastchrom][family]["lastcol"],sep="\t")
 
 			lastchrom = col[0] # Update lastchrom
-
 		
 
 			if d[col[0]][cattrD["ID"]]:  # not the first of this family on this chrom
@@ -138,16 +141,15 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 								overlapping_consensus = False
 							else:
 								overlapping_consensus = True
-						elif col[6] == "-":
+						elif col[6] == "-" or col[6] == "C":
 							if int(cattrD["Tend"]) < int(d[col[0]][cattrD["ID"]]["Tstart"]):
 								overlapping_consensus = False
 							else:
 								overlapping_consensus = True	
 						else:
-							sys.stderr.write("\r error,unknown strandedness")
-							sys.stderr.write("\r"+col[6])
+							sys.stderr.write("\r error,unknown strandedness\n")
+							sys.stderr.write("\r"+col[6]+"\n")
 							sys.exit(1)
-
 
 						if overlapping_consensus or strandedness_not_equal:  # Consensus position overlap, don't need to group them just print
 							#print("consensus overlap") # debug

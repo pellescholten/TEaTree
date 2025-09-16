@@ -59,6 +59,7 @@ def extratruemergete(gffp,outfile,remove, threshold):
 			tegroup = re.findall(r"TEgroup=(.*)$", col[8])
 			if len(tegroup) > 0:
 				tegroup = tegroup[0]  # to string
+			#cattrD["annot_changed"] = True
 			else:
 				tegroup = False
 
@@ -97,6 +98,7 @@ def extratruemergete(gffp,outfile,remove, threshold):
 				col2print[6] = d[lastchrom][family][group]["strand"]
 				col2print[8] = re.sub("Tstart=.*?;", "Tstart=" + str(d[lastchrom][family][group]["Tstart"]) + ";", col2print[8])
 				col2print[8] = re.sub("Tend=.*?;", "Tend=" + str(d[lastchrom][family][group]["Tend"]) + ";", col2print[8])
+				col2print[8] = re.sub("annot_changed=.*?;", "annot_changed=True;", col2print[8])
 				print(*col2print, sep="\t")
 	sys.stdout.close()
 
