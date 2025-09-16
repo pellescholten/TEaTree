@@ -1,0 +1,29 @@
+##gff-version 3
+##repeatcraft
+chr1	RepeatMasker	c_b1s251i0	10001	10468	463	+	.	Tstart=1;Tend=463;ID=(TAACCC)n#Simple_repeat;annot_changed=False	1
+chr1	RepeatMasker	m_b1s502i0	10469	11447	4005	C	.	Tstart=483;Tend=1712;ID=TAR1#Satellite/telomeric;annot_changed=False	2
+chr1	RepeatMasker	m_b1s551i1	11505	11675	535	C	.	Tstart=199;Tend=395;ID=L1MC5a_3end#LINE/L1;annot_changed=False	3
+chr1	RepeatMasker	m_b1s502i1	11678	11780	263	C	.	Tstart=1;Tend=104;ID=MER5B#DNA/hAT-Charlie;annot_changed=False	4
+chr1	RepeatMasker	m_b1s601i1	15266	15345	309	C	.	Tstart=61;Tend=143;ID=MIR3#SINE/MIR;annot_changed=False	5
+chr1	RepeatMasker	m_b1s252i0	15798	15849	18	+	.	Tstart=1;Tend=51;ID=(TGCTCC)n#Simple_repeat;annot_changed=False	6
+chr1	RepeatMasker	m_b1s502i2	16363	16459	255	C	.	Tstart=2;Tend=123;ID=Charlie15a#DNA/hAT-Charlie;annot_changed=False	7
+chr1	RepeatMasker	m_b1s252i1	16713	16744	18	+	.	Tstart=1;Tend=32;ID=(TGG)n#Simple_repeat;annot_changed=False	8
+chr1	RepeatMasker	m_b1s601i2	18907	19048	225	+	.	Tstart=33;Tend=195;ID=L2a_3end#LINE/L2;annot_changed=False	9
+chr1	RepeatMasker	m_b1s601i3	19972	20405	972	+	.	Tstart=2680;Tend=3129;ID=L3#LINE/CR1;annot_changed=False	10
+chr1	RepeatMasker	m_b1s551i2	20531	20679	300	+	.	Tstart=2802;Tend=2947;ID=Plat_L3#LINE/CR1;annot_changed=False	11
+chr1	RepeatMasker	m_b1s502i3	21949	22075	291	+	.	Tstart=15;Tend=142;ID=MLT1K#LTR/ERVL-MaLR;annot_changed=False	12
+chr1	RepeatMasker	m_b1s601i5	23126	23340	784	C	.	Tstart=30;Tend=252;ID=MIR#SINE/MIR;annot_changed=False	13
+chr1	RepeatMasker	m_b1s601i7	23825	24011	297	+	.	Tstart=46;Tend=271;ID=L2b_3end#LINE/L2;annot_changed=False	15
+chr1	RepeatMasker	m_b1s601i8	24088	24250	412	+	.	Tstart=49;Tend=260;ID=MIR#SINE/MIR;annot_changed=False	16
+chr1	RepeatMasker	m_b1s601i11	24295	24448	297	+	.	Tstart=359;Tend=516;ID=L2a_3end#LINE/L2;annot_changed=False	14
+chr1	RepeatMasker	m_b1s601i13	26361	26412	223	+	.	Tstart=116;Tend=161;ID=MIR1_Amn#SINE/MIR;annot_changed=False	17
+chr1	RepeatMasker	m_b1s601i14	26583	26790	239	C	.	Tstart=207;Tend=464;ID=L2c_3end#LINE/L2;annot_changed=False;TEgroup=chr1|L2c_3end#LINE/L2|1	18
+chr1	RepeatMasker	[c_b1s352i0]	26791	27053	2051	+	.	Tstart=1;Tend=264;ID=AluSp#SINE/Alu;annot_changed=False	19
+chr1	RepeatMasker	m_b1s601i14	27054	27137	239	C	.	Tstart=117;Tend=206;ID=L2c_3end#LINE/L2;annot_changed=False;TEgroup=chr1|L2c_3end#LINE/L2|1	18
+chr1	RepeatMasker	m_b1s502i5	27282	27518	1361	+	.	Tstart=1;Tend=254;ID=MER33#DNA/hAT-Charlie;annot_changed=False	20
+chr1	RepeatMasker	m_b1s601i15	27833	27984	281	C	.	Tstart=36;Tend=198;ID=MIRb#SINE/MIR;annot_changed=False	21
+chr1	RepeatMasker	m_b1s601i17	28151	28302	307	C	.	Tstart=99;Tend=254;ID=MIR#SINE/MIR;annot_changed=False	22
+chr1	RepeatMasker	m_b1s252i2	29745	29792	12	+	.	Tstart=1;Tend=47;ID=(ACGCCC)n#Simple_repeat;annot_changed=False	23
+chr1	RepeatMasker	c_b1s451i0	29902	30198	1308	+	.	Tstart=630;Tend=928;ID=L1MB3_3end#LINE/L1;annot_changed=False	24
+chr1	RepeatMasker	c_b1s401i0	30343	30532	982	C	.	Tstart=1;Tend=193;ID=MER53#DNA/hAT;annot_changed=False	25
+chr1	RepeatMasker	m_b1s502i6	30694	30848	789	+	.	Tstart=1;Tend=162;ID=MLT1A#LTR/ERVL-MaLR;annot_changed=False	26
