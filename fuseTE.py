@@ -32,7 +32,9 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 
 	# Progress
 	dcnt = 0
-	sys.stderr.write("\rLabelling fragmented elements (for alignment)...\n")
+	lcnt = 0
+	sys.stderr.write("\rLabelling fragmented elements to be merged (for alignment)...\n")
+
 
 	print("##gff-version 3")
 	print("##TEatree labeled")
@@ -115,6 +117,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 					continue
 
 				# passed all tests
+				lcnt += 2
 				# label for merger, first merger of group
 				# can open a new group now and update the attr of the last and current copies
 
@@ -173,6 +176,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 					continue
 
 				# passed all tests, and group already present
+				lcnt += 1 
 				# add annotation to existing group
 				print(*d[col[0]][cattrD["ID"]]["lastcol"], sep="\t")
 				
@@ -183,6 +187,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 				attr = ";TEgroup=" + col[0] + "|" + cattrD["ID"] + "|" + str(d[col[0]][cattrD["ID"]]["groupnumber"])
 				col[8] = col[8] + attr
 				d = update_dictionary(d, col, cattrD, True)
+				
 
 		# print the last record for all families from the last chrom
 		for family in d[lastchrom]:
@@ -193,5 +198,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 	#resort the outfile based on position in shell
 	c = "sort -k1,1 -k4,4n -k5,5n " + sort + " >" + outfile + "&& rm " + sort
 	subprocess.run(c, shell=True)
-	sys.stderr.write("\n")
+	sys.stderr.write("\n"+str(lcnt)+ " fragments labelled for merger\n\n")
 	sys.stdout = stdout
+
+	return lcnt

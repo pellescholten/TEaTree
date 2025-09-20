@@ -4,8 +4,7 @@ import subprocess
 from collections import defaultdict
 nested_dict = lambda: defaultdict(nested_dict)
 
-def extratruemergete(gffp,outfile,remove, threshold):
-
+def extratruemergete(gffp,outfile,remove, threshold, lcnt):
 
 	gff = gffp
 
@@ -16,19 +15,27 @@ def extratruemergete(gffp,outfile,remove, threshold):
 	sys.stdout = open(sort, 'w')
 
 	d = nested_dict()
+
+	
 	lastchrom = ""
 
+	#progress
+	dcnt = 0
+	mcnt = 0
 	sys.stderr.write("\rMerging fragmented elements (for alignment)...\n")
 
 
 	# Check number of row of header
 	print("##gff-version 3")
-	print("##repeatcraft")
+	print("##TEatree merged")
 
 	with open(gff, "r") as f:
 		for line in f:
 			if line.startswith("#"):
 				continue
+
+
+				
 			col = line.rstrip().split("\t")
 
 			# if changing to the last column, need to print the what havn't print out (all groups in the last chrom)
@@ -42,6 +49,7 @@ def extratruemergete(gffp,outfile,remove, threshold):
 							col2print[6] = d[lastchrom][family][group]["strand"]
 							col2print[8] = re.sub("Tstart=.*?;", "Tstart=" + str(d[lastchrom][family][group]["Tstart"]) + ";", col2print[8])
 							col2print[8] = re.sub("Tend=.*?;", "Tend=" + str(d[lastchrom][family][group]["Tend"]) + ";", col2print[8])
+							col2print[8] = re.sub("annot_changed=.*?;", "annot_changed=True;", col2print[8])
 							print(*col2print,sep="\t")
 
 			lastchrom = col[0]
@@ -65,6 +73,11 @@ def extratruemergete(gffp,outfile,remove, threshold):
 
 			# if with tag, store it
 			if tegroup:
+				# Progress
+				dcnt += 1
+				if dcnt % 10000 == 0 or dcnt == lcnt:
+					sys.stderr.write("\rProgress: " + str(dcnt) + "/"+ str(lcnt)+ " ...\n")
+
 				tchrom, tfamily, tnumber = tegroup.split("|")
 				if d[tchrom][tfamily][tnumber]:
 					# update group information
@@ -77,6 +90,7 @@ def extratruemergete(gffp,outfile,remove, threshold):
 						d[tchrom][tfamily][tnumber]["maxsize"] = cattrD["Tend"] - cattrD["Tstart"]
 						d[tchrom][tfamily][tnumber]["strand"] = col[6]
 				else: # first member of the group
+					mcnt += 1
 					d[tchrom][tfamily][tnumber]["firstcol"] = col
 					d[tchrom][tfamily][tnumber]["end"] = int(col[4])
 					d[tchrom][tfamily][tnumber]["Tstart"] = cattrD["Tstart"]
@@ -105,8 +119,5 @@ def extratruemergete(gffp,outfile,remove, threshold):
 	c = "sort -k1,1 -k4,4n -k5,5n " + sort + " >" + outfile + "&& rm " + sort
 	subprocess.run(c, shell=True)
 
-	sys.stderr.write("A total of ... \n")
-	count = "grep -c '|' " + outfile
-	subprocess.run(count, shell=True)
-	sys.stderr.write("repeats was merged\n")
+	sys.stderr.write("\n"+ str(lcnt) + " fragments were merged, leading to " + str(mcnt) +  " merged repeats\n")
 	sys.stdout = stdout
