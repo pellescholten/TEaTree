@@ -75,18 +75,25 @@ annots=('gene', 'transcript', 'exon')
 remove = args.remove
 mode = args.mode
 aligninput=args.aligninput
+mergemode = args.mergemode
+
 if mode == "alignment": 
     alignment = True
+    tomerge = True
 else:
     alignment = False
-    if mode != "TEcontent":
-        sys.stderr.write("Mode is not recognised, default mode of for TE content is used.\nIf you want to have out files for consensus alignment, please specify \'-mode alignment\'\n")
-mergemode = args.mergemode
-if mergemode == "none": # and mergemode != "threshold" and mergemode != "both":
+
+if mode != "TEcontent" and mode != "alignment":
+    sys.stderr.write("Mode is not recognised\nIf you want to have out files for TE content, please specify \'-mode TEcontent\'\nIf you want to have out files for consensus alignment, please specify \'-mode alignment\'\n")
+    sys.exit(1)
+if mergemode != "none" and mergemode != "both" and mergemode != "threshold" and mergemode != "ID":
+    sys.stderr.write("Mergemode is not recognised. Please use either \"ID\", \"threshold\", \"both\" or \"none\" (default = \"none\"). \n")
+    sys.exit(1)
+
+if mergemode == "none":
     tomerge=False
 else:
     tomerge=True
-
 
 if args.remove_simple_repeat is True:
     remove_simple_low_complex={'Simple_repeat', 'Low_complexity'}
@@ -104,7 +111,6 @@ if '/' in outdir:
     os.makedirs(outdir, exist_ok=True)
 
 log_file = open("errors.log","w")
-
 
 class IntervalTree:
     def __init__(self):
@@ -148,17 +154,17 @@ class IntervalNode:
     def insert(self, start, end, score, info, consensus_info):
         root=self
 
-
         # Check whether there are overlaps of more than 80 (or other value determined in command line) percent shared sequence
         # If sequence is shared over the threshold than remove the sequence with lower score 
         # If not, keep sequence in tree to be resolved
-        if start > self.start and start < self.end and end > self.end:  # start>self.start unnecessary as file is ordered, if unordered file: would require code for start<self.start
+        if start >= self.start and start <= self.end and end >= self.end:  # start>self.start unnecessary as file is ordered, if unordered file: would require code for start<self.start
             overlap = self.end - start
 
             # if root (almost) contained in new element and new element is better--> delete and replace root
             # root:              ------------     SW = 500       -->  
             # new element:         ------------      SW = 1000   -->      ------------      SW = 1000   
             if overlap > level * (self.end - self.start) and self.score < score:
+                #sys.stderr.write(f"\r{self.info}\n")
                 return self.replace_root(start,end,score,info,consensus_info)
             
             # if new element (almost) contained in root and root is better --> delete and replace root
@@ -175,9 +181,12 @@ class IntervalNode:
                     return self.replace_root(start,end,score,info, consensus_info)
                 else:
                     return root
+                
+            # If none of these, keep sequence in tree to be resolved
 
         # Same as previous section but for chimers
         if start >= self.start and start <= self.end and end <= self.end:
+
             # If nested is worse or equal --> do not add to tree
             # nesting:      --------------     SW = 1000       -->   only NESTING remains     --------------      SW = 1000 
             # nested:        ---------         SW = 500        -->   
@@ -194,8 +203,8 @@ class IntervalNode:
                 if self.right:
                     root.right = self.right
                 return root
+            
             # If none of these, keep chimer in tree, to be resolved later...
-        
 
         if start >= self.start:
             # insert to right tree
@@ -332,19 +341,22 @@ def connect(l):
     prev_e= (gap * -1) - 1
     prev_i=None
     prev_c=None
+    prev_r=None
     for _rep in l:
         if _rep.end - _rep.start == 0:
             continue
+
         # check if elements can and should be merged
         dist= _rep.start - prev_e
-        if _rep.info == prev_i and dist <= gap and _rep.score == prev_r:
+        if _rep.info == prev_i and dist <= gap and _rep.score == prev_r: #re-connected the fragmented pieces
             prev_e=_rep.end
             prev_r = max(prev_r, _rep.score)
         else:
-            if not prev_i is None:
-                connected.append(Rep(prev_s, prev_e, prev_r, prev_i,prev_c))
-            prev_s,prev_e,prev_r,prev_i,prev_c=_rep
+            if not prev_i is None: #do nothing if its first element
+                connected.append(Rep(prev_s, prev_e, prev_r, prev_i, prev_c))
+            prev_s,prev_e,prev_r,prev_i,prev_c=_rep #update which fragment is the previous one
     connected.append(Rep(prev_s, prev_e, prev_r, prev_i, prev_c))
+
     return connected
 
 def connect_and_reassign(results,tmp,tree):
@@ -363,7 +375,10 @@ def connect_and_reassign(results,tmp,tree):
 
     for fragment in connected_dummy:
         #if fragment has been cut...
-        if fragment not in tmp and fragment.end - fragment.start < threshold:
+
+
+        if fragment not in tmp and fragment.end - fragment.start < threshold: # too short
+
             # try to find new element for fragment
             outcome= tree.reassign_short_fragments(fragment, connected)
             # outcome is a list with fragments
@@ -471,7 +486,7 @@ def collapse(tmp, chr, gft_id_n):
         for n in range(len(poss) - 1):
 
             # get start and end position + score
-            se=poss[n:n + 2]
+            se = poss[n:n + 2]
 
             #find top score
             #find scores associated to fragment
@@ -482,8 +497,7 @@ def collapse(tmp, chr, gft_id_n):
             elif len(result) == 1: # if fragment in 1 node 
                 result=result[0]
             else:
-                result=sorted(result)[-1]  # if fragment is contained in multiple nodes
-
+                result=sorted(result)[-1]  # if fragment is contained in multiple nodes              
   
             #add outcome of fragment to results
             results.append(Rep(*se, *result))
@@ -491,7 +505,6 @@ def collapse(tmp, chr, gft_id_n):
         connected = connect_and_reassign(results,tmp,tree)
 
         # remerge elements that got fragmented
-
         if alignment == True:
             connected = remerge(connected, tmp)
 
@@ -512,13 +525,13 @@ def collapse(tmp, chr, gft_id_n):
             #output for repeatcraft
             ID = gft_id.split(".")
     
-            score = _rep.score
-
             if _rep in tmp:
                 changed = False
             else:
                 changed = True
-                
+
+            score = _rep.score
+
             info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]+";annot_changed="+str(changed)
             
             l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
@@ -570,7 +583,7 @@ def parse_line(ls):
 def per_chr(reps, gft_id_n):
     # prepare
     if args.quiet is False:
-        print('resolving overlaps on %s...' % prev_chr)
+        print('Resolving overlaps on %s...' % prev_chr)
     prev_end= (gap * -1) - 1 #?????????????
     reps=sorted(reps)
 
@@ -648,6 +661,24 @@ if args.testrun is False:
         if not aligninput:
             for _ in range(3):
                 next(infile)
+
+        #Printing runmodes
+        print(f'\nTEatree: resolving overlaps for \'{args.i}\' for in \'{args.mode}\' mode')
+        if args.mode == "alignment":
+            print(f'\'{args.mode}\' mode best for re-alignment of repeats to their consensus families, use \'TEcontent\' mode if interested in repeat content')
+        if args.mode == "TEcontent":
+            print(f'\'{args.mode}\' mode best for repeat content estimations, use \'alignment\' mode if interested in re-aligning repeats to their consensus family')
+        
+        if tomerge == True:
+            if mergemode == "both":
+                print(f'TEatree will merge fragmented annotations with the same Repeatmasker ID and/or that share their consensus family and are close together relative position(< {args.gapsize} bp apart)\n')
+            elif mergemode == "ID":
+                print(f'TEatree will merge fragmented annotations if they share their consensus family and are close together relative position (< {args.gapsize} bp apart)\n')
+            elif mergemode == "ID":
+                print(f'TEatree will merge fragmentedannotations with the same Repeatmasker ID \n')
+        else:
+            print("")
+
         for line in infile:
             ls=line.split()
             # some fa.out contains strange lines without ID --> take previous ID
@@ -682,6 +713,7 @@ if args.testrun is False:
             else:
                 reps.append(_rep)
             prev_id=ls[-1]
+   
     gft_id_n=per_chr(reps, gft_id_n) # process last chromosome 
     
 
@@ -697,16 +729,15 @@ if args.testrun is False:
         print('\nerrors occurred: check the errors.log file\n')
     else:
         os.remove("errors.log")
-        print('\nDone resolving overlaps!')
+        print('Done resolving overlaps!')
 
 
     # Process output
     if alignment:
 
         if tomerge: # MERGE!
-            print('\nMerging annotations...\n')
-            fuseTE.truefusete(gffp=ogff, gapsize=gapsize, outfile=olabel, mergemode=mergemode)
-            mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=threshold)
+            lcnt = fuseTE.truefusete(gffp=ogff, gapsize=gapsize, outfile=olabel, mergemode=mergemode)
+            mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=threshold, lcnt = lcnt)
             target_file = omerge
         else:
             target_file = ogff
@@ -724,6 +755,8 @@ if args.testrun is False:
         print('\nWriting summary files...\n')
         rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily, aligninput)
         rcStatm.bpcontent(args.i, obed, contentfile, aligninput)
+
+    print(f"TEatree done")
 
 
 else: # for debug

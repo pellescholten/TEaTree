@@ -8,7 +8,7 @@ rnd-1_family-903	DNA	5	4
 rnd-6_family-1511	LTR/Gypsy	1	0
 rnd-1_family-368	Unknown	6	4
 rnd-5_family-4275	Unknown	8	6
-rnd-5_family-2493	LTR/Gypsy	5	3
+rnd-5_family-2493	LTR/Gypsy	5	2
 rnd-5_family-113	LTR/Ngaro	1	1
 rnd-6_family-3815	LTR/Ngaro	2	1
 rnd-5_family-662	Unknown	2	1
@@ -18,7 +18,7 @@ rnd-1_family-298	RC/Helitron	16	16
 rnd-1_family-102	DNA	5	5
 rnd-6_family-504	DNA	21	18
 rnd-5_family-176	Unknown	2	2
-rnd-5_family-476	DNA	5	5
+rnd-5_family-476	DNA	5	4
 rnd-6_family-2240	DNA	10	10
 rnd-5_family-2038	DNA	6	5
 rnd-6_family-882	LTR/Gypsy	1	1
@@ -30,7 +30,7 @@ rnd-1_family-132	DNA	6	6
 rnd-5_family-1265	RC/Helitron	8	5
 rnd-1_family-1089	RC/Helitron	5	5
 rnd-4_family-1648	LTR/DIRS	1	1
-rnd-5_family-4795	DNA	17	16
+rnd-5_family-4795	DNA	17	15
 rnd-1_family-246	DNA	14	14
 rnd-4_family-707	DNA	5	5
 rnd-1_family-219	DNA	16	15
@@ -68,14 +68,14 @@ rnd-1_family-253	DNA/Kolobok-T2	2	2
 rnd-1_family-412	RC/Helitron	5	3
 rnd-1_family-671	RC/Helitron	3	2
 rnd-1_family-139	DNA	24	24
-rnd-1_family-167	DNA/hAT-Tip100	18	18
+rnd-1_family-167	DNA/hAT-Tip100	18	17
 rnd-5_family-764	Unknown	1	1
 rnd-6_family-1695	DNA	3	3
 rnd-1_family-46	DNA/Kolobok-T2	7	7
 rnd-5_family-903	LINE/I-Jockey	6	6
 rnd-5_family-253	DNA/PIF-Harbinger	18	15
 rnd-5_family-324	Unknown	2	2
-rnd-4_family-603	DNA	9	9
+rnd-4_family-603	DNA	9	8
 rnd-1_family-496	Unknown	6	6
 rnd-1_family-292	DNA/TcMar-Tc2	10	10
 rnd-1_family-306	DNA/TcMar-Tc2	8	8
@@ -114,7 +114,7 @@ rnd-1_family-250	DNA/Kolobok-T2	4	4
 rnd-4_family-1279	DNA/TcMar-Tigger	6	6
 rnd-6_family-2816	Unknown	2	2
 rnd-5_family-216	DNA	5	4
-rnd-5_family-672	DNA	4	4
+rnd-5_family-672	DNA	4	3
 rnd-5_family-6597	Unknown	17	15
 rnd-1_family-418	DNA/TcMar-Tc2	5	3
 rnd-1_family-226	DNA/PIF-Harbinger	4	4
@@ -128,7 +128,7 @@ rnd-5_family-508	Unknown	5	5
 rnd-5_family-1389	DNA	5	5
 rnd-5_family-309	RC/Helitron	10	10
 rnd-5_family-1830	DNA/Kolobok-T2	19	16
-rnd-1_family-151	DNA	27	27
+rnd-1_family-151	DNA	27	24
 rnd-4_family-2139	RC/Helitron	23	21
 rnd-6_family-5098	Unknown	2	2
 rnd-1_family-230	DNA	13	13
@@ -146,12 +146,12 @@ rnd-1_family-600	Unknown	4	3
 rnd-1_family-788	Unknown	2	1
 rnd-2_family-13	DNA/Kolobok-T2	33	32
 rnd-1_family-427	LTR	4	4
-rnd-1_family-41	DNA/Kolobok-T2	37	37
+rnd-1_family-41	DNA/Kolobok-T2	37	35
 rnd-4_family-689	DNA/hAT-hAT5	15	15
 rnd-1_family-365	DNA	10	6
 rnd-1_family-395	DNA	7	7
 rnd-1_family-76	DNA	2	1
-rnd-3_family-354	DNA/TcMar-Tc2	8	8
+rnd-3_family-354	DNA/TcMar-Tc2	8	7
 rnd-1_family-165	SINE/tRNA-L2	5	5
 rnd-6_family-1192	Unknown	1	1
 rnd-1_family-674	LINE/L2	4	4
@@ -166,21 +166,21 @@ rnd-6_family-869	SINE/tRNA-Deu-L2	8	7
 rnd-1_family-798	DNA	5	5
 rnd-1_family-329	SINE?	2	0
 rnd-5_family-2001	DNA	6	6
-rnd-1_family-197	DNA	34	32
+rnd-1_family-197	DNA	34	31
 rnd-1_family-1207	DNA/Kolobok-T2	1	1
 rnd-1_family-1201	DNA/Kolobok-T2	1	1
 rnd-4_family-25	DNA/Kolobok-T2	2	2
 rnd-1_family-328	DNA/PIF-Harbinger	3	3
 rnd-1_family-649	Unknown	6	5
 rnd-5_family-1165	DNA/Kolobok-T2	1	0
-rnd-1_family-140	DNA	9	9
+rnd-1_family-140	DNA	9	7
 rnd-1_family-180	DNA/hAT-Tip100	7	7
 rnd-1_family-444	DNA	7	6
 rnd-1_family-216	LINE/Penelope	1	1
 rnd-1_family-177	LINE/Penelope	5	5
 rnd-1_family-109	DNA/TcMar-Tc2	3	3
 rnd-6_family-414	Unknown	4	4
-rnd-4_family-101	RC/Helitron	44	16
+rnd-4_family-101	RC/Helitron	44	15
 rnd-5_family-3045	Unknown	1	1
 rnd-1_family-1202	LINE/Penelope	1	1
 rnd-1_family-401	Unknown	1	0
@@ -220,7 +220,7 @@ rnd-1_family-370	DNA	8	8
 rnd-4_family-997	DNA	6	6
 rnd-1_family-617	DNA	10	2
 rnd-1_family-476	DNA	8	8
-rnd-1_family-527	DNA	7	7
+rnd-1_family-527	DNA	7	6
 rnd-1_family-913	LINE/L2	1	1
 rnd-1_family-54	DNA/hAT-hAT5	9	9
 rnd-1_family-195	SINE/tRNA-Deu	4	4
@@ -240,7 +240,7 @@ rnd-4_family-800	Unknown	1	1
 rnd-5_family-3836	Unknown	2	2
 rnd-6_family-61	snRNA	1	1
 rnd-4_family-68	DNA/TcMar-Pogo	6	6
-rnd-5_family-9104	DNA/Kolobok-T2	6	5
+rnd-5_family-9104	DNA/Kolobok-T2	6	4
 rnd-5_family-3456	DNA/Kolobok-T2	5	5
 rnd-6_family-4163	DNA/Kolobok-T2	2	2
 rnd-6_family-5207	Unknown	2	2
@@ -261,7 +261,7 @@ rnd-1_family-31	Satellite	3	3
 rnd-1_family-40	Satellite	2	2
 rnd-4_family-275	Unknown	1	1
 rnd-6_family-1017	DNA/TcMar-Tc2	24	24
-rnd-1_family-414	DNA	7	6
+rnd-1_family-414	DNA	7	5
 rnd-5_family-406	DNA/TcMar-Tc2	16	16
 rnd-4_family-57	DNA	5	5
 rnd-1_family-608	DNA	5	5
@@ -292,7 +292,7 @@ rnd-1_family-1027	SINE/tRNA-Deu	1	1
 rnd-1_family-648	DNA/Ginger	1	1
 rnd-1_family-504	DNA	4	4
 rnd-6_family-3397	DNA/PIF-Harbinger	5	5
-rnd-6_family-525	DNA	7	7
+rnd-6_family-525	DNA	7	6
 rnd-6_family-4441	Unknown	2	2
 rnd-1_family-228	DNA	10	10
 rnd-1_family-222	DNA	5	4
@@ -317,7 +317,7 @@ rnd-5_family-79	DNA	11	10
 rnd-5_family-3697	Unknown	1	1
 rnd-1_family-416	DNA/PIF-Harbinger	7	7
 rnd-1_family-783	DNA/PIF-Harbinger	3	3
-rnd-5_family-2020	DNA/PIF-Harbinger	5	4
+rnd-5_family-2020	DNA/PIF-Harbinger	5	3
 rnd-1_family-580	DNA/PIF-Harbinger	3	3
 rnd-1_family-734	DNA	1	0
 rnd-5_family-3743	DNA	2	1
@@ -328,7 +328,7 @@ rnd-1_family-537	DNA	2	2
 rnd-1_family-388	DNA	6	6
 rnd-5_family-321	DNA/hAT	11	10
 rnd-5_family-1139	DNA	2	2
-rnd-4_family-10	DNA	4	4
+rnd-4_family-10	DNA	4	3
 rnd-6_family-500	LINE/CRE	1	1
 rnd-1_family-727	DNA	4	4
 rnd-1_family-764	DNA	2	2
@@ -394,7 +394,7 @@ rnd-6_family-3734	Unknown	6	4
 rnd-6_family-1215	DNA/hAT-Tip100	12	12
 rnd-1_family-25	DNA	13	11
 rnd-1_family-302	DNA	17	17
-rnd-5_family-1112	DNA	7	7
+rnd-5_family-1112	DNA	7	4
 rnd-1_family-799	DNA/PIF-Harbinger	5	5
 rnd-1_family-742	DNA/PIF-Harbinger	4	4
 rnd-4_family-2425	DNA/PIF-Harbinger	5	5
@@ -407,14 +407,14 @@ rnd-1_family-470	LTR/Copia	2	2
 rnd-1_family-209	DNA/Academ-2	8	8
 rnd-1_family-686	DNA/PIF-Harbinger	9	9
 rnd-5_family-1267	LINE/RTE-X	1	1
-rnd-5_family-204	DNA/Kolobok-T2	4	4
+rnd-5_family-204	DNA/Kolobok-T2	4	3
 rnd-1_family-348	DNA	4	4
 rnd-1_family-232	DNA/Kolobok-T2	7	7
 rnd-1_family-259	DNA/Kolobok-T2	5	5
 rnd-4_family-1056	RC/Helitron	6	4
 rnd-1_family-155	DNA	9	8
 rnd-6_family-845	Unknown	2	2
-rnd-1_family-120	DNA/hAT-Blackjack	18	16
+rnd-1_family-120	DNA/hAT-Blackjack	18	15
 rnd-1_family-104	DNA	6	6
 rnd-1_family-377	DNA	11	11
 rnd-1_family-530	DNA	4	1
@@ -442,7 +442,7 @@ rnd-1_family-236	DNA	6	6
 rnd-1_family-866	DNA	3	3
 rnd-1_family-191	DNA	4	4
 rnd-1_family-277	DNA	6	6
-rnd-5_family-7489	DNA	14	13
+rnd-5_family-7489	DNA	14	11
 rnd-1_family-285	DNA/PIF-Harbinger	1	1
 rnd-1_family-766	DNA/Kolobok-T2	1	1
 rnd-4_family-242	Unknown	6	6
@@ -462,7 +462,7 @@ rnd-5_family-699	LINE/L2	1	1
 rnd-6_family-4610	LINE/L2	2	1
 rnd-1_family-1022	LINE/L2	2	2
 rnd-1_family-688	LINE/L2	2	2
-rnd-4_family-619	DNA	11	11
+rnd-4_family-619	DNA	11	9
 rnd-5_family-1093	Unknown	9	9
 rnd-1_family-1228	Unknown	6	6
 rnd-5_family-4838	DNA/PIF-Harbinger	4	4
@@ -492,7 +492,7 @@ rnd-1_family-205	DNA	10	10
 rnd-6_family-934	DNA	1	1
 rnd-1_family-75	DNA/PiggyBac	3	2
 rnd-1_family-220	RC/Helitron	1	1
-rnd-5_family-336	DNA	14	13
+rnd-5_family-336	DNA	14	12
 rnd-6_family-1897	LINE	3	3
 rnd-5_family-2970	Unknown	3	3
 rnd-6_family-1990	Unknown	1	1
@@ -503,7 +503,7 @@ rnd-1_family-656	Unknown	5	4
 rnd-5_family-646	SINE/tRNA-Deu-L2	13	13
 rnd-5_family-9647	DNA/PIF-ISL2EU	3	1
 rnd-4_family-148	DNA	15	15
-rnd-5_family-541	DNA/hAT-Tip100	20	20
+rnd-5_family-541	DNA/hAT-Tip100	20	19
 rnd-6_family-1303	DNA/PIF-Harbinger	5	5
 rnd-5_family-2565	DNA/hAT-hAT5	1	1
 rnd-5_family-2951	DNA/CMC-EnSpm	3	3
@@ -548,7 +548,7 @@ rnd-1_family-1047	Unknown	2	2
 rnd-1_family-434	DNA/PIF-Harbinger	4	4
 rnd-1_family-730	LINE/RTE-BovB	2	2
 rnd-5_family-3817	LINE/RTE-BovB	4	3
-rnd-5_family-304	DNA/PIF-Harbinger	7	5
+rnd-5_family-304	DNA/PIF-Harbinger	7	4
 rnd-1_family-1023	Unknown	2	2
 rnd-6_family-4870	Unknown	2	2
 rnd-1_family-1081	LINE/Penelope	2	2
@@ -575,7 +575,7 @@ rnd-6_family-730	LINE/L1-Tx1	2	2
 rnd-1_family-1074	LINE/L1-Tx1	2	2
 rnd-5_family-1559	LINE/L2	5	4
 rnd-1_family-1239	DNA	2	2
-rnd-5_family-4269	DNA	3	3
+rnd-5_family-4269	DNA	3	2
 rnd-1_family-461	Unknown	4	4
 rnd-1_family-443	DNA	4	4
 rnd-1_family-749	Unknown	2	0
@@ -594,7 +594,7 @@ rnd-5_family-1106	DNA	1	1
 rnd-1_family-660	DNA/Kolobok-T2	1	0
 rnd-5_family-173	SINE/tRNA-Deu-L2	2	2
 rnd-1_family-405	DNA/Academ-2	6	6
-rnd-5_family-409	DNA/Academ-2	2	2
+rnd-5_family-409	DNA/Academ-2	2	1
 rnd-5_family-73	Unknown	1	1
 rnd-1_family-448	DNA/Academ-1	2	2
 rnd-5_family-827	LINE/CR1	2	1
@@ -666,7 +666,7 @@ rnd-1_family-895	DNA	2	2
 rnd-1_family-144	SINE/tRNA-Deu	4	4
 rnd-1_family-637	DNA	1	1
 rnd-1_family-200	DNA	3	3
-rnd-5_family-882	DNA/Kolobok-T2	6	6
+rnd-5_family-882	DNA/Kolobok-T2	6	5
 rnd-1_family-1028	Unknown	1	1
 rnd-1_family-183	DNA	3	3
 rnd-6_family-1331	Unknown	3	3
@@ -770,7 +770,7 @@ rnd-1_family-424	Unknown	8	5
 rnd-5_family-2934	Unknown	3	3
 rnd-1_family-82	LTR	1	1
 rnd-5_family-59	DNA	1	1
-rnd-5_family-2781	LTR/Gypsy	2	2
+rnd-5_family-2781	LTR/Gypsy	2	1
 rnd-6_family-475	Unknown	8	8
 rnd-5_family-1677	Unknown	15	10
 rnd-1_family-1105	DNA	4	4
@@ -821,7 +821,7 @@ rnd-1_family-573	Unknown	3	3
 rnd-1_family-262	DNA/PiggyBac	1	1
 rnd-5_family-2880	Unknown	1	1
 rnd-5_family-108	DNA	5	5
-rnd-5_family-4508	DNA/Kolobok-T2	4	4
+rnd-5_family-4508	DNA/Kolobok-T2	4	3
 rnd-1_family-1229	DNA/Kolobok-T2	3	3
 rnd-6_family-10662	Unknown	1	1
 rnd-1_family-98	DNA/MULE-NOF	2	2
@@ -1003,7 +1003,7 @@ rnd-1_family-1246	DNA/TcMar-ISRm11	1	1
 rnd-5_family-1203	LINE/RTE-X	1	1
 rnd-1_family-1133	Unknown	2	2
 rnd-1_family-439	DNA/PIF-Harbinger	1	1
-rnd-1_family-524	DNA/hAT-Tip100	3	3
+rnd-1_family-524	DNA/hAT-Tip100	3	2
 rnd-6_family-1805	DNA	1	1
 rnd-5_family-2304	DNA	2	2
 rnd-6_family-266	Unknown	1	1
@@ -1019,7 +1019,7 @@ rnd-6_family-2665	LINE/CR1	3	3
 rnd-5_family-3935	DNA/PIF-Harbinger	1	1
 rnd-5_family-4097	RC/Helitron	2	2
 rnd-1_family-83	RC/Helitron	1	1
-rnd-1_family-59	DNA	6	6
+rnd-1_family-59	DNA	6	5
 rnd-1_family-106	DNA/hAT-Tip100	1	1
 rnd-4_family-1297	Unknown	1	1
 rnd-1_family-923	Unknown	1	1
@@ -1083,7 +1083,7 @@ rnd-5_family-2325	DNA	1	1
 rnd-5_family-4694	LTR/Pao	1	1
 rnd-1_family-880	DNA	3	3
 rnd-1_family-817	DNA	2	2
-rnd-5_family-5801	DNA	4	4
+rnd-5_family-5801	DNA	4	3
 rnd-1_family-985	DNA	1	1
 rnd-1_family-1236	DNA/Kolobok-T2	1	1
 rnd-1_family-1127	DNA/Kolobok-T2	1	1
@@ -1098,7 +1098,7 @@ rnd-4_family-313	Unknown	2	1
 rnd-1_family-957	LINE/CR1	1	1
 rnd-5_family-758	LINE/RTE-BovB	1	1
 rnd-1_family-870	LINE/RTE-BovB	1	1
-rnd-5_family-2033	Unknown	3	2
+rnd-5_family-2033	Unknown	3	1
 rnd-1_family-814	DNA	3	3
 rnd-4_family-760	DNA	3	3
 rnd-6_family-127	Unknown	1	1

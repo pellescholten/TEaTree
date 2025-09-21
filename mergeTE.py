@@ -22,7 +22,7 @@ def extratruemergete(gffp,outfile,remove, threshold, lcnt):
 	#progress
 	dcnt = 0
 	mcnt = 0
-	sys.stderr.write("\rMerging fragmented elements (for alignment)...\n")
+	sys.stderr.write("\nMerging fragmented elements (for alignment)...\n\n")
 
 
 	# Check number of row of header
@@ -34,8 +34,6 @@ def extratruemergete(gffp,outfile,remove, threshold, lcnt):
 			if line.startswith("#"):
 				continue
 
-
-				
 			col = line.rstrip().split("\t")
 
 			# if changing to the last column, need to print the what havn't print out (all groups in the last chrom)
@@ -75,8 +73,8 @@ def extratruemergete(gffp,outfile,remove, threshold, lcnt):
 			if tegroup:
 				# Progress
 				dcnt += 1
-				if dcnt % 10000 == 0 or dcnt == lcnt:
-					sys.stderr.write("\rProgress: " + str(dcnt) + "/"+ str(lcnt)+ " ...\n")
+				if dcnt % 10000 == 0 or (dcnt == lcnt and lcnt > 10000):
+					sys.stderr.write("\rProgress: " + str(dcnt) + "/"+ str(lcnt)+ "\n")
 
 				tchrom, tfamily, tnumber = tegroup.split("|")
 				if d[tchrom][tfamily][tnumber]:
@@ -119,5 +117,5 @@ def extratruemergete(gffp,outfile,remove, threshold, lcnt):
 	c = "sort -k1,1 -k4,4n -k5,5n " + sort + " >" + outfile + "&& rm " + sort
 	subprocess.run(c, shell=True)
 
-	sys.stderr.write("\n"+ str(lcnt) + " fragments were merged, leading to " + str(mcnt) +  " merged repeats\n")
+	sys.stderr.write(str(lcnt) + " fragments were merged into "+ str(mcnt) +  " repeats\n")
 	sys.stdout = stdout

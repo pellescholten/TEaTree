@@ -4,7 +4,7 @@ import sys
 from collections import defaultdict
 nested_dict = lambda: defaultdict(nested_dict)
 
-d = dict()
+
 def update_dictionary(d, col, cattrD, grouped):
 	d[col[0]][cattrD["ID"]]["lastcol"] = col
 	d[col[0]][cattrD["ID"]]["lastend"] = int(col[4])
@@ -33,11 +33,12 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 	# Progress
 	dcnt = 0
 	lcnt = 0
-	sys.stderr.write("\rLabelling fragmented elements to be merged (for alignment)...\n")
+	sys.stderr.write("\n\nLabelling fragmented elements to be merged (for alignment)...\n\n")
 
 
 	print("##gff-version 3")
-	print("##TEatree labeled")
+	print("##TEatree labelled")
+	print("##These annotations are not merged yet ")
 
 	with open(gff, "r") as f:
 		for line in f:
@@ -46,8 +47,8 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 
 			# Progress
 			dcnt += 1
-			if dcnt % 10000 == 0 or dcnt == totalline:
-				sys.stderr.write("\rProgress: " + str(dcnt) + "/"+ str(totalline)+ " ...\n")
+			if dcnt % 10000 == 0 or (dcnt == totalline and totalline > 10000):
+				sys.stderr.write("\rProgress: " + str(dcnt) + "/"+ str(totalline)+ "\n")
 
 			col = line.rstrip().split("\t")
 
@@ -80,7 +81,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 				match = d[col[0]][cattrD["ID"]]["lastcol"][9] == col[9]
 			else:
 				match = d[col[0]][cattrD["ID"]]["lastcol"][9] == col[9] or (int(col[3]) - d[col[0]][cattrD["ID"]]["lastend"]) <= gapsize
-		
+	
 			if not match:
 				# no need to group the two records
 				# print the last record of the last family group without adding new label, and update dictionary
@@ -138,19 +139,19 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 				lastcol2print[8] = lastcol2print[8] + attr
 				print(*lastcol2print,sep="\t")
 				col[8] = col[8] + attr # Update lastcol
+
 				d = update_dictionary(d, col, cattrD, True)
 
 			else: # previous annotation of this family is already grouped
 				# check consensus information (all in last group)
 				groupnumber = d[col[0]][cattrD["ID"]]["groupnumber"]
-				overlap = False
+				consensus_overlap = False
 
 				#FIX
 				#do not check all positions, inefficient
 				#check list of ranges instead, similar to check later
 				#also, idem to later, do I need to be that strict?
 				#do i also need to check strandedness etc here? i think so?
-
 
 				#check whether strandedness is readable
 				if col[6] != "-" and col[6] != "C" and col[6] != "+":
@@ -167,10 +168,10 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 				for r in d[col[0]][cattrD["ID"]][groupnumber]["consensus_coverage"]:
 					c_start, c_end = r
 					if c_start <= int(cattrD["Tstart"]) <= c_end or c_start <= int(cattrD["Tend"]) <= c_end or int(cattrD["Tstart"]) <= c_start <= int(cattrD["Tend"]) or int(cattrD["Tstart"]) <= c_end <= int(cattrD["Tend"]):
-						overlap = True	
+						consensus_overlap = True	
 						break
 
-				if overlap: 
+				if consensus_overlap: 
 					print(*d[col[0]][cattrD["ID"]]["lastcol"], sep="\t")
 					d = update_dictionary(d, col, cattrD, False)
 					continue
@@ -198,7 +199,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 	#resort the outfile based on position in shell
 	c = "sort -k1,1 -k4,4n -k5,5n " + sort + " >" + outfile + "&& rm " + sort
 	subprocess.run(c, shell=True)
-	sys.stderr.write("\n"+str(lcnt)+ " fragments labelled for merger\n\n")
+	sys.stderr.write(str(lcnt)+ " fragments labelled for merger\n\n")
 	sys.stdout = stdout
 
 	return lcnt
