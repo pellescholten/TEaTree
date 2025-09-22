@@ -44,7 +44,7 @@ parser.add_argument('-remove', help='Optional. Call if short fragments should be
 parser.add_argument('-aligninput', help='Optional. Call if .align file input is used', action='store_true')
 parser.add_argument('-famlength', help='Optional. Specify family length file for relative removal', default="none", type=str)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
-parser.add_argument('-quiet', help='Optional. Specify if you do not want to output processing status.', action='store_true')
+parser.add_argument('-leave_overlap', help='Optional. Specify if you do not want to resolve overlapping repeat annotations.', action='store_true')
 parser.add_argument('-v', '--version', action='version', version='Version: %s %s' % (os.path.basename(__file__), version))
 parser.add_argument('-testrun', action='store_true', help=argparse.SUPPRESS)
 args=parser.parse_args()
@@ -67,6 +67,7 @@ frequencyfilealignfamily ='%s.freqs.alignment.family.tsv' % args.o
 frequencyfilecontentclass ='%s.freqs.TEcontent.class.tsv' % args.o
 frequencyfilecontentfamily ='%s.freqs.TEcontent.family.tsv' % args.o
 contentfile='%s.content.tsv' % args.o
+
 gap=0
 gapsize= args.gapsize
 level = args.lvl / 100
@@ -74,8 +75,9 @@ threshold = args.min
 annots=('gene', 'transcript', 'exon')
 remove = args.remove
 mode = args.mode
-aligninput=args.aligninput
+aligninput = args.aligninput
 mergemode = args.mergemode
+leave_overlap = args.leave_overlap
 
 if mode == "alignment": 
     alignment = True
@@ -542,6 +544,39 @@ def collapse(tmp, chr, gft_id_n):
 
     return lines,gft_id_n 
 
+def get_lines_no_resolving(tmp, chr, gft_id_n):
+    lines = []
+    if alignment == False:
+        #make bed for TE content
+        for _rep in tmp:  # start, end, score, info
+            #construct line for bed
+            strand,rep_name=_rep.info
+            gft_id='RM_%s.%s' % (gft_id_n, rep_name)
+            l=[chr, str(_rep.start), str(_rep.end), gft_id, str(_rep.score), strand] 
+            lines.append('\t'.join(l) +'\n')
+    else: 
+        #make gff for alignment
+        for _rep in tmp: 
+            
+            strand,rep_name=_rep.info
+            gft_id='RM_%s.%s' % (gft_id_n, rep_name)
+            #output for repeatcraft
+            ID = gft_id.split(".")
+    
+            if _rep in tmp:
+                changed = False
+            else:
+                changed = True
+
+            #construct line for gff
+            score = _rep.score
+            info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]+";annot_changed="+str(changed)
+            l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
+            lines.append('\t'.join(l) +'\n')
+
+    gft_id_n += 1
+
+    return lines,gft_id_n 
 
 def parse_line(ls):
     start= int(ls[5]) - 1
@@ -581,41 +616,52 @@ def parse_line(ls):
 
 
 def per_chr(reps, gft_id_n):
-    # prepare
-    if args.quiet is False:
-        print('Resolving overlaps on %s...' % prev_chr)
-    prev_end= (gap * -1) - 1 #?????????????
-    reps=sorted(reps)
 
-    maxend = 0
-    
-    # loop over 
-    for _rep in reps:
+    if leave_overlap:
+        reps=sorted(reps)
+        for _rep in reps:
+            
+            tmp=[_rep]
+            lines,gtf_id_n = get_lines_no_resolving(tmp, prev_chr, gft_id_n)
+            if alignment:
+                outgff.write(''.join(lines))
+            else:
+                outbed.write(''.join(lines))     
+    else:
+        print('resolving overlaps on %s...' % prev_chr)
+        # prepare
+        prev_end= (gap * -1) - 1 #?????????????
+        reps=sorted(reps)
 
-        dist= _rep[0] - maxend + 1
+        maxend = 0
+        
+        # loop over 
+        for _rep in reps:
 
-        # check overlap with all previous elements, not only the last one
-        if _rep[1] > maxend:
-            maxend = _rep[1]
+            dist= _rep[0] - maxend + 1
 
-        # add sequence to overlap island if overlapping
-        if dist <= gap:
-            tmp.append(_rep)
-        else:
-        # if non overlapping, process previous island (can be single annotation)
-            if prev_end > 0:#?????????????
-                # process island
-                lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
-                if alignment:
-                    outgff.write(''.join(lines))
-                else:
-                    outbed.write(''.join(lines))     
+            # check overlap with all previous elements, not only the last one
+            if _rep[1] > maxend:
+                maxend = _rep[1]
 
-            tmp=[_rep] # form new island
-             
-        prev_end=_rep[1] #?????????????
+            # add sequence to overlap island if overlapping
+            if dist <= gap:
+                tmp.append(_rep)
+            else:
+            # if non overlapping, process previous island (can be single annotation)
+                if prev_end > 0:#?????????????
+                    # process island
+                    lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
+                    if alignment:
+                        outgff.write(''.join(lines))
+                    else:
+                        outbed.write(''.join(lines))     
 
-    lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n) # collapse last island
+                tmp=[_rep] # form new island
+                
+            prev_end=_rep[1] #?????????????
+
+        lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n) # collapse last island
 
     if alignment:
         outgff.write(''.join(lines))
@@ -663,21 +709,37 @@ if args.testrun is False:
                 next(infile)
 
         #Printing runmodes
-        print(f'\nTEatree: resolving overlaps for \'{args.i}\' for in \'{args.mode}\' mode')
+
+        if leave_overlap:
+            if tomerge:
+                print(f'\nTEatree: not resolving overlaps, but only merging fragmented annotations for \'{args.i}\' for \'{args.mode}\' mode\n')
+            else:
+                if mode == "TEcontent":
+                    print(f'\nTEatree: \'leave_overlap\' specified and \'mode\' = \'TEcontent\' ...\nNo merging for TEcontent mode\nNot resolving overlaps and not merging ... \nNothing to be done\nPlease specify other options\n')
+                else:
+                    print(f'\nTEatree: \'leave_overlap\' specified and \'mergemode\' = \'none\' ...\nNot resolving overlaps and not merging ... \nNothing to be done\nPlease specify other options\n')
+                sys.exit(1)
+        else:
+            if tomerge:
+                print(f'\nTEatree: resolving overlaps for \'{args.i}\' and merging fragmented annotations for \'{args.mode}\' mode\n')
+            else:
+                print(f'\nTEatree: resolving overlaps for \'{args.i}\' for \'{args.mode}\' mode\n')
+
+        if tomerge == True:
+            if mergemode == "both":
+                print(f'TEatree will merge fragmented annotations with the same Repeatmasker ID and/or that share their consensus family and are close together relative position(< {args.gapsize} bp apart)\n')
+            elif mergemode == "threshold":
+                print(f'TEatree will merge fragmented annotations if they share their consensus family and are close together relative position (< {args.gapsize} bp apart)\n')
+            elif mergemode == "ID":
+                print(f'TEatree will merge fragmentedannotations with the same Repeatmasker ID\n')
+        else:
+            print("")
+
         if args.mode == "alignment":
             print(f'\'{args.mode}\' mode best for re-alignment of repeats to their consensus families, use \'TEcontent\' mode if interested in repeat content')
         if args.mode == "TEcontent":
             print(f'\'{args.mode}\' mode best for repeat content estimations, use \'alignment\' mode if interested in re-aligning repeats to their consensus family')
         
-        if tomerge == True:
-            if mergemode == "both":
-                print(f'TEatree will merge fragmented annotations with the same Repeatmasker ID and/or that share their consensus family and are close together relative position(< {args.gapsize} bp apart)\n')
-            elif mergemode == "ID":
-                print(f'TEatree will merge fragmented annotations if they share their consensus family and are close together relative position (< {args.gapsize} bp apart)\n')
-            elif mergemode == "ID":
-                print(f'TEatree will merge fragmentedannotations with the same Repeatmasker ID \n')
-        else:
-            print("")
 
         for line in infile:
             ls=line.split()
@@ -729,12 +791,12 @@ if args.testrun is False:
         print('\nerrors occurred: check the errors.log file\n')
     else:
         os.remove("errors.log")
+    
+    if not leave_overlap:
         print('Done resolving overlaps!')
-
 
     # Process output
     if alignment:
-
         if tomerge: # MERGE!
             lcnt = fuseTE.truefusete(gffp=ogff, gapsize=gapsize, outfile=olabel, mergemode=mergemode)
             mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=threshold, lcnt = lcnt)
