@@ -41,7 +41,6 @@ parser.add_argument("-mergemode",
                     help="Merge mode for defragmentation (if alignment mode is used). Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
                     default="none", type=str)
 parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
-parser.add_argument('-aligninput', help='Optional. Call if .align file input is used', action='store_true')
 parser.add_argument('-famlength', help='Optional. Specify family length file for relative removal', default="none", type=str)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
 parser.add_argument('-leave_overlap', help='Optional. Specify if you do not want to resolve overlapping repeat annotations.', action='store_true')
@@ -75,9 +74,18 @@ threshold = args.min
 annots=('gene', 'transcript', 'exon')
 remove = args.remove
 mode = args.mode
-aligninput = args.aligninput
 mergemode = args.mergemode
 leave_overlap = args.leave_overlap
+
+
+if args.i.endswith(".align"):
+    aligninput = True
+elif args.i.endswith(".out"):
+    aligninput = False
+else:
+    sys.stderr.write("\rInput file not does not end in \'.out\' or \'.align\'.\nPlease provide RepeatMasker output in \'.out\' or \'.align\' format.")
+
+
 
 if mode == "alignment": 
     alignment = True
@@ -601,7 +609,8 @@ def parse_line(ls):
         repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
         consensus_columns = [ls[11], ls[12], ls[13]]
     
-    
+    sys.stderr.write(str(consensus_columns)+"\n")
+
     try:
         consensus_columns[0] = int(consensus_columns[0])
     except:
