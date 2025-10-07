@@ -13,7 +13,7 @@ def update_dictionary(d, col, cattrD, grouped):
 	d[col[0]][cattrD["ID"]]["grouped"] = grouped
 	return d
 
-def truefusete(gffp,gapsize,outfile, mergemode):
+def truefusete(gffp,gapsize,outfile, mergemode, allowed_consensus_overlap):
 
 	gff = str(gffp)
 
@@ -29,6 +29,13 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 
 	d = nested_dict()
 	lastchrom = "" 
+
+	#check  allowed consensus overlap
+	if allowed_consensus_overlap.endswith("p"):
+		consensus_proportion = float(allowed_consensus_overlap.rstrip('pP')) / 100
+	else:
+		allowed_consensus_overlap = int(allowed_consensus_overlap)
+		consensus_proportion = 0
 
 	# Progress
 	dcnt = 0
@@ -94,20 +101,26 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 			if not d[col[0]][cattrD["ID"]]["grouped"]: 
 				# the lastcol is the first element is this group, just need to check if last and current copies overlap
 				
-
 				#check whether strandedness is readable
 				if col[6] != "-" and col[6] != "C" and col[6] != "+":
 					sys.stderr.write("\r Error, unknown strandedness while labeling annotations to be merged (\'+\', \'-\' or \'C\' expected)\n\r"+col[6]+"\n")
 					sys.exit(1)
+
 				# check whether strandness is the same of the annotations a.k.a. Is the orientation of the annotation the same
 				if d[col[0]][cattrD["ID"]]["lastcol"][6] != col[6]:
 					print(*d[col[0]][cattrD["ID"]]["lastcol"], sep="\t")
 					d = update_dictionary(d, col, cattrD, False)
 					continue
+				
+				#calculate annotation on consensus overlap
+				consensus_overlap = min(int(cattrD["Tend"]), int(d[col[0]][cattrD["ID"]]["Tend"])) - max(int(cattrD["Tstart"]), int(d[col[0]][cattrD["ID"]]["Tstart"]) + 1)
+				
+				#if consensus overlap allowed is specified as a proportion of the consensus familyt length, calculate this proportion
+				if consensus_proportion:
+					allowed_consensus_overlap = int(col[8].split(";")[2].split("=")[1]) * consensus_proportion
 
-				#check whether annotation on consensus overlap
-
-				if not (int(d[col[0]][cattrD["ID"]]["Tend"]) < int(cattrD["Tstart"]) or int(cattrD["Tend"]) < int(d[col[0]][cattrD["ID"]]["Tstart"])):
+				#if consensus family overlap is more than is allowed, default = 25, then do not merge
+				if consensus_overlap >= allowed_consensus_overlap:
 					print(*d[col[0]][cattrD["ID"]]["lastcol"], sep="\t")
 					d = update_dictionary(d, col, cattrD, False)
 					continue
@@ -159,11 +172,17 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 					d = update_dictionary(d, col, cattrD, False)
 					continue
 
-				#check whether annotation on consensusoverlaps 
+				#if consensus overlap allowed is specified as a proportion of the consensus familyt length, calculate this proportion
+				if consensus_proportion:
+					allowed_consensus_overlap = int(col[8].split(";")[2].split("=")[1]) * consensus_proportion
+
+				#check whether annotation on consensus overlaps 
 				consensus_overlap = False
 				for r in d[col[0]][cattrD["ID"]][groupnumber]["consensus_coverage"]:
 					c_start, c_end = r
-					if c_start <= int(cattrD["Tstart"]) <= c_end or c_start <= int(cattrD["Tend"]) <= c_end or int(cattrD["Tstart"]) <= c_start <= int(cattrD["Tend"]) or int(cattrD["Tstart"]) <= c_end <= int(cattrD["Tend"]):
+					consensus_overlap = min(int(cattrD["Tend"]), c_end) - max(int(cattrD["Tstart"]), c_start + 1)
+
+					if consensus_overlap >= allowed_consensus_overlap:
 						consensus_overlap = True	
 						break
 

@@ -35,16 +35,17 @@ parser.add_argument('-i', metavar='input_file', type=str, help='Specify input ge
 parser.add_argument('-o', metavar='output_file', type=str, help='Specify output basename.', required=True)
 parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
 parser.add_argument('-min', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
-parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_true')
+parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to remove "Simple_repeat" and "Low_complexity".', action='store_true')
 parser.add_argument('-mode', help='Optional. Specify if you want to generate out files for TE content extraction (TEcontent) or for consensus alignment (alignment). Default = TEcontent', type=str, default = 'TEcontent')
 parser.add_argument("-mergemode",
                     help="Merge mode for defragmentation (if alignment mode is used). Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
                     default="none", type=str)
-parser.add_argument('-remove', help='Optional. Call if short fragments should be removed', action='store_true')
+parser.add_argument('-remove_short_fragments', help='Optional. Call if short fragments should be removed', action='store_true')
 parser.add_argument('-famlength', help='Optional. Specify family length file for relative removal', default="none", type=str)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
+parser.add_argument('-allowed_consensus_overlap', metavar='int/"intp"', help='Optional. Specify length over overlap on the consensus family sequence allowed for annotations that will be merged. Provide an integer as absolute overlap length allowed or an integer + \'p\' (e.g. 2p) when the amount of consensus overlap allowed is a percentage of the consensus family length (recommend not more than 5p). Default: 25', default="25")
 parser.add_argument('-leave_overlap', help='Optional. Specify if you do not want to resolve overlapping repeat annotations.', action='store_true')
-parser.add_argument('-v', '--version', action='version', version='Version: %s %s' % (os.path.basename(__file__), version))
+parser.add_argument('--version', action='version', version='Version: %s %s' % (os.path.basename(__file__), version))
 parser.add_argument('-testrun', action='store_true', help=argparse.SUPPRESS)
 args=parser.parse_args()
 
@@ -72,11 +73,11 @@ gapsize= args.gapsize
 level = args.lvl / 100
 threshold = args.min
 annots=('gene', 'transcript', 'exon')
-remove = args.remove
+remove = args.remove_short_fragments
 mode = args.mode
 mergemode = args.mergemode
 leave_overlap = args.leave_overlap
-
+allowed_consensus_overlap = args.allowed_consensus_overlap
 
 if args.i.endswith(".align"):
     aligninput = True
@@ -84,7 +85,6 @@ elif args.i.endswith(".out"):
     aligninput = False
 else:
     sys.stderr.write("\rInput file not does not end in \'.out\' or \'.align\'.\nPlease provide RepeatMasker output in \'.out\' or \'.align\' format.")
-
 
 
 if mode == "alignment": 
@@ -609,8 +609,6 @@ def parse_line(ls):
         repname='%s.%s.%s' % (ls[9], ls[10], ls[14])
         consensus_columns = [ls[11], ls[12], ls[13]]
     
-    sys.stderr.write(str(consensus_columns)+"\n")
-
     try:
         consensus_columns[0] = int(consensus_columns[0])
     except:
@@ -810,7 +808,7 @@ if args.testrun is False:
     # Process output
     if alignment:
         if tomerge: # MERGE!
-            lcnt = fuseTE.truefusete(gffp=ogff, gapsize=gapsize, outfile=olabel, mergemode=mergemode)
+            lcnt = fuseTE.truefusete(gffp=ogff, gapsize=gapsize, outfile=olabel, mergemode=mergemode, allowed_consensus_overlap = allowed_consensus_overlap)
             mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=threshold, lcnt = lcnt)
             target_file = omerge
         else:
