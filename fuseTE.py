@@ -94,15 +94,11 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 			if not d[col[0]][cattrD["ID"]]["grouped"]: 
 				# the lastcol is the first element is this group, just need to check if last and current copies overlap
 				
-				#FIX
-				# is there really no overlap allowed at all??
-				# perhaps can be a bit more lenient?
 
 				#check whether strandedness is readable
 				if col[6] != "-" and col[6] != "C" and col[6] != "+":
 					sys.stderr.write("\r Error, unknown strandedness while labeling annotations to be merged (\'+\', \'-\' or \'C\' expected)\n\r"+col[6]+"\n")
 					sys.exit(1)
-
 				# check whether strandness is the same of the annotations a.k.a. Is the orientation of the annotation the same
 				if d[col[0]][cattrD["ID"]]["lastcol"][6] != col[6]:
 					print(*d[col[0]][cattrD["ID"]]["lastcol"], sep="\t")
@@ -110,9 +106,8 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 					continue
 
 				#check whether annotation on consensus overlap
-				c_start = int(d[col[0]][cattrD["ID"]]["Tstart"])
-				c_end = int(d[col[0]][cattrD["ID"]]["Tend"])
-				if c_start <= int(cattrD["Tstart"]) <= c_end or c_start <= int(cattrD["Tend"]) <= c_end or int(cattrD["Tstart"]) <= c_start <= int(cattrD["Tend"]) or int(cattrD["Tstart"]) <= c_end <= int(cattrD["Tend"]):
+
+				if not (int(d[col[0]][cattrD["ID"]]["Tend"]) < int(cattrD["Tstart"]) or int(cattrD["Tend"]) < int(d[col[0]][cattrD["ID"]]["Tstart"])):
 					print(*d[col[0]][cattrD["ID"]]["lastcol"], sep="\t")
 					d = update_dictionary(d, col, cattrD, False)
 					continue
@@ -145,7 +140,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 			else: # previous annotation of this family is already grouped
 				# check consensus information (all in last group)
 				groupnumber = d[col[0]][cattrD["ID"]]["groupnumber"]
-				consensus_overlap = False
+				
 
 				#FIX
 				#do not check all positions, inefficient
@@ -165,6 +160,7 @@ def truefusete(gffp,gapsize,outfile, mergemode):
 					continue
 
 				#check whether annotation on consensusoverlaps 
+				consensus_overlap = False
 				for r in d[col[0]][cattrD["ID"]][groupnumber]["consensus_coverage"]:
 					c_start, c_end = r
 					if c_start <= int(cattrD["Tstart"]) <= c_end or c_start <= int(cattrD["Tend"]) <= c_end or int(cattrD["Tstart"]) <= c_start <= int(cattrD["Tend"]) or int(cattrD["Tstart"]) <= c_end <= int(cattrD["Tend"]):

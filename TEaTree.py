@@ -31,8 +31,8 @@ description='''
 
 # args
 parser=argparse.ArgumentParser(description=description)
-parser.add_argument('-i', metavar='str', type=str, help='Specify input genome.fa.out file.', required=True)
-parser.add_argument('-o', metavar='str', type=str, help='Specify output basename. [basename].gtf.gz and [basename].bed.gz will be generated.', required=True)
+parser.add_argument('-i', metavar='input_file', type=str, help='Specify input genome.fa.out file.', required=True)
+parser.add_argument('-o', metavar='output_file', type=str, help='Specify output basename.', required=True)
 parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
 parser.add_argument('-min', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
 parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to rempve "Simple_repeat" and "Low_complexity".', action='store_true')
@@ -245,7 +245,10 @@ class IntervalNode:
         return root
     
     def rotateright(self):
+         # new node becomes root
         root=self.left
+        # node on right becomes node on left
+        # old root becomes node on right
         self.left=self.left.right
         root.right=self
         if self.right and self.left:
@@ -260,16 +263,12 @@ class IntervalNode:
         return root
 
     def rotateleft(self):
-
-        # remember: score of right is higher than score of root
         # new node becomes root
         root=self.right
-
         # node on left becomes node on right
         # old root becomes node on left
         self.right=self.right.left
         root.left=self
-
         if self.right and self.left:
             self.maxend=max(self.end, self.right.maxend, self.left.maxend)
             self.minstart=min(self.start, self.right.minstart, self.left.minstart)
@@ -534,8 +533,8 @@ def collapse(tmp, chr, gft_id_n):
 
             score = _rep.score
 
-            info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]+";annot_changed="+str(changed)
-            
+            info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";Ttotal="+str(_rep.consensus_info[2])+";ID="+ID[1]+";annot_changed="+str(changed)
+
             l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
             
             lines.append('\t'.join(l) +'\n')
@@ -570,7 +569,7 @@ def get_lines_no_resolving(tmp, chr, gft_id_n):
 
             #construct line for gff
             score = _rep.score
-            info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";ID="+ID[1]+";annot_changed="+str(changed)
+            info = "Tstart="+str(_rep.consensus_info[0])+";Tend="+str(_rep.consensus_info[1])+";Ttotal="+str(_rep.consensus_info[2])+";ID="+ID[1]+";annot_changed="+str(changed)
             l=[chr, "RepeatMasker", ID[2], str(_rep.start + 1), str(_rep.end), str(score), strand, ".",info, str(ID[3])]
             lines.append('\t'.join(l) +'\n')
 
@@ -607,11 +606,15 @@ def parse_line(ls):
         consensus_columns[0] = int(consensus_columns[0])
     except:
         consensus_columns[2] = int(consensus_columns[2])
+
     if type(consensus_columns[0]) == int:
-        consensus_info = [consensus_columns[0], consensus_columns[1]]
+        consensus_length = int(consensus_columns[1]) + int(consensus_columns[2].strip("()"))
+        consensus_info = [consensus_columns[0], consensus_columns[1], consensus_length]
     else:
-         consensus_info = [consensus_columns[2], consensus_columns[1]]
+         consensus_length = int(consensus_columns[1]) + int(consensus_columns[0].strip("()"))
+         consensus_info = [consensus_columns[2], consensus_columns[1], consensus_length]
     info=(strand, repname)
+    
     return Rep(start, end, score, info, consensus_info)
 
 
