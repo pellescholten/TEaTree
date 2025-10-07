@@ -6,7 +6,6 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily, isAlignInput):
 	# print track
 	stdout = sys.stdout
 
-
 	# Read rlabel
 	# Stat variables
 
@@ -21,26 +20,37 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily, isAlignInput):
 		for line in fi:
 			col = line.rstrip().split()
 
-			if col[10] == "Simple_repeat" or col[10] == "Low_complexity":
+			if isAlignInput:
+				if len(col) == 15:
+					classs = col[9].split("#")[1]
+					family = col[9].split("#")[0]
+				else:
+					classs = col[8].split("#")[1]
+					family = col[8].split("#")[0]
+	
+			else:
+				classs = col[10]
+				family = col[9]
+		
+			if classs == "Simple_repeat" or classs == "Low_complexity":
 				continue
-			if famsin.get(col[9]):
-				famsin[col[9]] += 1
+
+			if famsin.get(family):
+				famsin[family] += 1
 			else:
-				famsin[col[9]] = 1
+				famsin[family] = 1
 
-			if classificationin.get(col[10]):
-				classificationin[col[10]] += 1
+			if classificationin.get(classs):
+				classificationin[classs] += 1
 			else:
-				classificationin[col[10]] = 1
+				classificationin[classs] = 1
 
-			if not famtoclass.get(col[9]):
-				famtoclass[col[9]] = col[10]
-
+			if not famtoclass.get(family):
+				famtoclass[family] = classs
 
 	famslabel = {}
 	classificationlabel = {}
 	
-
 	with open(labelfile,"r") as fm:
 		for line in fm:
 			if line.startswith("#"):
@@ -58,8 +68,6 @@ def freqalign(infile, labelfile, outfileclass, outfilefamily, isAlignInput):
 				classificationlabel[col[2]] += 1
 			else:
 				classificationlabel[col[2]] = 1
-
-
 
 
 	for k in list(classificationin.keys()):
@@ -111,18 +119,31 @@ def freqcontent(infile, bedfile, outfileclass, outfilefamily, isAlignInput):
 				next(fi)
 		for line in fi:
 			col = line.rstrip().split()
-			if famsin.get(col[9]):
-				famsin[col[9]] += 1
-			else:
-				famsin[col[9]] = 1
 
-			if classificationin.get(col[10]):
-				classificationin[col[10]] += 1
+			if isAlignInput:
+				if len(col) == 15:
+					classs = col[9].split("#")[1]
+					family = col[9].split("#")[0]
+				else:
+					classs = col[8].split("#")[1]
+					family = col[8].split("#")[0]
+	
 			else:
-				classificationin[col[10]] = 1
+				classs = col[10]
+				family = col[9]
+			
+			if famsin.get(family):
+				famsin[family] += 1
+			else:
+				famsin[family] = 1
 
-			if not famtoclass.get(col[9]):
-				famtoclass[col[9]] = col[10]
+			if classificationin.get(classs):
+				classificationin[classs] += 1
+			else:
+				classificationin[classs] = 1
+
+			if not famtoclass.get(family):
+				famtoclass[family] = classs
 
 
 	famsbed = {}
@@ -196,10 +217,18 @@ def bpcontent(infile, bedfile, outfile, isAlignInput):
 		for line in fi:
 			col = line.rstrip().split()
 
-			if classificationin.get(col[10]):
-				classificationin[col[10]] += int(col[6]) - int(col[5]) + 1
+			if isAlignInput:
+				if len(col) == 15:
+					classs = col[9].split("#")[1]
+				else:
+					classs = col[8].split("#")[1]
 			else:
-				classificationin[col[10]] = int(col[6]) - int(col[5]) + 1
+				classs = col[10]
+
+			if classificationin.get(classs):
+				classificationin[classs] += int(col[6]) - int(col[5]) + 1
+			else:
+				classificationin[classs] = int(col[6]) - int(col[5]) + 1
 
 	#famsbed = {}
 	classificationbed = {}
@@ -210,9 +239,16 @@ def bpcontent(infile, bedfile, outfile, isAlignInput):
 				continue
 			col = line.rstrip().split("\t")
 
+			
+
 			info = col[3]
 			#info_fam = info.split(".")[1]
-			info_class = info.split(".")[2]
+
+			if isAlignInput:
+				info_class = info.split(".")[1].split("#")[1]
+			else:
+				info_class = info.split(".")[2]
+
 			#if famsbed.get(info_fam):
 		#		famsbed[info_fam] += 1
 			#else:

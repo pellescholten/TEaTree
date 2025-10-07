@@ -92,7 +92,7 @@ if mergemode != "none" and mergemode != "both" and mergemode != "threshold" and 
     sys.stderr.write("Mergemode is not recognised. Please use either \"ID\", \"threshold\", \"both\" or \"none\" (default = \"none\"). \n")
     sys.exit(1)
 
-if mergemode == "none":
+if mergemode == "none" and mode != "alignment":
     tomerge=False
 else:
     tomerge=True
@@ -818,8 +818,8 @@ if args.testrun is False:
 
     else: # summary stats only + bp content
         print('\nWriting summary files...\n')
-        rcStatm.freqcontent(args.i, obed, frequencyfilecontentclass, frequencyfilecontentfamily, aligninput)
-        rcStatm.bpcontent(args.i, obed, contentfile, aligninput)
+        rcStatm.freqcontent(inputfile, obed, frequencyfilecontentclass, frequencyfilecontentfamily, aligninput)
+        rcStatm.bpcontent(inputfile, obed, contentfile, aligninput)
 
     print(f"TEatree done")
 
