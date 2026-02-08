@@ -7,7 +7,6 @@ chr1	RepeatMasker	m_b1s502i1	11678	11780	263	C	.	Tstart=1;Tend=104;Ttotal=178;ID
 chr1	RepeatMasker	m_b1s601i1	15266	15345	309	C	.	Tstart=61;Tend=143;Ttotal=208;ID=MIR3#SINE/MIR;annot_changed=False	5
 chr1	RepeatMasker	m_b1s252i0	15798	15849	18	+	.	Tstart=1;Tend=51;Ttotal=51;ID=(TGCTCC)n#Simple_repeat;annot_changed=False	6
 chr1	RepeatMasker	m_b1s502i2	16363	16459	255	C	.	Tstart=2;Tend=123;Ttotal=224;ID=Charlie15a#DNA/hAT-Charlie;annot_changed=False	7
-chr1	RepeatMasker	m_b1s252i1	16713	16744	18	+	.	Tstart=1;Tend=32;Ttotal=32;ID=(TGG)n#Simple_repeat;annot_changed=False	8
 chr1	RepeatMasker	m_b1s601i2	18907	19048	225	+	.	Tstart=33;Tend=195;Ttotal=517;ID=L2a_3end#LINE/L2;annot_changed=False	9
 chr1	RepeatMasker	m_b1s601i3	19972	20405	972	+	.	Tstart=2680;Tend=3129;Ttotal=4099;ID=L3#LINE/CR1;annot_changed=False	10
 chr1	RepeatMasker	m_b1s551i2	20531	20679	300	+	.	Tstart=2802;Tend=2947;Ttotal=3586;ID=Plat_L3#LINE/CR1;annot_changed=False	11
@@ -22,7 +21,6 @@ chr1	RepeatMasker	[c_b1s352i0]	26791	27053	2051	+	.	Tstart=1;Tend=264;Ttotal=313
 chr1	RepeatMasker	m_b1s502i5	27282	27518	1361	+	.	Tstart=1;Tend=254;Ttotal=324;ID=MER33#DNA/hAT-Charlie;annot_changed=False	20
 chr1	RepeatMasker	m_b1s601i15	27833	27984	281	C	.	Tstart=36;Tend=198;Ttotal=268;ID=MIRb#SINE/MIR;annot_changed=False	21
 chr1	RepeatMasker	m_b1s601i17	28151	28302	307	C	.	Tstart=99;Tend=254;Ttotal=262;ID=MIR#SINE/MIR;annot_changed=False	22
-chr1	RepeatMasker	m_b1s252i2	29745	29792	12	+	.	Tstart=1;Tend=47;Ttotal=47;ID=(ACGCCC)n#Simple_repeat;annot_changed=False	23
 chr1	RepeatMasker	c_b1s451i0	29902	30198	1308	+	.	Tstart=630;Tend=928;Ttotal=930;ID=L1MB3_3end#LINE/L1;annot_changed=False	24
 chr1	RepeatMasker	c_b1s401i0	30343	30532	982	C	.	Tstart=1;Tend=193;Ttotal=193;ID=MER53#DNA/hAT;annot_changed=False	25
 chr1	RepeatMasker	m_b1s502i6	30694	30848	789	+	.	Tstart=1;Tend=162;Ttotal=374;ID=MLT1A#LTR/ERVL-MaLR;annot_changed=False	26

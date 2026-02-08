@@ -4,8 +4,7 @@ import subprocess
 from collections import defaultdict
 nested_dict = lambda: defaultdict(nested_dict)
 
-def filterlength(gffp,outfile,lengthfile):
-
+def filterlength(gffp,outfile,lengthfile,family_filtering_length):
 
 	gff = gffp
 
@@ -24,7 +23,7 @@ def filterlength(gffp,outfile,lengthfile):
 			if len(parts) == 2:
 				fam_info, fam_length = parts
 				fam_name = fam_info.split('#')[0]
-				fam_threshold = int(int(fam_length) * 0.3)
+				fam_threshold = int(int(fam_length) * family_filtering_length / 100)
 				lengths[fam_name] = fam_threshold
 
 	

@@ -86,9 +86,9 @@ def truefusete(gffp,gapsize,outfile, mergemode, allowed_consensus_overlap):
 				match = (int(col[3]) - d[col[0]][cattrD["ID"]]["lastend"]) <= gapsize
 			elif mergemode == "ID":
 				match = d[col[0]][cattrD["ID"]]["lastcol"][9] == col[9]
-			else:
+			elif mergemode == "both" or mergemode == "none":
 				match = d[col[0]][cattrD["ID"]]["lastcol"][9] == col[9] or (int(col[3]) - d[col[0]][cattrD["ID"]]["lastend"]) <= gapsize
-	
+		
 			if not match:
 				# no need to group the two records
 				# print the last record of the last family group without adding new label, and update dictionary

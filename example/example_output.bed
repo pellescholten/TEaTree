@@ -1,6 +1,6 @@
-#date: 2025-10-07 15:48:25.748919
+#date: 2026-02-08 16:07:55.866643
 #version: TEaTree.py 2021/12/03
-#original file: example.align
+#original file: clean_example.align
 #format: chr start end name bit_score strand
 chr1	10000	10468	RM_0.(TAACCC)n#Simple_repeat.c_b1s251i0.1	463	+
 chr1	10468	11447	RM_1.TAR1#Satellite/telomeric.m_b1s502i0.2	4005	C

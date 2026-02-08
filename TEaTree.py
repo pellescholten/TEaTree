@@ -11,6 +11,7 @@ import os,sys,gzip,datetime,collections,argparse,errno
 import fuseTE, mergeTE, rcStatm, filter
 import subprocess
 import re
+from pathlib import Path
 
 version='2021/12/03'
 
@@ -33,20 +34,20 @@ description='''
 parser=argparse.ArgumentParser(description=description)
 parser.add_argument('-i', metavar='input_file', type=str, help='Specify input genome.fa.out file.', required=True)
 parser.add_argument('-o', metavar='output_file', type=str, help='Specify output basename.', required=True)
-parser.add_argument('-lvl', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
-parser.add_argument('-min', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50', default=50)
+parser.add_argument('-level', metavar='int', type=int, help='Optional. Specify percentage of overlap necessary to complete remove a repeat. Default: 80', default=80)
+parser.add_argument('-min_length', metavar='int', type=int, help='Optional. Specify minimum length of basepairs a repeat must have after being cut. Default: 50. Use 0 to disable.', default=50)
 parser.add_argument('-remove_simple_repeat', help='Optional. Specify if you want to remove "Simple_repeat" and "Low_complexity".', action='store_true')
 parser.add_argument('-mode', help='Optional. Specify if you want to generate out files for TE content extraction (TEcontent) or for consensus alignment (alignment). Default = TEcontent', type=str, default = 'TEcontent')
 parser.add_argument("-mergemode",
                     help="Merge mode for defragmentation (if alignment mode is used). Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
                     default="none", type=str)
-parser.add_argument('-remove_short_fragments', help='Optional. Call if short fragments should be removed', action='store_true')
-parser.add_argument('-famlength', help='Optional. Specify family length file for relative removal', default="none", type=str)
+parser.add_argument('-remove_short_fragments', type=int, default=50, help='Optional. Remove fragments shorter than this length. Default: 50. Use 0 to disable.')
+parser.add_argument('-family_filtering', help='Optional. Specify family length file for relative removal', default="none", type=str)
+parser.add_argument('-family_filtering_length', help='Optional. Set the threshold for family length based filtering.', default=30, type=int)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
 parser.add_argument('-allowed_consensus_overlap', metavar='int/"intp"', help='Optional. Specify length over overlap on the consensus family sequence allowed for annotations that will be merged. Provide an integer as absolute overlap length allowed or an integer + \'p\' (e.g. 2p) when the amount of consensus overlap allowed is a percentage of the consensus family length (recommend not more than 5p). Default: 25', default="25")
 parser.add_argument('-leave_overlap', help='Optional. Specify if you do not want to resolve overlapping repeat annotations.', action='store_true')
 parser.add_argument('--version', action='version', version='Version: %s %s' % (os.path.basename(__file__), version))
-parser.add_argument('-testrun', action='store_true', help=argparse.SUPPRESS)
 args=parser.parse_args()
 
 # set up
@@ -56,9 +57,15 @@ olabel='%s.label.gff' % args.o
 omerge='%s.merged.gff' % args.o
 ofilter='%s.filter.gff' % args.o
 
-if args.famlength != "none":
-    lengthfile = args.famlength
+if args.family_filtering != "none":
+    lengthfile = args.family_filtering
+    family_filtering_length = args.family_filtering_length
     checklength = True
+    p = Path(lengthfile)
+    if not p.is_file():
+        print("exists")
+        sys.stderr.write("Family length file does not exist. Please create this file with 'get_fam_length.sh'.\n")
+        sys.exit(1)
 else:
     checklength = False
 
@@ -70,8 +77,8 @@ contentfile='%s.content.tsv' % args.o
 
 gap=0
 gapsize= args.gapsize
-level = args.lvl / 100
-threshold = args.min
+level = args.level / 100
+threshold = args.min_length
 annots=('gene', 'transcript', 'exon')
 remove = args.remove_short_fragments
 mode = args.mode
@@ -121,6 +128,8 @@ if '/' in outdir:
     os.makedirs(outdir, exist_ok=True)
 
 log_file = open("errors.log","w")
+
+Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'consensus_info'])
 
 class IntervalTree:
     def __init__(self):
@@ -625,7 +634,7 @@ def parse_line(ls):
     return Rep(start, end, score, info, consensus_info)
 
 
-def per_chr(reps, gft_id_n):
+def per_chr(reps, gft_id_n, prev_chr, outf):
 
     if leave_overlap:
         reps=sorted(reps)
@@ -633,12 +642,9 @@ def per_chr(reps, gft_id_n):
             
             tmp=[_rep]
             lines,gtf_id_n = get_lines_no_resolving(tmp, prev_chr, gft_id_n)
-            if alignment:
-                outgff.write(''.join(lines))
-            else:
-                outbed.write(''.join(lines))     
+            outf.write(''.join(lines))     
     else:
-        print('resolving overlaps on %s...' % prev_chr)
+        print('Resolving overlaps on %s...' % prev_chr)
         # prepare
         prev_end= (gap * -1) - 1 #?????????????
         reps=sorted(reps)
@@ -662,10 +668,7 @@ def per_chr(reps, gft_id_n):
                 if prev_end > 0:#?????????????
                     # process island
                     lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n)
-                    if alignment:
-                        outgff.write(''.join(lines))
-                    else:
-                        outbed.write(''.join(lines))     
+                    outf.write(''.join(lines))     
 
                 tmp=[_rep] # form new island
                 
@@ -673,30 +676,25 @@ def per_chr(reps, gft_id_n):
 
         lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n) # collapse last island
 
-    if alignment:
-        outgff.write(''.join(lines))
-    else:
-        outbed.write(''.join(lines))  
+    outf.write(''.join(lines))
     return gft_id_n
 
 
 # main
-if args.testrun is False:
+def main():
 
     if alignment:
-        outgff=open(ogff, 'wt')
+        outf=open(ogff, 'wt')
     else:
-        outbed=open(obed, 'wt')
-        outbed.write('#date: %s\n' % _date)
-        outbed.write('#version: %s %s\n' % (os.path.basename(__file__), version))
-        outbed.write('#original file: %s\n' % args.i)
-        outbed.write('#format: chr start end name bit_score strand\n')
+        outf=open(obed, 'wt')
+        outf.write('#date: %s\n' % _date)
+        outf.write('#version: %s %s\n' % (os.path.basename(__file__), version))
+        outf.write('#original file: %s\n' % args.i)
+        outf.write('#format: chr start end name bit_score strand\n')
     
     prev_chr='dummy'
     prev_id='dummy'
     gft_id_n=0
-    Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info', 'consensus_info'])
-
 
     if aligninput:
         clean_infile = "clean_" + os.path.basename(args.i)
@@ -742,13 +740,15 @@ if args.testrun is False:
                 print(f'TEatree will merge fragmented annotations if they share their consensus family and are close together relative position (< {args.gapsize} bp apart)\n')
             elif mergemode == "ID":
                 print(f'TEatree will merge fragmentedannotations with the same Repeatmasker ID\n')
+            elif mergemode == "none":
+                print(f'Alignment mode is specified but no mergemode was chosen. Mergemode "both" will be used by default.\nTEatree will merge fragmented annotations with the same Repeatmasker ID and/or that share their consensus family and are close together relative position(< {args.gapsize} bp apart)\n')
         else:
             print("")
 
         if args.mode == "alignment":
-            print(f'\'{args.mode}\' mode best for re-alignment of repeats to their consensus families, use \'TEcontent\' mode if interested in repeat content')
+            print(f'\'{args.mode}\' mode best for re-alignment of repeats to their consensus families, use \'TEcontent\' mode if interested in repeat content.\n\n')
         if args.mode == "TEcontent":
-            print(f'\'{args.mode}\' mode best for repeat content estimations, use \'alignment\' mode if interested in re-aligning repeats to their consensus family')
+            print(f'\'{args.mode}\' mode best for repeat content estimations, use \'alignment\' mode if interested in re-aligning repeats to their consensus family.\n\n')
         
 
         for line in infile:
@@ -779,20 +779,16 @@ if args.testrun is False:
             # once a new chromosome is reached, process the previous chromosome reps
             if not ls[4] == prev_chr:
                 if not prev_chr == 'dummy':
-                    gft_id_n=per_chr(reps, gft_id_n)
+                    gft_id_n=per_chr(reps, gft_id_n, prev_chr,outf)
                 prev_chr=ls[4]
                 reps=[_rep]
             else:
                 reps.append(_rep)
             prev_id=ls[-1]
    
-    gft_id_n=per_chr(reps, gft_id_n) # process last chromosome 
+    gft_id_n=per_chr(reps, gft_id_n, prev_chr,outf) # process last chromosome 
     
-
-    if alignment:
-        outgff.close()
-    else:
-        outbed.close()
+    outf.close()
     log_file.close()
 
 
@@ -816,7 +812,7 @@ if args.testrun is False:
 
         if checklength: # filter annotations based on consensus length covered
             print('\nFiltering annotations based on consensus length...\n')
-            filter.filterlength(target_file, ofilter, lengthfile)
+            filter.filterlength(target_file, ofilter, lengthfile, family_filtering_length)
 
         # summary stats
         print('\nWriting summary files...\n')
@@ -831,28 +827,5 @@ if args.testrun is False:
     print(f"TEatree done")
 
 
-else: # for debug
-        Rep=collections.namedtuple('Rep', ['start', 'end', 'score', 'info'])
-        tree=IntervalTree()
-        tree.insert(100, 200, 150, ('+', 'LTR'))
-        tree.insert(110, 300, 20, ('-', 'SINE'))
-        tree.insert(120, 290, 100, ('-', 'LINE'))
-        tree.insert(280, 310, 60, ('+', 'DNA'))
-        poss=[100, 110, 120, 200, 280, 290, 300, 310]
-        results=[]
-        for n in range(len(poss) - 1):
-            se=poss[n:n + 2]
-            result=tree.find_top_score(*se)
-            if len(result) == 0:
-                continue
-            elif len(result) == 1:
-                result=result[0]
-            else:
-                result=sorted(result)[-1]
-            results.append(Rep(*se, *result))
-        for rep in results:
-            print(rep)
-        print()
-        final=connect(results)
-        for rep in final:
-            print(rep)
+if __name__ == "__main__":
+    main()
