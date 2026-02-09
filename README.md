@@ -1,6 +1,6 @@
 # Welcome to TEaTree
 <p align="center">
-<img width="638" height="543" alt="Image" src="https://github.com/user-attachments/assets/5af43112-6acc-4f13-a3a9-ee42754d7c8e" />
+<img width="517" height="440" alt="Image" src="https://github.com/user-attachments/assets/1d79a312-480f-428d-9f2f-12a1be981dd2" />
 </p>
 
 ## About
