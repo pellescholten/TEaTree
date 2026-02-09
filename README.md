@@ -2,7 +2,6 @@
 <p align="center">
 <img width="517" height="440" alt="Image" src="https://github.com/user-attachments/assets/1d79a312-480f-428d-9f2f-12a1be981dd2" />
 </p>
-
 ## About
 
 TEaTree is a tool for refining transposable element and repeat annotations from RepeatMasker. RepeatMasker often contains many overlapping and fragmented TE annotations. For some analyses, non-overlapping and/or defragmented annotations are preferred or required. TEatree first uses an highly efficient interval tree algorithm find, sort and resolve overlapping TE annotations based on their genomic positions and Smith-Waterman score. TEaTree appropriately deals with chimeras and multiple overlapping sequences (>2) while also reassigning newly formed fragments that are under a certain length. Furthermore, TEaTree can merge fragmented copies based on their consensus family ID and consensus family position, and their RepeatMasker ID and/or sequence position. 
@@ -58,7 +57,7 @@ Notes:
 - The BED output is the primary nonoverlapping annotation set intended for counting and summarisation.
 - The GFF outputs in alignment mode are intended for alignment to consensus and defragmentation workflows. The plain GFF output does not resolve overlapping chimeras in the same way as the BED output, so prefer the BED for counting.
   
-## Options that affect output results and their explanations
+## Options that affect output and their explanations
 - `-remove_simple_repeat`  
 By default, the script will keep "Simple_repeat" and "Low_complexity" in output files.
 If you want to remove such annotations, please add the `-remove_simple_repeat` option.  
