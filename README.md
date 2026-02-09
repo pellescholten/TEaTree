@@ -2,8 +2,8 @@
 <p align="center">
 <img width="517" height="440" alt="Image" src="https://github.com/user-attachments/assets/1d79a312-480f-428d-9f2f-12a1be981dd2" />
 </p>
-## About
 
+## About
 TEaTree is a tool for refining transposable element and repeat annotations from RepeatMasker. RepeatMasker often contains many overlapping and fragmented TE annotations. For some analyses, non-overlapping and/or defragmented annotations are preferred or required. TEatree first uses an highly efficient interval tree algorithm find, sort and resolve overlapping TE annotations based on their genomic positions and Smith-Waterman score. TEaTree appropriately deals with chimeras and multiple overlapping sequences (>2) while also reassigning newly formed fragments that are under a certain length. Furthermore, TEaTree can merge fragmented copies based on their consensus family ID and consensus family position, and their RepeatMasker ID and/or sequence position. 
 
 It also has an optional alignment mode that produces additional GFF files, including a defragmented merged GFF, useful for aligning genomic copies to consensus sequences.
@@ -16,7 +16,6 @@ https://github.com/pellescholten/TEaTree/assets/126644559/c0fb8bea-5841-48d0-b62
 - Python modules (all should be built-in): os, sys, gzip, datetime, collections, argparse, errno
   
 ## Installation
-
 Clone the repository and run the script directly.
 
 ```bash
