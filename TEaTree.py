@@ -20,7 +20,6 @@ Version log:
 version='2024/06/28': first release
 '''
 
-
 description='''
     This script collapses TE annotations from RepeatMasker (i.e. genome.fa.out / genome.fa.align file).
     The TE annotations from RepeatMasker frequently overlap each other. This scripts finds the most likely
@@ -43,7 +42,7 @@ parser.add_argument("-mergemode",
                     default="none", type=str)
 parser.add_argument('-remove_short_fragments', type=int, default=50, help='Optional. Remove fragments shorter than this length. Default: 50. Use 0 to disable.')
 parser.add_argument('-family_filtering', help='Optional. Specify family length file for relative removal', default="none", type=str)
-parser.add_argument('-family_filtering_length', help='Optional. Set the threshold for family length based filtering.', default=30, type=int)
+parser.add_argument('-family_filtering_length', help='Optional. Set the threshold for family length based filtering as a miminum percentage of the consensus family sequence.', default=30, type=int)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
 parser.add_argument('-allowed_consensus_overlap', metavar='int/"intp"', help='Optional. Specify length over overlap on the consensus family sequence allowed for annotations that will be merged. Provide an integer as absolute overlap length allowed or an integer + \'p\' (e.g. 2p) when the amount of consensus overlap allowed is a percentage of the consensus family length (recommend not more than 5p). Default: 25', default="25")
 parser.add_argument('-leave_overlap', help='Optional. Specify if you do not want to resolve overlapping repeat annotations.', action='store_true')
@@ -56,6 +55,11 @@ ogff='%s.gff' % args.o
 olabel='%s.label.gff' % args.o
 omerge='%s.merged.gff' % args.o
 ofilter='%s.filter.gff' % args.o
+
+args = parser.parse_args()
+import config
+config.__dict__.update(vars(args))  # ONE LINE!
+config.LEVEL = args.level / 100    # only transform what needs it
 
 if args.family_filtering != "none":
     lengthfile = args.family_filtering
