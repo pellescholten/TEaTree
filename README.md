@@ -1,4 +1,5 @@
 # Welcome to TEaTree
+<img width="496" height="358" alt="Image" src="https://github.com/user-attachments/assets/f63bb70b-43db-4640-b4a8-d793f7788fd2" />
 
 TEaTree: essential oil for your TE annotation machine
 
