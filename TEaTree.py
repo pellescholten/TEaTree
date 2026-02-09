@@ -56,11 +56,6 @@ olabel='%s.label.gff' % args.o
 omerge='%s.merged.gff' % args.o
 ofilter='%s.filter.gff' % args.o
 
-args = parser.parse_args()
-import config
-config.__dict__.update(vars(args))  # ONE LINE!
-config.LEVEL = args.level / 100    # only transform what needs it
-
 if args.family_filtering != "none":
     lengthfile = args.family_filtering
     family_filtering_length = args.family_filtering_length
