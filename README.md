@@ -91,5 +91,7 @@ TEaTree than checks for each annotation whether it is longer or shorter than 30%
 
 - `-family_filtering_length` (default = 30)
 Set the threshold for family length based filtering (see `-family_filtering`).
-  
+
+\subsection{Peformance}
+We ran TEaTree on the human reference assembly hg38 (GRCh38). We obtained a Repeatmasker ".out" file from UCSC Genome Browser (Casper et al., 2026) containing 5,622,516 repeats. TEaTree in "alignment mode" (both overlap resolving and TE defragmentation) completed in 90.1 s wall clock time (83.0 s user, 5.0 s system) with a peak resident memory of 3.72 GB. TEaTree removed 39,391 short length repeats, shortened 119,306 annotations by overlap resolution, and merged 1,286,734 fragments into 642,917 repeats.
 
