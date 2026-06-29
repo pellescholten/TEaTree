@@ -35,7 +35,7 @@ python collapseTree.py \
   
 TEatree takes RepeatMasker output files as input, either in .out or .align format (i.e. genome.fa.out or genome.fa.align file). If the input is in .align format (e.g. example.align), TEaTree will automatically created a cleaned up file containing only the relevant information in the proper format (e.g. clean_example.align).
 
-Choosing between .out and .align input
+### Choosing between .out and .align input
 TEaTree accepts either the RepeatMasker .out or .align file. Both come from the same masking run, so the resolved annotation set is usually similar.
 The .out file is the annotation table after ProcessRepeats (RepeatMasker), which already tries to resolve overlapping alignments and joins some fragments. The .align file is closer to the raw output and can contain competing blocks that ProcessRepeats would otherwise try to resolve. Use .out to let TEaTree operate on the RepeatMasker-resolved set (not recommended). Use .align to have TEaTree resolve overlaps and defragment the less-processed set in a single pass under its own parameters, rather than layering on top of ProcessRepeats.
 
