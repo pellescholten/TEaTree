@@ -97,28 +97,15 @@ TEaTree then checks for each annotation whether it is longer or shorter than 30%
 Set the threshold for family length based filtering (see `-family_filtering`).
 
 ## Performance
-We benchmarked TEaTree on the RepeatMasker `.out` file of the human reference assembly hg38 (GRCh38) from the UCSC Genome Browser (downloaded 17 October 2026; 5,520,118 annotations, of which 270,851 overlap another annotation). Each comparison uses matched settings and the same input. All runs used one thread on an Apple M3 Pro with 18 GB RAM and Python 3.12, and no tool filtered on length. Times are from a single run.
+On the RepeatMasker annotation of the human genome (hg38, 5.5 million annotations), TEaTree resolved all overlaps in 32 s using 0.25 GB of memory. RM2Bed.py from RepeatMasker was as fast, but it left 239,423 overlapping annotations and used 24 times more memory. For merging fragments, TEaTree was 4 times faster than RepeatCraft. RepeatCraft merges more fragments, but it does not check strand, or consensus overlap for the first two fragments of a group. In dm6, 28% of the groups it merged cannot come from a single TE insertion.
 
-**Overlap resolution** (where annotations overlap, the higher-scoring one wins): TEaTree TEcontent mode vs [RM2Bed.py](https://github.com/rmhubley/RepeatMasker/blob/master/util/RM2Bed.py) `--ovlp_resolution higher_score`.
+| hg38 | Overlapping annotations left | Time (s) | Memory (GB) |
+|---|---:|---:|---:|
+| TEaTree (resolving overlaps) | 0 | 31.8 | 0.25 |
+| RM2Bed.py | 239,423 | 30.4 | 5.97 |
+| TEaTree (merging fragments) | - | 96.0 | 4.24 |
+| RepeatCraft | - | 402.0 | 7.44 |
 
-| | Annotations | Overlapping another | Covered (Mb) | Counted twice (Mb) | Wall time (s) | Peak RAM (GB) |
-|---|---:|---:|---:|---:|---:|---:|
-| RepeatMasker `.out` (input) | 5,520,118 | 270,851 | 1,586.3 | 2.1 | - | - |
-| TEaTree | 5,492,039 | 0 | 1,585.6 | 0.0 | 31.8 | 0.25 |
-| RM2Bed.py | 5,519,544 | 239,423 | 1,586.3 | 1.7 | 30.4 | 5.97 |
+Note: in alignment mode, merged repeats span the TEs nested inside them, so the `.merged.gff` has overlaps on purpose. Use the `.bed` file for TE content.
 
-**Defragmentation only** (merge fragments of the same family that are < 150 bp apart and do not overlap on the consensus; overlaps are left in): TEaTree `-mode alignment -mergemode threshold -gapsize 150 -leave_overlap` vs [RepeatCraft](https://github.com/niccw/repeatcraftp) loose mode, `gap_size: 150`, no LTR_FINDER input.
-
-| | Annotations | Annotations removed by merging | Covered (Mb) | Wall time (s) | Peak RAM (GB) |
-|---|---:|---:|---:|---:|---:|
-| RepeatMasker `.out` (input) | 5,520,118 | - | 1,586.3 | - | - |
-| TEaTree | 5,301,120 | 218,998 | 1,591.7 | 96.0 | 4.24 |
-| RepeatCraft | 5,202,386 | 317,732 | 1,594.2 | 402.0 | 7.44 |
-
-"Covered" is the number of genome bp in at least one annotation. "Counted twice" is the summed annotation length minus the covered bp, i.e. the bp counted more than once if TE content is summed over annotations.
-
-TEaTree removed all overlaps and kept 99.96% of the covered bp. RM2Bed.py was equally fast but left 239,423 overlapping annotations, and used 24 times more memory. For defragmentation, TEaTree was about 4 times faster than RepeatCraft and merged fewer fragments. RepeatCraft does not check strand, and it does not check consensus overlap between the first two fragments of a group. On dm6, 28% of RepeatCraft's merged groups combined fragments on opposite strands or fragments that overlap on the consensus. TEaTree only merges fragments on the same strand, with at most 25 bp of consensus overlap by default (`-allowed_consensus_overlap`).
-
-With its default settings, alignment mode (overlap resolution and defragmentation) took 99.6 s and 4.09 GB, and merged 1,274,542 fragments into 636,768 repeats. Merged repeats span the elements nested inside them, so the `.merged.gff` overlaps by design; use the `.bed` output for TE content.
-
-The scripts and per-class results, and the same comparison on *Drosophila melanogaster* (dm6), are in [`benchmark/`](benchmark/).
+The scripts, settings and full results are in [`benchmark/`](benchmark/).

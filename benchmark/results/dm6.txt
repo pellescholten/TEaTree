@@ -2,11 +2,9 @@ file	annotations	overlapping_another	summed_Mb	covered_Mb
 dm6.fa.out	137555	15047	30.3	30.0
 teatree.bed	135351	0	29.9	29.9
 rm2bed_rm.bed	137472	9157	30.2	30.0
-teatree_defrag.merged.gff	130041	12369	30.4	30.1
+teatree_merge.merged.gff	130041	12369	30.4	30.1
 repeatcraft.rmerge.gff	126344	10819	30.6	30.2
-
-run	wall_s	peak_RAM_GB
-repeatcraft	29.78	0.88
-rm2bed	0.94	0.24
-teatree	0.74	0.03
-teatree_defrag	2.18	0.11
+repeatcraft.time: 30.29 s, 0.88 GB
+rm2bed.time: 1.10 s, 0.25 GB
+teatree.time: 0.73 s, 0.03 GB
+teatree_merge.time: 2.24 s, 0.11 GB

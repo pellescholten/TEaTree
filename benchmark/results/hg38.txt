@@ -2,11 +2,9 @@ file	annotations	overlapping_another	summed_Mb	covered_Mb
 hg38.fa.out	5520118	270851	1588.4	1586.3
 teatree.bed	5492039	0	1585.6	1585.6
 rm2bed_rm.bed	5519544	239423	1588.0	1586.3
-teatree_defrag.merged.gff	5301120	355896	1598.4	1591.7
+teatree_merge.merged.gff	5301120	355896	1598.4	1591.7
 repeatcraft.rmerge.gff	5202386	347785	1602.2	1594.2
-
-run	wall_s	peak_RAM_GB
-repeatcraft	401.97	7.44
-rm2bed	30.38	5.97
-teatree	31.80	0.25
-teatree_defrag	96.04	4.24
+repeatcraft.time: 401.97 s, 7.44 GB
+rm2bed.time: 30.38 s, 5.97 GB
+teatree.time: 31.80 s, 0.25 GB
+teatree_merge.time: 96.04 s, 4.24 GB
