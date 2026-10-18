@@ -13,11 +13,11 @@ import subprocess
 import re
 from pathlib import Path
 
-version='2021/12/03'
+version='1.0.0'
 
 '''
 Version log:
-version='2024/06/28': first release
+1.0.0 (2026/10): first tagged release, with benchmark/ folder
 '''
 
 description='''
@@ -40,7 +40,7 @@ parser.add_argument('-mode', help='Optional. Specify if you want to generate out
 parser.add_argument("-mergemode",
                     help="Merge mode for defragmentation (if alignment mode is used). Use repeatmasker ID or a threshold, or both. Treshhold can be determined with -gapsize. Choose between 'ID', 'threshold' and 'both' Default = none",
                     default="none", type=str)
-parser.add_argument('-remove_short_fragments', type=int, default=50, help='Optional. Remove fragments shorter than this length. Default: 50. Use 0 to disable.')
+parser.add_argument('-remove_short_fragments', type=int, default=0, help='Optional. Remove fragments shorter than this length. Default: 0 (off).')
 parser.add_argument('-family_filtering', help='Optional. Specify family length file for relative removal', default="none", type=str)
 parser.add_argument('-family_filtering_length', help='Optional. Set the threshold for family length based filtering as a miminum percentage of the consensus family sequence.', default=30, type=int)
 parser.add_argument('-gapsize', metavar='int', type=int, help='Optional. Specify gapsize for defragmentation. Default: 150', default=150)
@@ -674,8 +674,7 @@ def per_chr(reps, gft_id_n, prev_chr, outf):
             prev_end=_rep[1] #?????????????
 
         lines,gft_id_n=collapse(tmp, prev_chr, gft_id_n) # collapse last island
-
-    outf.write(''.join(lines))
+        outf.write(''.join(lines))
     return gft_id_n
 
 
@@ -771,7 +770,7 @@ def main():
 
             # remove small fragments if specfied, only if alignment is not true
             # removal happens at the end if remove == True AND alignment == True
-            if remove == True and _rep[1] - _rep[0] < threshold and alignment == False:
+            if remove and _rep[1] - _rep[0] < remove and alignment == False:
                 continue
 
             # add everything of one chromosome to reps
@@ -804,7 +803,7 @@ def main():
     if alignment:
         if tomerge: # MERGE!
             lcnt = fuseTE.truefusete(gffp=ogff, gapsize=gapsize, outfile=olabel, mergemode=mergemode, allowed_consensus_overlap = allowed_consensus_overlap)
-            mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=threshold, lcnt = lcnt)
+            mergeTE.extratruemergete(gffp=olabel, outfile=omerge, remove=remove, threshold=remove, lcnt = lcnt)
             target_file = omerge
         else:
             target_file = ogff
