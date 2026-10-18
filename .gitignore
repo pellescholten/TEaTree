@@ -5,3 +5,4 @@ result_out/
 test_data/
 deprecated/
 !.gitignore
+benchmark/work_*/

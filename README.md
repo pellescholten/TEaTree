@@ -4,7 +4,7 @@
 </p>
 
 ## About
-TEaTree is a tool for refining transposable element and repeat annotations from RepeatMasker. RepeatMasker often contains many overlapping and fragmented TE annotations. For some analyses, non-overlapping and/or defragmented annotations are preferred or required. TEatree first uses an highly efficient interval tree algorithm find, sort and resolve overlapping TE annotations based on their genomic positions and Smith-Waterman score. TEaTree appropriately deals with chimeras and multiple overlapping sequences (>2) while also reassigning newly formed fragments that are under a certain length. Furthermore, TEaTree can merge fragmented copies based on their consensus family ID and consensus family position, and their RepeatMasker ID and/or sequence position. 
+TEaTree is a tool for refining transposable element and repeat annotations from RepeatMasker. RepeatMasker often contains many overlapping and fragmented TE annotations. For some analyses, non-overlapping and/or defragmented annotations are preferred or required. TEaTree first uses a highly efficient interval tree algorithm to find, sort and resolve overlapping TE annotations based on their genomic positions and Smith-Waterman score. TEaTree appropriately deals with chimeras and multiple overlapping sequences (>2) while also reassigning newly formed fragments that are under a certain length. Furthermore, TEaTree can merge fragmented copies based on their consensus family ID and consensus family position, and their RepeatMasker ID and/or sequence position. 
 
 It also has an optional alignment mode that produces additional GFF files, including a defragmented merged GFF, useful for aligning genomic copies to consensus sequences.
 
@@ -28,19 +28,19 @@ python TEaTree.py -h
 The minimal required flags to run TEaTree are `-i` for the input file (.out or .align) and `-o` for the output file basename.
 
 ```
-python collapseTree.py \
+python TEaTree.py \
 -i example/example_input.out \
 -o example/example_output
 ```
   
-TEatree takes RepeatMasker output files as input, either in .out or .align format (i.e. genome.fa.out or genome.fa.align file). If the input is in .align format (e.g. example.align), TEaTree will automatically created a cleaned up file containing only the relevant information in the proper format (e.g. clean_example.align).
+TEaTree takes RepeatMasker output files as input, either in .out or .align format (i.e. genome.fa.out or genome.fa.align file). If the input is in .align format (e.g. example.align), TEaTree will automatically create a cleaned up file containing only the relevant information in the proper format (e.g. clean_example.align).
 
 ### Choosing between .out and .align input
 TEaTree accepts either the RepeatMasker .out or .align file. Both come from the same masking run, so the resolved annotation set is usually similar.
 The .out file is the annotation table after ProcessRepeats (RepeatMasker), which already tries to resolve overlapping alignments and joins some fragments. The .align file is closer to the raw output and can contain competing blocks that ProcessRepeats would otherwise try to resolve. Use .out to let TEaTree operate on the RepeatMasker-resolved set (not recommended). Use .align to have TEaTree resolve overlaps and defragment the less-processed set in a single pass under its own parameters, rather than layering on top of ProcessRepeats.
 
 ## Output files
-A normal TEAtree run will generate a`.bed` file with non-overlapping and defragmented TE annotations. This file can for example be used to extract TE content.
+A normal TEaTree run will generate a `.bed` file with non-overlapping and defragmented TE annotations. This file can for example be used to extract TE content.
 
 - `.bed`  
 The 4th column (name field) in the bed file will be `RM_n`.`repeat`.`repeat_class`.`original_id`, which is the same naming convention as the `gene_id` in `.gtf.gz` file.  
@@ -48,9 +48,9 @@ The 5th column (score field) contains the SW-score (1st column of the input `.fa
 The 6th column shows the strandedness of the TE annotation. 
 Zero based base pair positions are used.
 
-If `-mode alignment` is specifed, three files will be created. These can be used for example for the re-alignment of the new annotations to the concensus sequences.
+If `-mode alignment` is specified, three files will be created. These can be used for example for the re-alignment of the new annotations to the consensus sequences.
 - `.gff`  
-Same information as the bed file but in different format and where all overlapping annotations are resolved except for chimers (resolving these chimers would lead to odd re-alignments). 
+Same information as the bed file but in different format and where all overlapping annotations are resolved except for chimeras (resolving these chimeras would lead to odd re-alignments). 
 - `.label.gff`  
 The `.gff` but with labels for groups that will be merged/defragmented.
 - `.merged.gff`  
@@ -66,13 +66,13 @@ By default, the script will keep "Simple_repeat" and "Low_complexity" in output 
 If you want to remove such annotations, please add the `-remove_simple_repeat` option.  
 
 - `-min_length` (default = 50)  
-Specify the minimum size that fragments must have after being cut to resolve potential overlap, to prevent very short fragments from being formed. This is also the minimum framgent length of elements if the `-remove_short_fragments` option is specified.
+Specify the minimum size that fragments must have after being cut to resolve potential overlap, to prevent very short fragments from being formed.
 
 - `-annotation_overlap` (default = 80)  
  Sometimes certain parts of a sequence are annotated as belonging to multiple repeats. With this option, you can set the percentage of overlap allowed for two annotations. TEaTree will remove annotations that are contained for more than 80% in an annotation with a higher SW score. 
 
 - `-mode` (default = TEcontent)  
-Choose the output you want to get. Choose `TEcontent" `(default) for output where all overlaps are resolved; best suited for looking at the raw TE contents themselves. Choose `alignment` for output in .gff format that is best suited The annotations for re-alignment of annotations to their concensus sequence. When the mode is `alignment`, annotations will be merged (i.e. `-mergemode` will be set to `both` by default).
+Choose the output you want to get. Choose `TEcontent` (default) for output where all overlaps are resolved; best suited for looking at the raw TE contents themselves. Choose `alignment` for output in .gff format that is best suited for re-alignment of annotations to their consensus sequences. When the mode is `alignment`, annotations will be merged (i.e. `-mergemode` will be set to `both` by default).
 
 - `-mergemode` (default = none)  
  Annotations can be fragmented by RepeatMasker or simply not detected as belonging to the same annotation. By specifying a 'mergemode' (or by choosing 'alignment mode'), TEaTree will defragment some of these annotations. How this is done can be determined with this option. First of all, mergers are also required to belong to the same consensus family. If 'ID' is specified, the program will only consider for merging those elements that have the same RepeatMasker id. If 'threshold' is specified, the program will consider annotations that have a distance between them lower than a certain threshold. This threshold can be determined with the option -gapsize. If 'both' is specified, the program will use both options to consider potential mergers. Finally, potential mergers are checked for their position on the family consensus sequence. If the repeats could form a clean whole defragmented repeat, also considering the consensus sequence, the repeats are merged into one. 
@@ -80,22 +80,45 @@ Choose the output you want to get. Choose `TEcontent" `(default) for output wher
 - `-gapsize` (default = 150)  
 Specify the threshold used for considering annotations for merging when alignment files are being made and -mergemode is 'threshold' or 'both'.
 
-- `-remove_short_fragments` (default = 50)  
-Short fragments can often be unreliable or not relevant to your research question. Call this option if you want to remove short fragments. Fragments will be removed at the start of the pipeline before checking overlaps. Remove fragments shorter than this length (default: 50). Use 0 to disable."
+- `-remove_short_fragments` (default = 0, off)  
+Short fragments can often be unreliable or not relevant to your research question. Give a length (e.g. `-remove_short_fragments 50`) to remove fragments shorter than this length. In TEcontent mode, fragments are removed at the start, before overlaps are resolved. In alignment mode, they are removed at the end, after merging, so that short fragments can still be merged into a longer repeat.
 
 - `-leave_overlap` (default = False)  
 Call if you do not want to resolve overlapping TE annotations. Can be used for simple reformatting or for TE defragmentation if mergemode is specified.
 
-- `-allowed_consensus_overlap` (default = False)
-Merging annotations is an art and a bit subjective. In theory, annotations that have overlapping corresponding sequence on their consensus family are never to be merged as they cannot possibly be from the same TE insertion. However, small mistakes can be made anywhere in the TE annotation or consensus family identification pipelines. Therefore, this option allows for more lenient behaviour towards TEs with overlapping consensus family sequences by either allowing a fixed amount of overlapping basepairs or allowing a proportion of overlapping basepairs relative to the length of the consensus family lenght. Provide an integer as absolute overlap length allowed or an integer + "p" (e.g. 2p) when the amount of consensus overlap allowed is a percentage of the consensus family length (recommend not more than 5p).
+- `-allowed_consensus_overlap` (default = 25)
+Merging annotations is an art and a bit subjective. In theory, annotations that have overlapping corresponding sequence on their consensus family are never to be merged as they cannot possibly be from the same TE insertion. However, small mistakes can be made anywhere in the TE annotation or consensus family identification pipelines. Therefore, this option allows for more lenient behaviour towards TEs with overlapping consensus family sequences by either allowing a fixed amount of overlapping basepairs or allowing a proportion of overlapping basepairs relative to the length of the consensus family length. Provide an integer as absolute overlap length allowed or an integer + "p" (e.g. 2p) when the amount of consensus overlap allowed is a percentage of the consensus family length (recommend not more than 5p).
 
 - `-family_filtering` (default = none)
-There are several options to remove annotations based on a minimal absolute length. This option allows for filtering based on the length of an repeat relative to the length of its family consensus sequence. For this you can provide the path to a file that contains the names of the consensus families with their absolute length in tsv format. This file can be created using the script "get_fam_length.sh". This script takes a fasta file containing all consensus family sequences and provides this tsv. 
-TEaTree than checks for each annotation whether it is longer or shorter than 30% (30 is default, different percentage can be set with `-family_filtering_length`). Only annotations longer than this family specific threshold are retained. LTR annotations receive an additional exception: any LTR fragment longer than 250 bp is kept even if it falls below the threshold. Simple repeat like entries whose family name starts with "(" are discarded. 
+There are several options to remove annotations based on a minimal absolute length. This option allows for filtering based on the length of a repeat relative to the length of its family consensus sequence. For this you can provide the path to a file that contains the names of the consensus families with their absolute length in tsv format. This file can be created using the script "get_fam_length.sh". This script takes a fasta file containing all consensus family sequences and provides this tsv.
+TEaTree then checks for each annotation whether it is longer or shorter than 30% (30 is default, different percentage can be set with `-family_filtering_length`). Only annotations longer than this family specific threshold are retained. LTR annotations receive an additional exception: any LTR fragment longer than 250 bp is kept even if it falls below the threshold. Simple repeat like entries whose family name starts with "(" are discarded. 
 
 - `-family_filtering_length` (default = 30)
 Set the threshold for family length based filtering (see `-family_filtering`).
 
-\subsection{Peformance}
-We ran TEaTree on the human reference assembly hg38 (GRCh38). We obtained a Repeatmasker ".out" file from UCSC Genome Browser (Casper et al., 2026) containing 5,622,516 repeats. TEaTree in "alignment mode" (both overlap resolving and TE defragmentation) completed in 90.1 s wall clock time (83.0 s user, 5.0 s system) with a peak resident memory of 3.72 GB. TEaTree removed 39,391 short length repeats, shortened 119,306 annotations by overlap resolution, and merged 1,286,734 fragments into 642,917 repeats.
+## Performance
+We benchmarked TEaTree on the RepeatMasker `.out` file of the human reference assembly hg38 (GRCh38) from the UCSC Genome Browser (downloaded 17 October 2026; 5,520,118 annotations, of which 270,851 overlap another annotation). Each comparison uses matched settings and the same input. All runs used one thread on an Apple M3 Pro with 18 GB RAM and Python 3.12, and no tool filtered on length. Times are from a single run.
 
+**Overlap resolution** (where annotations overlap, the higher-scoring one wins): TEaTree TEcontent mode vs [RM2Bed.py](https://github.com/rmhubley/RepeatMasker/blob/master/util/RM2Bed.py) `--ovlp_resolution higher_score`.
+
+| | Annotations | Overlapping another | Covered (Mb) | Counted twice (Mb) | Wall time (s) | Peak RAM (GB) |
+|---|---:|---:|---:|---:|---:|---:|
+| RepeatMasker `.out` (input) | 5,520,118 | 270,851 | 1,586.3 | 2.1 | - | - |
+| TEaTree | 5,492,039 | 0 | 1,585.6 | 0.0 | 31.8 | 0.25 |
+| RM2Bed.py | 5,519,544 | 239,423 | 1,586.3 | 1.7 | 30.4 | 5.97 |
+
+**Defragmentation only** (merge fragments of the same family that are < 150 bp apart and do not overlap on the consensus; overlaps are left in): TEaTree `-mode alignment -mergemode threshold -gapsize 150 -leave_overlap` vs [RepeatCraft](https://github.com/niccw/repeatcraftp) loose mode, `gap_size: 150`, no LTR_FINDER input.
+
+| | Annotations | Annotations removed by merging | Covered (Mb) | Wall time (s) | Peak RAM (GB) |
+|---|---:|---:|---:|---:|---:|
+| RepeatMasker `.out` (input) | 5,520,118 | - | 1,586.3 | - | - |
+| TEaTree | 5,301,120 | 218,998 | 1,591.7 | 96.0 | 4.24 |
+| RepeatCraft | 5,202,386 | 317,732 | 1,594.2 | 402.0 | 7.44 |
+
+"Covered" is the number of genome bp in at least one annotation. "Counted twice" is the summed annotation length minus the covered bp, i.e. the bp counted more than once if TE content is summed over annotations.
+
+TEaTree removed all overlaps and kept 99.96% of the covered bp. RM2Bed.py was equally fast but left 239,423 overlapping annotations, and used 24 times more memory. For defragmentation, TEaTree was about 4 times faster than RepeatCraft and merged fewer fragments. RepeatCraft does not check strand, and it does not check consensus overlap between the first two fragments of a group. On dm6, 28% of RepeatCraft's merged groups combined fragments on opposite strands or fragments that overlap on the consensus. TEaTree only merges fragments on the same strand, with at most 25 bp of consensus overlap by default (`-allowed_consensus_overlap`).
+
+With its default settings, alignment mode (overlap resolution and defragmentation) took 99.6 s and 4.09 GB, and merged 1,274,542 fragments into 636,768 repeats. Merged repeats span the elements nested inside them, so the `.merged.gff` overlaps by design; use the `.bed` output for TE content.
+
+The scripts and per-class results, and the same comparison on *Drosophila melanogaster* (dm6), are in [`benchmark/`](benchmark/).
